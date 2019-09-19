@@ -1,12 +1,27 @@
-Kotlin Project Templates
-------------------------
-Each of these project contains:
- * Gradle Kotlin DSL with `buildSrc` directory.
- * Kotlin Gradle plugin, standard library and JUnit testing.
- * Dokka Gradle plugin, publishable to GitHub Pages.
- * Coroutines library.
- * ktlint code style.
- * Boilerplate code.
+[![bintray](https://img.shields.io/badge/bintray-maven-brightgreen.svg)](https://bintray.com/hendraanggrian/maven)
+[![download](https://api.bintray.com/packages/hendraanggrian/maven/kotlinpoet-ktx/images/download.svg)](https://bintray.com/hendraanggrian/maven/kotlinpoet-ktx/_latestVersion)
+[![build](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx.svg)](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+
+KotlinPoet KTX
+==============
+Work in progress.
+
+Download
+--------
+```gradle
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
+}
+```
+
+Usage
+-----
+Coming soon.
 
 License
 -------
@@ -23,3 +38,4 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+    
