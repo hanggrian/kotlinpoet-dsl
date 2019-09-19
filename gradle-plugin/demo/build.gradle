@@ -1,0 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath files('plugin-0.1.jar')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.hendraanggrian.plugin'
+
+group 'com.example'
+version '1.0'
+
+myPlugin {
+}
