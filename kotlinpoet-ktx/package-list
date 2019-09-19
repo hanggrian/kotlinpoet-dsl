@@ -1,0 +1,8 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:com.hendraanggrian.kotlinpoet$toAnnotation(javax.lang.model.element.AnnotationMirror)com.hendraanggrian.kotlinpoet/javax.lang.model.element.-annotation-mirror/to-annotation.html
+$dokka.location:com.hendraanggrian.kotlinpoet$toAnnotation(kotlin.Annotation, kotlin.Boolean)com.hendraanggrian.kotlinpoet/kotlin.-annotation/to-annotation.html
+$dokka.location:com.hendraanggrian.kotlinpoet$toCode(kotlin.String, kotlin.Array((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.-string/to-code.html
+$dokka.location:com.hendraanggrian.kotlinpoet$toParameter(javax.lang.model.element.VariableElement)com.hendraanggrian.kotlinpoet/javax.lang.model.element.-variable-element/to-parameter.html
+com.hendraanggrian.kotlinpoet
+com.hendraanggrian.kotlinpoet.dsl
