@@ -24,11 +24,38 @@
 </tr>
 <tr>
 <td>
+<p><a href="annotation-specs.html">annotationSpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code>
+<p>Annotations of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="kdoc.html">kdoc</a></p>
 </td>
 <td>
 <code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code>
-<p>Collection of javadoc, may be configured with Kotlin DSL.</p>
+<p>Collection of kdoc, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="modifiers.html">modifiers</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">modifiers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">KModifier</span><span class="symbol">&gt;</span></code>
+<p>Modifiers of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="originating-elements.html">originatingElements</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">originatingElements</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/Element.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
+<p>Originating elements of this builder.</p>
 </td>
 </tr>
 <tr>
@@ -42,11 +69,38 @@
 </tr>
 <tr>
 <td>
+<p><a href="parameter-specs.html">parameterSpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">parameterSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">ParameterSpec</span><span class="symbol">&gt;</span></code>
+<p>Parameters of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="returns.html">returns</a></p>
 </td>
 <td>
 <code><span class="keyword">var </span><span class="identifier">returns</span><span class="symbol">: </span><span class="identifier">TypeName</span></code>
 <p>Add return line to type name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="tags.html">tags</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code>
+<p>Tags variables of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="type-variables.html">typeVariables</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">typeVariables</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span></code>
+<p>Type variables of this builder.</p>
 </td>
 </tr>
 </tbody>
@@ -140,6 +194,32 @@
 </tr>
 <tr>
 <td>
+<p><a href="call-super-constructor.html">callSuperConstructor</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">callSuperConstructor</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$callSuperConstructor(kotlin.Array((kotlin.String)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call super constructor with <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> arguments.</p>
+<code><span class="keyword">fun </span><span class="identifier">callSuperConstructor</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$callSuperConstructor(kotlin.Array((com.squareup.kotlinpoet.CodeBlock)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call super constructor with <a href="#">CodeBlock</a> arguments.</p>
+<code><span class="keyword">fun </span><span class="identifier">callSuperConstructor</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$callSuperConstructor(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call super constructor with code <a href="call-super-constructor.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$callSuperConstructor(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="call-this-constructor.html">callThisConstructor</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">callThisConstructor</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$callThisConstructor(kotlin.Array((kotlin.String)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call this constructor with <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> arguments.</p>
+<code><span class="keyword">fun </span><span class="identifier">callThisConstructor</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$callThisConstructor(kotlin.Array((com.squareup.kotlinpoet.CodeBlock)))/args">args</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call this constructor with <a href="#">CodeBlock</a> arguments.</p>
+<code><span class="keyword">fun </span><span class="identifier">callThisConstructor</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$callThisConstructor(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call this constructor with code <a href="call-this-constructor.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$callThisConstructor(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="end-flow.html">endFlow</a></p>
 </td>
 <td>
@@ -154,6 +234,36 @@
 <td>
 <code><span class="keyword">fun </span><span class="identifier">nextFlow</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$nextFlow(kotlin.String, kotlin.Array((kotlin.Any)))/flow">flow</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$nextFlow(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Continues the control flow.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="receiver.html">receiver</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName)/type">type</a> without kdoc.</p>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, com.squareup.kotlinpoet.CodeBlock)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, com.squareup.kotlinpoet.CodeBlock)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), com.squareup.kotlinpoet.CodeBlock)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, com.squareup.kotlinpoet.CodeBlock)/type">type</a> with <a href="receiver.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, com.squareup.kotlinpoet.CodeBlock)/code">code</a> as kdoc.</p>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.TypeName, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/type">type</a> with custom initialization builder as kdoc.</p>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, kotlin.String, kotlin.Array((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), kotlin.String, kotlin.Array((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.reflect.KClass((kotlin.Any)), kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(java.lang.reflect.Type, kotlin.String, kotlin.Array((kotlin.Any)))/type">type</a> with kdoc initialized like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">receiver</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#T">T</a> without kdoc.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#T">T</a> with kdoc initialized like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#T">T</a> with <a href="receiver.html#com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(com.squareup.kotlinpoet.CodeBlock)/code">code</a> as kdoc.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">receiver</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FunSpecBuilder$receiver(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set receiver <a href="receiver.html#T">T</a> with custom initialization builder as kdoc.</p>
 </td>
 </tr>
 <tr>

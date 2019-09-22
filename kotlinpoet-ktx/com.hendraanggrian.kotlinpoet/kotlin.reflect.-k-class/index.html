@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.hendraanggrian.kotlinpoet.kotlin.reflect.KClass - kotlinpoet-ktx</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet</a>&nbsp;/&nbsp;<a href="./index.html">kotlin.reflect.KClass</a><br/>
+<br/>
+<h3>Extensions for kotlin.reflect.KClass</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="as-consumer-wildcard-type-name.html">asConsumerWildcardTypeName</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asConsumerWildcardTypeName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code>
+<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that consumes <code>inType</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="as-producer-wildcard-type-name.html">asProducerWildcardTypeName</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asProducerWildcardTypeName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code>
+<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that produces <code>outType</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="member.html">member</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">member</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$member(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/simpleName">simpleName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MemberName</span></code>
+<p>Returns a <a href="#">MemberName</a>, applying <code>simpleName</code> to <code>this</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="parameterized-by.html">parameterizedBy</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">parameterizedBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$parameterizedBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))))/typeArguments">typeArguments</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterizedTypeName</span></code>
+<p>Returns a <a href="#">ParameterizedTypeName</a>, applying <code>typeArguments</code> to <code>this</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="plus.html">plus</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$plus(kotlin.reflect.KClass((kotlin.Any)), kotlin.reflect.KClass((kotlin.Any)))/typeArgument">typeArgument</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterizedTypeName</span></code>
+<p>Returns a <a href="#">ParameterizedTypeName</a>, applying <code>typeArgument</code> to <code>this</code>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

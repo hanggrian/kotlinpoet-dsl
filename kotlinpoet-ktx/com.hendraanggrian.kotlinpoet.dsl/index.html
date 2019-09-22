@@ -38,20 +38,20 @@
 </tr>
 <tr>
 <td>
-<p><a href="-function-container/index.html">FunctionContainer</a></p>
+<p><a href="-fun-container/index.html">FunContainer</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">FunctionContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">FunctionAddable</span></code>
-<p>A <a href="-function-container/index.html">FunctionContainer</a> is responsible for managing a set of method instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">FunContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">FunAddable</span></code>
+<p>A <a href="-fun-container/index.html">FunContainer</a> is responsible for managing a set of function instances.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="-function-container-scope/index.html">FunctionContainerScope</a></p>
+<p><a href="-fun-container-scope/index.html">FunContainerScope</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">FunctionContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-function-container/index.html"><span class="identifier">FunctionContainer</span></a><span class="symbol">, </span><span class="identifier">FunctionAddable</span></code>
-<p>Receiver for the <code>methods</code> block providing an extended set of operators for the configuration.</p>
+<code><span class="keyword">class </span><span class="identifier">FunContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fun-container/index.html"><span class="identifier">FunContainer</span></a><span class="symbol">, </span><span class="identifier">FunAddable</span></code>
+<p>Receiver for the <code>functions</code> block providing an extended set of operators for the configuration.</p>
 </td>
 </tr>
 <tr>
@@ -69,7 +69,7 @@
 </td>
 <td>
 <code><span class="keyword">class </span><span class="identifier">KdocContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a><span class="symbol">, </span><span class="identifier">CodeAppendable</span></code>
-<p>Receiver for the <code>javadoc</code> block providing an extended set of operators for the configuration.</p>
+<p>Receiver for the <code>kdoc</code> block providing an extended set of operators for the configuration.</p>
 </td>
 </tr>
 <tr>
@@ -106,6 +106,24 @@
 <td>
 <code><span class="keyword">class </span><span class="identifier">PropertyContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-property-container/index.html"><span class="identifier">PropertyContainer</span></a><span class="symbol">, </span><span class="identifier">PropertyAddable</span></code>
 <p>Receiver for the <code>fields</code> block providing an extended set of operators for the configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-type-alias-container/index.html">TypeAliasContainer</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TypeAliasContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">TypeAliasAddable</span></code>
+<p>An <a href="-type-alias-container/index.html">TypeAliasContainer</a> is responsible for managing a set of type alias instances.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-type-alias-container-scope/index.html">TypeAliasContainerScope</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">TypeAliasContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-alias-container/index.html"><span class="identifier">TypeAliasContainer</span></a><span class="symbol">, </span><span class="identifier">TypeAliasAddable</span></code>
+<p>Receiver for the <code>typeAliases</code> block providing an extended set of operators for the configuration.</p>
 </td>
 </tr>
 <tr>

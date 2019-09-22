@@ -24,11 +24,38 @@
 </tr>
 <tr>
 <td>
+<p><a href="annotation-specs.html">annotationSpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code>
+<p>Annotations of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="enum-constants.html">enumConstants</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">enumConstants</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">TypeSpec</span><span class="symbol">&gt;</span></code>
+<p>Enum constants of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="functions.html">functions</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">functions</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-function-container/index.html"><span class="identifier">FunctionContainer</span></a></code>
-<p>Collection of methods, may be configured with Kotlin DSL.</p>
+<code><span class="keyword">val </span><span class="identifier">functions</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-fun-container/index.html"><span class="identifier">FunContainer</span></a></code>
+<p>Collection of functions, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="fun-specs.html">funSpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">funSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">FunSpec</span><span class="symbol">&gt;</span></code>
+<p>Functions of this builder.</p>
 </td>
 </tr>
 <tr>
@@ -37,7 +64,34 @@
 </td>
 <td>
 <code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code>
-<p>Collection of javadoc, may be configured with Kotlin DSL.</p>
+<p>Collection of kdoc, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="modifiers.html">modifiers</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">modifiers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">KModifier</span><span class="symbol">&gt;</span></code>
+<p>Modifiers of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="originating-elements.html">originatingElements</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">originatingElements</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/6/docs/api/javax/lang/model/element/Element.html"><span class="identifier">Element</span></a><span class="symbol">&gt;</span></code>
+<p>Originating elements of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="primary-constructor.html">primaryConstructor</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">primaryConstructor</span><span class="symbol">: </span><span class="identifier">FunSpec</span><span class="symbol">?</span></code>
+<p>Set primary constructor to type.</p>
 </td>
 </tr>
 <tr>
@@ -51,6 +105,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="property-specs.html">propertySpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">propertySpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">PropertySpec</span><span class="symbol">&gt;</span></code>
+<p>Properties of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="super-class.html">superClass</a></p>
 </td>
 <td>
@@ -60,11 +123,56 @@
 </tr>
 <tr>
 <td>
+<p><a href="superclass-constructor-parameters.html">superclassConstructorParameters</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">superclassConstructorParameters</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">CodeBlock</span><span class="symbol">&gt;</span></code>
+<p>Super class constructor parameters of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="super-interfaces.html">superInterfaces</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">superInterfaces</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><span class="identifier">TypeName</span><span class="symbol">,</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<p>Super interfaces of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="tags.html">tags</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code>
+<p>Tags variables of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="types.html">types</a></p>
 </td>
 <td>
 <code><span class="keyword">val </span><span class="identifier">types</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-container/index.html"><span class="identifier">TypeContainer</span></a></code>
 <p>Collection of types, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="type-specs.html">typeSpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">typeSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeSpec</span><span class="symbol">&gt;</span></code>
+<p>Types of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="type-variables.html">typeVariables</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">typeVariables</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span></code>
+<p>Type variables of this builder.</p>
 </td>
 </tr>
 </tbody>
@@ -114,11 +222,24 @@
 </tr>
 <tr>
 <td>
+<p><a href="add-superclass-constructor-parameter.html">addSuperclassConstructorParameter</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addSuperclassConstructorParameter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add super class constructor parameters like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">addSuperclassConstructorParameter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
+<p>Add super class constructor parameters with code.</p>
+<code><span class="keyword">fun </span><span class="identifier">addSuperclassConstructorParameter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
+<p>Add super class constructor parameters with custom <a href="add-superclass-constructor-parameter.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="add-super-interface.html">addSuperInterface</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">addSuperInterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperInterface(com.squareup.kotlinpoet.TypeName)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addSuperInterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperInterface(java.lang.Class((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addSuperInterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperInterface(java.lang.reflect.Type)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">addSuperInterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperInterface(kotlin.reflect.KClass((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Add superinterface to <a href="add-super-interface.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperInterface(com.squareup.kotlinpoet.TypeName)/type">type</a>.</p>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">addSuperInterface</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
@@ -154,12 +275,23 @@
 </tr>
 <tr>
 <td>
+<p><a href="primary-constructor.html">primaryConstructor</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">primaryConstructor</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set primary constructor to type, returning the function.</p>
+<code><span class="keyword">fun </span><span class="identifier">primaryConstructor</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$primaryConstructor(kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-fun-spec-builder/index.html"><span class="identifier">FunSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set primary constructor to type with <a href="primary-constructor.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$primaryConstructor(kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</a>, returning the function.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="super-class.html">superClass</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">superClass</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$superClass(java.lang.Class((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">superClass</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$superClass(java.lang.reflect.Type)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">superClass</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$superClass(kotlin.reflect.KClass((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Set superclass to <a href="super-class.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$superClass(java.lang.Class((kotlin.Any)))/type">type</a>.</p>
+<p>Set superclass to <a href="super-class.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$superClass(java.lang.reflect.Type)/type">type</a>.</p>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">superClass</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Set superclass to <a href="super-class.html#T">T</a>.</p>
 </td>

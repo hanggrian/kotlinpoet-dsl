@@ -10,6 +10,29 @@
 <h1>AnnotationSpecBuilder</h1>
 <code><span class="keyword">class </span><span class="identifier">AnnotationSpecBuilder</span></code>
 <p>Wrapper of <a href="#">AnnotationSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="members.html">members</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">members</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">CodeBlock</span><span class="symbol">&gt;</span></code>
+<p>Members of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="use-site-target.html">useSiteTarget</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">useSiteTarget</span><span class="symbol">: </span><span class="identifier">UseSiteTarget</span></code>
+<p>Set <a href="#">AnnotationSpec.UseSiteTarget</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3>Functions</h3>
 <table>
 <tbody>
@@ -39,7 +62,6 @@
 <p><a href="invoke.html">invoke</a></p>
 </td>
 <td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$invoke(kotlin.String, kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$invoke(kotlin.String, kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$invoke(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Convenient method to add member with operator function.</p>
 </td>

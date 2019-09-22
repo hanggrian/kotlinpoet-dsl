@@ -1,0 +1,153 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>FileSpecBuilder - kotlinpoet-ktx</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet</a>&nbsp;/&nbsp;<a href="./index.html">FileSpecBuilder</a><br/>
+<br/>
+<h1>FileSpecBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">FileSpecBuilder</span></code>
+<p>Wrapper of <a href="#">FileSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="annotations.html">annotations</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-container/index.html"><span class="identifier">AnnotationContainer</span></a></code>
+<p>Collection of annotations, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="annotation-specs.html">annotationSpecs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code>
+<p>Annotations of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="functions.html">functions</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">functions</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-fun-container/index.html"><span class="identifier">FunContainer</span></a></code>
+<p>Collection of functions, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="indent.html">indent</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">indent</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Set indent text.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="indent-count.html">indentCount</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">indentCount</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Set indent space count.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="properties.html">properties</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">properties</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-property-container/index.html"><span class="identifier">PropertyContainer</span></a></code>
+<p>Collection of fields, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="tags.html">tags</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code>
+<p>Tags variables of this builder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="type-aliases.html">typeAliases</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">typeAliases</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-alias-container/index.html"><span class="identifier">TypeAliasContainer</span></a></code>
+<p>Collection of type aliases, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="types.html">types</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">types</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-container/index.html"><span class="identifier">TypeContainer</span></a></code>
+<p>Collection of types, may be configured with Kotlin DSL.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-aliased-import.html">addAliasedImport</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(java.lang.Class((kotlin.Any)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(java.lang.Class((kotlin.Any)), kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">ClassName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String, kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">ClassName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String, kotlin.String)/member">member</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String, kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.MemberName, kotlin.String)/member">member</span><span class="symbol">:</span>&nbsp;<span class="identifier">MemberName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.MemberName, kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add aliased import.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add aliased import with reified function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-comment.html">addComment</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addComment</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addComment(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addComment(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add file comment like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="add-import.html">addImport</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.Enum(()))/constant">constant</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html"><span class="identifier">Enum</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(com.squareup.kotlinpoet.ClassName, kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">ClassName</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(com.squareup.kotlinpoet.ClassName, kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(java.lang.Class((kotlin.Any)), kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(java.lang.Class((kotlin.Any)), kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.String, kotlin.Array((kotlin.String)))/packageName">packageName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.String, kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add import.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">addImport</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add import with reified function.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="build.html">build</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FileSpec</span></code>
+<p>Returns native spec.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
