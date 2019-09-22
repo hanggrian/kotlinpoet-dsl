@@ -66,6 +66,10 @@ inline fun <reified T : Annotation> buildAnnotation(builderAction: AnnotationSpe
 @KotlinpoetDslMarker
 class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: AnnotationSpec.Builder) {
 
+    /** Members of this builder. */
+    val members: MutableList<CodeBlock>
+        get() = nativeBuilder.members
+
     /** Add code as a member of this annotation. */
     fun addMember(name: String, format: String, vararg args: Any) {
         nativeBuilder.addMember(name, format, *args)
@@ -80,12 +84,15 @@ class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativ
         addMember(name, buildCode(builderAction))
 
     /** Convenient method to add member with operator function. */
-    operator fun String.invoke(format: String, vararg args: Any) =
-        addMember(this, format, *args)
-
-    /** Convenient method to add member with operator function. */
     operator fun String.invoke(builderAction: CodeBlockBuilder.() -> Unit) =
         addMember(this, builderAction)
+
+    /** Set [AnnotationSpec.UseSiteTarget]. */
+    var useSiteTarget: AnnotationSpec.UseSiteTarget
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) {
+            nativeBuilder.useSiteTarget(value)
+        }
 
     /** Returns native spec. */
     fun build(): AnnotationSpec =

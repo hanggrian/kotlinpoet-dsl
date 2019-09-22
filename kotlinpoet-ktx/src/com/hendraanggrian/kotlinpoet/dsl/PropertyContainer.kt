@@ -6,6 +6,7 @@ import com.hendraanggrian.kotlinpoet.buildProperty
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
+import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 private interface PropertyAddable {
@@ -30,13 +31,13 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
     ): PropertySpec = add(buildProperty(name, type, *modifiers, builderAction = builderAction))
 
     /** Add field from [type] and [name], returning the field added. */
-    fun add(name: String, type: Class<*>, vararg modifiers: KModifier): PropertySpec =
+    fun add(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
         add(buildProperty(name, type, *modifiers))
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
         name: String,
-        type: Class<*>,
+        type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
     ): PropertySpec = add(buildProperty(name, type, *modifiers, builderAction = builderAction))
@@ -75,7 +76,7 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
     }
 
     /** Convenient method to add field with operator function. */
-    operator fun set(name: String, type: Class<*>) {
+    operator fun set(name: String, type: Type) {
         add(name, type)
     }
 
@@ -103,7 +104,7 @@ class PropertyContainerScope @PublishedApi internal constructor(container: Prope
 
     /** Convenient method to add field with receiver type. */
     inline operator fun String.invoke(
-        type: Class<*>,
+        type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
     ): PropertySpec = add(this, type, *modifiers, builderAction = builderAction)

@@ -6,6 +6,7 @@ import com.hendraanggrian.kotlinpoet.buildParameter
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
+import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 private interface ParameterAddable {
@@ -30,13 +31,13 @@ abstract class ParameterContainer internal constructor() : ParameterAddable {
     ): ParameterSpec = add(buildParameter(name, type, *modifiers, builderAction = builderAction))
 
     /** Add parameter from [type] and [name], returning the parameter added. */
-    fun add(name: String, type: Class<*>, vararg modifiers: KModifier): ParameterSpec =
+    fun add(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
         add(buildParameter(name, type, *modifiers))
 
     /** Add parameter from [type] and [name] with custom initialization [builderAction], returning the parameter added. */
     inline fun add(
         name: String,
-        type: Class<*>,
+        type: Type,
         vararg modifiers: KModifier,
         builderAction: ParameterSpecBuilder.() -> Unit
     ): ParameterSpec = add(buildParameter(name, type, *modifiers, builderAction = builderAction))
@@ -75,7 +76,7 @@ abstract class ParameterContainer internal constructor() : ParameterAddable {
     }
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: Class<*>) {
+    operator fun set(name: String, type: Type) {
         add(name, type)
     }
 
@@ -103,7 +104,7 @@ class ParameterContainerScope @PublishedApi internal constructor(container: Para
 
     /** Convenient method to add parameter with receiver type. */
     inline operator fun String.invoke(
-        type: Class<*>,
+        type: Type,
         vararg modifiers: KModifier,
         builderAction: ParameterSpecBuilder.() -> Unit
     ): ParameterSpec = add(this, type, *modifiers, builderAction = builderAction)

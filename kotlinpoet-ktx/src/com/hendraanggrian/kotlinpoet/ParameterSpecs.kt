@@ -1,10 +1,13 @@
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.AnnotationContainer
+import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
+import java.lang.reflect.Type
 import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
 
@@ -28,7 +31,7 @@ inline fun buildParameter(
 ): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
 
 /** Builds a new [ParameterSpec] from [type]. */
-fun buildParameter(name: String, type: Class<*>, vararg modifiers: KModifier): ParameterSpec =
+fun buildParameter(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
     ParameterSpec.builder(name, type, *modifiers).build()
 
 /** Builds a new [ParameterSpec] from [type]. */
@@ -45,7 +48,7 @@ inline fun <reified T> buildParameter(name: String, vararg modifiers: KModifier)
  */
 inline fun buildParameter(
     name: String,
-    type: Class<*>,
+    type: Type,
     vararg modifiers: KModifier,
     builderAction: ParameterSpecBuilder.() -> Unit
 ): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
@@ -75,6 +78,32 @@ inline fun <reified T> buildParameter(
 @KotlinpoetDslMarker
 class ParameterSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: ParameterSpec.Builder) {
 
+    /** Kdoc of this builder. */
+    val kdocBuilder: CodeBlock.Builder
+        get() = nativeBuilder.kdoc
+
+    /** Annotations of this builder. */
+    val annotationSpecs: MutableList<AnnotationSpec>
+        get() = nativeBuilder.annotations
+
+    /** Modifiers of this builder. */
+    val modifiers: MutableList<KModifier>
+        get() = nativeBuilder.modifiers
+
+    /** Tags variables of this builder. */
+    val tags: MutableMap<KClass<*>, *>
+        get() = nativeBuilder.tags
+
+    /** Collection of kdoc, may be configured with Kotlin DSL. */
+    val kdoc: KdocContainer = object : KdocContainer() {
+        override fun append(format: String, vararg args: Any) {
+            nativeBuilder.addKdoc(format, *args)
+        }
+
+        override fun append(code: CodeBlock): CodeBlock =
+            code.also { nativeBuilder.addKdoc(it) }
+    }
+
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationContainer = object : AnnotationContainer() {
         override fun add(spec: AnnotationSpec): AnnotationSpec =
@@ -85,6 +114,24 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
     fun addModifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
+
+    /** Set default value like [String.format]. */
+    fun defaultValue(format: String, vararg args: Any) {
+        nativeBuilder.defaultValue(format, *args)
+    }
+
+    /** Set default value to simple string. */
+    inline var defaultValue: String
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) = defaultValue(value)
+
+    /** Set default value to code. */
+    fun defaultValue(code: CodeBlock): CodeBlock =
+        code.also { nativeBuilder.defaultValue(it) }
+
+    /** Set default value to code with custom initialization [builderAction]. */
+    inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+        defaultValue(buildCode(builderAction))
 
     /** Returns native spec. */
     fun build(): ParameterSpec =

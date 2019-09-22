@@ -81,7 +81,7 @@ abstract class KdocContainer internal constructor() : CodeAppendable {
         KdocContainerScope(this).configuration()
 }
 
-/** Receiver for the `javadoc` block providing an extended set of operators for the configuration. */
+/** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
 class KdocContainerScope @PublishedApi internal constructor(private val container: KdocContainer) :
     KdocContainer(), CodeAppendable by container {
