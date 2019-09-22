@@ -6,35 +6,37 @@ import com.hendraanggrian.kotlinpoet.dsl.PropertyContainer
 import com.hendraanggrian.kotlinpoet.dsl.TypeAliasContainer
 import com.hendraanggrian.kotlinpoet.dsl.TypeContainer
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeSpec
 import kotlin.reflect.KClass
 
+/** Converts type to [FileSpec]. */
+fun TypeSpec.toFile(packageName: String): FileSpec =
+    FileSpec.get(packageName, this)
+
 /**
  * Builds a new [FileSpec],
  * by populating newly created [FileSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildJavaFile(packageName: String, name: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
+inline fun buildFile(packageName: String, name: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
     FileSpecBuilder(FileSpec.builder(packageName, name)).apply(builderAction).build()
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FileSpec.Builder) {
 
-    /** Annotations of this builder. */
-    val annotationSpecs: MutableList<AnnotationSpec>
-        get() = nativeBuilder.annotations
-
     /** Tags variables of this builder. */
     val tags: MutableMap<KClass<*>, *>
         get() = nativeBuilder.tags
 
-    /** Returns native spec. */
-    fun build(): FileSpec =
-        nativeBuilder.build()
+    /** Annotations of this builder. */
+    val annotationSpecs: MutableList<AnnotationSpec>
+        get() = nativeBuilder.annotations
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationContainer = object : AnnotationContainer() {
@@ -70,4 +72,78 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         override fun add(spec: TypeAliasSpec): TypeAliasSpec =
             spec.also { nativeBuilder.addTypeAlias(it) }
     }
+
+    /** Add import. */
+    fun addImport(constant: Enum<*>) {
+        nativeBuilder.addImport(constant)
+    }
+
+    /** Add import. */
+    fun addImport(type: ClassName, vararg names: String) {
+        nativeBuilder.addImport(type, *names)
+    }
+
+    /** Add import. */
+    fun addImport(type: Class<*>, vararg names: String) {
+        nativeBuilder.addImport(type, *names)
+    }
+
+    /** Add import. */
+    fun addImport(type: KClass<*>, vararg names: String) =
+        addImport(type.java, *names)
+
+    /** Add import with reified function. */
+    inline fun <reified T> addImport(vararg names: String) =
+        addImport(T::class, *names)
+
+    /** Add import. */
+    fun addImport(packageName: String, vararg names: String) {
+        nativeBuilder.addImport(packageName, *names)
+    }
+
+    /** Add aliased import. */
+    fun addAliasedImport(type: Class<*>, `as`: String) {
+        nativeBuilder.addAliasedImport(type, `as`)
+    }
+
+    /** Add aliased import. */
+    fun addAliasedImport(type: KClass<*>, `as`: String) =
+        addAliasedImport(type.java, `as`)
+
+    /** Add aliased import with reified function. */
+    inline fun <reified T> addAliasedImport(`as`: String) =
+        addAliasedImport(T::class, `as`)
+
+    /** Add aliased import. */
+    fun addAliasedImport(type: ClassName, `as`: String) {
+        nativeBuilder.addAliasedImport(type, `as`)
+    }
+
+    /** Add aliased import. */
+    fun addAliasedImport(type: ClassName, member: String, `as`: String) {
+        nativeBuilder.addAliasedImport(type, member, `as`)
+    }
+
+    /** Add aliased import. */
+    fun addAliasedImport(member: MemberName, `as`: String) {
+        nativeBuilder.addAliasedImport(member, `as`)
+    }
+
+    /** Set indent text. */
+    var indent: String
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) {
+            nativeBuilder.indent(value)
+        }
+
+    /** Set indent space count. */
+    inline var indentCount: Int
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) {
+            indent = buildString { repeat(value) { append(' ') } }
+        }
+
+    /** Returns native spec. */
+    fun build(): FileSpec =
+        nativeBuilder.build()
 }

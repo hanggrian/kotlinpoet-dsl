@@ -71,17 +71,17 @@ class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativ
         get() = nativeBuilder.members
 
     /** Add code as a member of this annotation. */
-    fun addMember(name: String, format: String, vararg args: Any) {
-        nativeBuilder.addMember(name, format, *args)
+    fun addMember(format: String, vararg args: Any) {
+        nativeBuilder.addMember(format, *args)
     }
 
     /** Add code as a member of this annotation. */
-    fun addMember(name: String, code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.addMember(name, it) }
+    fun addMember(code: CodeBlock): CodeBlock =
+        code.also { nativeBuilder.addMember(it) }
 
     /** Add code as a member of this annotation with custom initialization [builderAction]. */
-    inline fun addMember(name: String, builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        addMember(name, buildCode(builderAction))
+    inline fun addMember(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+        addMember(buildCode(builderAction))
 
     /** Convenient method to add member with operator function. */
     operator fun String.invoke(builderAction: CodeBlockBuilder.() -> Unit) =

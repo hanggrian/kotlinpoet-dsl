@@ -5,8 +5,11 @@ import com.hendraanggrian.kotlinpoet.TypeSpecBuilder
 import com.hendraanggrian.kotlinpoet.buildAnnotationType
 import com.hendraanggrian.kotlinpoet.buildAnonymousType
 import com.hendraanggrian.kotlinpoet.buildClassType
+import com.hendraanggrian.kotlinpoet.buildCompanionObjectType
 import com.hendraanggrian.kotlinpoet.buildEnumType
+import com.hendraanggrian.kotlinpoet.buildExpectClassType
 import com.hendraanggrian.kotlinpoet.buildInterfaceType
+import com.hendraanggrian.kotlinpoet.buildObjectType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeSpec
 
@@ -33,6 +36,46 @@ abstract class TypeCollection internal constructor() : TypeAddable {
     /** Add class type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addClass(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
         add(buildClassType(type, builderAction))
+
+    /** Add expect class type from [type], returning the type added. */
+    fun addExpectClass(type: String): TypeSpec =
+        add(buildExpectClassType(type))
+
+    /** Add expect class type from [type] with custom initialization [builderAction], returning the type added. */
+    inline fun addExpectClass(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        add(buildExpectClassType(type, builderAction))
+
+    /** Add expect class type from [type], returning the type added. */
+    fun addExpectClass(type: ClassName): TypeSpec =
+        add(buildExpectClassType(type))
+
+    /** Add expect class type from [type] with custom initialization [builderAction], returning the type added. */
+    inline fun addExpectClass(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        add(buildExpectClassType(type, builderAction))
+
+    /** Add object type from [type], returning the type added. */
+    fun addObject(type: String): TypeSpec =
+        add(buildObjectType(type))
+
+    /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
+    inline fun addObject(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        add(buildObjectType(type, builderAction))
+
+    /** Add object type from [type], returning the type added. */
+    fun addObject(type: ClassName): TypeSpec =
+        add(buildObjectType(type))
+
+    /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
+    inline fun addObject(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        add(buildObjectType(type, builderAction))
+
+    /** Add object type from [type], returning the type added. */
+    fun addCompanionObject(type: String? = null): TypeSpec =
+        add(buildCompanionObjectType(type))
+
+    /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
+    inline fun addCompanionObject(type: String? = null, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        add(buildCompanionObjectType(type, builderAction))
 
     /** Add interface type from [type], returning the type added. */
     fun addInterface(type: String): TypeSpec =

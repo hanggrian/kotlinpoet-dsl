@@ -174,25 +174,25 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
     fun getter(spec: FunSpec): FunSpec =
         spec.also { nativeBuilder.getter(it) }
 
-    /** Set getter function from [name], returning the function added. */
-    fun getter(name: String): FunSpec =
-        getter(buildFunction(name))
+    /** Set getter function, returning the function added. */
+    fun getter(): FunSpec =
+        getter(buildGetterFunction())
 
-    /** Set getter function from [name] with custom initialization [builderAction], returning the function added. */
-    inline fun getter(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        getter(buildFunction(name, builderAction))
+    /** Set getter function with custom initialization [builderAction], returning the function added. */
+    inline fun getter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+        getter(buildGetterFunction(builderAction))
 
     /** Set setter function from [spec]. */
     fun setter(spec: FunSpec): FunSpec =
-        spec.also { nativeBuilder.getter(it) }
+        spec.also { nativeBuilder.setter(it) }
 
-    /** Set setter function from [name], returning the function added. */
-    fun setter(name: String): FunSpec =
-        setter(buildFunction(name))
+    /** Set setter function, returning the function added. */
+    fun setter(): FunSpec =
+        setter(buildSetterFunction())
 
-    /** Set setter function from [name] with custom initialization [builderAction], returning the function added. */
-    inline fun setter(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        setter(buildFunction(name, builderAction))
+    /** Set setter function with custom initialization [builderAction], returning the function added. */
+    inline fun setter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+        setter(buildSetterFunction(builderAction))
 
     /** Set receiver to type. */
     var receiver: TypeName

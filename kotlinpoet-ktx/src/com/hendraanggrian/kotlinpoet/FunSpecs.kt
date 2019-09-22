@@ -37,6 +37,28 @@ fun buildConstructorFunction(): FunSpec =
 inline fun buildConstructorFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
     FunSpecBuilder(FunSpec.constructorBuilder()).apply(builderAction).build()
 
+/** Builds a new getter [FunSpec]. */
+fun buildGetterFunction(): FunSpec =
+    FunSpecBuilder(FunSpec.getterBuilder()).build()
+
+/**
+ * Builds a new getter [FunSpec],
+ * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
+ */
+inline fun buildGetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+    FunSpecBuilder(FunSpec.getterBuilder()).apply(builderAction).build()
+
+/** Builds a new setter [FunSpec]. */
+fun buildSetterFunction(): FunSpec =
+    FunSpecBuilder(FunSpec.setterBuilder()).build()
+
+/**
+ * Builds a new setter [FunSpec],
+ * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
+ */
+inline fun buildSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+    FunSpecBuilder(FunSpec.setterBuilder()).apply(builderAction).build()
+
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FunSpec.Builder) : CodeCollection() {

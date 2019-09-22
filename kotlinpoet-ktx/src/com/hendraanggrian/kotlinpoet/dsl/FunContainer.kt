@@ -4,6 +4,8 @@ import com.hendraanggrian.kotlinpoet.FunSpecBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.buildConstructorFunction
 import com.hendraanggrian.kotlinpoet.buildFunction
+import com.hendraanggrian.kotlinpoet.buildGetterFunction
+import com.hendraanggrian.kotlinpoet.buildSetterFunction
 import com.squareup.kotlinpoet.FunSpec
 
 private interface FunAddable {
@@ -30,6 +32,22 @@ abstract class FunContainer internal constructor() : FunAddable {
     /** Add constructor function with custom initialization [builderAction], returning the function added. */
     inline fun addConstructor(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
         add(buildConstructorFunction(builderAction))
+
+    /** Add getter function, returning the function added. */
+    fun addGetter(): FunSpec =
+        add(buildGetterFunction())
+
+    /** Add getter function with custom initialization [builderAction], returning the function added. */
+    inline fun addGetter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+        add(buildGetterFunction(builderAction))
+
+    /** Add setter function, returning the function added. */
+    fun addSetterFunction(): FunSpec =
+        add(buildSetterFunction())
+
+    /** Add setter function with custom initialization [builderAction], returning the function added. */
+    inline fun addSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+        add(buildSetterFunction(builderAction))
 
     /** Convenient function to add function with operator function. */
     operator fun plusAssign(spec: FunSpec) {
