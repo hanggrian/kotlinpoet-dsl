@@ -7,14 +7,14 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import kotlin.reflect.KClass
 
-private interface AnnotationAddable {
+private interface AnnotationSpecAddable {
 
     /** Add annotation to this container. */
     fun add(spec: AnnotationSpec)
 }
 
-/** An [AnnotationContainer] is responsible for managing a set of annotation instances. */
-abstract class AnnotationContainer internal constructor() : AnnotationAddable {
+/** An [AnnotationSpecContainer] is responsible for managing a set of annotation instances. */
+abstract class AnnotationSpecContainer internal constructor() : AnnotationSpecAddable {
 
     /** Add annotation from [type], returning the annotation added. */
     fun add(type: ClassName): AnnotationSpec =
@@ -69,14 +69,14 @@ abstract class AnnotationContainer internal constructor() : AnnotationAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: AnnotationContainerScope.() -> Unit): Unit =
-        AnnotationContainerScope(this).configuration()
+    inline operator fun invoke(configuration: AnnotationSpecContainerScope.() -> Unit): Unit =
+        AnnotationSpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class AnnotationContainerScope @PublishedApi internal constructor(container: AnnotationContainer) :
-    AnnotationContainer(), AnnotationAddable by container {
+class AnnotationSpecContainerScope @PublishedApi internal constructor(container: AnnotationSpecContainer) :
+    AnnotationSpecContainer(), AnnotationSpecAddable by container {
 
     /** Convenient method to add annotation with receiver type. */
     inline operator fun ClassName.invoke(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =

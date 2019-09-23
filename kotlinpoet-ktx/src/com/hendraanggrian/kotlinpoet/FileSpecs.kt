@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationContainer
-import com.hendraanggrian.kotlinpoet.dsl.FunContainer
-import com.hendraanggrian.kotlinpoet.dsl.PropertyContainer
-import com.hendraanggrian.kotlinpoet.dsl.TypeAliasContainer
-import com.hendraanggrian.kotlinpoet.dsl.TypeContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainer
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
@@ -39,7 +39,7 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         get() = nativeBuilder.annotations
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
-    val annotations: AnnotationContainer = object : AnnotationContainer() {
+    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
@@ -51,28 +51,28 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Collection of types, may be configured with Kotlin DSL. */
-    val types: TypeContainer = object : TypeContainer() {
+    val types: TypeSpecContainer = object : TypeSpecContainer() {
         override fun add(spec: TypeSpec) {
             nativeBuilder.addType(spec)
         }
     }
 
     /** Collection of functions, may be configured with Kotlin DSL. */
-    val functions: FunContainer = object : FunContainer() {
+    val functions: FunSpecContainer = object : FunSpecContainer() {
         override fun add(spec: FunSpec) {
             nativeBuilder.addFunction(spec)
         }
     }
 
     /** Collection of fields, may be configured with Kotlin DSL. */
-    val properties: PropertyContainer = object : PropertyContainer() {
+    val properties: PropertySpecContainer = object : PropertySpecContainer() {
         override fun add(spec: PropertySpec) {
             nativeBuilder.addProperty(spec)
         }
     }
 
     /** Collection of type aliases, may be configured with Kotlin DSL. */
-    val typeAliases: TypeAliasContainer = object : TypeAliasContainer() {
+    val typeAliases: TypeAliasSpecContainer = object : TypeAliasSpecContainer() {
         override fun add(spec: TypeAliasSpec) {
             nativeBuilder.addTypeAlias(spec)
         }

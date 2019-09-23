@@ -29,11 +29,11 @@ fun buildTypeAlias(name: String, type: Type): TypeAliasSpec =
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
 fun buildTypeAlias(name: String, type: KClass<*>): TypeAliasSpec =
-    buildTypeAlias(name, type.java)
+    TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [T]. */
 inline fun <reified T> buildTypeAlias(name: String): TypeAliasSpec =
-    buildTypeAlias(name, T::class.java)
+    buildTypeAlias(name, T::class)
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
@@ -53,7 +53,7 @@ inline fun buildTypeAlias(
     name: String,
     type: KClass<*>,
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = buildTypeAlias(name, type.java, builderAction)
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [T],

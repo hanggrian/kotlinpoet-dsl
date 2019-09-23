@@ -9,14 +9,14 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-private interface PropertyAddable {
+private interface PropertySpecAddable {
 
     /** Add field to this container. */
     fun add(spec: PropertySpec)
 }
 
-/** A [PropertyContainer] is responsible for managing a set of field instances. */
-abstract class PropertyContainer internal constructor() : PropertyAddable {
+/** A [PropertySpecContainer] is responsible for managing a set of field instances. */
+abstract class PropertySpecContainer internal constructor() : PropertySpecAddable {
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
@@ -86,14 +86,14 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: PropertyContainerScope.() -> Unit): Unit =
-        PropertyContainerScope(this).configuration()
+    inline operator fun invoke(configuration: PropertySpecContainerScope.() -> Unit): Unit =
+        PropertySpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `fields` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class PropertyContainerScope @PublishedApi internal constructor(container: PropertyContainer) :
-    PropertyContainer(), PropertyAddable by container {
+class PropertySpecContainerScope @PublishedApi internal constructor(container: PropertySpecContainer) :
+    PropertySpecContainer(), PropertySpecAddable by container {
 
     /** Convenient method to add field with receiver type. */
     inline operator fun String.invoke(

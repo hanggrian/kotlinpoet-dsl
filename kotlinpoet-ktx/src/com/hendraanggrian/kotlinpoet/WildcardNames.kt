@@ -36,3 +36,7 @@ fun KClass<*>.asConsumerWildcardTypeName(): WildcardTypeName =
 /** Returns a [WildcardTypeName] that represents an unknown type that consumes `inType`. */
 inline fun <reified T> asConsumerWildcardTypeName(): WildcardTypeName =
     T::class.asConsumerWildcardTypeName()
+
+/** Create a nullable coppy of [WildcardTypeName].  */
+fun WildcardTypeName.asNullable(): WildcardTypeName =
+    copy(true)

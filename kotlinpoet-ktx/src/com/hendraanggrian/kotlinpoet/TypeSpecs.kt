@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationContainer
-import com.hendraanggrian.kotlinpoet.dsl.FunContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainer
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
-import com.hendraanggrian.kotlinpoet.dsl.PropertyContainer
-import com.hendraanggrian.kotlinpoet.dsl.TypeContainer
+import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainer
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
@@ -233,7 +233,7 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
-    val annotations: AnnotationContainer = object : AnnotationContainer() {
+    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
@@ -282,8 +282,9 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Set superclass to [type]. */
-    fun superClass(type: KClass<*>) =
-        superClass(type.java)
+    fun superClass(type: KClass<*>) {
+        nativeBuilder.superclass(type)
+    }
 
     /** Set superclass to [T]. */
     inline fun <reified T> superClass() =
@@ -299,7 +300,7 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         code.also { nativeBuilder.addSuperclassConstructorParameter(it) }
 
     /** Add super class constructor parameters with custom [builderAction]. */
-    inline fun addSuperclassConstructorParameter(builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun addSuperclassConstructorParameter(builderAction: CodeBlockBlockBuilder.() -> Unit) =
         addSuperclassConstructorParameter(buildCode(builderAction))
 
     /** Add superinterface to [type]. */
@@ -313,8 +314,9 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Add superinterface to [type]. */
-    fun addSuperInterface(type: KClass<*>) =
-        addSuperInterface(type.java)
+    fun addSuperInterface(type: KClass<*>) {
+        nativeBuilder.addSuperinterface(type)
+    }
 
     /** Add superinterface to [T]. */
     inline fun <reified T> addSuperInterface() =
@@ -331,7 +333,7 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Collection of fields, may be configured with Kotlin DSL. */
-    val properties: PropertyContainer = object : PropertyContainer() {
+    val properties: PropertySpecContainer = object : PropertySpecContainer() {
         override fun add(spec: PropertySpec) {
             nativeBuilder.addProperty(spec)
         }
@@ -342,18 +344,18 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         code.also { nativeBuilder.addInitializerBlock(it) }
 
     /** Add initializer block containing code with custom initialization [builderAction]. */
-    inline fun addInitializerBlock(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+    inline fun addInitializerBlock(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
         addInitializerBlock(buildCode(builderAction))
 
     /** Collection of functions, may be configured with Kotlin DSL. */
-    val functions: FunContainer = object : FunContainer() {
+    val functions: FunSpecContainer = object : FunSpecContainer() {
         override fun add(spec: FunSpec) {
             nativeBuilder.addFunction(spec)
         }
     }
 
     /** Collection of types, may be configured with Kotlin DSL. */
-    val types: TypeContainer = object : TypeContainer() {
+    val types: TypeSpecContainer = object : TypeSpecContainer() {
         override fun add(spec: TypeSpec) {
             nativeBuilder.addType(spec)
         }

@@ -29,3 +29,7 @@ operator fun Class<*>.plus(typeArgument: Class<*>): ParameterizedTypeName =
 /** Returns a [ParameterizedTypeName], applying `typeArgument` to `this`.  */
 operator fun KClass<*>.plus(typeArgument: KClass<*>): ParameterizedTypeName =
     ParameterizedTypeName.run { plusParameter(typeArgument) }
+
+/** Create a nullable coppy of [ParameterizedTypeName].  */
+fun ParameterizedTypeName.asNullable(): ParameterizedTypeName =
+    copy(true)

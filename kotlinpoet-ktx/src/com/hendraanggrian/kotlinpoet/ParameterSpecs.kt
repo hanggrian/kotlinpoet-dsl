@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
@@ -36,7 +36,7 @@ fun buildParameter(name: String, type: Type, vararg modifiers: KModifier): Param
 
 /** Builds a new [ParameterSpec] from [type]. */
 fun buildParameter(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
-    buildParameter(name, type.java, *modifiers)
+    ParameterSpec.builder(name, type, *modifiers).build()
 
 /** Builds a new [ParameterSpec] from [T]. */
 inline fun <reified T> buildParameter(name: String, vararg modifiers: KModifier): ParameterSpec =
@@ -62,7 +62,7 @@ inline fun buildParameter(
     type: KClass<*>,
     vararg modifiers: KModifier,
     builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = buildParameter(name, type.java, *modifiers, builderAction = builderAction)
+): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
 
 /**
  * Builds a new [ParameterSpec] from [T],
@@ -106,7 +106,7 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
     }
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
-    val annotations: AnnotationContainer = object : AnnotationContainer() {
+    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
@@ -130,7 +130,7 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
         }
 
     /** Set default value to code with custom initialization [builderAction]. */
-    inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+    inline fun defaultValue(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { defaultValue = it }
 
     /** Returns native spec. */

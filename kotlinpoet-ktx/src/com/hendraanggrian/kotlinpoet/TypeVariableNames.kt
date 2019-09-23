@@ -21,3 +21,7 @@ fun typeVariableNameOf(name: String, vararg bounds: Type, variance: KModifier? =
 /** Returns a [TypeVariableName] named [name] with [bounds]. */
 fun typeVariableNameOf(name: String, vararg bounds: KClass<*>, variance: KModifier? = null): TypeVariableName =
     TypeVariableName(name, *bounds, variance = variance)
+
+/** Create a nullable coppy of [TypeVariableName].  */
+fun TypeVariableName.asNullable(): TypeVariableName =
+    copy(true)

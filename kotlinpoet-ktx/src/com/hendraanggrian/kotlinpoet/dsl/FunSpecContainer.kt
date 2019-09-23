@@ -8,14 +8,14 @@ import com.hendraanggrian.kotlinpoet.buildGetterFunction
 import com.hendraanggrian.kotlinpoet.buildSetterFunction
 import com.squareup.kotlinpoet.FunSpec
 
-private interface FunAddable {
+private interface FunSpecAddable {
 
     /** Add function to this container. */
     fun add(spec: FunSpec)
 }
 
-/** A [FunContainer] is responsible for managing a set of function instances. */
-abstract class FunContainer internal constructor() : FunAddable {
+/** A [FunSpecContainer] is responsible for managing a set of function instances. */
+abstract class FunSpecContainer internal constructor() : FunSpecAddable {
 
     /** Add function from [name], returning the function added. */
     fun add(name: String): FunSpec =
@@ -60,14 +60,14 @@ abstract class FunContainer internal constructor() : FunAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: FunContainerScope.() -> Unit): Unit =
-        FunContainerScope(this).configuration()
+    inline operator fun invoke(configuration: FunSpecContainerScope.() -> Unit): Unit =
+        FunSpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class FunContainerScope @PublishedApi internal constructor(container: FunContainer) :
-    FunContainer(), FunAddable by container {
+class FunSpecContainerScope @PublishedApi internal constructor(container: FunSpecContainer) :
+    FunSpecContainer(), FunSpecAddable by container {
 
     /** Convenient function to add function with receiver type. */
     inline operator fun String.invoke(builderAction: FunSpecBuilder.() -> Unit): FunSpec =

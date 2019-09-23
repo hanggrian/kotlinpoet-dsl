@@ -1,9 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationContainer
-import com.hendraanggrian.kotlinpoet.dsl.CodeCollection
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.CodeBlockCollection
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
-import com.hendraanggrian.kotlinpoet.dsl.ParameterContainer
+import com.hendraanggrian.kotlinpoet.dsl.ParameterSpecContainer
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
@@ -61,7 +61,8 @@ inline fun buildSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpe
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FunSpec.Builder) : CodeCollection() {
+class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FunSpec.Builder) :
+    CodeBlockCollection() {
 
     /** Annotations of this builder. */
     val annotationSpecs: MutableList<AnnotationSpec>
@@ -99,7 +100,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
-    val annotations: AnnotationContainer = object : AnnotationContainer() {
+    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
@@ -138,7 +139,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Set receiver [type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: TypeName, builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun receiver(type: TypeName, builderAction: CodeBlockBlockBuilder.() -> Unit) =
         receiver(type, buildCode(builderAction))
 
     /** Set receiver [type] without kdoc. */
@@ -157,7 +158,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Set receiver [type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: Type, builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun receiver(type: Type, builderAction: CodeBlockBlockBuilder.() -> Unit) =
         receiver(type, buildCode(builderAction))
 
     /** Set receiver [type] without kdoc. */
@@ -176,7 +177,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Set receiver [type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: KClass<*>, builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun receiver(type: KClass<*>, builderAction: CodeBlockBlockBuilder.() -> Unit) =
         receiver(type, buildCode(builderAction))
 
     /** Set receiver [T] without kdoc. */
@@ -192,7 +193,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
         receiver(T::class, code)
 
     /** Set receiver [T] with custom initialization builder as kdoc. */
-    inline fun <reified T> receiver(builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun <reified T> receiver(builderAction: CodeBlockBlockBuilder.() -> Unit) =
         receiver(T::class, buildCode(builderAction))
 
     /** Add return line to type name. */
@@ -203,8 +204,13 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
         }
 
     /** Add return line to [type]. */
+    fun returns(type: Type) {
+        nativeBuilder.returns(type)
+    }
+
+    /** Add return line to [type]. */
     fun returns(type: KClass<*>) {
-        nativeBuilder.returns(type.java)
+        nativeBuilder.returns(type)
     }
 
     /** Add return line to [T]. */
@@ -212,7 +218,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
         returns(T::class)
 
     /** Collection of parameters, may be configured with Kotlin DSL. */
-    val parameters: ParameterContainer = object : ParameterContainer() {
+    val parameters: ParameterSpecContainer = object : ParameterSpecContainer() {
         override fun add(spec: ParameterSpec) {
             nativeBuilder.addParameter(spec)
         }
@@ -229,7 +235,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Call this constructor with code [builderAction]. */
-    inline fun callThisConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun callThisConstructor(builderAction: CodeBlockBlockBuilder.() -> Unit) =
         callThisConstructor(buildCode(builderAction))
 
     /** Call super constructor with [String] arguments. */
@@ -243,7 +249,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Call super constructor with code [builderAction]. */
-    inline fun callSuperConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun callSuperConstructor(builderAction: CodeBlockBlockBuilder.() -> Unit) =
         callSuperConstructor(buildCode(builderAction))
 
     override fun append(format: String, vararg args: Any) {

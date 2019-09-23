@@ -15,3 +15,7 @@ fun TypeName?.lambdaBy(vararg parameters: TypeName, returnType: TypeName): Lambd
 /** Returns a [LambdaTypeName], applying `parameters` to `this`.  */
 fun TypeName?.lambdaBy(vararg parameters: ParameterSpec, returnType: TypeName): LambdaTypeName =
     LambdaTypeName.get(this, *parameters, returnType = returnType)
+
+/** Create a nullable coppy of [LambdaTypeName].  */
+fun LambdaTypeName.asNullable(): LambdaTypeName =
+    copy(true)

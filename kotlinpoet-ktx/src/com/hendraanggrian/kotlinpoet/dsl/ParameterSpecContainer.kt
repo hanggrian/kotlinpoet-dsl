@@ -9,14 +9,14 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-private interface ParameterAddable {
+private interface ParameterSpecAddable {
 
     /** Add parameter to this container. */
     fun add(spec: ParameterSpec)
 }
 
-/** A [ParameterContainer] is responsible for managing a set of parameter instances. */
-abstract class ParameterContainer internal constructor() : ParameterAddable {
+/** A [ParameterSpecContainer] is responsible for managing a set of parameter instances. */
+abstract class ParameterSpecContainer internal constructor() : ParameterSpecAddable {
 
     /** Add parameter from [type] and [name], returning the parameter added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
@@ -86,14 +86,14 @@ abstract class ParameterContainer internal constructor() : ParameterAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: ParameterContainerScope.() -> Unit): Unit =
-        ParameterContainerScope(this).configuration()
+    inline operator fun invoke(configuration: ParameterSpecContainerScope.() -> Unit): Unit =
+        ParameterSpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class ParameterContainerScope @PublishedApi internal constructor(container: ParameterContainer) :
-    ParameterContainer(), ParameterAddable by container {
+class ParameterSpecContainerScope @PublishedApi internal constructor(container: ParameterSpecContainer) :
+    ParameterSpecContainer(), ParameterSpecAddable by container {
 
     /** Convenient method to add parameter with receiver type. */
     inline operator fun String.invoke(

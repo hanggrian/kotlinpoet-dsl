@@ -31,11 +31,11 @@ fun <T : Annotation> buildAnnotation(type: Class<T>): AnnotationSpec =
 
 /** Builds a new [AnnotationSpec] from [type]. */
 fun <T : Annotation> buildAnnotation(type: KClass<T>): AnnotationSpec =
-    buildAnnotation(type.java)
+    AnnotationSpec.builder(type).build()
 
 /** Builds a new [AnnotationSpec] from [T]. */
 inline fun <reified T : Annotation> buildAnnotation(): AnnotationSpec =
-    buildAnnotation(T::class.java)
+    buildAnnotation(T::class)
 
 /**
  * Builds a new [AnnotationSpec] from [type],
@@ -53,7 +53,7 @@ inline fun <T : Annotation> buildAnnotation(
 inline fun <T : Annotation> buildAnnotation(
     type: KClass<T>,
     builderAction: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = buildAnnotation(type.java, builderAction)
+): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(builderAction).build()
 
 /**
  * Builds a new [AnnotationSpec] from [T],
@@ -80,12 +80,8 @@ class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativ
         code.also { nativeBuilder.addMember(it) }
 
     /** Add code as a member of this annotation with custom initialization [builderAction]. */
-    inline fun addMember(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+    inline fun addMember(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
         addMember(buildCode(builderAction))
-
-    /** Convenient method to add member with operator function. */
-    operator fun String.invoke(builderAction: CodeBlockBuilder.() -> Unit) =
-        addMember(this, builderAction)
 
     /** Set [AnnotationSpec.UseSiteTarget]. */
     var useSiteTarget: AnnotationSpec.UseSiteTarget
