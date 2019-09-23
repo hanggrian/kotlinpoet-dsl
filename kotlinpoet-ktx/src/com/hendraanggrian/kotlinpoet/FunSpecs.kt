@@ -123,10 +123,12 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
         nativeBuilder.addTypeVariable(typeVariable)
     }
 
-    /** Set receiver [type] without kdoc. */
-    fun receiver(type: TypeName) {
-        nativeBuilder.receiver(type)
-    }
+    /** Set receiver to type. */
+    var receiver: TypeName
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) {
+            nativeBuilder.receiver(value)
+        }
 
     /** Set receiver [type] with [code] as kdoc. */
     fun receiver(type: TypeName, code: CodeBlock) {
