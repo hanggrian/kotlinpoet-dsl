@@ -109,14 +109,16 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
             nativeBuilder.addKdoc(format, *args)
         }
 
-        override fun append(code: CodeBlock): CodeBlock =
-            code.also { nativeBuilder.addKdoc(it) }
+        override fun append(code: CodeBlock) {
+            nativeBuilder.addKdoc(code)
+        }
     }
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationContainer = object : AnnotationContainer() {
-        override fun add(spec: AnnotationSpec): AnnotationSpec =
-            spec.also { nativeBuilder.addAnnotation(it) }
+        override fun add(spec: AnnotationSpec) {
+            nativeBuilder.addAnnotation(spec)
+        }
     }
 
     /** Add field modifiers. */
@@ -140,17 +142,15 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
     }
 
     /** Initialize field value with simple string. */
-    inline var initializer: String
+    var initializer: CodeBlock
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
-        set(value) = initializer(value)
-
-    /** Initialize field value with code. */
-    fun initializer(code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.initializer(it) }
+        set(value) {
+            nativeBuilder.initializer(value)
+        }
 
     /** Initialize field value with custom initialization [builderAction]. */
     inline fun initializer(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        initializer(buildCode(builderAction))
+        buildCode(builderAction).also { initializer = it }
 
     /** Delegate field value like [String.format]. */
     fun delegate(format: String, vararg args: Any) {
@@ -158,41 +158,45 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
     }
 
     /** Delegate field value with simple string. */
-    inline var delegate: String
+    var delegate: CodeBlock
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
-        set(value) = delegate(value)
-
-    /** Delegate field value with code. */
-    fun delegate(code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.delegate(it) }
+        set(value) {
+            nativeBuilder.delegate(value)
+        }
 
     /** Delegate field value with custom initialization [builderAction]. */
     inline fun delegate(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        delegate(buildCode(builderAction))
+        buildCode(builderAction).also { delegate = it }
 
-    /** Set getter function from [spec]. */
-    fun getter(spec: FunSpec): FunSpec =
-        spec.also { nativeBuilder.getter(it) }
+    /** Set getter function from [FunSpec]. */
+    var getter: FunSpec
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) {
+            nativeBuilder.getter(value)
+        }
 
     /** Set getter function, returning the function added. */
     fun getter(): FunSpec =
-        getter(buildGetterFunction())
+        buildGetterFunction().also { getter = it }
 
     /** Set getter function with custom initialization [builderAction], returning the function added. */
     inline fun getter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        getter(buildGetterFunction(builderAction))
+        buildGetterFunction(builderAction).also { getter = it }
 
-    /** Set setter function from [spec]. */
-    fun setter(spec: FunSpec): FunSpec =
-        spec.also { nativeBuilder.setter(it) }
+    /** Set setter function from [FunSpec]. */
+    var setter: FunSpec
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        set(value) {
+            nativeBuilder.setter(value)
+        }
 
     /** Set setter function, returning the function added. */
     fun setter(): FunSpec =
-        setter(buildSetterFunction())
+        buildSetterFunction().also { setter = it }
 
     /** Set setter function with custom initialization [builderAction], returning the function added. */
     inline fun setter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        setter(buildSetterFunction(builderAction))
+        buildSetterFunction(builderAction).also { setter = it }
 
     /** Set receiver to type. */
     var receiver: TypeName

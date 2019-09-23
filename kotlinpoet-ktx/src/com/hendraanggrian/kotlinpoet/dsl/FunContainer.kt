@@ -10,8 +10,8 @@ import com.squareup.kotlinpoet.FunSpec
 
 private interface FunAddable {
 
-    /** Add function to this container, returning the function added. */
-    fun add(spec: FunSpec): FunSpec
+    /** Add function to this container. */
+    fun add(spec: FunSpec)
 }
 
 /** A [FunContainer] is responsible for managing a set of function instances. */
@@ -19,35 +19,35 @@ abstract class FunContainer internal constructor() : FunAddable {
 
     /** Add function from [name], returning the function added. */
     fun add(name: String): FunSpec =
-        add(buildFunction(name))
+        buildFunction(name).also { add(it) }
 
     /** Add function from [name] with custom initialization [builderAction], returning the function added. */
     inline fun add(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        add(buildFunction(name, builderAction))
+        buildFunction(name, builderAction).also { add(it) }
 
     /** Add constructor function, returning the function added. */
     fun addConstructor(): FunSpec =
-        add(buildConstructorFunction())
+        buildConstructorFunction().also { add(it) }
 
     /** Add constructor function with custom initialization [builderAction], returning the function added. */
     inline fun addConstructor(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        add(buildConstructorFunction(builderAction))
+        buildConstructorFunction(builderAction).also { add(it) }
 
     /** Add getter function, returning the function added. */
     fun addGetter(): FunSpec =
-        add(buildGetterFunction())
+        buildGetterFunction().also { add(it) }
 
     /** Add getter function with custom initialization [builderAction], returning the function added. */
     inline fun addGetter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        add(buildGetterFunction(builderAction))
+        buildGetterFunction(builderAction).also { add(it) }
 
     /** Add setter function, returning the function added. */
     fun addSetterFunction(): FunSpec =
-        add(buildSetterFunction())
+        buildSetterFunction().also { add(it) }
 
     /** Add setter function with custom initialization [builderAction], returning the function added. */
     inline fun addSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        add(buildSetterFunction(builderAction))
+        buildSetterFunction(builderAction).also { add(it) }
 
     /** Convenient function to add function with operator function. */
     operator fun plusAssign(spec: FunSpec) {
@@ -60,7 +60,7 @@ abstract class FunContainer internal constructor() : FunAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: FunContainerScope.() -> Unit) =
+    inline operator fun invoke(configuration: FunContainerScope.() -> Unit): Unit =
         FunContainerScope(this).configuration()
 }
 

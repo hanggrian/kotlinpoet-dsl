@@ -100,14 +100,16 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
             nativeBuilder.addKdoc(format, *args)
         }
 
-        override fun append(code: CodeBlock): CodeBlock =
-            code.also { nativeBuilder.addKdoc(it) }
+        override fun append(code: CodeBlock) {
+            nativeBuilder.addKdoc(code)
+        }
     }
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationContainer = object : AnnotationContainer() {
-        override fun add(spec: AnnotationSpec): AnnotationSpec =
-            spec.also { nativeBuilder.addAnnotation(it) }
+        override fun add(spec: AnnotationSpec) {
+            nativeBuilder.addAnnotation(spec)
+        }
     }
 
     /** Add field modifiers. */
@@ -121,17 +123,15 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
     }
 
     /** Set default value to simple string. */
-    inline var defaultValue: String
+    var defaultValue: CodeBlock
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
-        set(value) = defaultValue(value)
-
-    /** Set default value to code. */
-    fun defaultValue(code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.defaultValue(it) }
+        set(value) {
+            nativeBuilder.defaultValue(value)
+        }
 
     /** Set default value to code with custom initialization [builderAction]. */
     inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        defaultValue(buildCode(builderAction))
+        buildCode(builderAction).also { defaultValue = it }
 
     /** Returns native spec. */
     fun build(): ParameterSpec =

@@ -10,8 +10,8 @@ import kotlin.reflect.KClass
 
 private interface TypeAliasAddable {
 
-    /** Add type alias to this container, returning the type alias added. */
-    fun add(spec: TypeAliasSpec): TypeAliasSpec
+    /** Add type alias to this container. */
+    fun add(spec: TypeAliasSpec)
 }
 
 /** An [TypeAliasContainer] is responsible for managing a set of type alias instances. */
@@ -19,40 +19,40 @@ abstract class TypeAliasContainer internal constructor() : TypeAliasAddable {
 
     /** Add type alias from [name] and [type], returning the type alias added. */
     fun add(name: String, type: TypeName): TypeAliasSpec =
-        add(buildTypeAlias(name, type))
+        buildTypeAlias(name, type).also { add(it) }
 
     /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
     inline fun add(name: String, type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        add(buildTypeAlias(name, type, builderAction))
+        buildTypeAlias(name, type, builderAction).also { add(it) }
 
     /** Add type alias from [name] and [type], returning the type alias added. */
     fun add(name: String, type: Type): TypeAliasSpec =
-        add(buildTypeAlias(name, type))
+        buildTypeAlias(name, type).also { add(it) }
 
     /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
     inline fun add(
         name: String,
         type: Type,
         builderAction: TypeAliasSpecBuilder.() -> Unit
-    ): TypeAliasSpec = add(buildTypeAlias(name, type, builderAction))
+    ): TypeAliasSpec = buildTypeAlias(name, type, builderAction).also { add(it) }
 
     /** Add type alias from [name] and [type], returning the type alias added. */
     fun add(name: String, type: KClass<*>): TypeAliasSpec =
-        add(buildTypeAlias(name, type))
+        buildTypeAlias(name, type).also { add(it) }
 
     /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
     inline fun add(name: String, type: KClass<*>, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        add(buildTypeAlias(name, type, builderAction))
+        buildTypeAlias(name, type, builderAction).also { add(it) }
 
     /** Add type alias from [name] and reified [T], returning the type alias added. */
     inline fun <reified T> add(name: String): TypeAliasSpec =
-        add(buildTypeAlias<T>(name))
+        buildTypeAlias<T>(name).also { add(it) }
 
     /** Add type alias from [name] and reified [T] with custom initialization [builderAction], returning the type alias added. */
     inline fun <reified T> add(
         name: String,
         builderAction: TypeAliasSpecBuilder.() -> Unit
-    ): TypeAliasSpec = add(buildTypeAlias<T>(name, builderAction))
+    ): TypeAliasSpec = buildTypeAlias<T>(name, builderAction).also { add(it) }
 
     /** Convenient method to add type alias with operator function. */
     operator fun plusAssign(spec: TypeAliasSpec) {
@@ -60,7 +60,7 @@ abstract class TypeAliasContainer internal constructor() : TypeAliasAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: TypeAliasContainerScope.() -> Unit) =
+    inline operator fun invoke(configuration: TypeAliasContainerScope.() -> Unit): Unit =
         TypeAliasContainerScope(this).configuration()
 }
 

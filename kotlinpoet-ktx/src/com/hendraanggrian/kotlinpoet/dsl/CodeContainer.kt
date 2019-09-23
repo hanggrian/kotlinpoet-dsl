@@ -10,19 +10,19 @@ private interface CodeAppendable {
     /** Add code block to this container. */
     fun append(format: String, vararg args: Any)
 
-    /** Add code block to this container, returning the code added. */
-    fun append(code: CodeBlock): CodeBlock
+    /** Add code block to this container. */
+    fun append(code: CodeBlock)
 
+    /** Add empty new line to this container. */
     fun appendln()
 
     /** Add code block with a new line to this container. */
     fun appendln(format: String, vararg args: Any)
 
-    /** Add code block with a new line to this container, returning the code added. */
-    fun appendln(code: CodeBlock): CodeBlock {
-        val result = append(code)
+    /** Add code block with a new line to this container. */
+    fun appendln(code: CodeBlock) {
+        append(code)
         appendln()
-        return result
     }
 }
 
@@ -30,7 +30,7 @@ abstract class CodeCollection internal constructor() : CodeAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        append(buildCode(builderAction))
+        buildCode(builderAction).also { append(it) }
 
     override fun appendln() =
         appendln("")
@@ -54,7 +54,7 @@ abstract class KdocContainer internal constructor() : CodeAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        append(buildCode(builderAction))
+        buildCode(builderAction).also { append(it) }
 
     override fun appendln(): Unit =
         append("\n")
@@ -86,7 +86,7 @@ abstract class KdocContainer internal constructor() : CodeAppendable {
 class KdocContainerScope @PublishedApi internal constructor(private val container: KdocContainer) :
     KdocContainer(), CodeAppendable by container {
 
-    override fun appendln(code: CodeBlock): CodeBlock = container.appendln(code)
-    override fun appendln() = container.appendln()
-    override fun appendln(format: String, vararg args: Any) = container.appendln(format, *args)
+    override fun appendln(code: CodeBlock): Unit = container.appendln(code)
+    override fun appendln(): Unit = container.appendln()
+    override fun appendln(format: String, vararg args: Any): Unit = container.appendln(format, *args)
 }

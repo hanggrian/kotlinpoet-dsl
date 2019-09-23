@@ -40,8 +40,9 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationContainer = object : AnnotationContainer() {
-        override fun add(spec: AnnotationSpec): AnnotationSpec =
-            spec.also { nativeBuilder.addAnnotation(it) }
+        override fun add(spec: AnnotationSpec) {
+            nativeBuilder.addAnnotation(spec)
+        }
     }
 
     /** Add file comment like [String.format]. */
@@ -51,26 +52,30 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Collection of types, may be configured with Kotlin DSL. */
     val types: TypeContainer = object : TypeContainer() {
-        override fun add(spec: TypeSpec): TypeSpec =
-            spec.also { nativeBuilder.addType(it) }
+        override fun add(spec: TypeSpec) {
+            nativeBuilder.addType(spec)
+        }
     }
 
     /** Collection of functions, may be configured with Kotlin DSL. */
     val functions: FunContainer = object : FunContainer() {
-        override fun add(spec: FunSpec): FunSpec =
-            spec.also { nativeBuilder.addFunction(it) }
+        override fun add(spec: FunSpec) {
+            nativeBuilder.addFunction(spec)
+        }
     }
 
     /** Collection of fields, may be configured with Kotlin DSL. */
     val properties: PropertyContainer = object : PropertyContainer() {
-        override fun add(spec: PropertySpec): PropertySpec =
-            spec.also { nativeBuilder.addProperty(it) }
+        override fun add(spec: PropertySpec) {
+            nativeBuilder.addProperty(spec)
+        }
     }
 
     /** Collection of type aliases, may be configured with Kotlin DSL. */
     val typeAliases: TypeAliasContainer = object : TypeAliasContainer() {
-        override fun add(spec: TypeAliasSpec): TypeAliasSpec =
-            spec.also { nativeBuilder.addTypeAlias(it) }
+        override fun add(spec: TypeAliasSpec) {
+            nativeBuilder.addTypeAlias(spec)
+        }
     }
 
     /** Add import. */

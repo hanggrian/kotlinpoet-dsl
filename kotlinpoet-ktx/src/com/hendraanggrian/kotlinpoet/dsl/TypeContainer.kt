@@ -15,130 +15,130 @@ import com.squareup.kotlinpoet.TypeSpec
 
 private interface TypeAddable {
 
-    /** Add type to this container, returning the type added. */
-    fun add(spec: TypeSpec): TypeSpec
+    /** Add type to this container. */
+    fun add(spec: TypeSpec)
 }
 
 abstract class TypeCollection internal constructor() : TypeAddable {
 
     /** Add class type from [type], returning the type added. */
     fun addClass(type: String): TypeSpec =
-        add(buildClassType(type))
+        buildClassType(type).also { add(it) }
 
     /** Add class type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addClass(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildClassType(type, builderAction))
+        buildClassType(type, builderAction).also { add(it) }
 
     /** Add class type from [type], returning the type added. */
     fun addClass(type: ClassName): TypeSpec =
-        add(buildClassType(type))
+        buildClassType(type).also { add(it) }
 
     /** Add class type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addClass(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildClassType(type, builderAction))
+        buildClassType(type, builderAction).also { add(it) }
 
     /** Add expect class type from [type], returning the type added. */
     fun addExpectClass(type: String): TypeSpec =
-        add(buildExpectClassType(type))
+        buildExpectClassType(type).also { add(it) }
 
     /** Add expect class type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addExpectClass(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildExpectClassType(type, builderAction))
+        buildExpectClassType(type, builderAction).also { add(it) }
 
     /** Add expect class type from [type], returning the type added. */
     fun addExpectClass(type: ClassName): TypeSpec =
-        add(buildExpectClassType(type))
+        buildExpectClassType(type).also { add(it) }
 
     /** Add expect class type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addExpectClass(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildExpectClassType(type, builderAction))
+        buildExpectClassType(type, builderAction).also { add(it) }
 
     /** Add object type from [type], returning the type added. */
     fun addObject(type: String): TypeSpec =
-        add(buildObjectType(type))
+        buildObjectType(type).also { add(it) }
 
     /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addObject(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildObjectType(type, builderAction))
+        buildObjectType(type, builderAction).also { add(it) }
 
     /** Add object type from [type], returning the type added. */
     fun addObject(type: ClassName): TypeSpec =
-        add(buildObjectType(type))
+        buildObjectType(type).also { add(it) }
 
     /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addObject(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildObjectType(type, builderAction))
+        buildObjectType(type, builderAction).also { add(it) }
 
     /** Add object type from [type], returning the type added. */
     fun addCompanionObject(type: String? = null): TypeSpec =
-        add(buildCompanionObjectType(type))
+        buildCompanionObjectType(type).also { add(it) }
 
     /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addCompanionObject(type: String? = null, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildCompanionObjectType(type, builderAction))
+        buildCompanionObjectType(type, builderAction).also { add(it) }
 
     /** Add interface type from [type], returning the type added. */
     fun addInterface(type: String): TypeSpec =
-        add(buildInterfaceType(type))
+        buildInterfaceType(type).also { add(it) }
 
     /** Add interface type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addInterface(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildInterfaceType(type, builderAction))
+        buildInterfaceType(type, builderAction).also { add(it) }
 
     /** Add interface type from [type], returning the type added. */
     fun addInterface(type: ClassName): TypeSpec =
-        add(buildInterfaceType(type))
+        buildInterfaceType(type).also { add(it) }
 
     /** Add interface type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addInterface(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildInterfaceType(type, builderAction))
+        buildInterfaceType(type, builderAction).also { add(it) }
 
     /** Add enum type from [type], returning the type added. */
     fun addEnum(type: String): TypeSpec =
-        add(buildEnumType(type))
+        buildEnumType(type).also { add(it) }
 
     /** Add enum type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addEnum(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildEnumType(type, builderAction))
+        buildEnumType(type, builderAction).also { add(it) }
 
     /** Add enum type from [type], returning the type added. */
     fun addEnum(type: ClassName): TypeSpec =
-        add(buildEnumType(type))
+        buildEnumType(type).also { add(it) }
 
     /** Add enum type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addEnum(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildEnumType(type, builderAction))
+        buildEnumType(type, builderAction).also { add(it) }
 
     /** Add anonymous type from block, returning the type added. */
     fun addAnonymous(): TypeSpec =
-        add(buildAnonymousType())
+        buildAnonymousType().also { add(it) }
 
     /** Add anonymous type from block with custom initialization [builderAction], returning the type added. */
     inline fun addAnonymous(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildAnonymousType(builderAction))
+        buildAnonymousType(builderAction).also { add(it) }
 
     /** Add annotation type from [type], returning the type added. */
     fun addAnnotation(type: String): TypeSpec =
-        add(buildAnnotationType(type))
+        buildAnnotationType(type).also { add(it) }
 
     /** Add annotation type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addAnnotation(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildAnnotationType(type, builderAction))
+        buildAnnotationType(type, builderAction).also { add(it) }
 
     /** Add annotation type from [type], returning the type added. */
     fun addAnnotation(type: ClassName): TypeSpec =
-        add(buildAnnotationType(type))
+        buildAnnotationType(type).also { add(it) }
 
     /** Add annotation type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addAnnotation(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-        add(buildAnnotationType(type, builderAction))
+        buildAnnotationType(type, builderAction).also { add(it) }
 }
 
 /** A [TypeContainer] is responsible for managing a set of type instances. */
 abstract class TypeContainer internal constructor() : TypeCollection() {
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: TypeContainerScope.() -> Unit) =
+    inline operator fun invoke(configuration: TypeContainerScope.() -> Unit): Unit =
         TypeContainerScope(this).configuration()
 }
 

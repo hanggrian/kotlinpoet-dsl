@@ -97,8 +97,9 @@ class TypeAliasSpecBuilder @PublishedApi internal constructor(private val native
             nativeBuilder.addKdoc(format, *args)
         }
 
-        override fun append(code: CodeBlock): CodeBlock =
-            code.also { nativeBuilder.addKdoc(it) }
+        override fun append(code: CodeBlock) {
+            nativeBuilder.addKdoc(code)
+        }
     }
 
     /** Returns native spec. */

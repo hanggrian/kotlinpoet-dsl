@@ -93,14 +93,16 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
             nativeBuilder.addKdoc(format, *args)
         }
 
-        override fun append(code: CodeBlock): CodeBlock =
-            code.also { nativeBuilder.addKdoc(it) }
+        override fun append(code: CodeBlock) {
+            nativeBuilder.addKdoc(code)
+        }
     }
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationContainer = object : AnnotationContainer() {
-        override fun add(spec: AnnotationSpec): AnnotationSpec =
-            spec.also { nativeBuilder.addAnnotation(it) }
+        override fun add(spec: AnnotationSpec) {
+            nativeBuilder.addAnnotation(spec)
+        }
     }
 
     /** Add field modifiers. */
@@ -211,8 +213,9 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Collection of parameters, may be configured with Kotlin DSL. */
     val parameters: ParameterContainer = object : ParameterContainer() {
-        override fun add(spec: ParameterSpec): ParameterSpec =
-            spec.also { nativeBuilder.addParameter(it) }
+        override fun add(spec: ParameterSpec) {
+            nativeBuilder.addParameter(spec)
+        }
     }
 
     /** Call this constructor with [String] arguments. */
@@ -247,8 +250,9 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
         nativeBuilder.addCode(format, *args)
     }
 
-    override fun append(code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.addCode(it) }
+    override fun append(code: CodeBlock) {
+        nativeBuilder.addCode(code)
+    }
 
     override fun beginFlow(flow: String, vararg args: Any) {
         nativeBuilder.beginControlFlow(flow, *args)

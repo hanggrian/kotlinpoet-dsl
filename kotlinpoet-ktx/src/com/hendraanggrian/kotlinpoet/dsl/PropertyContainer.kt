@@ -11,8 +11,8 @@ import kotlin.reflect.KClass
 
 private interface PropertyAddable {
 
-    /** Add field to this container, returning the field added. */
-    fun add(spec: PropertySpec): PropertySpec
+    /** Add field to this container. */
+    fun add(spec: PropertySpec)
 }
 
 /** A [PropertyContainer] is responsible for managing a set of field instances. */
@@ -20,7 +20,7 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
-        add(buildProperty(name, type, *modifiers))
+        buildProperty(name, type, *modifiers).also { add(it) }
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
@@ -28,11 +28,11 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
         type: TypeName,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(buildProperty(name, type, *modifiers, builderAction = builderAction))
+    ): PropertySpec = buildProperty(name, type, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
-        add(buildProperty(name, type, *modifiers))
+        buildProperty(name, type, *modifiers).also { add(it) }
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
@@ -40,11 +40,11 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
         type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(buildProperty(name, type, *modifiers, builderAction = builderAction))
+    ): PropertySpec = buildProperty(name, type, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
-        add(buildProperty(name, type, *modifiers))
+        buildProperty(name, type, *modifiers).also { add(it) }
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
@@ -52,18 +52,18 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
         type: KClass<*>,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(buildProperty(name, type, *modifiers, builderAction = builderAction))
+    ): PropertySpec = buildProperty(name, type, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Add field from reified [T] and [name], returning the field added. */
     inline fun <reified T> add(name: String, vararg modifiers: KModifier): PropertySpec =
-        add(buildProperty<T>(name, *modifiers))
+        buildProperty<T>(name, *modifiers).also { add(it) }
 
     /** Add field from reified [T] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(buildProperty<T>(name, *modifiers, builderAction = builderAction))
+    ): PropertySpec = buildProperty<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Convenient method to add field with operator function. */
     operator fun plusAssign(spec: PropertySpec) {
@@ -86,7 +86,7 @@ abstract class PropertyContainer internal constructor() : PropertyAddable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: PropertyContainerScope.() -> Unit) =
+    inline operator fun invoke(configuration: PropertyContainerScope.() -> Unit): Unit =
         PropertyContainerScope(this).configuration()
 }
 

@@ -52,8 +52,9 @@ class CodeBlockBuilder @PublishedApi internal constructor(private val nativeBuil
         nativeBuilder.addStatement(format, *args)
     }
 
-    override fun append(code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.add(it) }
+    override fun append(code: CodeBlock) {
+        nativeBuilder.add(code)
+    }
 
     /** Indent current code. */
     fun indent() {
