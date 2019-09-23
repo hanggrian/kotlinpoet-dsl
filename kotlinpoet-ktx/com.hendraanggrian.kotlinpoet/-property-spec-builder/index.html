@@ -36,8 +36,17 @@
 <p><a href="delegate.html">delegate</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">delegate</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<code><span class="keyword">var </span><span class="identifier">delegate</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Delegate field value with simple string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="getter.html">getter</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">getter</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set getter function from <a href="#">FunSpec</a>.</p>
 </td>
 </tr>
 <tr>
@@ -45,7 +54,7 @@
 <p><a href="initializer.html">initializer</a></p>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">initializer</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<code><span class="keyword">var </span><span class="identifier">initializer</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Initialize field value with simple string.</p>
 </td>
 </tr>
@@ -92,6 +101,15 @@
 <td>
 <code><span class="keyword">var </span><span class="identifier">receiver</span><span class="symbol">: </span><span class="identifier">TypeName</span></code>
 <p>Set receiver to type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="setter.html">setter</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">setter</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set setter function from <a href="#">FunSpec</a>.</p>
 </td>
 </tr>
 <tr>
@@ -160,8 +178,6 @@
 <td>
 <code><span class="keyword">fun </span><span class="identifier">delegate</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$delegate(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$delegate(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Delegate field value like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">delegate</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$delegate(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
-<p>Delegate field value with code.</p>
 <code><span class="keyword">fun </span><span class="identifier">delegate</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$delegate(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Delegate field value with custom initialization <a href="delegate.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$delegate(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
 </td>
@@ -171,12 +187,10 @@
 <p><a href="getter.html">getter</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">getter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(com.squareup.kotlinpoet.FunSpec)/spec">spec</span><span class="symbol">:</span>&nbsp;<span class="identifier">FunSpec</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
-<p>Set getter function from <a href="getter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(com.squareup.kotlinpoet.FunSpec)/spec">spec</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">getter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
-<p>Set getter function from <a href="getter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.String)/name">name</a>, returning the function added.</p>
-<code><span class="keyword">fun </span><span class="identifier">getter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-fun-spec-builder/index.html"><span class="identifier">FunSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
-<p>Set getter function from <a href="getter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/name">name</a> with custom initialization <a href="getter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</a>, returning the function added.</p>
+<code><span class="keyword">fun </span><span class="identifier">getter</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set getter function, returning the function added.</p>
+<code><span class="keyword">fun </span><span class="identifier">getter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-fun-spec-builder/index.html"><span class="identifier">FunSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set getter function with custom initialization <a href="getter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$getter(kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</a>, returning the function added.</p>
 </td>
 </tr>
 <tr>
@@ -186,8 +200,6 @@
 <td>
 <code><span class="keyword">fun </span><span class="identifier">initializer</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$initializer(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$initializer(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Initialize field value like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">initializer</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$initializer(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
-<p>Initialize field value with code.</p>
 <code><span class="keyword">fun </span><span class="identifier">initializer</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$initializer(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Initialize field value with custom initialization <a href="initializer.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$initializer(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
 </td>
@@ -209,12 +221,10 @@
 <p><a href="setter.html">setter</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">setter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(com.squareup.kotlinpoet.FunSpec)/spec">spec</span><span class="symbol">:</span>&nbsp;<span class="identifier">FunSpec</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
-<p>Set setter function from <a href="setter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(com.squareup.kotlinpoet.FunSpec)/spec">spec</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">setter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.String)/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
-<p>Set setter function from <a href="setter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.String)/name">name</a>, returning the function added.</p>
-<code><span class="keyword">fun </span><span class="identifier">setter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-fun-spec-builder/index.html"><span class="identifier">FunSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
-<p>Set setter function from <a href="setter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/name">name</a> with custom initialization <a href="setter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</a>, returning the function added.</p>
+<code><span class="keyword">fun </span><span class="identifier">setter</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set setter function, returning the function added.</p>
+<code><span class="keyword">fun </span><span class="identifier">setter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-fun-spec-builder/index.html"><span class="identifier">FunSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FunSpec</span></code>
+<p>Set setter function with custom initialization <a href="setter.html#com.hendraanggrian.kotlinpoet.PropertySpecBuilder$setter(kotlin.Function1((com.hendraanggrian.kotlinpoet.FunSpecBuilder, kotlin.Unit)))/builderAction">builderAction</a>, returning the function added.</p>
 </td>
 </tr>
 </tbody>
