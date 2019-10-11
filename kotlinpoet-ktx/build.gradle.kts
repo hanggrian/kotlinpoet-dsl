@@ -16,10 +16,10 @@ val ktlint by configurations.registering
 
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
-    compile(kotlinpoet())
+    api(squareup("kotlinpoet", VERSION_KOTLINPOET))
 
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(truth())
+    testImplementation(google("truth", "truth", VERSION_TRUTH))
 
     ktlint {
         invoke(ktlint())
