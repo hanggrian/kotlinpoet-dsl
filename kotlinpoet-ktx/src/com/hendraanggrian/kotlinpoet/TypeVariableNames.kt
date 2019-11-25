@@ -7,8 +7,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** Returns a [TypeVariableName] named [name] without bounds. */
-fun typeVariableNameOf(name: String, variance: KModifier? = null): TypeVariableName =
-    TypeVariableName(name, variance)
+fun typeVariableNameOf(name: String, variance: KModifier? = null): TypeVariableName = TypeVariableName(name, variance)
 
 /** Returns a [TypeVariableName] named [name] with [bounds]. */
 fun typeVariableNameOf(name: String, vararg bounds: TypeName, variance: KModifier? = null): TypeVariableName =
@@ -23,5 +22,4 @@ fun typeVariableNameOf(name: String, vararg bounds: KClass<*>, variance: KModifi
     TypeVariableName(name, *bounds, variance = variance)
 
 /** Create a nullable coppy of [TypeVariableName].  */
-fun TypeVariableName.asNullable(): TypeVariableName =
-    copy(true)
+fun TypeVariableName.asNullable(): TypeVariableName = copy(true)

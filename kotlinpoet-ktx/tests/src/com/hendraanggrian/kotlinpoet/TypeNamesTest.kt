@@ -6,8 +6,7 @@ import kotlin.test.assertEquals
 
 class TypeNamesTest {
 
-    @Test
-    fun asProducerWildcardTypeName() {
+    @Test fun asProducerWildcardTypeName() {
         assertEquals(
             WildcardTypeName.producerOf(asClassName<String>()),
             asClassName<String>().asProducerWildcardTypeName()
@@ -26,8 +25,7 @@ class TypeNamesTest {
         )
     }
 
-    @Test
-    fun asConsumerWildcardTypeName() {
+    @Test fun asConsumerWildcardTypeName() {
         assertEquals(
             WildcardTypeName.consumerOf(asClassName<String>()),
             asClassName<String>().asConsumerWildcardTypeName()

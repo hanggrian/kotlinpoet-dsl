@@ -12,8 +12,7 @@ import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
-fun VariableElement.toParameter(): ParameterSpec =
-    ParameterSpec.get(this)
+fun VariableElement.toParameter(): ParameterSpec = ParameterSpec.get(this)
 
 /** Builds a new [ParameterSpec] from [type]. */
 fun buildParameter(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
@@ -79,20 +78,16 @@ inline fun <reified T> buildParameter(
 class ParameterSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this builder. */
-    val kdocBuilder: CodeBlock.Builder
-        get() = nativeBuilder.kdoc
+    val kdocBuilder: CodeBlock.Builder get() = nativeBuilder.kdoc
 
     /** Annotations of this builder. */
-    val annotationSpecs: MutableList<AnnotationSpec>
-        get() = nativeBuilder.annotations
+    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
     /** Modifiers of this builder. */
-    val modifiers: MutableList<KModifier>
-        get() = nativeBuilder.modifiers
+    val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
     /** Tags variables of this builder. */
-    val tags: MutableMap<KClass<*>, *>
-        get() = nativeBuilder.tags
+    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Collection of kdoc, may be configured with Kotlin DSL. */
     val kdoc: KdocContainer = object : KdocContainer() {
@@ -134,6 +129,5 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
         buildCode(builderAction).also { defaultValue = it }
 
     /** Returns native spec. */
-    fun build(): ParameterSpec =
-        nativeBuilder.build()
+    fun build(): ParameterSpec = nativeBuilder.build()
 }

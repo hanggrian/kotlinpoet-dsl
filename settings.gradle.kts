@@ -1,3 +1,3 @@
-include(RELEASE_ARTIFACT)
+include("kotlinpoet-ktx")
 //include("demo")
 include("website")

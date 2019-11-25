@@ -10,8 +10,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun buildTypeAlias(name: String, type: TypeName): TypeAliasSpec =
-    TypeAliasSpec.builder(name, type).build()
+fun buildTypeAlias(name: String, type: TypeName): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
@@ -24,16 +23,13 @@ inline fun buildTypeAlias(
 ): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun buildTypeAlias(name: String, type: Type): TypeAliasSpec =
-    TypeAliasSpec.builder(name, type).build()
+fun buildTypeAlias(name: String, type: Type): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun buildTypeAlias(name: String, type: KClass<*>): TypeAliasSpec =
-    TypeAliasSpec.builder(name, type).build()
+fun buildTypeAlias(name: String, type: KClass<*>): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [T]. */
-inline fun <reified T> buildTypeAlias(name: String): TypeAliasSpec =
-    buildTypeAlias(name, T::class)
+inline fun <reified T> buildTypeAlias(name: String): TypeAliasSpec = buildTypeAlias(name, T::class)
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
@@ -69,12 +65,10 @@ inline fun <reified T> buildTypeAlias(
 class TypeAliasSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: TypeAliasSpec.Builder) {
 
     /** Modifiers of this builder. */
-    val modifiers: MutableSet<KModifier>
-        get() = nativeBuilder.modifiers
+    val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
 
     /** Type variables of this builder. */
-    val typeVariables: MutableSet<TypeVariableName>
-        get() = nativeBuilder.typeVariables
+    val typeVariables: MutableSet<TypeVariableName> get() = nativeBuilder.typeVariables
 
     /** Add field modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -103,6 +97,5 @@ class TypeAliasSpecBuilder @PublishedApi internal constructor(private val native
     }
 
     /** Returns native spec. */
-    fun build(): TypeAliasSpec =
-        nativeBuilder.build()
+    fun build(): TypeAliasSpec = nativeBuilder.build()
 }

@@ -6,8 +6,7 @@ import kotlin.test.assertEquals
 
 class ClassNamesTest {
 
-    @Test
-    fun asClassName() {
+    @Test fun asClassName() {
         assertEquals(String::class.asClassName(), asClassName<String>())
     }
 }

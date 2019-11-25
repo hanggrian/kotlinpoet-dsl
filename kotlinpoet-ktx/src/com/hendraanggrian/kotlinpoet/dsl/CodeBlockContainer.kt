@@ -32,12 +32,10 @@ abstract class CodeBlockCollection internal constructor() : CodeBlockAppendable 
     inline fun append(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { append(it) }
 
-    override fun appendln() =
-        appendln("")
+    override fun appendln() = appendln("")
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBlockBuilder.() -> Unit) =
-        appendln(buildCode(builderAction))
+    inline fun appendln(builderAction: CodeBlockBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
 
     /** Starts the control flow. */
     abstract fun beginFlow(flow: String, vararg args: Any)
@@ -56,15 +54,15 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     inline fun append(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { append(it) }
 
-    override fun appendln(): Unit =
-        append("\n")
+    override fun appendln(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
-    override fun appendln(format: String, vararg args: Any) =
-        append("$format\n", *args)
+    override fun appendln(format: String, vararg args: Any) {
+        append(format, *args)
+        appendln()
+    }
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBlockBuilder.() -> Unit) =
-        appendln(buildCode(builderAction))
+    inline fun appendln(builderAction: CodeBlockBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
 
     /** Convenient method to add code block with operator function. */
     operator fun plusAssign(value: String) {
@@ -77,14 +75,23 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     }
 
     /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: KdocContainerScope.() -> Unit) =
-        KdocContainerScope(this).configuration()
+    inline operator fun invoke(configuration: KdocContainerScope.() -> Unit) = KdocContainerScope(this).configuration()
+
+    /**
+     * @see kotlin.text.SystemProperties
+     */
+    private object SystemProperties {
+        /** Line separator for current system. */
+        @JvmField
+        val LINE_SEPARATOR =
+            checkNotNull(System.getProperty("line.separator")) { "Unable to obtain separator character." }
+    }
 }
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class KdocContainerScope @PublishedApi internal constructor(private val container: KdocContainer) :
-    KdocContainer(), CodeBlockAppendable by container {
+class KdocContainerScope @PublishedApi internal constructor(private val container: KdocContainer) : KdocContainer(),
+    CodeBlockAppendable by container {
 
     override fun appendln(code: CodeBlock): Unit = container.appendln(code)
     override fun appendln(): Unit = container.appendln()

@@ -3,9 +3,12 @@ package com.hendraanggrian.kotlinpoet
 import com.hendraanggrian.kotlinpoet.dsl.CodeBlockCollection
 import com.squareup.kotlinpoet.CodeBlock
 
-/** Converts string to [CodeBlock] using formatted [args]. */
-fun String.toCode(vararg args: Any): CodeBlock =
-    CodeBlock.of(this, *args)
+/**
+ * Converts string to [CodeBlock] using formatted [args].
+ *
+ * @see kotlin.text.format
+ */
+fun String.formatCode(vararg args: Any): CodeBlock = CodeBlock.of(this, *args)
 
 /**
  * Builds a new [CodeBlock],
@@ -20,12 +23,10 @@ class CodeBlockBlockBuilder @PublishedApi internal constructor(private val nativ
     CodeBlockCollection() {
 
     /** Returns true if this builder contains no code. */
-    fun isEmpty(): Boolean =
-        nativeBuilder.isEmpty()
+    fun isEmpty(): Boolean = nativeBuilder.isEmpty()
 
     /** Returns true if this builder contains code. */
-    fun isNotEmpty(): Boolean =
-        nativeBuilder.isNotEmpty()
+    fun isNotEmpty(): Boolean = nativeBuilder.isNotEmpty()
 
     /** Adds code using named arguments. */
     fun addNamed(format: String, arguments: Map<String, *>) {
@@ -67,6 +68,5 @@ class CodeBlockBlockBuilder @PublishedApi internal constructor(private val nativ
     }
 
     /** Returns native spec. */
-    fun build(): CodeBlock =
-        nativeBuilder.build()
+    fun build(): CodeBlock = nativeBuilder.build()
 }

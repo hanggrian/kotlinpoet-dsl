@@ -31,5 +31,4 @@ operator fun KClass<*>.plus(typeArgument: KClass<*>): ParameterizedTypeName =
     ParameterizedTypeName.run { plusParameter(typeArgument) }
 
 /** Create a nullable coppy of [ParameterizedTypeName].  */
-fun ParameterizedTypeName.asNullable(): ParameterizedTypeName =
-    copy(true)
+fun ParameterizedTypeName.asNullable(): ParameterizedTypeName = copy(true)

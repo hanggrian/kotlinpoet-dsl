@@ -16,8 +16,7 @@ import com.squareup.kotlinpoet.TypeSpec
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
-fun TypeSpec.toFile(packageName: String): FileSpec =
-    FileSpec.get(packageName, this)
+fun TypeSpec.toFile(packageName: String): FileSpec = FileSpec.get(packageName, this)
 
 /**
  * Builds a new [FileSpec],
@@ -31,12 +30,10 @@ inline fun buildFile(packageName: String, name: String, builderAction: FileSpecB
 class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FileSpec.Builder) {
 
     /** Tags variables of this builder. */
-    val tags: MutableMap<KClass<*>, *>
-        get() = nativeBuilder.tags
+    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Annotations of this builder. */
-    val annotationSpecs: MutableList<AnnotationSpec>
-        get() = nativeBuilder.annotations
+    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
     /** Collection of annotations, may be configured with Kotlin DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
@@ -94,12 +91,10 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Add import. */
-    fun addImport(type: KClass<*>, vararg names: String) =
-        addImport(type.java, *names)
+    fun addImport(type: KClass<*>, vararg names: String) = addImport(type.java, *names)
 
     /** Add import with reified function. */
-    inline fun <reified T> addImport(vararg names: String) =
-        addImport(T::class, *names)
+    inline fun <reified T> addImport(vararg names: String) = addImport(T::class, *names)
 
     /** Add import. */
     fun addImport(packageName: String, vararg names: String) {
@@ -112,12 +107,10 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     }
 
     /** Add aliased import. */
-    fun addAliasedImport(type: KClass<*>, `as`: String) =
-        addAliasedImport(type.java, `as`)
+    fun addAliasedImport(type: KClass<*>, `as`: String) = addAliasedImport(type.java, `as`)
 
     /** Add aliased import with reified function. */
-    inline fun <reified T> addAliasedImport(`as`: String) =
-        addAliasedImport(T::class, `as`)
+    inline fun <reified T> addAliasedImport(`as`: String) = addAliasedImport(T::class, `as`)
 
     /** Add aliased import. */
     fun addAliasedImport(type: ClassName, `as`: String) {
@@ -149,6 +142,5 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         }
 
     /** Returns native spec. */
-    fun build(): FileSpec =
-        nativeBuilder.build()
+    fun build(): FileSpec = nativeBuilder.build()
 }

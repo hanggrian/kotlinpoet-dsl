@@ -7,8 +7,7 @@ import kotlin.test.assertEquals
 
 class ParameterizedTypeNamesTest {
 
-    @Test
-    fun parameterizedBy() {
+    @Test fun parameterizedBy() {
         assertEquals(
             List::class.java.asClassName() + ANY,
             List::class.java.asClassName().parameterizedBy(ANY)

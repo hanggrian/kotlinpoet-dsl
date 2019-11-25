@@ -11,12 +11,10 @@ fun Annotation.toAnnotation(includeDefaultValues: Boolean = false): AnnotationSp
     AnnotationSpec.get(this, includeDefaultValues)
 
 /** Converts mirror to [AnnotationSpec]. */
-fun AnnotationMirror.toAnnotation(): AnnotationSpec =
-    AnnotationSpec.get(this)
+fun AnnotationMirror.toAnnotation(): AnnotationSpec = AnnotationSpec.get(this)
 
 /** Builds a new [AnnotationSpec] from [type]. */
-fun buildAnnotation(type: ClassName): AnnotationSpec =
-    AnnotationSpec.builder(type).build()
+fun buildAnnotation(type: ClassName): AnnotationSpec = AnnotationSpec.builder(type).build()
 
 /**
  * Builds a new [AnnotationSpec] from [type],
@@ -26,16 +24,13 @@ inline fun buildAnnotation(type: ClassName, builderAction: AnnotationSpecBuilder
     AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(builderAction).build()
 
 /** Builds a new [AnnotationSpec] from [type]. */
-fun <T : Annotation> buildAnnotation(type: Class<T>): AnnotationSpec =
-    AnnotationSpec.builder(type).build()
+fun <T : Annotation> buildAnnotation(type: Class<T>): AnnotationSpec = AnnotationSpec.builder(type).build()
 
 /** Builds a new [AnnotationSpec] from [type]. */
-fun <T : Annotation> buildAnnotation(type: KClass<T>): AnnotationSpec =
-    AnnotationSpec.builder(type).build()
+fun <T : Annotation> buildAnnotation(type: KClass<T>): AnnotationSpec = AnnotationSpec.builder(type).build()
 
 /** Builds a new [AnnotationSpec] from [T]. */
-inline fun <reified T : Annotation> buildAnnotation(): AnnotationSpec =
-    buildAnnotation(T::class)
+inline fun <reified T : Annotation> buildAnnotation(): AnnotationSpec = buildAnnotation(T::class)
 
 /**
  * Builds a new [AnnotationSpec] from [type],
@@ -67,8 +62,7 @@ inline fun <reified T : Annotation> buildAnnotation(builderAction: AnnotationSpe
 class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: AnnotationSpec.Builder) {
 
     /** Members of this builder. */
-    val members: MutableList<CodeBlock>
-        get() = nativeBuilder.members
+    val members: MutableList<CodeBlock> get() = nativeBuilder.members
 
     /** Add code as a member of this annotation. */
     fun addMember(format: String, vararg args: Any) {
@@ -76,8 +70,7 @@ class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativ
     }
 
     /** Add code as a member of this annotation. */
-    fun addMember(code: CodeBlock): CodeBlock =
-        code.also { nativeBuilder.addMember(it) }
+    fun addMember(code: CodeBlock): CodeBlock = code.also { nativeBuilder.addMember(it) }
 
     /** Add code as a member of this annotation with custom initialization [builderAction]. */
     inline fun addMember(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
@@ -91,6 +84,5 @@ class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativ
         }
 
     /** Returns native spec. */
-    fun build(): AnnotationSpec =
-        nativeBuilder.build()
+    fun build(): AnnotationSpec = nativeBuilder.build()
 }

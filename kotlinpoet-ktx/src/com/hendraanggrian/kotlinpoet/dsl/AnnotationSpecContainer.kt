@@ -17,32 +17,28 @@ private interface AnnotationSpecAddable {
 abstract class AnnotationSpecContainer internal constructor() : AnnotationSpecAddable {
 
     /** Add annotation from [type], returning the annotation added. */
-    fun add(type: ClassName): AnnotationSpec =
-        buildAnnotation(type).also { add(it) }
+    fun add(type: ClassName): AnnotationSpec = buildAnnotation(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
     inline fun add(type: ClassName, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         buildAnnotation(type, builderAction).also { add(it) }
 
     /** Add annotation from [type], returning the annotation added. */
-    fun <T : Annotation> add(type: Class<T>): AnnotationSpec =
-        buildAnnotation(type).also { add(it) }
+    fun <T : Annotation> add(type: Class<T>): AnnotationSpec = buildAnnotation(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
     inline fun <T : Annotation> add(type: Class<T>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         buildAnnotation(type, builderAction).also { add(it) }
 
     /** Add annotation from [type], returning the annotation added. */
-    fun <T : Annotation> add(type: KClass<T>): AnnotationSpec =
-        buildAnnotation(type).also { add(it) }
+    fun <T : Annotation> add(type: KClass<T>): AnnotationSpec = buildAnnotation(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
     inline fun <T : Annotation> add(type: KClass<T>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         buildAnnotation(type, builderAction).also { add(it) }
 
     /** Add annotation from reified [T], returning the annotation added. */
-    inline fun <reified T : Annotation> add(): AnnotationSpec =
-        buildAnnotation<T>().also { add(it) }
+    inline fun <reified T : Annotation> add(): AnnotationSpec = buildAnnotation<T>().also { add(it) }
 
     /** Add annotation from reified [T] with custom initialization [builderAction], returning the annotation added. */
     inline fun <reified T : Annotation> add(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =

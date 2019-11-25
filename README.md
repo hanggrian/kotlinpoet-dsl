@@ -42,7 +42,7 @@ dependencies {
 Usage
 -----
 
-#### Use `T::class` as parameters
+### Use `T::class` as parameters
 `KClass<*>` can now be used as format arguments. There is also inline reified type function whenever possible.
 
 ```kotlin
@@ -58,7 +58,7 @@ buildField<Int>("count") {
 }
 ```
 
-#### Optional DSL
+### Optional DSL
 Some elements (field, method, parameter, etc.) are wrapped in container class. These containers have ability to add components with/without invoking DSL.
 
 For example, 2 examples below will produce the same result.
@@ -115,7 +115,7 @@ addClass("Car") {
 }
 ```
 
-#### Type names extensions
+### Type names extensions
 Top-level creators of `TypeName` and all its subclasses.
 
 ```kotlin

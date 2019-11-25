@@ -17,5 +17,4 @@ fun TypeName?.lambdaBy(vararg parameters: ParameterSpec, returnType: TypeName): 
     LambdaTypeName.get(this, *parameters, returnType = returnType)
 
 /** Create a nullable coppy of [LambdaTypeName].  */
-fun LambdaTypeName.asNullable(): LambdaTypeName =
-    copy(true)
+fun LambdaTypeName.asNullable(): LambdaTypeName = copy(true)

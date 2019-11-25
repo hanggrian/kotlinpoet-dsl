@@ -6,8 +6,7 @@ import kotlin.test.assertEquals
 
 class TypeVariableNamesTest {
 
-    @Test
-    fun typeVariableNameOf() {
+    @Test fun typeVariableNameOf() {
         assertEquals(
             TypeVariableName("Hello"),
             typeVariableNameOf("Hello")

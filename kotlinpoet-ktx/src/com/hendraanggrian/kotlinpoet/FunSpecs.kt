@@ -16,8 +16,7 @@ import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
 /** Builds a new [FunSpec] from [name]. */
-fun buildFunction(name: String): FunSpec =
-    FunSpecBuilder(FunSpec.builder(name)).build()
+fun buildFunction(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
 
 /**
  * Builds a new [FunSpec] from [name],
@@ -27,8 +26,7 @@ inline fun buildFunction(name: String, builderAction: FunSpecBuilder.() -> Unit)
     FunSpecBuilder(FunSpec.builder(name)).apply(builderAction).build()
 
 /** Builds a new constructor [FunSpec]. */
-fun buildConstructorFunction(): FunSpec =
-    FunSpecBuilder(FunSpec.constructorBuilder()).build()
+fun buildConstructorFunction(): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).build()
 
 /**
  * Builds a new constructor [FunSpec],
@@ -38,8 +36,7 @@ inline fun buildConstructorFunction(builderAction: FunSpecBuilder.() -> Unit): F
     FunSpecBuilder(FunSpec.constructorBuilder()).apply(builderAction).build()
 
 /** Builds a new getter [FunSpec]. */
-fun buildGetterFunction(): FunSpec =
-    FunSpecBuilder(FunSpec.getterBuilder()).build()
+fun buildGetterFunction(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).build()
 
 /**
  * Builds a new getter [FunSpec],
@@ -49,8 +46,7 @@ inline fun buildGetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpe
     FunSpecBuilder(FunSpec.getterBuilder()).apply(builderAction).build()
 
 /** Builds a new setter [FunSpec]. */
-fun buildSetterFunction(): FunSpec =
-    FunSpecBuilder(FunSpec.setterBuilder()).build()
+fun buildSetterFunction(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
 
 /**
  * Builds a new setter [FunSpec],
@@ -65,28 +61,22 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     CodeBlockCollection() {
 
     /** Annotations of this builder. */
-    val annotationSpecs: MutableList<AnnotationSpec>
-        get() = nativeBuilder.annotations
+    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
     /** Modifiers of this builder. */
-    val modifiers: MutableList<KModifier>
-        get() = nativeBuilder.modifiers
+    val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
     /** Type variables of this builder. */
-    val typeVariables: MutableList<TypeVariableName>
-        get() = nativeBuilder.typeVariables
+    val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
 
     /** Parameters of this builder. */
-    val parameterSpecs: MutableList<ParameterSpec>
-        get() = nativeBuilder.parameters
+    val parameterSpecs: MutableList<ParameterSpec> get() = nativeBuilder.parameters
 
     /** Tags variables of this builder. */
-    val tags: MutableMap<KClass<*>, *>
-        get() = nativeBuilder.tags
+    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Originating elements of this builder. */
-    val originatingElements: MutableList<Element>
-        get() = nativeBuilder.originatingElements
+    val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** Collection of kdoc, may be configured with Kotlin DSL. */
     val kdoc: KdocContainer = object : KdocContainer() {
@@ -181,16 +171,13 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
         receiver(type, buildCode(builderAction))
 
     /** Set receiver [T] without kdoc. */
-    inline fun <reified T> receiver() =
-        receiver(T::class)
+    inline fun <reified T> receiver() = receiver(T::class)
 
     /** Set receiver [T] with kdoc initialized like [String.format]. */
-    inline fun <reified T> receiver(format: String, vararg args: Any) =
-        receiver(T::class, format, *args)
+    inline fun <reified T> receiver(format: String, vararg args: Any) = receiver(T::class, format, *args)
 
     /** Set receiver [T] with [code] as kdoc. */
-    inline fun <reified T> receiver(code: CodeBlock) =
-        receiver(T::class, code)
+    inline fun <reified T> receiver(code: CodeBlock) = receiver(T::class, code)
 
     /** Set receiver [T] with custom initialization builder as kdoc. */
     inline fun <reified T> receiver(builderAction: CodeBlockBlockBuilder.() -> Unit) =
@@ -214,8 +201,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Add return line to [T]. */
-    inline fun <reified T> returns() =
-        returns(T::class)
+    inline fun <reified T> returns() = returns(T::class)
 
     /** Collection of parameters, may be configured with Kotlin DSL. */
     val parameters: ParameterSpecContainer = object : ParameterSpecContainer() {
@@ -287,6 +273,5 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
     }
 
     /** Returns native spec. */
-    fun build(): FunSpec =
-        nativeBuilder.build()
+    fun build(): FunSpec = nativeBuilder.build()
 }
