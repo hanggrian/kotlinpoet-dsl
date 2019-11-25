@@ -3,6 +3,7 @@ package com.hendraanggrian.kotlinpoet
 import com.squareup.kotlinpoet.CodeBlock
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
 
 class CodeBlockBuilderTest {
     private val expected = CodeBlock.builder()
@@ -22,13 +23,9 @@ class CodeBlockBuilderTest {
     }
 
     @Test fun escapeSpecialChar() {
-        assertEquals(
-            "100%",
-            "100%%".formatCode().toString()
-        )
-        assertEquals(
-            "You & me",
-            "You & me".formatCode().toString()
-        )
+        assertFails { "100%".formatCode() }
+        assertEquals("100%", "${"100%%".formatCode()}")
+        assertEquals("100%S", "${"100%%S".formatCode()}")
+        assertEquals("100%S%java.lang.System", "${"100%%S%%%T".formatCode(System::class)}")
     }
 }
