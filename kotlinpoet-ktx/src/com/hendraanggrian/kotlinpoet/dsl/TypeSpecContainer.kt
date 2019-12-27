@@ -13,13 +13,11 @@ import com.hendraanggrian.kotlinpoet.buildObjectType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeSpec
 
-private interface TypeSpecAddable {
+/** A [TypeSpecContainer] is responsible for managing a set of type instances. */
+abstract class TypeSpecContainer internal constructor() {
 
     /** Add type to this container. */
-    fun add(spec: TypeSpec)
-}
-
-abstract class TypeSpecCollection internal constructor() : TypeSpecAddable {
+    abstract fun add(spec: TypeSpec)
 
     /** Add class type from [type], returning the type added. */
     fun addClass(type: String): TypeSpec = buildClassType(type).also { add(it) }
@@ -120,15 +118,10 @@ abstract class TypeSpecCollection internal constructor() : TypeSpecAddable {
         buildAnnotationType(type, builderAction).also { add(it) }
 }
 
-/** A [TypeSpecContainer] is responsible for managing a set of type instances. */
-abstract class TypeSpecContainer internal constructor() : TypeSpecCollection() {
-
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: TypeSpecContainerScope.() -> Unit): Unit =
-        TypeSpecContainerScope(this).configuration()
-}
-
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class TypeSpecContainerScope @PublishedApi internal constructor(container: TypeSpecContainer) : TypeSpecContainer(),
-    TypeSpecAddable by container
+class TypeSpecContainerScope @PublishedApi internal constructor(private val container: TypeSpecContainer) :
+    TypeSpecContainer() {
+
+    override fun add(spec: TypeSpec) = container.add(spec)
+}

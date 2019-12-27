@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.CodeBlockCollection
+import com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer
 import com.squareup.kotlinpoet.CodeBlock
 
 /**
@@ -20,7 +20,7 @@ inline fun buildCode(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock
 /** Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class CodeBlockBlockBuilder @PublishedApi internal constructor(private val nativeBuilder: CodeBlock.Builder) :
-    CodeBlockCollection() {
+    CodeBlockContainer() {
 
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()

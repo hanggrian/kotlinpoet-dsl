@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.CodeBlockCollection
+import com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
 import com.hendraanggrian.kotlinpoet.dsl.ParameterSpecContainer
 import com.squareup.kotlinpoet.AnnotationSpec
@@ -58,7 +58,7 @@ inline fun buildSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpe
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FunSpec.Builder) :
-    CodeBlockCollection() {
+    CodeBlockContainer() {
 
     /** Annotations of this builder. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations

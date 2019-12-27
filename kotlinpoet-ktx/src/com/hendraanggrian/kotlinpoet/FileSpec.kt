@@ -22,8 +22,8 @@ fun TypeSpec.toFile(packageName: String): FileSpec = FileSpec.get(packageName, t
  * Builds a new [FileSpec],
  * by populating newly created [FileSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildFile(packageName: String, name: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
-    FileSpecBuilder(FileSpec.builder(packageName, name)).apply(builderAction).build()
+inline fun buildFile(packageName: String, fileName: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
+    FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(builderAction).build()
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker

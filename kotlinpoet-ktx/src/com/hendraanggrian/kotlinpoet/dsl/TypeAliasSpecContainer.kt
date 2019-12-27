@@ -8,14 +8,11 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-private interface TypeAliasSpecAddable {
+/** An [TypeAliasSpecContainer] is responsible for managing a set of type alias instances. */
+abstract class TypeAliasSpecContainer internal constructor() {
 
     /** Add type alias to this container. */
-    fun add(spec: TypeAliasSpec)
-}
-
-/** An [TypeAliasSpecContainer] is responsible for managing a set of type alias instances. */
-abstract class TypeAliasSpecContainer internal constructor() : TypeAliasSpecAddable {
+    abstract fun add(spec: TypeAliasSpec)
 
     /** Add type alias from [name] and [type], returning the type alias added. */
     fun add(name: String, type: TypeName): TypeAliasSpec = buildTypeAlias(name, type).also { add(it) }
@@ -57,8 +54,10 @@ abstract class TypeAliasSpecContainer internal constructor() : TypeAliasSpecAdda
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class TypeAliasSpecContainerScope @PublishedApi internal constructor(container: TypeAliasSpecContainer) :
-    TypeAliasSpecContainer(), TypeAliasSpecAddable by container {
+class TypeAliasSpecContainerScope @PublishedApi internal constructor(private val container: TypeAliasSpecContainer) :
+    TypeAliasSpecContainer() {
+
+    override fun add(spec: TypeAliasSpec) = container.add(spec)
 
     /** Convenient method to add type alias with receiver type. */
     inline operator fun String.invoke(type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
