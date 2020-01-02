@@ -18,6 +18,10 @@ fun Class<*>.parameterizedBy(vararg typeArguments: Type): ParameterizedTypeName 
 fun KClass<*>.parameterizedBy(vararg typeArguments: KClass<*>): ParameterizedTypeName =
     ParameterizedTypeName.run { parameterizedBy(*typeArguments) }
 
+/** Returns a [ParameterizedTypeName], applying `typeArguments` to `this`.  */
+inline fun <reified T> KClass<*>.parameterizedBy(): ParameterizedTypeName =
+    parameterizedBy(T::class)
+
 /** Returns a [ParameterizedTypeName], applying `typeArgument` to `this`.  */
 operator fun ClassName.plus(typeArgument: TypeName): ParameterizedTypeName =
     ParameterizedTypeName.run { plusParameter(typeArgument) }
@@ -31,4 +35,4 @@ operator fun KClass<*>.plus(typeArgument: KClass<*>): ParameterizedTypeName =
     ParameterizedTypeName.run { plusParameter(typeArgument) }
 
 /** Create a nullable coppy of [ParameterizedTypeName].  */
-fun ParameterizedTypeName.asNullable(): ParameterizedTypeName = copy(true)
+fun ParameterizedTypeName.asNullable(): ParameterizedTypeName = copy(true, emptyList(), emptyMap())

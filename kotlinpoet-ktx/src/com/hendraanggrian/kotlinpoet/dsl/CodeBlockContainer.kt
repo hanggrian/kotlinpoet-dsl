@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.dsl
 
-import com.hendraanggrian.kotlinpoet.CodeBlockBlockBuilder
+import com.hendraanggrian.kotlinpoet.CodeBlockBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.buildCode
 import com.squareup.kotlinpoet.CodeBlock
@@ -29,13 +29,13 @@ private interface CodeBlockAppendable {
 abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
-    inline fun append(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { append(it) }
 
     override fun appendln() = appendln("")
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
 
     /** Starts the control flow. */
     abstract fun beginFlow(flow: String, vararg args: Any)
@@ -51,7 +51,7 @@ abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
 abstract class KdocContainer internal constructor() : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
-    inline fun append(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { append(it) }
 
     override fun appendln(): Unit = append(SystemProperties.LINE_SEPARATOR)
@@ -62,7 +62,7 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     }
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
 
     /** Convenient method to add code block with operator function. */
     operator fun plusAssign(value: String) {
@@ -73,9 +73,6 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     operator fun plusAssign(code: CodeBlock) {
         append(code)
     }
-
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: KdocContainerScope.() -> Unit) = KdocContainerScope(this).configuration()
 
     /**
      * @see kotlin.text.SystemProperties

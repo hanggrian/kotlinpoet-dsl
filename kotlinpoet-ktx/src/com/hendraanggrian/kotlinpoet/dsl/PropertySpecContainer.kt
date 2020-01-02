@@ -81,10 +81,6 @@ abstract class PropertySpecContainer internal constructor() {
     operator fun set(name: String, type: KClass<*>) {
         add(name, type)
     }
-
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: PropertySpecContainerScope.() -> Unit): Unit =
-        PropertySpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `fields` block providing an extended set of operators for the configuration. */

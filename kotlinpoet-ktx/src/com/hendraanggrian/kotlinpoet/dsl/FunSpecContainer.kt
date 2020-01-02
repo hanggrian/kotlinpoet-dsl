@@ -51,10 +51,6 @@ abstract class FunSpecContainer internal constructor() {
     operator fun plusAssign(name: String) {
         add(name)
     }
-
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: FunSpecContainerScope.() -> Unit): Unit =
-        FunSpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */

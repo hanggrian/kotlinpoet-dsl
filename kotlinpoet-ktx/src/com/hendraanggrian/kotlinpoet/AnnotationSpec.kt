@@ -21,13 +21,13 @@ fun buildAnnotation(type: ClassName): AnnotationSpec = AnnotationSpec.builder(ty
  * by populating newly created [AnnotationSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildAnnotation(type: ClassName, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
-    AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(builderAction).build()
+    AnnotationSpec.builder(type).build(builderAction)
 
 /** Builds a new [AnnotationSpec] from [type]. */
-fun <T : Annotation> buildAnnotation(type: Class<T>): AnnotationSpec = AnnotationSpec.builder(type).build()
+fun buildAnnotation(type: Class<out Annotation>): AnnotationSpec = AnnotationSpec.builder(type).build()
 
 /** Builds a new [AnnotationSpec] from [type]. */
-fun <T : Annotation> buildAnnotation(type: KClass<T>): AnnotationSpec = AnnotationSpec.builder(type).build()
+fun buildAnnotation(type: KClass<out Annotation>): AnnotationSpec = AnnotationSpec.builder(type).build()
 
 /** Builds a new [AnnotationSpec] from [T]. */
 inline fun <reified T : Annotation> buildAnnotation(): AnnotationSpec = buildAnnotation(T::class)
@@ -36,19 +36,19 @@ inline fun <reified T : Annotation> buildAnnotation(): AnnotationSpec = buildAnn
  * Builds a new [AnnotationSpec] from [type],
  * by populating newly created [AnnotationSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun <T : Annotation> buildAnnotation(
-    type: Class<T>,
+inline fun buildAnnotation(
+    type: Class<out Annotation>,
     builderAction: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(builderAction).build()
+): AnnotationSpec = AnnotationSpec.builder(type).build(builderAction)
 
 /**
  * Builds a new [AnnotationSpec] from [type],
  * by populating newly created [AnnotationSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun <T : Annotation> buildAnnotation(
-    type: KClass<T>,
+inline fun buildAnnotation(
+    type: KClass<out Annotation>,
     builderAction: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(builderAction).build()
+): AnnotationSpec = AnnotationSpec.builder(type).build(builderAction)
 
 /**
  * Builds a new [AnnotationSpec] from [T],
@@ -57,12 +57,19 @@ inline fun <T : Annotation> buildAnnotation(
 inline fun <reified T : Annotation> buildAnnotation(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
     buildAnnotation(T::class, builderAction)
 
+/** Modify existing [AnnotationSpec.Builder] using provided [builderAction] and then building it. */
+inline fun AnnotationSpec.Builder.build(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    AnnotationSpecBuilder(this).apply(builderAction).build()
+
 /** Wrapper of [AnnotationSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: AnnotationSpec.Builder) {
 
-    /** Members of this builder. */
+    /** Members of this annotation. */
     val members: MutableList<CodeBlock> get() = nativeBuilder.members
+
+    /** Tags of this annotation. */
+    val tags: MutableMap<KClass<*>, Any> = nativeBuilder.tags
 
     /** Add code as a member of this annotation. */
     fun addMember(format: String, vararg args: Any) {
@@ -73,10 +80,10 @@ class AnnotationSpecBuilder @PublishedApi internal constructor(private val nativ
     fun addMember(code: CodeBlock): CodeBlock = code.also { nativeBuilder.addMember(it) }
 
     /** Add code as a member of this annotation with custom initialization [builderAction]. */
-    inline fun addMember(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun addMember(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         addMember(buildCode(builderAction))
 
-    /** Set [AnnotationSpec.UseSiteTarget]. */
+    /** Sets [AnnotationSpec.UseSiteTarget]. */
     var useSiteTarget: AnnotationSpec.UseSiteTarget
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {

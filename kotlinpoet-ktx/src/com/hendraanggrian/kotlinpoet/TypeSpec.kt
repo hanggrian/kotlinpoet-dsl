@@ -1,10 +1,15 @@
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
+import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainerScope
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
@@ -26,7 +31,7 @@ fun buildClassType(type: String): TypeSpec = TypeSpec.classBuilder(type).build()
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildClassType(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(builderAction).build()
+    TypeSpec.classBuilder(type).build(builderAction)
 
 /** Builds a new class [TypeSpec] from [type]. */
 fun buildClassType(type: ClassName): TypeSpec = TypeSpec.classBuilder(type).build()
@@ -36,7 +41,7 @@ fun buildClassType(type: ClassName): TypeSpec = TypeSpec.classBuilder(type).buil
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildClassType(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(builderAction).build()
+    TypeSpec.classBuilder(type).build(builderAction)
 
 /** Builds a expect new class [TypeSpec] from [type]. */
 fun buildExpectClassType(type: String): TypeSpec = TypeSpec.expectClassBuilder(type).build()
@@ -46,7 +51,7 @@ fun buildExpectClassType(type: String): TypeSpec = TypeSpec.expectClassBuilder(t
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildExpectClassType(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(builderAction).build()
+    TypeSpec.expectClassBuilder(type).build(builderAction)
 
 /** Builds a new expect class [TypeSpec] from [type]. */
 fun buildExpectClassType(type: ClassName): TypeSpec = TypeSpec.expectClassBuilder(type).build()
@@ -56,7 +61,7 @@ fun buildExpectClassType(type: ClassName): TypeSpec = TypeSpec.expectClassBuilde
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildExpectClassType(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(builderAction).build()
+    TypeSpec.expectClassBuilder(type).build(builderAction)
 
 /** Builds a new object [TypeSpec] from [type]. */
 fun buildObjectType(type: String): TypeSpec = TypeSpec.objectBuilder(type).build()
@@ -66,7 +71,7 @@ fun buildObjectType(type: String): TypeSpec = TypeSpec.objectBuilder(type).build
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildObjectType(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(builderAction).build()
+    TypeSpec.objectBuilder(type).build(builderAction)
 
 /** Builds a new object class [TypeSpec] from [type]. */
 fun buildObjectType(type: ClassName): TypeSpec = TypeSpec.objectBuilder(type).build()
@@ -76,7 +81,7 @@ fun buildObjectType(type: ClassName): TypeSpec = TypeSpec.objectBuilder(type).bu
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildObjectType(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(builderAction).build()
+    TypeSpec.objectBuilder(type).build(builderAction)
 
 /** Builds a new companion object [TypeSpec] from [type]. */
 fun buildCompanionObjectType(type: String? = null): TypeSpec = TypeSpec.companionObjectBuilder(type).build()
@@ -86,7 +91,7 @@ fun buildCompanionObjectType(type: String? = null): TypeSpec = TypeSpec.companio
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildCompanionObjectType(type: String? = null, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.companionObjectBuilder(type)).apply(builderAction).build()
+    TypeSpec.companionObjectBuilder(type).build(builderAction)
 
 /** Builds a new interface [TypeSpec] from [type]. */
 fun buildInterfaceType(type: String): TypeSpec = TypeSpec.interfaceBuilder(type).build()
@@ -96,7 +101,7 @@ fun buildInterfaceType(type: String): TypeSpec = TypeSpec.interfaceBuilder(type)
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildInterfaceType(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(builderAction).build()
+    TypeSpec.interfaceBuilder(type).build(builderAction)
 
 /** Builds a new interface [TypeSpec] from [type]. */
 fun buildInterfaceType(type: ClassName): TypeSpec = TypeSpec.interfaceBuilder(type).build()
@@ -106,7 +111,7 @@ fun buildInterfaceType(type: ClassName): TypeSpec = TypeSpec.interfaceBuilder(ty
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildInterfaceType(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(builderAction).build()
+    TypeSpec.interfaceBuilder(type).build(builderAction)
 
 /** Builds a new enum [TypeSpec] from [type]. */
 fun buildEnumType(type: String): TypeSpec = TypeSpec.enumBuilder(type).build()
@@ -116,7 +121,7 @@ fun buildEnumType(type: String): TypeSpec = TypeSpec.enumBuilder(type).build()
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildEnumType(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(builderAction).build()
+    TypeSpec.enumBuilder(type).build(builderAction)
 
 /** Builds a new enum [TypeSpec] from [type]. */
 fun buildEnumType(type: ClassName): TypeSpec = TypeSpec.enumBuilder(type).build()
@@ -126,7 +131,7 @@ fun buildEnumType(type: ClassName): TypeSpec = TypeSpec.enumBuilder(type).build(
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildEnumType(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(builderAction).build()
+    TypeSpec.enumBuilder(type).build(builderAction)
 
 /** Builds a new anonymous [TypeSpec]. */
 fun buildAnonymousType(): TypeSpec = TypeSpec.anonymousClassBuilder().build()
@@ -136,7 +141,7 @@ fun buildAnonymousType(): TypeSpec = TypeSpec.anonymousClassBuilder().build()
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildAnonymousType(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.anonymousClassBuilder()).apply(builderAction).build()
+    TypeSpec.anonymousClassBuilder().build(builderAction)
 
 /** Builds a new annotation [TypeSpec] from [type]. */
 fun buildAnnotationType(type: String): TypeSpec = TypeSpec.annotationBuilder(type).build()
@@ -146,7 +151,7 @@ fun buildAnnotationType(type: String): TypeSpec = TypeSpec.annotationBuilder(typ
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildAnnotationType(type: String, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(builderAction).build()
+    TypeSpec.annotationBuilder(type).build(builderAction)
 
 /** Builds a new annotation [TypeSpec] from [type]. */
 fun buildAnnotationType(type: ClassName): TypeSpec = TypeSpec.annotationBuilder(type).build()
@@ -156,7 +161,11 @@ fun buildAnnotationType(type: ClassName): TypeSpec = TypeSpec.annotationBuilder(
  * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildAnnotationType(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(builderAction).build()
+    TypeSpec.annotationBuilder(type).build(builderAction)
+
+/** Modify existing [TypeSpec.Builder] using provided [builderAction] and then building it. */
+inline fun TypeSpec.Builder.build(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+    TypeSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
@@ -195,7 +204,7 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
     /** Types of this builder. */
     val typeSpecs: MutableList<TypeSpec> get() = nativeBuilder.typeSpecs
 
-    /** Collection of kdoc, may be configured with Kotlin DSL. */
+    /** Configure kdoc without DSL. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -206,14 +215,22 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         }
     }
 
-    /** Collection of annotations, may be configured with Kotlin DSL. */
+    /** Configure kdoc with DSL. */
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
+        KdocContainerScope(kdoc).configuration()
+
+    /** Configure annotations without DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
     }
 
-    /** Add field modifiers. */
+    /** Configure annotations with DSL. */
+    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
+        AnnotationSpecContainerScope(annotations).configuration()
+
+    /** Add type modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
@@ -272,7 +289,7 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         code.also { nativeBuilder.addSuperclassConstructorParameter(it) }
 
     /** Add super class constructor parameters with custom [builderAction]. */
-    inline fun addSuperclassConstructorParameter(builderAction: CodeBlockBlockBuilder.() -> Unit) =
+    inline fun addSuperclassConstructorParameter(builderAction: CodeBlockBuilder.() -> Unit) =
         addSuperclassConstructorParameter(buildCode(builderAction))
 
     /** Add superinterface to [type]. */
@@ -303,33 +320,45 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         nativeBuilder.addEnumConstant(name, spec)
     }
 
-    /** Collection of fields, may be configured with Kotlin DSL. */
+    /** Configure properties without DSL. */
     val properties: PropertySpecContainer = object : PropertySpecContainer() {
         override fun add(spec: PropertySpec) {
             nativeBuilder.addProperty(spec)
         }
     }
 
+    /** Configure properties with DSL. */
+    inline fun properties(configuration: PropertySpecContainerScope.() -> Unit) =
+        PropertySpecContainerScope(properties).configuration()
+
     /** Add initializer block containing [code]. */
     fun addInitializerBlock(code: CodeBlock): CodeBlock = code.also { nativeBuilder.addInitializerBlock(it) }
 
     /** Add initializer block containing code with custom initialization [builderAction]. */
-    inline fun addInitializerBlock(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun addInitializerBlock(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         addInitializerBlock(buildCode(builderAction))
 
-    /** Collection of functions, may be configured with Kotlin DSL. */
+    /** Configure functions without DSL. */
     val functions: FunSpecContainer = object : FunSpecContainer() {
         override fun add(spec: FunSpec) {
             nativeBuilder.addFunction(spec)
         }
     }
 
-    /** Collection of types, may be configured with Kotlin DSL. */
+    /** Configure functions with DSL. */
+    inline fun functions(configuration: FunSpecContainerScope.() -> Unit) =
+        FunSpecContainerScope(functions).configuration()
+
+    /** Configure types without DSL. */
     val types: TypeSpecContainer = object : TypeSpecContainer() {
         override fun add(spec: TypeSpec) {
             nativeBuilder.addType(spec)
         }
     }
+
+    /** Configure types with DSL. */
+    inline fun types(configuration: TypeSpecContainerScope.() -> Unit) =
+        TypeSpecContainerScope(types).configuration()
 
     /** Add originating element. */
     fun addOriginatingElement(originatingElement: Element) {

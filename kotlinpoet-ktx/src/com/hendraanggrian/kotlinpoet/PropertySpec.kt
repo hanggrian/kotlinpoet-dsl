@@ -1,7 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
+import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
@@ -26,7 +28,7 @@ inline fun buildProperty(
     type: TypeName,
     vararg modifiers: KModifier,
     builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(builderAction).build()
+): PropertySpec = PropertySpec.builder(name, type, *modifiers).build(builderAction)
 
 /** Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers]. */
 fun buildProperty(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
@@ -49,7 +51,7 @@ inline fun buildProperty(
     type: Type,
     vararg modifiers: KModifier,
     builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(builderAction).build()
+): PropertySpec = PropertySpec.builder(name, type, *modifiers).build(builderAction)
 
 /**
  * Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers],
@@ -60,7 +62,7 @@ inline fun buildProperty(
     type: KClass<*>,
     vararg modifiers: KModifier,
     builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(builderAction).build()
+): PropertySpec = PropertySpec.builder(name, type, *modifiers).build(builderAction)
 
 /**
  * Builds a new [PropertySpec] from [T] supplying its [name] and [modifiers],
@@ -71,6 +73,10 @@ inline fun <reified T> buildProperty(
     vararg modifiers: KModifier,
     builderAction: PropertySpecBuilder.() -> Unit
 ): PropertySpec = buildProperty(name, T::class, *modifiers, builderAction = builderAction)
+
+/** Modify existing [PropertySpec.Builder] using provided [builderAction] and then building it. */
+inline fun PropertySpec.Builder.build(builderAction: PropertySpecBuilder.() -> Unit): PropertySpec =
+    PropertySpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
@@ -98,7 +104,7 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
             nativeBuilder.mutable(value)
         }
 
-    /** Collection of kdoc, may be configured with Kotlin DSL. */
+    /** Configure kdoc without DSL. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -109,14 +115,22 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
         }
     }
 
-    /** Collection of annotations, may be configured with Kotlin DSL. */
+    /** Configure kdoc with DSL. */
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
+        KdocContainerScope(kdoc).configuration()
+
+    /** Configure annotations without DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
     }
 
-    /** Add field modifiers. */
+    /** Configure annotations with DSL. */
+    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
+        AnnotationSpecContainerScope(annotations).configuration()
+
+    /** Add property modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
@@ -144,7 +158,7 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
         }
 
     /** Initialize field value with custom initialization [builderAction]. */
-    inline fun initializer(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun initializer(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { initializer = it }
 
     /** Delegate field value like [String.format]. */
@@ -160,7 +174,7 @@ class PropertySpecBuilder @PublishedApi internal constructor(private val nativeB
         }
 
     /** Delegate field value with custom initialization [builderAction]. */
-    inline fun delegate(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun delegate(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { delegate = it }
 
     /** Set getter function from [FunSpec]. */

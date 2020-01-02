@@ -30,4 +30,4 @@ fun KClass<*>.asConsumerWildcardTypeName(): WildcardTypeName = WildcardTypeName.
 inline fun <reified T> asConsumerWildcardTypeName(): WildcardTypeName = T::class.asConsumerWildcardTypeName()
 
 /** Create a nullable coppy of [WildcardTypeName].  */
-fun WildcardTypeName.asNullable(): WildcardTypeName = copy(true)
+fun WildcardTypeName.asNullable(): WildcardTypeName = copy(true, emptyList(), emptyMap())

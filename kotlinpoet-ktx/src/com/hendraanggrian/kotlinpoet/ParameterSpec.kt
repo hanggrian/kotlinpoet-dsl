@@ -1,7 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
+import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
@@ -27,7 +29,7 @@ inline fun buildParameter(
     type: TypeName,
     vararg modifiers: KModifier,
     builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
+): ParameterSpec = ParameterSpec.builder(name, type, *modifiers).build(builderAction)
 
 /** Builds a new [ParameterSpec] from [type]. */
 fun buildParameter(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
@@ -50,7 +52,7 @@ inline fun buildParameter(
     type: Type,
     vararg modifiers: KModifier,
     builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
+): ParameterSpec = ParameterSpec.builder(name, type, *modifiers).build(builderAction)
 
 /**
  * Builds a new [ParameterSpec] from [type],
@@ -61,7 +63,7 @@ inline fun buildParameter(
     type: KClass<*>,
     vararg modifiers: KModifier,
     builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
+): ParameterSpec = ParameterSpec.builder(name, type, *modifiers).build(builderAction)
 
 /**
  * Builds a new [ParameterSpec] from [T],
@@ -73,23 +75,27 @@ inline fun <reified T> buildParameter(
     builderAction: ParameterSpecBuilder.() -> Unit
 ): ParameterSpec = buildParameter(name, T::class, *modifiers, builderAction = builderAction)
 
+/** Modify existing [ParameterSpec.Builder] using provided [builderAction] and then building it. */
+inline fun ParameterSpec.Builder.build(builderAction: ParameterSpecBuilder.() -> Unit): ParameterSpec =
+    ParameterSpecBuilder(this).apply(builderAction).build()
+
 /** Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class ParameterSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: ParameterSpec.Builder) {
 
-    /** Kdoc of this builder. */
+    /** Kdoc of this parameter. */
     val kdocBuilder: CodeBlock.Builder get() = nativeBuilder.kdoc
 
-    /** Annotations of this builder. */
+    /** Annotations of this parameter. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
-    /** Modifiers of this builder. */
+    /** Modifiers of this parameter. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
-    /** Tags variables of this builder. */
+    /** Tags variables of this parameter. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
-    /** Collection of kdoc, may be configured with Kotlin DSL. */
+    /** Configure kdoc without DSL. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -100,14 +106,22 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
         }
     }
 
-    /** Collection of annotations, may be configured with Kotlin DSL. */
+    /** Configure kdoc with DSL. */
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
+        KdocContainerScope(kdoc).configuration()
+
+    /** Configure annotations without DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
     }
 
-    /** Add field modifiers. */
+    /** Configure annotations with DSL. */
+    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
+        AnnotationSpecContainerScope(annotations).configuration()
+
+    /** Add parameter modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
@@ -125,7 +139,7 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
         }
 
     /** Set default value to code with custom initialization [builderAction]. */
-    inline fun defaultValue(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
+    inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCode(builderAction).also { defaultValue = it }
 
     /** Returns native spec. */

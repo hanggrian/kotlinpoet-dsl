@@ -12,14 +12,18 @@ fun String.formatCode(vararg args: Any): CodeBlock = CodeBlock.of(this, *args)
 
 /**
  * Builds a new [CodeBlock],
- * by populating newly created [CodeBlockBlockBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [CodeBlockBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildCode(builderAction: CodeBlockBlockBuilder.() -> Unit): CodeBlock =
-    CodeBlockBlockBuilder(CodeBlock.builder()).apply(builderAction).build()
+inline fun buildCode(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+    CodeBlock.builder().build(builderAction)
+
+/** Modify existing [CodeBlock.Builder] using provided [builderAction] and then building it. */
+inline fun CodeBlock.Builder.build(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+    CodeBlockBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class CodeBlockBlockBuilder @PublishedApi internal constructor(private val nativeBuilder: CodeBlock.Builder) :
+class CodeBlockBuilder @PublishedApi internal constructor(private val nativeBuilder: CodeBlock.Builder) :
     CodeBlockContainer() {
 
     /** Returns true if this builder contains no code. */

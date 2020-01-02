@@ -47,9 +47,20 @@ abstract class TypeAliasSpecContainer internal constructor() {
         add(spec)
     }
 
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: TypeAliasSpecContainerScope.() -> Unit): Unit =
-        TypeAliasSpecContainerScope(this).configuration()
+    /** Convenient method to add type alias with operator function. */
+    operator fun set(name: String, type: TypeName) {
+        add(name, type)
+    }
+
+    /** Convenient method to add type alias with operator function. */
+    operator fun set(name: String, type: Type) {
+        add(name, type)
+    }
+
+    /** Convenient method to add type alias with operator function. */
+    operator fun set(name: String, type: KClass<*>) {
+        add(name, type)
+    }
 }
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */

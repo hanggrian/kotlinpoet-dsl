@@ -1,10 +1,15 @@
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecContainerScope
 import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainer
+import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainerScope
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
@@ -23,57 +28,81 @@ fun TypeSpec.toFile(packageName: String): FileSpec = FileSpec.get(packageName, t
  * by populating newly created [FileSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildFile(packageName: String, fileName: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
-    FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(builderAction).build()
+    FileSpec.builder(packageName, fileName).build(builderAction)
+
+/** Modify existing [FileSpec.Builder] using provided [builderAction] and then building it. */
+inline fun FileSpec.Builder.build(builderAction: FileSpecBuilder.() -> Unit): FileSpec =
+    FileSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
 class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FileSpec.Builder) {
 
-    /** Tags variables of this builder. */
+    /** Tags variables of this file. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
-    /** Annotations of this builder. */
+    /** Annotations of this file. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
-    /** Collection of annotations, may be configured with Kotlin DSL. */
+    /** Configure annotations without DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
     }
 
+    /** Configure annotations with DSL. */
+    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
+        AnnotationSpecContainerScope(annotations).configuration()
+
     /** Add file comment like [String.format]. */
     fun addComment(format: String, vararg args: Any) {
         nativeBuilder.addComment(format, *args)
     }
 
-    /** Collection of types, may be configured with Kotlin DSL. */
+    /** Configure types without DSL. */
     val types: TypeSpecContainer = object : TypeSpecContainer() {
         override fun add(spec: TypeSpec) {
             nativeBuilder.addType(spec)
         }
     }
 
-    /** Collection of functions, may be configured with Kotlin DSL. */
+    /** Configure types with DSL. */
+    inline fun types(configuration: TypeSpecContainerScope.() -> Unit) =
+        TypeSpecContainerScope(types).configuration()
+
+    /** Configure functions without DSL. */
     val functions: FunSpecContainer = object : FunSpecContainer() {
         override fun add(spec: FunSpec) {
             nativeBuilder.addFunction(spec)
         }
     }
 
-    /** Collection of fields, may be configured with Kotlin DSL. */
+    /** Configure functions with DSL. */
+    inline fun functions(configuration: FunSpecContainerScope.() -> Unit) =
+        FunSpecContainerScope(functions).configuration()
+
+    /** Configure properties without DSL. */
     val properties: PropertySpecContainer = object : PropertySpecContainer() {
         override fun add(spec: PropertySpec) {
             nativeBuilder.addProperty(spec)
         }
     }
 
-    /** Collection of type aliases, may be configured with Kotlin DSL. */
+    /** Configure properties with DSL. */
+    inline fun properties(configuration: PropertySpecContainerScope.() -> Unit) =
+        PropertySpecContainerScope(properties).configuration()
+
+    /** Configure type-aliases without DSL. */
     val typeAliases: TypeAliasSpecContainer = object : TypeAliasSpecContainer() {
         override fun add(spec: TypeAliasSpec) {
             nativeBuilder.addTypeAlias(spec)
         }
     }
+
+    /** Configure type-aliases with DSL. */
+    inline fun typeAliases(configuration: TypeAliasSpecContainerScope.() -> Unit) =
+        TypeAliasSpecContainerScope(typeAliases).configuration()
 
     /** Add import. */
     fun addImport(constant: Enum<*>) {

@@ -22,4 +22,4 @@ fun typeVariableNameOf(name: String, vararg bounds: KClass<*>, variance: KModifi
     TypeVariableName(name, *bounds, variance = variance)
 
 /** Create a nullable coppy of [TypeVariableName].  */
-fun TypeVariableName.asNullable(): TypeVariableName = copy(true)
+fun TypeVariableName.asNullable(): TypeVariableName = copy(true, listOf(), listOf(), false, emptyMap())

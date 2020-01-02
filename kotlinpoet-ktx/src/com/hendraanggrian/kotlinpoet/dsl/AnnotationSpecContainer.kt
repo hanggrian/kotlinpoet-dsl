@@ -21,17 +21,17 @@ abstract class AnnotationSpecContainer internal constructor() {
         buildAnnotation(type, builderAction).also { add(it) }
 
     /** Add annotation from [type], returning the annotation added. */
-    fun <T : Annotation> add(type: Class<T>): AnnotationSpec = buildAnnotation(type).also { add(it) }
+    fun add(type: Class<out Annotation>): AnnotationSpec = buildAnnotation(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
-    inline fun <T : Annotation> add(type: Class<T>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    inline fun add(type: Class<out Annotation>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         buildAnnotation(type, builderAction).also { add(it) }
 
     /** Add annotation from [type], returning the annotation added. */
-    fun <T : Annotation> add(type: KClass<T>): AnnotationSpec = buildAnnotation(type).also { add(it) }
+    fun add(type: KClass<out Annotation>): AnnotationSpec = buildAnnotation(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
-    inline fun <T : Annotation> add(type: KClass<T>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    inline fun add(type: KClass<out Annotation>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         buildAnnotation(type, builderAction).also { add(it) }
 
     /** Add annotation from reified [T], returning the annotation added. */
@@ -52,18 +52,14 @@ abstract class AnnotationSpecContainer internal constructor() {
     }
 
     /** Convenient method to add annotation with operator function. */
-    operator fun <T : Annotation> plusAssign(type: Class<T>) {
+    operator fun plusAssign(type: Class<out Annotation>) {
         add(type)
     }
 
     /** Convenient method to add annotation with operator function. */
-    operator fun <T : Annotation> plusAssign(type: KClass<T>) {
+    operator fun plusAssign(type: KClass<out Annotation>) {
         add(type)
     }
-
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: AnnotationSpecContainerScope.() -> Unit): Unit =
-        AnnotationSpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
@@ -78,10 +74,10 @@ class AnnotationSpecContainerScope @PublishedApi internal constructor(private va
         add(this, builderAction)
 
     /** Convenient method to add annotation with receiver type. */
-    inline operator fun <T : Annotation> Class<T>.invoke(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    inline operator fun Class<out Annotation>.invoke(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         add(this, builderAction)
 
     /** Convenient method to add annotation with receiver type. */
-    inline operator fun <T : Annotation> KClass<T>.invoke(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    inline operator fun KClass<out Annotation>.invoke(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         add(this, builderAction)
 }

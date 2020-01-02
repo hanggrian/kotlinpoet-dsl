@@ -116,6 +116,11 @@ abstract class TypeSpecContainer internal constructor() {
     /** Add annotation type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addAnnotation(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
         buildAnnotationType(type, builderAction).also { add(it) }
+
+    /** Convenient method to add type with operator function. */
+    operator fun plusAssign(spec: TypeSpec) {
+        add(spec)
+    }
 }
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
@@ -124,4 +129,12 @@ class TypeSpecContainerScope @PublishedApi internal constructor(private val cont
     TypeSpecContainer() {
 
     override fun add(spec: TypeSpec) = container.add(spec)
+
+    /** Convenient method to add class with receiver type. */
+    inline operator fun String.invoke(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        addClass(this, builderAction)
+
+    /** Convenient method to add class with receiver type. */
+    inline operator fun ClassName.invoke(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
+        addClass(this, builderAction)
 }

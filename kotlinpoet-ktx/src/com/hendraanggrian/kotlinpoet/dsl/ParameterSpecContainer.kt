@@ -81,10 +81,6 @@ abstract class ParameterSpecContainer internal constructor() {
     operator fun set(name: String, type: KClass<*>) {
         add(name, type)
     }
-
-    /** Configure this container with DSL. */
-    inline operator fun invoke(configuration: ParameterSpecContainerScope.() -> Unit): Unit =
-        ParameterSpecContainerScope(this).configuration()
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
