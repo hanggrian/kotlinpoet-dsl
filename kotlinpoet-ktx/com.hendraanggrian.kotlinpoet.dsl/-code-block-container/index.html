@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CodeBlockContainer - kotlinpoet-ktx</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet.dsl</a>&nbsp;/&nbsp;<a href="./index.html">CodeBlockContainer</a><br/>
+<br/>
+<h1>CodeBlockContainer</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CodeBlockContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlockAppendable</span></code>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="append.html">append</a></h4>
+</td>
+<td>
+<p>Add code block with custom initialization <a href="append.html#com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$append(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>, returning the block added.</p>
+<code><span class="keyword">fun </span><span class="identifier">append</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$append(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet/-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="appendln.html">appendln</a></h4>
+</td>
+<td>
+<p>Add empty new line to this container.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">appendln</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add code block with custom initialization <a href="appendln.html#com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$appendln(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a> and a new line to this container, returning the block added.</p>
+<code><span class="keyword">fun </span><span class="identifier">appendln</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$appendln(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet/-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="begin-flow.html">beginFlow</a></h4>
+</td>
+<td>
+<p>Starts the control flow.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">beginFlow</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$beginFlow(kotlin.String, kotlin.Array((kotlin.Any)))/flow">flow</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$beginFlow(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="end-flow.html">endFlow</a></h4>
+</td>
+<td>
+<p>Stops the control flow.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">endFlow</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="next-flow.html">nextFlow</a></h4>
+</td>
+<td>
+<p>Continues the control flow.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">nextFlow</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$nextFlow(kotlin.String, kotlin.Array((kotlin.Any)))/flow">flow</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer$nextFlow(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../com.hendraanggrian.kotlinpoet/-code-block-builder/index.html">CodeBlockBuilder</a></h4>
+</td>
+<td>
+<p>Wrapper of <a href="#">CodeBlock.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<code><span class="keyword">class </span><span class="identifier">CodeBlockBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CodeBlockContainer</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../com.hendraanggrian.kotlinpoet/-fun-spec-builder/index.html">FunSpecBuilder</a></h4>
+</td>
+<td>
+<p>Wrapper of <a href="#">FunSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<code><span class="keyword">class </span><span class="identifier">FunSpecBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CodeBlockContainer</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -15,21 +15,27 @@
 <tbody>
 <tr>
 <td>
-<p><a href="members.html">members</a></p>
+<h4><a href="members.html">members</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">members</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">CodeBlock</span><span class="symbol">&gt;</span></code>
-<p>Members of this builder.</p>
-</td>
+<p>Members of this annotation.</p>
+<code><span class="keyword">val </span><span class="identifier">members</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">CodeBlock</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="use-site-target.html">useSiteTarget</a></p>
+<h4><a href="tags.html">tags</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">useSiteTarget</span><span class="symbol">: </span><span class="identifier">UseSiteTarget</span></code>
-<p>Set <a href="#">AnnotationSpec.UseSiteTarget</a>.</p>
+<p>Tags of this annotation.</p>
+<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="use-site-target.html">useSiteTarget</a></h4>
 </td>
+<td>
+<p>Sets <a href="#">AnnotationSpec.UseSiteTarget</a>.</p>
+<code><span class="keyword">var </span><span class="identifier">useSiteTarget</span><span class="symbol">: </span><span class="identifier">UseSiteTarget</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -38,33 +44,22 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-member.html">addMember</a></p>
+<h4><a href="add-member.html">addMember</a></h4>
 </td>
 <td>
+<p>Add code as a member of this annotation.</p>
 <code><span class="keyword">fun </span><span class="identifier">addMember</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$addMember(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$addMember(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">fun </span><span class="identifier">addMember</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$addMember(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
-<p>Add code as a member of this annotation.</p>
-<code><span class="keyword">fun </span><span class="identifier">addMember</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$addMember(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Add code as a member of this annotation with custom initialization <a href="add-member.html#com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$addMember(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">addMember</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$addMember(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="build.html">build</a></p>
+<h4><a href="build.html">build</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">AnnotationSpec</span></code>
 <p>Returns native spec.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="invoke.html">invoke</a></p>
-</td>
-<td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder$invoke(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Convenient method to add member with operator function.</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">AnnotationSpec</span></code></td>
 </tr>
 </tbody>
 </table>

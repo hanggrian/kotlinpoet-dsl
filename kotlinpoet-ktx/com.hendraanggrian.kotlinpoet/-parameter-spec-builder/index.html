@@ -15,66 +15,59 @@
 <tbody>
 <tr>
 <td>
-<p><a href="annotations.html">annotations</a></p>
+<h4><a href="annotations.html">annotations</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-container/index.html"><span class="identifier">AnnotationContainer</span></a></code>
-<p>Collection of annotations, may be configured with Kotlin DSL.</p>
-</td>
+<p>Configure annotations without DSL.</p>
+<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-spec-container/index.html"><span class="identifier">AnnotationSpecContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="annotation-specs.html">annotationSpecs</a></p>
+<h4><a href="annotation-specs.html">annotationSpecs</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code>
-<p>Annotations of this builder.</p>
-</td>
+<p>Annotations of this parameter.</p>
+<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="default-value.html">defaultValue</a></p>
+<h4><a href="default-value.html">defaultValue</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">defaultValue</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Set default value to simple string.</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">defaultValue</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="kdoc.html">kdoc</a></p>
+<h4><a href="kdoc.html">kdoc</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code>
-<p>Collection of kdoc, may be configured with Kotlin DSL.</p>
-</td>
+<p>Configure kdoc without DSL.</p>
+<code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="kdoc-builder.html">kdocBuilder</a></p>
+<h4><a href="kdoc-builder.html">kdocBuilder</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">kdocBuilder</span><span class="symbol">: </span><span class="identifier">Builder</span></code>
-<p>Kdoc of this builder.</p>
-</td>
+<p>Kdoc of this parameter.</p>
+<code><span class="keyword">val </span><span class="identifier">kdocBuilder</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="modifiers.html">modifiers</a></p>
+<h4><a href="modifiers.html">modifiers</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">modifiers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">KModifier</span><span class="symbol">&gt;</span></code>
-<p>Modifiers of this builder.</p>
-</td>
+<p>Modifiers of this parameter.</p>
+<code><span class="keyword">val </span><span class="identifier">modifiers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">KModifier</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="tags.html">tags</a></p>
+<h4><a href="tags.html">tags</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code>
-<p>Tags variables of this builder.</p>
-</td>
+<p>Tags variables of this parameter.</p>
+<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -83,32 +76,45 @@
 <tbody>
 <tr>
 <td>
-<p><a href="add-modifiers.html">addModifiers</a></p>
+<h4><a href="add-modifiers.html">addModifiers</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">addModifiers</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$addModifiers(kotlin.Array((com.squareup.kotlinpoet.KModifier)))/modifiers">modifiers</span><span class="symbol">:</span>&nbsp;<span class="identifier">KModifier</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Add field modifiers.</p>
-</td>
+<p>Add parameter modifiers.</p>
+<code><span class="keyword">fun </span><span class="identifier">addModifiers</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$addModifiers(kotlin.Array((com.squareup.kotlinpoet.KModifier)))/modifiers">modifiers</span><span class="symbol">:</span>&nbsp;<span class="identifier">KModifier</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="build.html">build</a></p>
+<h4><a href="annotations.html">annotations</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterSpec</span></code>
+<p>Configure annotations with DSL.</p>
+<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-spec-container-scope/index.html"><span class="identifier">AnnotationSpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="build.html">build</a></h4>
+</td>
+<td>
 <p>Returns native spec.</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterSpec</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="default-value.html">defaultValue</a></p>
+<h4><a href="default-value.html">defaultValue</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">defaultValue</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Set default value like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">defaultValue</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
+<code><span class="keyword">fun </span><span class="identifier">defaultValue</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Set default value to code with custom initialization <a href="default-value.html#com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">defaultValue</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$defaultValue(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="kdoc.html">kdoc</a></h4>
 </td>
+<td>
+<p>Configure kdoc with DSL.</p>
+<code><span class="keyword">fun </span><span class="identifier">kdoc</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$kdoc(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container-scope/index.html"><span class="identifier">KdocContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>

@@ -13,143 +13,122 @@
 <tbody>
 <tr>
 <td>
-<p><a href="-annotation-container/index.html">AnnotationContainer</a></p>
+<h4><a href="-annotation-spec-container/index.html">AnnotationSpecContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AnnotationContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AnnotationAddable</span></code>
-<p>An <a href="-annotation-container/index.html">AnnotationContainer</a> is responsible for managing a set of annotation instances.</p>
-</td>
+<p>An <a href="-annotation-spec-container/index.html">AnnotationSpecContainer</a> is responsible for managing a set of annotation instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AnnotationSpecContainer</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-annotation-container-scope/index.html">AnnotationContainerScope</a></p>
+<h4><a href="-annotation-spec-container-scope/index.html">AnnotationSpecContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">AnnotationContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-annotation-container/index.html"><span class="identifier">AnnotationContainer</span></a><span class="symbol">, </span><span class="identifier">AnnotationAddable</span></code>
 <p>Receiver for the <code>annotations</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">AnnotationSpecContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-annotation-spec-container/index.html"><span class="identifier">AnnotationSpecContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-code-collection/index.html">CodeCollection</a></p>
+<h4><a href="-code-block-container/index.html">CodeBlockContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CodeCollection</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeAppendable</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CodeBlockContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlockAppendable</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-fun-container/index.html">FunContainer</a></p>
+<h4><a href="-fun-spec-container/index.html">FunSpecContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">FunContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">FunAddable</span></code>
-<p>A <a href="-fun-container/index.html">FunContainer</a> is responsible for managing a set of function instances.</p>
-</td>
+<p>A <a href="-fun-spec-container/index.html">FunSpecContainer</a> is responsible for managing a set of function instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">FunSpecContainer</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-fun-container-scope/index.html">FunContainerScope</a></p>
+<h4><a href="-fun-spec-container-scope/index.html">FunSpecContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">FunContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fun-container/index.html"><span class="identifier">FunContainer</span></a><span class="symbol">, </span><span class="identifier">FunAddable</span></code>
 <p>Receiver for the <code>functions</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">FunSpecContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fun-spec-container/index.html"><span class="identifier">FunSpecContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-kdoc-container/index.html">KdocContainer</a></p>
+<h4><a href="-kdoc-container/index.html">KdocContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">KdocContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeAppendable</span></code>
 <p>A <a href="-kdoc-container/index.html">KdocContainer</a> is responsible for managing a set of code instances.</p>
-</td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">KdocContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlockAppendable</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-kdoc-container-scope/index.html">KdocContainerScope</a></p>
+<h4><a href="-kdoc-container-scope/index.html">KdocContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">KdocContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a><span class="symbol">, </span><span class="identifier">CodeAppendable</span></code>
 <p>Receiver for the <code>kdoc</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">KdocContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a><span class="symbol">, </span><span class="identifier">CodeBlockAppendable</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-parameter-container/index.html">ParameterContainer</a></p>
+<h4><a href="-parameter-spec-container/index.html">ParameterSpecContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ParameterContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ParameterAddable</span></code>
-<p>A <a href="-parameter-container/index.html">ParameterContainer</a> is responsible for managing a set of parameter instances.</p>
-</td>
+<p>A <a href="-parameter-spec-container/index.html">ParameterSpecContainer</a> is responsible for managing a set of parameter instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ParameterSpecContainer</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-parameter-container-scope/index.html">ParameterContainerScope</a></p>
+<h4><a href="-parameter-spec-container-scope/index.html">ParameterSpecContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">ParameterContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-parameter-container/index.html"><span class="identifier">ParameterContainer</span></a><span class="symbol">, </span><span class="identifier">ParameterAddable</span></code>
 <p>Receiver for the <code>parameters</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">ParameterSpecContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-parameter-spec-container/index.html"><span class="identifier">ParameterSpecContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-property-container/index.html">PropertyContainer</a></p>
+<h4><a href="-property-spec-container/index.html">PropertySpecContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">PropertyContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PropertyAddable</span></code>
-<p>A <a href="-property-container/index.html">PropertyContainer</a> is responsible for managing a set of field instances.</p>
-</td>
+<p>A <a href="-property-spec-container/index.html">PropertySpecContainer</a> is responsible for managing a set of field instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">PropertySpecContainer</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-property-container-scope/index.html">PropertyContainerScope</a></p>
+<h4><a href="-property-spec-container-scope/index.html">PropertySpecContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">PropertyContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-property-container/index.html"><span class="identifier">PropertyContainer</span></a><span class="symbol">, </span><span class="identifier">PropertyAddable</span></code>
 <p>Receiver for the <code>fields</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">PropertySpecContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-property-spec-container/index.html"><span class="identifier">PropertySpecContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-type-alias-container/index.html">TypeAliasContainer</a></p>
+<h4><a href="-type-alias-spec-container/index.html">TypeAliasSpecContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TypeAliasContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">TypeAliasAddable</span></code>
-<p>An <a href="-type-alias-container/index.html">TypeAliasContainer</a> is responsible for managing a set of type alias instances.</p>
-</td>
+<p>An <a href="-type-alias-spec-container/index.html">TypeAliasSpecContainer</a> is responsible for managing a set of type alias instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TypeAliasSpecContainer</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-type-alias-container-scope/index.html">TypeAliasContainerScope</a></p>
+<h4><a href="-type-alias-spec-container-scope/index.html">TypeAliasSpecContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">TypeAliasContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-alias-container/index.html"><span class="identifier">TypeAliasContainer</span></a><span class="symbol">, </span><span class="identifier">TypeAliasAddable</span></code>
 <p>Receiver for the <code>typeAliases</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">TypeAliasSpecContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-alias-spec-container/index.html"><span class="identifier">TypeAliasSpecContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-type-collection/index.html">TypeCollection</a></p>
+<h4><a href="-type-spec-container/index.html">TypeSpecContainer</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TypeCollection</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">TypeAddable</span></code></td>
+<p>A <a href="-type-spec-container/index.html">TypeSpecContainer</a> is responsible for managing a set of type instances.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TypeSpecContainer</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="-type-container/index.html">TypeContainer</a></p>
+<h4><a href="-type-spec-container-scope/index.html">TypeSpecContainerScope</a></h4>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">TypeContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-collection/index.html"><span class="identifier">TypeCollection</span></a></code>
-<p>A <a href="-type-container/index.html">TypeContainer</a> is responsible for managing a set of type instances.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-type-container-scope.html">TypeContainerScope</a></p>
-</td>
-<td>
-<code><span class="keyword">class </span><span class="identifier">TypeContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-container/index.html"><span class="identifier">TypeContainer</span></a><span class="symbol">, </span><span class="identifier">TypeAddable</span></code>
 <p>Receiver for the <code>types</code> block providing an extended set of operators for the configuration.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">TypeSpecContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-spec-container/index.html"><span class="identifier">TypeSpecContainer</span></a></code></td>
 </tr>
 </tbody>
 </table>

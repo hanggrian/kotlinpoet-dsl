@@ -12,48 +12,30 @@
 <tbody>
 <tr>
 <td>
-<p><a href="as-consumer-wildcard-type-name.html">asConsumerWildcardTypeName</a></p>
+<h4><a href="lambda-by.html">lambdaBy</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asConsumerWildcardTypeName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code>
-<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that consumes <code>inType</code>.</p>
-</td>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), kotlin.reflect.KClass((kotlin.Any)))/parameters">parameters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">ParameterSpec</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), kotlin.reflect.KClass((kotlin.Any)))/returnType">returnType</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code><br/>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))), kotlin.reflect.KClass((kotlin.Any)))/parameters">parameters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))), kotlin.reflect.KClass((kotlin.Any)))/returnType">returnType</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code><br/>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((com.squareup.kotlinpoet.ParameterSpec)), kotlin.reflect.KClass((kotlin.Any)))/parameters">parameters</span><span class="symbol">:</span>&nbsp;<span class="identifier">ParameterSpec</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((com.squareup.kotlinpoet.ParameterSpec)), kotlin.reflect.KClass((kotlin.Any)))/returnType">returnType</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="as-producer-wildcard-type-name.html">asProducerWildcardTypeName</a></p>
+<h4><a href="member.html">member</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">asProducerWildcardTypeName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code>
-<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that produces <code>outType</code>.</p>
-</td>
+<p>Returns a <a href="#">MemberName</a> using enclosing <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a> and <a href="member.html#com.hendraanggrian.kotlinpoet$member(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/simpleName">simpleName</a>.</p>
+<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">member</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$member(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/simpleName">simpleName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MemberName</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="member.html">member</a></p>
+<h4><a href="parameterized-by.html">parameterizedBy</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">member</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$member(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/simpleName">simpleName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MemberName</span></code>
-<p>Returns a <a href="#">MemberName</a>, applying <code>simpleName</code> to <code>this</code>.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="parameterized-by.html">parameterizedBy</a></p>
-</td>
-<td>
+<p>Returns a <a href="#">ParameterizedTypeName</a> applying <a href="parameterized-by.html#com.hendraanggrian.kotlinpoet$parameterizedBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))))/typeArguments">typeArguments</a> to <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>.</p>
 <code><span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">parameterizedBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$parameterizedBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))))/typeArguments">typeArguments</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterizedTypeName</span></code>
-<p>Returns a <a href="#">ParameterizedTypeName</a>, applying <code>typeArguments</code> to <code>this</code>.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="plus.html">plus</a></p>
-</td>
-<td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$plus(kotlin.reflect.KClass((kotlin.Any)), kotlin.reflect.KClass((kotlin.Any)))/typeArgument">typeArgument</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterizedTypeName</span></code>
-<p>Returns a <a href="#">ParameterizedTypeName</a>, applying <code>typeArgument</code> to <code>this</code>.</p>
-</td>
+<p>Returns a <a href="#">ParameterizedTypeName</a> applying <a href="#">typeArgument</a> to <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">parameterizedBy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ParameterizedTypeName</span></code></td>
 </tr>
 </tbody>
 </table>
