@@ -163,8 +163,8 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
             nativeBuilder.indent(value)
         }
 
-    /** Set indent space count. */
-    inline var indentCount: Int
+    /** Convenient method to set [indent] with space the length of [indentSize]. */
+    inline var indentSize: Int
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {
             indent = buildString { repeat(value) { append(' ') } }

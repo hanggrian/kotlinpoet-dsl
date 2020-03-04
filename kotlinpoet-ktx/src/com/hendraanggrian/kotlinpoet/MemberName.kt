@@ -4,11 +4,14 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import kotlin.reflect.KClass
 
-/** Returns a [MemberName], applying `simpleName` to `this`.  */
-fun ClassName.member(simpleName: String): MemberName = MemberName.run { member(simpleName) }
+/** Returns a [MemberName] using package name and [simpleName]. */
+fun String.memberOf(simpleName: String): MemberName = MemberName(this, simpleName)
 
-/** Returns a [MemberName], applying `simpleName` to `this`.  */
-fun Class<*>.member(simpleName: String): MemberName = MemberName.run { member(simpleName) }
+/** Returns a [MemberName] using enclosing [ClassName] and [simpleName]. */
+fun ClassName.memberOf(simpleName: String): MemberName = MemberName.run { member(simpleName) }
 
-/** Returns a [MemberName], applying `simpleName` to `this`.  */
-fun KClass<*>.member(simpleName: String): MemberName = MemberName.run { member(simpleName) }
+/** Returns a [MemberName] using enclosing [Class] and [simpleName]. */
+fun Class<*>.memberOf(simpleName: String): MemberName = MemberName.run { member(simpleName) }
+
+/** Returns a [MemberName] using enclosing [KClass] and [simpleName]. */
+fun KClass<*>.memberOf(simpleName: String): MemberName = MemberName.run { member(simpleName) }

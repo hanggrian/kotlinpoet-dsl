@@ -1,5 +1,7 @@
-const val VERSION_KOTLIN = "1.3.61"
-const val VERSION_COROUTINES = "1.3.3"
+const val VERSION_KOTLIN = "1.3.70"
+private const val VERSION_DOKKA = "0.10.1"
 
-fun Dependencies.kotlinx(module: String, version: String? = null) =
-    "org.jetbrains.kotlinx:kotlinx-$module${version?.let { ":$it" }.orEmpty()}"
+fun Dependencies.dokka(module: String? = null) =
+    "org.jetbrains.dokka:dokka${module?.let { "-$it" }.orEmpty()}-gradle-plugin:$VERSION_DOKKA"
+
+fun Plugins.dokka(module: String? = null) = id("org.jetbrains.dokka${module?.let { "-$it" }.orEmpty()}")
