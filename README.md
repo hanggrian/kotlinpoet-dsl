@@ -121,7 +121,7 @@ Write `TypeName` and all its subtypes fluently.
 
 ```kotlin
 val myClass: ClassName = "com.example".classOf("MyClass")
-val listener: LambdaTypeName = null.lambdaBy(returnType = Unit::class)
+val listener: LambdaTypeName = null.lambdaBy(returnType = "kotlin".classOf("Unit"))
 val memberOfString: MemberTypeName = myClass.memberOf("myField")
 val pairOfInteger: ParameterizedTypeName = "kotlin".classOf("Pair").parameterizedBy(Int::class, Int::class)
 val tVariable: TypeVariableName = "T".typeVariableBy()
@@ -131,8 +131,8 @@ val producerOfCharSequence: WildcardTypeName = "kotlin".classOf("CharSequence").
 If you have access to those types, they can also be strongly-typed. 
 
 ```kotlin
-val myClass = classNameOf<com.example.MyClass>()
-val listener = lambdaTypeNameOf<Unit>()
+val myClass = com.example.MyClass.asClassName()
+val listener = null.lambdaBy(returnType = Unit::class)
 val pairOfInteger = parameterizedTypeNameOf<android.util.Pair>(Int::class, Int::class)
 val subtypeOfCharSequence = wildcardTypeNameProducerOf<kotlin.CharSequence>()
 ```

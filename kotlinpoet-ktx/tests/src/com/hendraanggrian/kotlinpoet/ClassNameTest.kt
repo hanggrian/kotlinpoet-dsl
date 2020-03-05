@@ -18,8 +18,4 @@ class ClassNameTest {
         assertEquals(EXPECTED, "${MyClass::class.java.asClassName()}")
         assertEquals(EXPECTED, "${MyClass::class.asClassName()}")
     }
-
-    @Test fun classNameOf() {
-        assertEquals(EXPECTED, "${classNameOf<MyClass>()}")
-    }
 }

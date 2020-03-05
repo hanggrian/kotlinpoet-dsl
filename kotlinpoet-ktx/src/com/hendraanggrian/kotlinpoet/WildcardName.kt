@@ -5,18 +5,6 @@ import com.squareup.kotlinpoet.WildcardTypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/**
- * Returns a [WildcardTypeName] producer of [T].
- * @see com.squareup.kotlinpoet.typeNameOf
- */
-inline fun <reified T> wildcardTypeNameProducerOf(): WildcardTypeName = T::class.producerOf()
-
-/**
- * Returns a [WildcardTypeName] consumer of [T].
- * @see com.squareup.kotlinpoet.typeNameOf
- */
-inline fun <reified T> wildcardTypeNameConsumerOf(): WildcardTypeName = T::class.consumerOf()
-
 /** Returns a [WildcardTypeName] that represents an unknown type that produces [TypeName]. */
 fun TypeName.producerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
 
