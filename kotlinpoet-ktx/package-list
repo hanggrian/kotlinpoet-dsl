@@ -50,7 +50,10 @@ $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.Para
 $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.PropertySpec.Builder, kotlin.Function1((com.hendraanggrian.kotlinpoet.PropertySpecBuilder, kotlin.Unit)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-property-spec.-builder/build.html
 $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.TypeAliasSpec.Builder, kotlin.Function1((com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder, kotlin.Unit)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-alias-spec.-builder/build.html
 $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.TypeSpec.Builder, kotlin.Function1((com.hendraanggrian.kotlinpoet.TypeSpecBuilder, kotlin.Unit)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-spec.-builder/build.html
-$dokka.location:com.hendraanggrian.kotlinpoet$class(kotlin.String, kotlin.Array((kotlin.String)))com.hendraanggrian.kotlinpoet/kotlin.-string/class.html
+$dokka.location:com.hendraanggrian.kotlinpoet$classOf(kotlin.String, kotlin.Array((kotlin.String)))com.hendraanggrian.kotlinpoet/kotlin.-string/class-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$consumerOf(com.squareup.kotlinpoet.TypeName)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-name/consumer-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$consumerOf(java.lang.reflect.Type)com.hendraanggrian.kotlinpoet/java.lang.reflect.-type/consumer-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$consumerOf(kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/consumer-of.html
 $dokka.location:com.hendraanggrian.kotlinpoet$formatCode(kotlin.String, kotlin.Array((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.-string/format-code.html
 $dokka.location:com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-name/lambda-by.html
 $dokka.location:com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.TypeName)), com.squareup.kotlinpoet.TypeName)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-name/lambda-by.html
@@ -61,14 +64,16 @@ $dokka.location:com.hendraanggrian.kotlinpoet$lambdaBy(java.lang.reflect.Type, k
 $dokka.location:com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((com.squareup.kotlinpoet.ParameterSpec)), kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/lambda-by.html
 $dokka.location:com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))), kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/lambda-by.html
 $dokka.location:com.hendraanggrian.kotlinpoet$lambdaBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/lambda-by.html
-$dokka.location:com.hendraanggrian.kotlinpoet$member(com.squareup.kotlinpoet.ClassName, kotlin.String)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-class-name/member.html
-$dokka.location:com.hendraanggrian.kotlinpoet$member(java.lang.Class((kotlin.Any)), kotlin.String)com.hendraanggrian.kotlinpoet/java.lang.-class/member.html
-$dokka.location:com.hendraanggrian.kotlinpoet$member(kotlin.String, kotlin.String)com.hendraanggrian.kotlinpoet/kotlin.-string/member.html
-$dokka.location:com.hendraanggrian.kotlinpoet$member(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/member.html
+$dokka.location:com.hendraanggrian.kotlinpoet$memberOf(com.squareup.kotlinpoet.ClassName, kotlin.String)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-class-name/member-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$memberOf(java.lang.Class((kotlin.Any)), kotlin.String)com.hendraanggrian.kotlinpoet/java.lang.-class/member-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$memberOf(kotlin.String, kotlin.String)com.hendraanggrian.kotlinpoet/kotlin.-string/member-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$memberOf(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/member-of.html
 $dokka.location:com.hendraanggrian.kotlinpoet$parameterizedBy(com.squareup.kotlinpoet.ClassName, kotlin.Array((com.squareup.kotlinpoet.TypeName)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-class-name/parameterized-by.html
 $dokka.location:com.hendraanggrian.kotlinpoet$parameterizedBy(java.lang.Class((kotlin.Any)), kotlin.Array((java.lang.reflect.Type)))com.hendraanggrian.kotlinpoet/java.lang.-class/parameterized-by.html
-$dokka.location:com.hendraanggrian.kotlinpoet$parameterizedBy(kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/parameterized-by.html
 $dokka.location:com.hendraanggrian.kotlinpoet$parameterizedBy(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Any)))))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/parameterized-by.html
+$dokka.location:com.hendraanggrian.kotlinpoet$producerOf(com.squareup.kotlinpoet.TypeName)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-name/producer-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$producerOf(java.lang.reflect.Type)com.hendraanggrian.kotlinpoet/java.lang.reflect.-type/producer-of.html
+$dokka.location:com.hendraanggrian.kotlinpoet$producerOf(kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/producer-of.html
 $dokka.location:com.hendraanggrian.kotlinpoet$toAnnotation(javax.lang.model.element.AnnotationMirror)com.hendraanggrian.kotlinpoet/javax.lang.model.element.-annotation-mirror/to-annotation.html
 $dokka.location:com.hendraanggrian.kotlinpoet$toAnnotation(kotlin.Annotation, kotlin.Boolean)com.hendraanggrian.kotlinpoet/kotlin.-annotation/to-annotation.html
 $dokka.location:com.hendraanggrian.kotlinpoet$toFile(com.squareup.kotlinpoet.TypeSpec, kotlin.String)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-type-spec/to-file.html

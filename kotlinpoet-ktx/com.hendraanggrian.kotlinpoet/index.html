@@ -496,37 +496,6 @@ by populating newly created <a href="-type-alias-spec-builder/index.html">TypeAl
 by populating newly created <a href="-type-alias-spec-builder/index.html">TypeAliasSpecBuilder</a> using provided <a href="build-type-alias.html#com.hendraanggrian.kotlinpoet$buildTypeAlias(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder, kotlin.Unit)))/builderAction">builderAction</a> and then building it.</p>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">buildTypeAlias</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$buildTypeAlias(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder, kotlin.Unit)))/name">name</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$buildTypeAlias(kotlin.String, kotlin.Function1((com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="-type-alias-spec-builder/index.html"><span class="identifier">TypeAliasSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">TypeAliasSpec</span></code></td>
 </tr>
-<tr>
-<td>
-<h4><a href="class-name-of.html">classNameOf</a></h4>
-</td>
-<td>
-<p>Returns a <a href="#">ClassName</a> equivalent to <a href="class-name-of.html#T">T</a>.</p>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">classNameOf</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">ClassName</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="in.html">in</a></h4>
-</td>
-<td>
-<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that consumes <code>inType</code>.</p>
-<code><span class="keyword">fun </span><span class="identifier">in</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$in(com.squareup.kotlinpoet.TypeName)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">in</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$in(java.lang.reflect.Type)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">in</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$in(kotlin.reflect.KClass((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code>
-<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that produces <code>outType</code>.</p>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">in</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="out.html">out</a></h4>
-</td>
-<td>
-<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that produces <code>outType</code>.</p>
-<code><span class="keyword">fun </span><span class="identifier">out</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$out(com.squareup.kotlinpoet.TypeName)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">out</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$out(java.lang.reflect.Type)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">out</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$out(kotlin.reflect.KClass((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code><br/>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">out</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code></td>
-</tr>
 </tbody>
 </table>
 </BODY>

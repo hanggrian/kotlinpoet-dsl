@@ -44,12 +44,34 @@
 </tr>
 <tr>
 <td>
+<h4><a href="consumer-of.html">consumerOf</a></h4>
+</td>
+<td>
+<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that consumes <a href="#">TypeName</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">.</span><span class="identifier">consumerOf</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="lambda-by.html">lambdaBy</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)/parameters">parameters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">ParameterSpec</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)/returnType">returnType</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.TypeName)), com.squareup.kotlinpoet.TypeName)/parameters">parameters</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.TypeName)), com.squareup.kotlinpoet.TypeName)/returnType">returnType</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code><br/>
+<p>Returns a <a href="#">LambdaTypeName</a> with optional <a href="#">TypeName</a> receiver,
+<a href="#">ParameterSpec</a> list parameters and <a href="#">TypeName</a> return type.</p>
+<code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)/parameters">parameters</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">ParameterSpec</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.collections.List((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)/returnType">returnType</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code>
+<p>Returns a <a href="#">LambdaTypeName</a> with optional <a href="#">TypeName</a> receiver,
+<a href="#">TypeName</a> parameters and <a href="#">TypeName</a> return type.</p>
+<code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.TypeName)), com.squareup.kotlinpoet.TypeName)/parameters">parameters</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.TypeName)), com.squareup.kotlinpoet.TypeName)/returnType">returnType</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code>
+<p>Returns a <a href="#">LambdaTypeName</a> with optional <a href="#">TypeName</a> receiver,
+<a href="#">ParameterSpec</a> parameters and <a href="#">TypeName</a> return type.</p>
 <code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">lambdaBy</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)/parameters">parameters</span><span class="symbol">:</span>&nbsp;<span class="identifier">ParameterSpec</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet$lambdaBy(com.squareup.kotlinpoet.TypeName, kotlin.Array((com.squareup.kotlinpoet.ParameterSpec)), com.squareup.kotlinpoet.TypeName)/returnType">returnType</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LambdaTypeName</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="producer-of.html">producerOf</a></h4>
+</td>
+<td>
+<p>Returns a <a href="#">WildcardTypeName</a> that represents an unknown type that produces <a href="#">TypeName</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">TypeName</span><span class="symbol">.</span><span class="identifier">producerOf</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WildcardTypeName</span></code></td>
 </tr>
 </tbody>
 </table>
