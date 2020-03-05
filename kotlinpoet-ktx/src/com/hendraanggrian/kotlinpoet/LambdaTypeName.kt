@@ -7,6 +7,9 @@ import com.squareup.kotlinpoet.asTypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
+inline fun <reified T> lambdaTypeNameOf(vararg parameters: KClass<*>, receiverType: KClass<*>? = null): LambdaTypeName =
+    receiverType.lambdaBy(*parameters, returnType = T::class)
+
 fun TypeName?.lambdaBy(parameters: List<ParameterSpec>, returnType: TypeName): LambdaTypeName =
     LambdaTypeName.get(this, parameters, returnType)
 

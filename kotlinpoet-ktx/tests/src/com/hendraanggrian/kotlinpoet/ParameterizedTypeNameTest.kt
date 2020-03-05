@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 
 class ParameterizedTypeNameTest {
 
-    @Test fun multiple() {
+    @Test fun parameterizedBy() {
         assertEquals(
             "kotlin.Pair<kotlin.Int, kotlin.Double>",
             "${Pair::class.java.asClassName().parameterizedBy(INT, DOUBLE)}"
@@ -20,21 +20,6 @@ class ParameterizedTypeNameTest {
         assertEquals(
             "kotlin.Pair<kotlin.Int, kotlin.Double>",
             "${Pair::class.parameterizedBy(Int::class, Double::class)}"
-        )
-    }
-
-    @Test fun single() {
-        assertEquals(
-            "kotlin.collections.List<kotlin.String>",
-            "${List::class.asClassName().parameterizedBy<String>()}"
-        )
-        assertEquals(
-            "java.util.List<java.lang.String>",
-            "${List::class.java.parameterizedBy<String>()}"
-        )
-        assertEquals(
-            "kotlin.collections.List<kotlin.String>",
-            "${List::class.parameterizedBy<String>()}"
         )
     }
 }

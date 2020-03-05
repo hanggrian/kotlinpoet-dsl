@@ -9,7 +9,7 @@ class TypeNamesTest {
     private companion object {
         val CLASS_NAME = "kotlin".classOf("String")
         val LAMBDA_TYPE_NAME = null.lambdaBy(String::class, returnType = Unit::class)
-        val PARAMETERIZED_TYPE_NAME = List::class.parameterizedBy<Int>()
+        val PARAMETERIZED_TYPE_NAME = List::class.parameterizedBy(Int::class)
         val TYPE_NAME = BOOLEAN
         val TYPE_VARIABLE_NAME = "T".typeVariableBy()
         val WILDCARD_TYPE_NAME = Any::class.producerOf()

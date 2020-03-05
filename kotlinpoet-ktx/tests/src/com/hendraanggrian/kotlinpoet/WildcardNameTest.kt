@@ -1,13 +1,14 @@
 package com.hendraanggrian.kotlinpoet
 
+import com.example.MyClass
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class WildcardNameTest {
     private companion object {
-        const val EXPECTED_SUBTYPE = "out com.hendraanggrian.kotlinpoet.WildcardTypeNameTest.MyClass"
-        const val EXPECTED_SUPERTYPE = "in com.hendraanggrian.kotlinpoet.WildcardTypeNameTest.MyClass"
+        const val EXPECTED_SUBTYPE = "out com.example.MyClass"
+        const val EXPECTED_SUPERTYPE = "in com.example.MyClass"
     }
 
     @Test fun producer() {
@@ -23,6 +24,4 @@ class WildcardNameTest {
         assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.consumerOf()}")
         assertEquals(EXPECTED_SUPERTYPE, "${wildcardTypeNameConsumerOf<MyClass>()}")
     }
-
-    class MyClass
 }

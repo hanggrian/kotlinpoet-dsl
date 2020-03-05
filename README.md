@@ -11,6 +11,21 @@ Lightweight Kotlin extension of [KotlinPoet], providing Kotlin DSL functionality
  * Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
  * Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
 
+Download
+--------
+```gradle
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
+}
+```
+
+Build everything with DSL
+-------------------------
+
 ```kotlin
 buildFile("com.example.helloworld", "HelloWorld") {
     addClass("HelloWorld") {
@@ -26,21 +41,6 @@ buildFile("com.example.helloworld", "HelloWorld") {
     }
 }.writeTo(System.out)
 ```
-
-Download
---------
-```gradle
-repositories {
-    jcenter()
-}
-
-dependencies {
-    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
-}
-```
-
-Usage
------
 
 ### Use `T::class` as parameters
 `KClass<*>` can now be used as format arguments. There is also inline reified type function whenever possible.
@@ -115,29 +115,26 @@ addClass("Car") {
 }
 ```
 
-### Type names extensions
-Top-level creators of `TypeName` and all its subclasses.
+Fluent TypeName API
+-------------------
+Write `TypeName` and all its subtypes fluently.
 
 ```kotlin
-val hoverboard = classNameOf("com.mattel", "Hoverboard")
-val list = classNameOf("java.util", "List")
-val listOfHoverboards = list.parameterizedBy(hoverboard)
+val myClass: ClassName = "com.example".classOf("MyClass")
+val listener: LambdaTypeName = null.lambdaBy(returnType = Unit::class)
+val memberOfString: MemberTypeName = myClass.memberOf("myField")
+val pairOfInteger: ParameterizedTypeName = "kotlin".classOf("Pair").parameterizedBy(Int::class, Int::class)
+val tVariable: TypeVariableName = "T".typeVariableBy()
+val producerOfCharSequence: WildcardTypeName = "kotlin".classOf("CharSequence").producerOf() 
 ```
 
-License
--------
-    Copyright 2019 Hendra Anggrian
+If you have access to those types, they can also be strongly-typed. 
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+```kotlin
+val myClass = classNameOf<com.example.MyClass>()
+val listener = lambdaTypeNameOf<Unit>()
+val pairOfInteger = parameterizedTypeNameOf<android.util.Pair>(Int::class, Int::class)
+val subtypeOfCharSequence = wildcardTypeNameProducerOf<kotlin.CharSequence>()
+```
 
 [KotlinPoet]: https://github.com/square/kotlinpoet
