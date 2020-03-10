@@ -9,7 +9,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** An [TypeAliasSpecContainer] is responsible for managing a set of type alias instances. */
-abstract class TypeAliasSpecContainer internal constructor() {
+abstract class TypeAliasSpecContainer {
 
     /** Add type alias to this container. */
     abstract fun add(spec: TypeAliasSpec)
@@ -65,8 +65,7 @@ abstract class TypeAliasSpecContainer internal constructor() {
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class TypeAliasSpecContainerScope @PublishedApi internal constructor(private val container: TypeAliasSpecContainer) :
-    TypeAliasSpecContainer() {
+class TypeAliasSpecContainerScope(private val container: TypeAliasSpecContainer) : TypeAliasSpecContainer() {
 
     override fun add(spec: TypeAliasSpec) = container.add(spec)
 

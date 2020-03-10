@@ -9,7 +9,7 @@ import com.hendraanggrian.kotlinpoet.buildSetterFunction
 import com.squareup.kotlinpoet.FunSpec
 
 /** A [FunSpecContainer] is responsible for managing a set of function instances. */
-abstract class FunSpecContainer internal constructor() {
+abstract class FunSpecContainer {
 
     /** Add function to this container. */
     abstract fun add(spec: FunSpec)
@@ -55,8 +55,7 @@ abstract class FunSpecContainer internal constructor() {
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class FunSpecContainerScope @PublishedApi internal constructor(private val container: FunSpecContainer) :
-    FunSpecContainer() {
+class FunSpecContainerScope(private val container: FunSpecContainer) : FunSpecContainer() {
 
     override fun add(spec: FunSpec) = container.add(spec)
 

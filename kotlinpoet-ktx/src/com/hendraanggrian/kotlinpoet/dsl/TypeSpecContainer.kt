@@ -14,7 +14,7 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeSpec
 
 /** A [TypeSpecContainer] is responsible for managing a set of type instances. */
-abstract class TypeSpecContainer internal constructor() {
+abstract class TypeSpecContainer {
 
     /** Add type to this container. */
     abstract fun add(spec: TypeSpec)
@@ -125,8 +125,7 @@ abstract class TypeSpecContainer internal constructor() {
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class TypeSpecContainerScope @PublishedApi internal constructor(private val container: TypeSpecContainer) :
-    TypeSpecContainer() {
+class TypeSpecContainerScope(private val container: TypeSpecContainer) : TypeSpecContainer() {
 
     override fun add(spec: TypeSpec) = container.add(spec)
 

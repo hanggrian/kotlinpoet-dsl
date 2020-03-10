@@ -10,7 +10,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [ParameterSpecContainer] is responsible for managing a set of parameter instances. */
-abstract class ParameterSpecContainer internal constructor() {
+abstract class ParameterSpecContainer {
 
     /** Add parameter to this container. */
     abstract fun add(spec: ParameterSpec)
@@ -85,8 +85,7 @@ abstract class ParameterSpecContainer internal constructor() {
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class ParameterSpecContainerScope @PublishedApi internal constructor(private val container: ParameterSpecContainer) :
-    ParameterSpecContainer() {
+class ParameterSpecContainerScope(private val container: ParameterSpecContainer) : ParameterSpecContainer() {
 
     override fun add(spec: ParameterSpec) = container.add(spec)
 

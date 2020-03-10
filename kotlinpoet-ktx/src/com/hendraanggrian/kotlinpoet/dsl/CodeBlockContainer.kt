@@ -26,7 +26,7 @@ private interface CodeBlockAppendable {
     }
 }
 
-abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
+abstract class CodeBlockContainer : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
@@ -48,7 +48,7 @@ abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
 }
 
 /** A [KdocContainer] is responsible for managing a set of code instances. */
-abstract class KdocContainer internal constructor() : CodeBlockAppendable {
+abstract class KdocContainer : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
@@ -87,8 +87,7 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class KdocContainerScope @PublishedApi internal constructor(private val container: KdocContainer) : KdocContainer(),
-    CodeBlockAppendable by container {
+class KdocContainerScope(private val container: KdocContainer) : KdocContainer(), CodeBlockAppendable by container {
 
     override fun appendln(code: CodeBlock): Unit = container.appendln(code)
     override fun appendln(): Unit = container.appendln()

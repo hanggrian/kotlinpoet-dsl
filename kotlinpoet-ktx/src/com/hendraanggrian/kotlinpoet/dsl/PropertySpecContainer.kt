@@ -10,7 +10,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [PropertySpecContainer] is responsible for managing a set of field instances. */
-abstract class PropertySpecContainer internal constructor() {
+abstract class PropertySpecContainer {
 
     /** Add field to this container. */
     abstract fun add(spec: PropertySpec)
@@ -85,8 +85,7 @@ abstract class PropertySpecContainer internal constructor() {
 
 /** Receiver for the `fields` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class PropertySpecContainerScope @PublishedApi internal constructor(private val container: PropertySpecContainer) :
-    PropertySpecContainer() {
+class PropertySpecContainerScope(private val container: PropertySpecContainer) : PropertySpecContainer() {
 
     override fun add(spec: PropertySpec) = container.add(spec)
 

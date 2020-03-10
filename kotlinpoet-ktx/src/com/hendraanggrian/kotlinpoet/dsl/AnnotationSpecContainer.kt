@@ -8,7 +8,7 @@ import com.squareup.kotlinpoet.ClassName
 import kotlin.reflect.KClass
 
 /** An [AnnotationSpecContainer] is responsible for managing a set of annotation instances. */
-abstract class AnnotationSpecContainer internal constructor() {
+abstract class AnnotationSpecContainer {
 
     /** Add annotation to this container. */
     abstract fun add(spec: AnnotationSpec)
@@ -64,8 +64,7 @@ abstract class AnnotationSpecContainer internal constructor() {
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class AnnotationSpecContainerScope @PublishedApi internal constructor(private val container: AnnotationSpecContainer) :
-    AnnotationSpecContainer() {
+class AnnotationSpecContainerScope(private val container: AnnotationSpecContainer) : AnnotationSpecContainer() {
 
     override fun add(spec: AnnotationSpec) = container.add(spec)
 
