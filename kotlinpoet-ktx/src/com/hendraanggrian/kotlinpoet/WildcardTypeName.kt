@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.hendraanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.TypeName
@@ -6,19 +8,19 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** Returns a [WildcardTypeName] that represents an unknown type that produces [TypeName]. */
-fun TypeName.producerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
+inline fun TypeName.wildcardProducerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that produces [Type]. */
-fun Type.producerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
+inline fun Type.wildcardProducerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that produces [KClass]. */
-fun KClass<*>.producerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
+inline fun KClass<*>.wildcardProducerOf(): WildcardTypeName = WildcardTypeName.producerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that consumes [TypeName]. */
-fun TypeName.consumerOf(): WildcardTypeName = WildcardTypeName.consumerOf(this)
+inline fun TypeName.wildcardConsumerOf(): WildcardTypeName = WildcardTypeName.consumerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that consumes [Type]. */
-fun Type.consumerOf(): WildcardTypeName = WildcardTypeName.consumerOf(this)
+inline fun Type.wildcardConsumerOf(): WildcardTypeName = WildcardTypeName.consumerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that consumes [KClass]. */
-fun KClass<*>.consumerOf(): WildcardTypeName = WildcardTypeName.consumerOf(this)
+inline fun KClass<*>.wildcardConsumerOf(): WildcardTypeName = WildcardTypeName.consumerOf(this)

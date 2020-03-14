@@ -12,14 +12,14 @@ class WildcardNameTest {
     }
 
     @Test fun producer() {
-        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.asTypeName().producerOf()}")
-        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.java.producerOf()}")
-        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.producerOf()}")
+        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.asTypeName().wildcardProducerOf()}")
+        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.java.wildcardProducerOf()}")
+        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.wildcardProducerOf()}")
     }
 
     @Test fun consumer() {
-        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.asTypeName().consumerOf()}")
-        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.java.consumerOf()}")
-        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.consumerOf()}")
+        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.asTypeName().wildcardConsumerOf()}")
+        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.java.wildcardConsumerOf()}")
+        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.wildcardConsumerOf()}")
     }
 }

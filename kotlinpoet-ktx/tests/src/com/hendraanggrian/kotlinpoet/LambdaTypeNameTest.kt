@@ -8,45 +8,45 @@ import com.squareup.kotlinpoet.UNIT
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class LambdaTypeNameTest2 {
+class LambdaTypeNameTest {
 
     @Test fun parameterSpecListParameters() {
         val int = buildParameter<Int>("int")
         val string = buildParameter<String>("string")
         assertEquals(
             "kotlin.Double.() -> kotlin.Unit",
-            "${UNIT.lambdaBy2(emptyList(), receiver = DOUBLE)}"
+            "${UNIT.lambdaBy(emptyList(), receiver = DOUBLE)}"
         )
         assertEquals(
             "kotlin.Double.(int: kotlin.Int, string: kotlin.String) -> kotlin.Unit",
-            "${UNIT.lambdaBy2(listOf(int, string), receiver = DOUBLE)}"
+            "${UNIT.lambdaBy(listOf(int, string), receiver = DOUBLE)}"
         )
         assertEquals(
             "kotlin.Double.(int: kotlin.Int, string: kotlin.String) -> kotlin.Unit",
-            "${Unit::class.java.lambdaBy2(listOf(int, string), receiver = Double::class.java)}"
+            "${Unit::class.java.lambdaBy(listOf(int, string), receiver = Double::class.java)}"
         )
         assertEquals(
             "kotlin.Double.(int: kotlin.Int, string: kotlin.String) -> kotlin.Unit",
-            "${Unit::class.lambdaBy2(listOf(int, string), receiver = Double::class)}"
+            "${Unit::class.lambdaBy(listOf(int, string), receiver = Double::class)}"
         )
     }
 
     @Test fun typeVarargParameters() {
         assertEquals(
             "kotlin.Double.() -> kotlin.Unit",
-            "${UNIT.lambdaBy2(receiver = DOUBLE)}"
+            "${UNIT.lambdaBy(receiver = DOUBLE)}"
         )
         assertEquals(
             "kotlin.Double.(kotlin.Int, kotlin.String) -> kotlin.Unit",
-            "${UNIT.lambdaBy2(INT, STRING, receiver = DOUBLE)}"
+            "${UNIT.lambdaBy(INT, STRING, receiver = DOUBLE)}"
         )
         assertEquals(
             "kotlin.Double.(kotlin.Int, java.lang.String) -> kotlin.Unit",
-            "${Unit::class.java.lambdaBy2(Int::class.java, String::class.java, receiver = Double::class.java)}"
+            "${Unit::class.java.lambdaBy(Int::class.java, String::class.java, receiver = Double::class.java)}"
         )
         assertEquals(
             "kotlin.Double.(kotlin.Int, kotlin.String) -> kotlin.Unit",
-            "${Unit::class.lambdaBy2(Int::class, String::class, receiver = Double::class)}"
+            "${Unit::class.lambdaBy(Int::class, String::class, receiver = Double::class)}"
         )
     }
 
@@ -55,19 +55,19 @@ class LambdaTypeNameTest2 {
         val string = buildParameter<String>("string")
         assertEquals(
             "kotlin.Double.() -> kotlin.Unit",
-            "${UNIT.lambdaBy2(*emptyArray<ParameterSpec>(), receiver = DOUBLE)}"
+            "${UNIT.lambdaBy(*emptyArray<ParameterSpec>(), receiver = DOUBLE)}"
         )
         assertEquals(
             "kotlin.Double.(int: kotlin.Int, string: kotlin.String) -> kotlin.Unit",
-            "${UNIT.lambdaBy2(int, string, receiver = DOUBLE)}"
+            "${UNIT.lambdaBy(int, string, receiver = DOUBLE)}"
         )
         assertEquals(
             "kotlin.Double.(int: kotlin.Int, string: kotlin.String) -> kotlin.Unit",
-            "${Unit::class.java.lambdaBy2(int, string, receiver = Double::class.java)}"
+            "${Unit::class.java.lambdaBy(int, string, receiver = Double::class.java)}"
         )
         assertEquals(
             "kotlin.Double.(int: kotlin.Int, string: kotlin.String) -> kotlin.Unit",
-            "${Unit::class.lambdaBy2(int, string, receiver = Double::class)}"
+            "${Unit::class.lambdaBy(int, string, receiver = Double::class)}"
         )
     }
 }
