@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.hendraanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.LambdaTypeName
@@ -11,69 +13,63 @@ import kotlin.reflect.KClass
  * Returns a [LambdaTypeName] with optional [TypeName] receiver,
  * [ParameterSpec] list parameters and [TypeName] return type.
  */
-fun TypeName?.lambdaBy(parameters: List<ParameterSpec>, returnType: TypeName): LambdaTypeName =
-    LambdaTypeName.get(this, parameters, returnType)
+inline fun TypeName.lambdaBy2(parameters: List<ParameterSpec>, receiver: TypeName? = null): LambdaTypeName =
+    LambdaTypeName.get(receiver, parameters, this)
 
 /**
  * Returns a [LambdaTypeName] with optional [Type] receiver,
  * [ParameterSpec] list parameters and [Type] return type.
  */
-fun Type?.lambdaBy(parameters: List<ParameterSpec>, returnType: Type): LambdaTypeName =
-    LambdaTypeName.get(this?.asTypeName(), parameters, returnType.asTypeName())
+fun Type.lambdaBy2(parameters: List<ParameterSpec>, receiver: Type? = null): LambdaTypeName =
+    asTypeName().lambdaBy2(parameters, receiver?.asTypeName())
 
 /**
  * Returns a [LambdaTypeName] with optional [KClass] receiver,
  * [ParameterSpec] list parameters and [KClass] return type.
  */
-fun KClass<*>?.lambdaBy(parameters: List<ParameterSpec>, returnType: KClass<*>): LambdaTypeName =
-    LambdaTypeName.get(this?.asTypeName(), parameters, returnType.asTypeName())
+fun KClass<*>.lambdaBy2(parameters: List<ParameterSpec>, receiver: KClass<*>? = null): LambdaTypeName =
+    asTypeName().lambdaBy2(parameters, receiver?.asTypeName())
 
 /**
  * Returns a [LambdaTypeName] with optional [TypeName] receiver,
  * [TypeName] parameters and [TypeName] return type.
  */
-fun TypeName?.lambdaBy(vararg parameters: TypeName, returnType: TypeName): LambdaTypeName =
-    LambdaTypeName.get(this, *parameters, returnType = returnType)
+inline fun TypeName.lambdaBy2(vararg parameters: TypeName, receiver: TypeName? = null): LambdaTypeName =
+    LambdaTypeName.get(receiver, *parameters, returnType = this)
 
 /**
  * Returns a [LambdaTypeName] with optional [Type] receiver,
  * [Type] parameters and [Type] return type.
  */
-fun Type?.lambdaBy(vararg parameters: Type, returnType: Type): LambdaTypeName =
-    LambdaTypeName.get(
-        this?.asTypeName(),
-        *parameters.map { it.asTypeName() }.toTypedArray(),
-        returnType = returnType.asTypeName()
-    )
+fun Type.lambdaBy2(vararg parameters: Type, receiver: Type? = null): LambdaTypeName =
+    asTypeName().lambdaBy2(*parameters.map { it.asTypeName() }.toTypedArray(), receiver = receiver?.asTypeName())
 
 /**
  * Returns a [LambdaTypeName] with optional [KClass] receiver,
  * [KClass] parameters and [KClass] return type.
  */
-fun KClass<*>?.lambdaBy(vararg parameters: KClass<*>, returnType: KClass<*>): LambdaTypeName =
-    LambdaTypeName.get(
-        this?.asTypeName(),
-        *parameters.map { it.asTypeName() }.toTypedArray(),
-        returnType = returnType.asTypeName()
-    )
+fun KClass<*>.lambdaBy2(vararg parameters: KClass<*>, receiver: KClass<*>? = null): LambdaTypeName =
+    asTypeName().lambdaBy2(*parameters.map { it.asTypeName() }.toTypedArray(), receiver = receiver?.asTypeName())
 
 /**
  * Returns a [LambdaTypeName] with optional [TypeName] receiver,
  * [ParameterSpec] parameters and [TypeName] return type.
  */
-fun TypeName?.lambdaBy(vararg parameters: ParameterSpec, returnType: TypeName): LambdaTypeName =
-    LambdaTypeName.get(this, *parameters, returnType = returnType)
+inline fun TypeName.lambdaBy2(
+    vararg parameters: ParameterSpec = emptyArray(),
+    receiver: TypeName? = null
+): LambdaTypeName = LambdaTypeName.get(receiver, *parameters, returnType = this)
 
 /**
  * Returns a [LambdaTypeName] with optional [Type] receiver,
  * [ParameterSpec] parameters and [Type] return type.
  */
-fun Type?.lambdaBy(vararg parameters: ParameterSpec, returnType: Type): LambdaTypeName =
-    LambdaTypeName.get(this?.asTypeName(), *parameters, returnType = returnType.asTypeName())
+fun Type.lambdaBy2(vararg parameters: ParameterSpec = emptyArray(), receiver: Type? = null): LambdaTypeName =
+    asTypeName().lambdaBy2(*parameters, receiver = receiver?.asTypeName())
 
 /**
  * Returns a [LambdaTypeName] with optional [KClass] receiver,
  * [ParameterSpec] parameters and [KClass] return type.
  */
-fun KClass<*>?.lambdaBy(vararg parameters: ParameterSpec, returnType: KClass<*>): LambdaTypeName =
-    LambdaTypeName.get(this?.asTypeName(), *parameters, returnType = returnType.asTypeName())
+fun KClass<*>.lambdaBy2(vararg parameters: ParameterSpec = emptyArray(), receiver: KClass<*>? = null): LambdaTypeName =
+    asTypeName().lambdaBy2(*parameters, receiver = receiver?.asTypeName())
