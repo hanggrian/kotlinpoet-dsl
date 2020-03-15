@@ -13,13 +13,13 @@ inline fun String.typeVarOf(variance: KModifier? = null): TypeVariableName =
     TypeVariableName(this, variance)
 
 /** Returns a [TypeVariableName] with [TypeName] bounds. */
-inline fun String.typeVarBoundedBy(vararg bounds: TypeName, variance: KModifier? = null): TypeVariableName =
+inline fun String.typeVarBy(vararg bounds: TypeName, variance: KModifier? = null): TypeVariableName =
     TypeVariableName(this, *bounds, variance = variance)
 
 /** Returns a [TypeVariableName] with [Type] bounds. */
-inline fun String.typeVarBoundedBy(vararg bounds: Type, variance: KModifier? = null): TypeVariableName =
+inline fun String.typeVarBy(vararg bounds: Type, variance: KModifier? = null): TypeVariableName =
     TypeVariableName(this, *bounds, variance = variance)
 
 /** Returns a [TypeVariableName] with [KClass] bounds. */
-inline fun String.typeVarBoundedBy(vararg bounds: KClass<*>, variance: KModifier? = null): TypeVariableName =
+inline fun String.typeVarBy(vararg bounds: KClass<*>, variance: KModifier? = null): TypeVariableName =
     TypeVariableName(this, *bounds, variance = variance)

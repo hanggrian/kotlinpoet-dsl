@@ -42,6 +42,10 @@ fun Class<*>.parameterizedBy(vararg typeArguments: TypeName = emptyArray()): Par
 fun Class<*>.parameterizedBy(vararg typeArguments: KClass<*> = emptyArray()): ParameterizedTypeName =
     asClassName().parameterizedBy(*typeArguments)
 
+/** Returns a [ParameterizedTypeName] applying [T] argument to [Class]. */
+inline fun <reified T> Class<*>.parameterizedBy(): ParameterizedTypeName =
+    asClassName().parameterizedBy(T::class)
+
 /**
  * Returns a [ParameterizedTypeName] applying [KClass] arguments to [KClass].
  *
@@ -57,3 +61,27 @@ fun KClass<*>.parameterizedBy(vararg typeArguments: Type = emptyArray()): Parame
 /** Returns a [ParameterizedTypeName] applying [TypeName] arguments to [KClass]. */
 fun KClass<*>.parameterizedBy(vararg typeArguments: TypeName = emptyArray()): ParameterizedTypeName =
     asClassName().parameterizedBy(*typeArguments)
+
+/**
+ * Returns a [ParameterizedTypeName] applying [TypeName] argument list to [ClassName].
+ *
+ * @see ParameterizedTypeName.parameterizedBy
+ */
+inline fun ClassName.parameterizedBy(typeArguments: List<TypeName>): ParameterizedTypeName =
+    ParameterizedTypeName.run { parameterizedBy(typeArguments) }
+
+/**
+ * Returns a [ParameterizedTypeName] applying [Type] argument list to [Class].
+ *
+ * @see ParameterizedTypeName.parameterizedBy
+ */
+inline fun Class<*>.parameterizedBy(typeArguments: Iterable<Type>): ParameterizedTypeName =
+    ParameterizedTypeName.run { parameterizedBy(typeArguments) }
+
+/**
+ * Returns a [ParameterizedTypeName] applying [KClass] argument list to [KClass].
+ *
+ * @see ParameterizedTypeName.parameterizedBy
+ */
+inline fun KClass<*>.parameterizedBy(typeArguments: Iterable<KClass<*>>): ParameterizedTypeName =
+    ParameterizedTypeName.run { parameterizedBy(typeArguments) }

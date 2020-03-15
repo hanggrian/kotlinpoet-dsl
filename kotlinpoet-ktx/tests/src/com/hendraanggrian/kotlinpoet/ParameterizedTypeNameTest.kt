@@ -5,13 +5,13 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.asClassName
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFails
 
 class ParameterizedTypeNameTest {
+    private val className = Pair::class.asClassName()
+    private val `class` = Pair::class.java
+    private val kclass = Pair::class
 
-    @Test fun classNameReceiver() {
-        val className = Pair::class.asClassName()
-        assertFails { className.parameterizedBy() }
+    @Test fun vararg() {
         assertEquals(
             "kotlin.Pair<kotlin.Int, kotlin.String>",
             "${className.parameterizedBy(INT, STRING)}"
@@ -24,11 +24,7 @@ class ParameterizedTypeNameTest {
             "kotlin.Pair<kotlin.Int, kotlin.String>",
             "${className.parameterizedBy(Int::class, String::class)}"
         )
-    }
 
-    @Test fun classReceiver() {
-        val `class` = Pair::class.java
-        assertFails { `class`.parameterizedBy() }
         assertEquals(
             "kotlin.Pair<kotlin.Int, kotlin.String>",
             "${`class`.parameterizedBy(INT, STRING)}"
@@ -41,11 +37,7 @@ class ParameterizedTypeNameTest {
             "kotlin.Pair<kotlin.Int, kotlin.String>",
             "${`class`.parameterizedBy(Int::class, String::class)}"
         )
-    }
 
-    @Test fun kclassReceiver() {
-        val kclass = Pair::class
-        assertFails { kclass.parameterizedBy() }
         assertEquals(
             "kotlin.Pair<kotlin.Int, kotlin.String>",
             "${kclass.parameterizedBy(INT, STRING)}"
@@ -57,6 +49,23 @@ class ParameterizedTypeNameTest {
         assertEquals(
             "kotlin.Pair<kotlin.Int, kotlin.String>",
             "${kclass.parameterizedBy(Int::class, String::class)}"
+        )
+    }
+
+    @Test fun list() {
+        assertEquals(
+            "kotlin.Pair<kotlin.Int, kotlin.String>",
+            "${className.parameterizedBy(listOf(INT, STRING))}"
+        )
+
+        assertEquals(
+            "kotlin.Pair<kotlin.Int, java.lang.String>",
+            "${`class`.parameterizedBy(listOf(Int::class.java, String::class.java))}"
+        )
+
+        assertEquals(
+            "kotlin.Pair<kotlin.Int, kotlin.String>",
+            "${kclass.parameterizedBy(listOf(Int::class, String::class))}"
         )
     }
 }
