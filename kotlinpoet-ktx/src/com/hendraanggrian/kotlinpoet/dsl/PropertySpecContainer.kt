@@ -2,7 +2,8 @@ package com.hendraanggrian.kotlinpoet.dsl
 
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.PropertySpecBuilder
-import com.hendraanggrian.kotlinpoet.buildProperty
+import com.hendraanggrian.kotlinpoet.buildPropertySpec
+import com.hendraanggrian.kotlinpoet.propertySpecOf
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
@@ -17,7 +18,7 @@ abstract class PropertySpecContainer {
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
-        buildProperty(name, type, *modifiers).also { add(it) }
+        propertySpecOf(name, type, *modifiers).also { add(it) }
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
@@ -25,11 +26,11 @@ abstract class PropertySpecContainer {
         type: TypeName,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildProperty(name, type, *modifiers, builderAction = builderAction).also { add(it) }
+    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
-        buildProperty(name, type, *modifiers).also { add(it) }
+        propertySpecOf(name, type, *modifiers).also { add(it) }
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
@@ -37,11 +38,11 @@ abstract class PropertySpecContainer {
         type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildProperty(name, type, *modifiers, builderAction = builderAction).also { add(it) }
+    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Add field from [type] and [name], returning the field added. */
     fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
-        buildProperty(name, type, *modifiers).also { add(it) }
+        propertySpecOf(name, type, *modifiers).also { add(it) }
 
     /** Add field from [type] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun add(
@@ -49,18 +50,18 @@ abstract class PropertySpecContainer {
         type: KClass<*>,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildProperty(name, type, *modifiers, builderAction = builderAction).also { add(it) }
+    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Add field from reified [T] and [name], returning the field added. */
     inline fun <reified T> add(name: String, vararg modifiers: KModifier): PropertySpec =
-        buildProperty<T>(name, *modifiers).also { add(it) }
+        propertySpecOf<T>(name, *modifiers).also { add(it) }
 
     /** Add field from reified [T] and [name] with custom initialization [builderAction], returning the field added. */
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildProperty<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
+    ): PropertySpec = buildPropertySpec<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Convenient method to add field with operator function. */
     operator fun plusAssign(spec: PropertySpec) {

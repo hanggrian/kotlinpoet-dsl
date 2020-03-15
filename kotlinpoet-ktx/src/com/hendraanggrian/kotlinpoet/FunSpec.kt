@@ -19,43 +19,43 @@ import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
 /** Builds a new [FunSpec] from [name]. */
-fun buildFunction(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
+fun funSpecOf(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
 
 /**
  * Builds a new [FunSpec] from [name],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildFunction(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+inline fun buildFunSpec(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
     FunSpec.builder(name).build(builderAction)
 
 /** Builds a new constructor [FunSpec]. */
-fun buildConstructorFunction(): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).build()
+fun constructorFunSpecOf(): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).build()
 
 /**
  * Builds a new constructor [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildConstructorFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+inline fun buildConstructorFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
     FunSpecBuilder(FunSpec.constructorBuilder()).apply(builderAction).build()
 
 /** Builds a new getter [FunSpec]. */
-fun buildGetterFunction(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).build()
+fun getterFunSpecOf(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).build()
 
 /**
  * Builds a new getter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildGetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+inline fun buildGetterFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
     FunSpec.getterBuilder().build(builderAction)
 
 /** Builds a new setter [FunSpec]. */
-fun buildSetterFunction(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
+fun setterFunSpecOf(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
 
 /**
  * Builds a new setter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+inline fun buildSetterFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
     FunSpec.setterBuilder().build(builderAction)
 
 /** Modify existing [FunSpec.Builder] using provided [builderAction] and then building it. */
@@ -145,7 +145,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Set receiver [type] with custom initialization builder as kdoc. */
     inline fun receiver(type: TypeName, builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(type, buildCode(builderAction))
+        receiver(type, buildCodeBlock(builderAction))
 
     /** Set receiver [type] without kdoc. */
     fun receiver(type: Type) {
@@ -164,7 +164,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Set receiver [type] with custom initialization builder as kdoc. */
     inline fun receiver(type: Type, builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(type, buildCode(builderAction))
+        receiver(type, buildCodeBlock(builderAction))
 
     /** Set receiver [type] without kdoc. */
     fun receiver(type: KClass<*>) {
@@ -183,7 +183,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Set receiver [type] with custom initialization builder as kdoc. */
     inline fun receiver(type: KClass<*>, builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(type, buildCode(builderAction))
+        receiver(type, buildCodeBlock(builderAction))
 
     /** Set receiver [T] without kdoc. */
     inline fun <reified T> receiver() = receiver(T::class)
@@ -196,7 +196,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Set receiver [T] with custom initialization builder as kdoc. */
     inline fun <reified T> receiver(builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(T::class, buildCode(builderAction))
+        receiver(T::class, buildCodeBlock(builderAction))
 
     /** Add return line to type name. */
     var returns: TypeName
@@ -241,7 +241,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Call this constructor with code [builderAction]. */
     inline fun callThisConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
-        callThisConstructor(buildCode(builderAction))
+        callThisConstructor(buildCodeBlock(builderAction))
 
     /** Call super constructor with [String] arguments. */
     fun callSuperConstructor(vararg args: String) {
@@ -255,7 +255,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Call super constructor with code [builderAction]. */
     inline fun callSuperConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
-        callSuperConstructor(buildCode(builderAction))
+        callSuperConstructor(buildCodeBlock(builderAction))
 
     override fun append(format: String, vararg args: Any) {
         nativeBuilder.addCode(format, *args)

@@ -21,13 +21,13 @@ import com.squareup.kotlinpoet.TypeSpec
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
-fun TypeSpec.toFile(packageName: String): FileSpec = FileSpec.get(packageName, this)
+fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(packageName, type)
 
 /**
  * Builds a new [FileSpec],
  * by populating newly created [FileSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildFile(packageName: String, fileName: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
+inline fun buildFileSpec(packageName: String, fileName: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
     FileSpec.builder(packageName, fileName).build(builderAction)
 
 /** Modify existing [FileSpec.Builder] using provided [builderAction] and then building it. */

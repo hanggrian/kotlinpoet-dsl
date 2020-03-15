@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.buildProperty
+import com.hendraanggrian.kotlinpoet.propertySpecOf
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.PropertySpec
 import kotlin.test.Test
@@ -18,11 +18,11 @@ class PropertySpecContainerTest {
         PropertySpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(buildProperty<Property1>("property1"))
-        container += buildProperty<Property2>("property2")
+        container.add(propertySpecOf<Property1>("property1"))
+        container += propertySpecOf<Property2>("property2")
         assertThat(specs).containsExactly(
-            buildProperty<Property1>("property1"),
-            buildProperty<Property2>("property2")
+            propertySpecOf<Property1>("property1"),
+            propertySpecOf<Property2>("property2")
         )
     }
 
@@ -32,9 +32,9 @@ class PropertySpecContainerTest {
         container["property2"] = ClassName(packageName, "Property2")
         container { "property3"(ClassName(packageName, "Property3")) { } }
         assertThat(specs).containsExactly(
-            buildProperty<Property1>("property1"),
-            buildProperty<Property2>("property2"),
-            buildProperty<Property3>("property3")
+            propertySpecOf<Property1>("property1"),
+            propertySpecOf<Property2>("property2"),
+            propertySpecOf<Property3>("property3")
         )
     }
 
@@ -43,9 +43,9 @@ class PropertySpecContainerTest {
         container["property2"] = Property2::class.java
         container { "property3"(Property3::class.java) { } }
         assertThat(specs).containsExactly(
-            buildProperty<Property1>("property1"),
-            buildProperty<Property2>("property2"),
-            buildProperty<Property3>("property3")
+            propertySpecOf<Property1>("property1"),
+            propertySpecOf<Property2>("property2"),
+            propertySpecOf<Property3>("property3")
         )
     }
 
@@ -54,9 +54,9 @@ class PropertySpecContainerTest {
         container["property2"] = Property2::class
         container { "property3"(Property3::class) { } }
         assertThat(specs).containsExactly(
-            buildProperty<Property1>("property1"),
-            buildProperty<Property2>("property2"),
-            buildProperty<Property3>("property3")
+            propertySpecOf<Property1>("property1"),
+            propertySpecOf<Property2>("property2"),
+            propertySpecOf<Property3>("property3")
         )
     }
 
@@ -64,8 +64,8 @@ class PropertySpecContainerTest {
         container.add<Property1>("field1")
         container { "field2"<Property2> { } }
         assertThat(specs).containsExactly(
-            buildProperty<Property1>("field1"),
-            buildProperty<Property2>("field2")
+            propertySpecOf<Property1>("field1"),
+            propertySpecOf<Property2>("field2")
         )
     }
 

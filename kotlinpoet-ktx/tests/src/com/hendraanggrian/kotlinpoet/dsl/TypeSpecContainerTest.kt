@@ -1,11 +1,11 @@
 package com.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.buildAnnotationType
-import com.hendraanggrian.kotlinpoet.buildAnonymousType
-import com.hendraanggrian.kotlinpoet.buildClassType
-import com.hendraanggrian.kotlinpoet.buildEnumType
-import com.hendraanggrian.kotlinpoet.buildInterfaceType
+import com.hendraanggrian.kotlinpoet.annotationTypeSpecOf
+import com.hendraanggrian.kotlinpoet.anonymousTypeSpecOf
+import com.hendraanggrian.kotlinpoet.buildEnumTypeSpec
+import com.hendraanggrian.kotlinpoet.classTypeSpecOf
+import com.hendraanggrian.kotlinpoet.interfaceTypeSpecOf
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeSpec
 import kotlin.test.Test
@@ -22,11 +22,11 @@ class TypeSpecContainerTest {
         TypeSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(buildClassType("Class1"))
-        container += buildClassType("Class2")
+        container.add(classTypeSpecOf("Class1"))
+        container += classTypeSpecOf("Class2")
         assertThat(specs).containsExactly(
-            buildClassType("Class1"),
-            buildClassType("Class2")
+            classTypeSpecOf("Class1"),
+            classTypeSpecOf("Class2")
         )
     }
 
@@ -37,8 +37,8 @@ class TypeSpecContainerTest {
             (ClassName(packageName, "MyType")) { }
         }
         assertThat(specs).containsExactly(
-            buildClassType("Class1"),
-            buildClassType(ClassName(packageName, "MyType"))
+            classTypeSpecOf("Class1"),
+            classTypeSpecOf(ClassName(packageName, "MyType"))
         )
     }
 
@@ -49,11 +49,11 @@ class TypeSpecContainerTest {
         container.addAnonymous()
         container.addAnnotation("Annotation1")
         assertThat(specs).containsExactly(
-            buildClassType("Class1"),
-            buildInterfaceType("Interface1"),
-            buildEnumType("Enum1") { addEnumConstant("A") },
-            buildAnonymousType(),
-            buildAnnotationType("Annotation1")
+            classTypeSpecOf("Class1"),
+            interfaceTypeSpecOf("Interface1"),
+            buildEnumTypeSpec("Enum1") { addEnumConstant("A") },
+            anonymousTypeSpecOf(),
+            annotationTypeSpecOf("Annotation1")
         )
     }
 }

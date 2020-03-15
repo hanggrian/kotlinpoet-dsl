@@ -14,17 +14,17 @@ import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
-fun VariableElement.toParameter(): ParameterSpec = ParameterSpec.get(this)
+fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(this)
 
 /** Builds a new [ParameterSpec] from [type]. */
-fun buildParameter(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
+fun parameterSpecOf(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
     ParameterSpec.builder(name, type, *modifiers).build()
 
 /**
  * Builds a new [ParameterSpec] from [type],
  * by populating newly created [ParameterSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildParameter(
+inline fun buildParameterSpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -32,22 +32,22 @@ inline fun buildParameter(
 ): ParameterSpec = ParameterSpec.builder(name, type, *modifiers).build(builderAction)
 
 /** Builds a new [ParameterSpec] from [type]. */
-fun buildParameter(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
+fun parameterSpecOf(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
     ParameterSpec.builder(name, type, *modifiers).build()
 
 /** Builds a new [ParameterSpec] from [type]. */
-fun buildParameter(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
+fun parameterSpecOf(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
     ParameterSpec.builder(name, type, *modifiers).build()
 
 /** Builds a new [ParameterSpec] from [T]. */
-inline fun <reified T> buildParameter(name: String, vararg modifiers: KModifier): ParameterSpec =
-    buildParameter(name, T::class, *modifiers)
+inline fun <reified T> parameterSpecOf(name: String, vararg modifiers: KModifier): ParameterSpec =
+    parameterSpecOf(name, T::class, *modifiers)
 
 /**
  * Builds a new [ParameterSpec] from [type],
  * by populating newly created [ParameterSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildParameter(
+inline fun buildParameterSpec(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
@@ -58,7 +58,7 @@ inline fun buildParameter(
  * Builds a new [ParameterSpec] from [type],
  * by populating newly created [ParameterSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildParameter(
+inline fun buildParameterSpec(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -69,11 +69,11 @@ inline fun buildParameter(
  * Builds a new [ParameterSpec] from [T],
  * by populating newly created [ParameterSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun <reified T> buildParameter(
+inline fun <reified T> buildParameterSpec(
     name: String,
     vararg modifiers: KModifier,
     builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = buildParameter(name, T::class, *modifiers, builderAction = builderAction)
+): ParameterSpec = buildParameterSpec(name, T::class, *modifiers, builderAction = builderAction)
 
 /** Modify existing [ParameterSpec.Builder] using provided [builderAction] and then building it. */
 inline fun ParameterSpec.Builder.build(builderAction: ParameterSpecBuilder.() -> Unit): ParameterSpec =
@@ -140,7 +140,7 @@ class ParameterSpecBuilder @PublishedApi internal constructor(private val native
 
     /** Set default value to code with custom initialization [builderAction]. */
     inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCode(builderAction).also { defaultValue = it }
+        buildCodeBlock(builderAction).also { defaultValue = it }
 
     /** Returns native spec. */
     fun build(): ParameterSpec = nativeBuilder.build()

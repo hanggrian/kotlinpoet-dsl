@@ -2,7 +2,7 @@ package com.hendraanggrian.kotlinpoet.dsl
 
 import com.hendraanggrian.kotlinpoet.CodeBlockBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
-import com.hendraanggrian.kotlinpoet.buildCode
+import com.hendraanggrian.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.CodeBlock
 
 private interface CodeBlockAppendable {
@@ -30,12 +30,12 @@ abstract class CodeBlockContainer : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCode(builderAction).also { append(it) }
+        buildCodeBlock(builderAction).also { append(it) }
 
     override fun appendln() = appendln("")
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
 
     /** Starts the control flow. */
     abstract fun beginFlow(flow: String, vararg args: Any)
@@ -52,7 +52,7 @@ abstract class KdocContainer : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCode(builderAction).also { append(it) }
+        buildCodeBlock(builderAction).also { append(it) }
 
     override fun appendln(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
@@ -62,7 +62,7 @@ abstract class KdocContainer : CodeBlockAppendable {
     }
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCode(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
 
     /** Convenient method to add code block with operator function. */
     operator fun plusAssign(value: String) {

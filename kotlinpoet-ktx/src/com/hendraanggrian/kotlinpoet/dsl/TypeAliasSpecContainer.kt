@@ -2,7 +2,8 @@ package com.hendraanggrian.kotlinpoet.dsl
 
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder
-import com.hendraanggrian.kotlinpoet.buildTypeAlias
+import com.hendraanggrian.kotlinpoet.buildTypeAliasSpec
+import com.hendraanggrian.kotlinpoet.typeAliasSpecOf
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
@@ -15,32 +16,32 @@ abstract class TypeAliasSpecContainer {
     abstract fun add(spec: TypeAliasSpec)
 
     /** Add type alias from [name] and [type], returning the type alias added. */
-    fun add(name: String, type: TypeName): TypeAliasSpec = buildTypeAlias(name, type).also { add(it) }
+    fun add(name: String, type: TypeName): TypeAliasSpec = typeAliasSpecOf(name, type).also { add(it) }
 
     /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
     inline fun add(name: String, type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAlias(name, type, builderAction).also { add(it) }
+        buildTypeAliasSpec(name, type, builderAction).also { add(it) }
 
     /** Add type alias from [name] and [type], returning the type alias added. */
-    fun add(name: String, type: Type): TypeAliasSpec = buildTypeAlias(name, type).also { add(it) }
+    fun add(name: String, type: Type): TypeAliasSpec = typeAliasSpecOf(name, type).also { add(it) }
 
     /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
     inline fun add(name: String, type: Type, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAlias(name, type, builderAction).also { add(it) }
+        buildTypeAliasSpec(name, type, builderAction).also { add(it) }
 
     /** Add type alias from [name] and [type], returning the type alias added. */
-    fun add(name: String, type: KClass<*>): TypeAliasSpec = buildTypeAlias(name, type).also { add(it) }
+    fun add(name: String, type: KClass<*>): TypeAliasSpec = typeAliasSpecOf(name, type).also { add(it) }
 
     /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
     inline fun add(name: String, type: KClass<*>, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAlias(name, type, builderAction).also { add(it) }
+        buildTypeAliasSpec(name, type, builderAction).also { add(it) }
 
     /** Add type alias from [name] and reified [T], returning the type alias added. */
-    inline fun <reified T> add(name: String): TypeAliasSpec = buildTypeAlias<T>(name).also { add(it) }
+    inline fun <reified T> add(name: String): TypeAliasSpec = typeAliasSpecOf<T>(name).also { add(it) }
 
     /** Add type alias from [name] and reified [T] with custom initialization [builderAction], returning the type alias added. */
     inline fun <reified T> add(name: String, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAlias<T>(name, builderAction).also { add(it) }
+        buildTypeAliasSpec<T>(name, builderAction).also { add(it) }
 
     /** Convenient method to add type alias with operator function. */
     operator fun plusAssign(spec: TypeAliasSpec) {

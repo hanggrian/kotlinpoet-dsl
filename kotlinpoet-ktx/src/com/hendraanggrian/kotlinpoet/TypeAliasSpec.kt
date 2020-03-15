@@ -11,32 +11,32 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun buildTypeAlias(name: String, type: TypeName): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+fun typeAliasSpecOf(name: String, type: TypeName): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
  * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildTypeAlias(
+inline fun buildTypeAliasSpec(
     name: String,
     type: TypeName,
     builderAction: TypeAliasSpecBuilder.() -> Unit
 ): TypeAliasSpec = TypeAliasSpec.builder(name, type).build(builderAction)
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun buildTypeAlias(name: String, type: Type): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+fun typeAliasSpecOf(name: String, type: Type): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun buildTypeAlias(name: String, type: KClass<*>): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+fun typeAliasSpecOf(name: String, type: KClass<*>): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [T]. */
-inline fun <reified T> buildTypeAlias(name: String): TypeAliasSpec = buildTypeAlias(name, T::class)
+inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec = typeAliasSpecOf(name, T::class)
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
  * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildTypeAlias(
+inline fun buildTypeAliasSpec(
     name: String,
     type: Type,
     builderAction: TypeAliasSpecBuilder.() -> Unit
@@ -46,7 +46,7 @@ inline fun buildTypeAlias(
  * Builds a new [TypeAliasSpec] from [name] and [type],
  * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildTypeAlias(
+inline fun buildTypeAliasSpec(
     name: String,
     type: KClass<*>,
     builderAction: TypeAliasSpecBuilder.() -> Unit
@@ -56,10 +56,10 @@ inline fun buildTypeAlias(
  * Builds a new [TypeAliasSpec] from [name] and [T],
  * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun <reified T> buildTypeAlias(
+inline fun <reified T> buildTypeAliasSpec(
     name: String,
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = buildTypeAlias(name, T::class, builderAction)
+): TypeAliasSpec = buildTypeAliasSpec(name, T::class, builderAction)
 
 /** Modify existing [TypeAliasSpec.Builder] using provided [builderAction] and then building it. */
 inline fun TypeAliasSpec.Builder.build(builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =

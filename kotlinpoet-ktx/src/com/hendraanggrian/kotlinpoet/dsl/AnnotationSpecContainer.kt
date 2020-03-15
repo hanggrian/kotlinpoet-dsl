@@ -2,7 +2,8 @@ package com.hendraanggrian.kotlinpoet.dsl
 
 import com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
-import com.hendraanggrian.kotlinpoet.buildAnnotation
+import com.hendraanggrian.kotlinpoet.annotationSpecOf
+import com.hendraanggrian.kotlinpoet.buildAnnotationSpec
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import kotlin.reflect.KClass
@@ -14,32 +15,32 @@ abstract class AnnotationSpecContainer {
     abstract fun add(spec: AnnotationSpec)
 
     /** Add annotation from [type], returning the annotation added. */
-    fun add(type: ClassName): AnnotationSpec = buildAnnotation(type).also { add(it) }
+    fun add(type: ClassName): AnnotationSpec = annotationSpecOf(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
     inline fun add(type: ClassName, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
-        buildAnnotation(type, builderAction).also { add(it) }
+        buildAnnotationSpec(type, builderAction).also { add(it) }
 
     /** Add annotation from [type], returning the annotation added. */
-    fun add(type: Class<out Annotation>): AnnotationSpec = buildAnnotation(type).also { add(it) }
+    fun add(type: Class<out Annotation>): AnnotationSpec = annotationSpecOf(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
     inline fun add(type: Class<out Annotation>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
-        buildAnnotation(type, builderAction).also { add(it) }
+        buildAnnotationSpec(type, builderAction).also { add(it) }
 
     /** Add annotation from [type], returning the annotation added. */
-    fun add(type: KClass<out Annotation>): AnnotationSpec = buildAnnotation(type).also { add(it) }
+    fun add(type: KClass<out Annotation>): AnnotationSpec = annotationSpecOf(type).also { add(it) }
 
     /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
     inline fun add(type: KClass<out Annotation>, builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
-        buildAnnotation(type, builderAction).also { add(it) }
+        buildAnnotationSpec(type, builderAction).also { add(it) }
 
     /** Add annotation from reified [T], returning the annotation added. */
-    inline fun <reified T : Annotation> add(): AnnotationSpec = buildAnnotation<T>().also { add(it) }
+    inline fun <reified T : Annotation> add(): AnnotationSpec = annotationSpecOf<T>().also { add(it) }
 
     /** Add annotation from reified [T] with custom initialization [builderAction], returning the annotation added. */
     inline fun <reified T : Annotation> add(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
-        buildAnnotation<T>(builderAction).also { add(it) }
+        buildAnnotationSpec<T>(builderAction).also { add(it) }
 
     /** Convenient method to add annotation with operator function. */
     operator fun plusAssign(spec: AnnotationSpec) {

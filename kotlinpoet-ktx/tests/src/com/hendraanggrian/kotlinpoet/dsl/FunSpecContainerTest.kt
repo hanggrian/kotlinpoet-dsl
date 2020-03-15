@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.buildConstructorFunction
-import com.hendraanggrian.kotlinpoet.buildFunction
-import com.hendraanggrian.kotlinpoet.buildGetterFunction
-import com.hendraanggrian.kotlinpoet.buildSetterFunction
+import com.hendraanggrian.kotlinpoet.constructorFunSpecOf
+import com.hendraanggrian.kotlinpoet.funSpecOf
+import com.hendraanggrian.kotlinpoet.getterFunSpecOf
+import com.hendraanggrian.kotlinpoet.setterFunSpecOf
 import com.squareup.kotlinpoet.FunSpec
 import kotlin.test.Test
 
@@ -20,11 +20,11 @@ class FunSpecContainerTest {
         FunSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(buildFunction("func"))
-        container += buildConstructorFunction()
+        container.add(funSpecOf("func"))
+        container += constructorFunSpecOf()
         assertThat(specs).containsExactly(
-            buildFunction("func"),
-            buildConstructorFunction()
+            funSpecOf("func"),
+            constructorFunSpecOf()
         )
     }
 
@@ -33,20 +33,20 @@ class FunSpecContainerTest {
         container += "func2"
         container { "func3" { } }
         assertThat(specs).containsExactly(
-            buildFunction("func1"),
-            buildFunction("func2"),
-            buildFunction("func3")
+            funSpecOf("func1"),
+            funSpecOf("func2"),
+            funSpecOf("func3")
         )
     }
 
     @Test fun others() {
         container.addConstructor()
         container.addGetter()
-        container.addSetterFunction()
+        container.addSetter()
         assertThat(specs).containsExactly(
-            buildConstructorFunction(),
-            buildGetterFunction(),
-            buildSetterFunction()
+            constructorFunSpecOf(),
+            getterFunSpecOf(),
+            setterFunSpecOf()
         )
     }
 }

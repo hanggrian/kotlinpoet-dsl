@@ -13,14 +13,14 @@ class ParameterSpecBuilderTest {
         .build()
 
     @Test fun simple() {
-        assertEquals(expected, buildParameter<String>("name") {
+        assertEquals(expected, buildParameterSpec<String>("name") {
             annotations.add<Deprecated>()
             addModifiers(KModifier.PUBLIC, KModifier.FINAL)
         })
     }
 
     @Test fun invocation() {
-        assertEquals(expected, buildParameter<String>("name") {
+        assertEquals(expected, buildParameterSpec<String>("name") {
             annotations {
                 add<Deprecated>()
             }

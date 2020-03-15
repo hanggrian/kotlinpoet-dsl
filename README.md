@@ -27,7 +27,7 @@ Build everything with DSL
 -------------------------
 
 ```kotlin
-buildFile("com.example.helloworld", "HelloWorld") {
+buildFileSpec("com.example.helloworld", "HelloWorld") {
     addClass("HelloWorld") {
         addModifiers(KModifier.PUBLIC, KModifier.FINAL)
         methods {
@@ -46,14 +46,14 @@ buildFile("com.example.helloworld", "HelloWorld") {
 `KClass<*>` can now be used as format arguments. There is also inline reified type function whenever possible.
 
 ```kotlin
-buildMethod("sortList") {
+buildMethodSpec("sortList") {
     returns = int
     parameters.add(classNameOf("java.util", "List").parameterizedBy(hoverboard), "list")
     appendln("%T.sort(list)", Collections::class)
     appendln("return list")
 }
 
-buildField<Int>("count") {
+buildFieldSpec<Int>("count") {
     initializer("%L", 0)
 }
 ```
@@ -124,7 +124,7 @@ val myClass: ClassName = "com.example".classOf("MyClass")
 val listener: LambdaTypeName = null.lambdaBy(returnType = "kotlin".classOf("Unit"))
 val memberOfString: MemberTypeName = myClass.memberOf("myField")
 val pairOfInteger: ParameterizedTypeName = "kotlin".classOf("Pair").parameterizedBy(Int::class, Int::class)
-val tVariable: TypeVariableName = "T".typeVariableBy()
+val tVariable: TypeVariableName = "T".typeVarOf()
 val producerOfCharSequence: WildcardTypeName = "kotlin".classOf("CharSequence").producerOf() 
 ```
 

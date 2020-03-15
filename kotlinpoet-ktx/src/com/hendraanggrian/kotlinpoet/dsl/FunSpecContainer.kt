@@ -2,10 +2,14 @@ package com.hendraanggrian.kotlinpoet.dsl
 
 import com.hendraanggrian.kotlinpoet.FunSpecBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
-import com.hendraanggrian.kotlinpoet.buildConstructorFunction
-import com.hendraanggrian.kotlinpoet.buildFunction
-import com.hendraanggrian.kotlinpoet.buildGetterFunction
-import com.hendraanggrian.kotlinpoet.buildSetterFunction
+import com.hendraanggrian.kotlinpoet.buildConstructorFunSpec
+import com.hendraanggrian.kotlinpoet.buildFunSpec
+import com.hendraanggrian.kotlinpoet.buildGetterFunSpec
+import com.hendraanggrian.kotlinpoet.buildSetterFunSpec
+import com.hendraanggrian.kotlinpoet.constructorFunSpecOf
+import com.hendraanggrian.kotlinpoet.funSpecOf
+import com.hendraanggrian.kotlinpoet.getterFunSpecOf
+import com.hendraanggrian.kotlinpoet.setterFunSpecOf
 import com.squareup.kotlinpoet.FunSpec
 
 /** A [FunSpecContainer] is responsible for managing a set of function instances. */
@@ -15,32 +19,32 @@ abstract class FunSpecContainer {
     abstract fun add(spec: FunSpec)
 
     /** Add function from [name], returning the function added. */
-    fun add(name: String): FunSpec = buildFunction(name).also { add(it) }
+    fun add(name: String): FunSpec = funSpecOf(name).also { add(it) }
 
     /** Add function from [name] with custom initialization [builderAction], returning the function added. */
     inline fun add(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        buildFunction(name, builderAction).also { add(it) }
+        buildFunSpec(name, builderAction).also { add(it) }
 
     /** Add constructor function, returning the function added. */
-    fun addConstructor(): FunSpec = buildConstructorFunction().also { add(it) }
+    fun addConstructor(): FunSpec = constructorFunSpecOf().also { add(it) }
 
     /** Add constructor function with custom initialization [builderAction], returning the function added. */
     inline fun addConstructor(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        buildConstructorFunction(builderAction).also { add(it) }
+        buildConstructorFunSpec(builderAction).also { add(it) }
 
     /** Add getter function, returning the function added. */
-    fun addGetter(): FunSpec = buildGetterFunction().also { add(it) }
+    fun addGetter(): FunSpec = getterFunSpecOf().also { add(it) }
 
     /** Add getter function with custom initialization [builderAction], returning the function added. */
     inline fun addGetter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        buildGetterFunction(builderAction).also { add(it) }
+        buildGetterFunSpec(builderAction).also { add(it) }
 
     /** Add setter function, returning the function added. */
-    fun addSetterFunction(): FunSpec = buildSetterFunction().also { add(it) }
+    fun addSetter(): FunSpec = setterFunSpecOf().also { add(it) }
 
     /** Add setter function with custom initialization [builderAction], returning the function added. */
-    inline fun addSetterFunction(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-        buildSetterFunction(builderAction).also { add(it) }
+    inline fun addSetter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
+        buildSetterFunSpec(builderAction).also { add(it) }
 
     /** Convenient function to add function with operator function. */
     operator fun plusAssign(spec: FunSpec) {

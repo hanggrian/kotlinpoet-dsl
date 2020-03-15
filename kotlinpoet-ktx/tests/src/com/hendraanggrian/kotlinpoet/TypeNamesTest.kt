@@ -40,7 +40,7 @@ class TypeNamesTest {
 
     @Test fun annotations() {
         val deprecatedClassName = "kotlin".classOf("Deprecated")
-        val deprecatedSpec = buildAnnotation(deprecatedClassName)
+        val deprecatedSpec = annotationSpecOf(deprecatedClassName)
         assertEquals(
             "@kotlin.Deprecated kotlin.String",
             listOf(

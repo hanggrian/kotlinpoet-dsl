@@ -1,6 +1,6 @@
 package com.example
 
-import com.hendraanggrian.kotlinpoet.buildFile
+import com.hendraanggrian.kotlinpoet.buildFileSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
@@ -23,7 +23,7 @@ class VehicleWriter {
     }
 
     fun prepare() {
-        buildFile(PACKAGE_NAME, "Vehicle") {
+        buildFileSpec(PACKAGE_NAME, "Vehicle") {
             types.addInterface("Vehicle") {
                 functions {
                     "getName" {
@@ -40,7 +40,7 @@ class VehicleWriter {
     }
 
     fun write(name: String, wheelCount: Int) {
-        buildFile(PACKAGE_NAME, name) {
+        buildFileSpec(PACKAGE_NAME, name) {
             types.addClass(name) {
                 addSuperInterface(VEHICLE_NAME)
                 functions {

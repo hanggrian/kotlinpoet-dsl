@@ -8,13 +8,13 @@ import com.squareup.kotlinpoet.CodeBlock
  *
  * @see kotlin.text.format
  */
-fun String.formatCode(vararg args: Any): CodeBlock = CodeBlock.of(this, *args)
+fun codeBlockOf(format: String, vararg args: Any): CodeBlock = CodeBlock.of(format, *args)
 
 /**
  * Builds a new [CodeBlock],
  * by populating newly created [CodeBlockBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildCode(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+inline fun buildCodeBlock(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
     CodeBlock.builder().build(builderAction)
 
 /** Modify existing [CodeBlock.Builder] using provided [builderAction] and then building it. */

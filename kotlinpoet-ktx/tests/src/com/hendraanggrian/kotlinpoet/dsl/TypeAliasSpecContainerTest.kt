@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.buildTypeAlias
+import com.hendraanggrian.kotlinpoet.typeAliasSpecOf
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeAliasSpec
 import kotlin.test.Test
@@ -18,11 +18,11 @@ class TypeAliasSpecContainerTest {
         TypeAliasSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(buildTypeAlias<TypeAlias1>("typeAlias1"))
-        container += buildTypeAlias<TypeAlias2>("typeAlias2")
+        container.add(typeAliasSpecOf<TypeAlias1>("typeAlias1"))
+        container += typeAliasSpecOf<TypeAlias2>("typeAlias2")
         assertThat(specs).containsExactly(
-            buildTypeAlias<TypeAlias1>("typeAlias1"),
-            buildTypeAlias<TypeAlias2>("typeAlias2")
+            typeAliasSpecOf<TypeAlias1>("typeAlias1"),
+            typeAliasSpecOf<TypeAlias2>("typeAlias2")
         )
     }
 
@@ -32,9 +32,9 @@ class TypeAliasSpecContainerTest {
         container["typeAlias2"] = ClassName(packageName, "TypeAlias2")
         container { "typeAlias3"(ClassName(packageName, "TypeAlias3")) { } }
         assertThat(specs).containsExactly(
-            buildTypeAlias<TypeAlias1>("typeAlias1"),
-            buildTypeAlias<TypeAlias2>("typeAlias2"),
-            buildTypeAlias<TypeAlias3>("typeAlias3")
+            typeAliasSpecOf<TypeAlias1>("typeAlias1"),
+            typeAliasSpecOf<TypeAlias2>("typeAlias2"),
+            typeAliasSpecOf<TypeAlias3>("typeAlias3")
         )
     }
 
@@ -43,9 +43,9 @@ class TypeAliasSpecContainerTest {
         container["typeAlias2"] = TypeAlias2::class.java
         container { "typeAlias3"(TypeAlias3::class.java) { } }
         assertThat(specs).containsExactly(
-            buildTypeAlias<TypeAlias1>("typeAlias1"),
-            buildTypeAlias<TypeAlias2>("typeAlias2"),
-            buildTypeAlias<TypeAlias3>("typeAlias3")
+            typeAliasSpecOf<TypeAlias1>("typeAlias1"),
+            typeAliasSpecOf<TypeAlias2>("typeAlias2"),
+            typeAliasSpecOf<TypeAlias3>("typeAlias3")
         )
     }
 
@@ -54,9 +54,9 @@ class TypeAliasSpecContainerTest {
         container["typeAlias2"] = TypeAlias2::class
         container { "typeAlias3"(TypeAlias3::class) { } }
         assertThat(specs).containsExactly(
-            buildTypeAlias<TypeAlias1>("typeAlias1"),
-            buildTypeAlias<TypeAlias2>("typeAlias2"),
-            buildTypeAlias<TypeAlias3>("typeAlias3")
+            typeAliasSpecOf<TypeAlias1>("typeAlias1"),
+            typeAliasSpecOf<TypeAlias2>("typeAlias2"),
+            typeAliasSpecOf<TypeAlias3>("typeAlias3")
         )
     }
 
@@ -64,8 +64,8 @@ class TypeAliasSpecContainerTest {
         container.add<TypeAlias1>("typeAlias1")
         container { "typeAlias2"<TypeAlias2> { } }
         assertThat(specs).containsExactly(
-            buildTypeAlias<TypeAlias1>("typeAlias1"),
-            buildTypeAlias<TypeAlias2>("typeAlias2")
+            typeAliasSpecOf<TypeAlias1>("typeAlias1"),
+            typeAliasSpecOf<TypeAlias2>("typeAlias2")
         )
     }
 

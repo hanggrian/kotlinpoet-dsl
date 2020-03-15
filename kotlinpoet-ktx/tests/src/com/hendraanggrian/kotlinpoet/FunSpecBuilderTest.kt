@@ -26,7 +26,7 @@ class FunSpecBuilderTest {
         .build()
 
     @Test fun simple() {
-        assertEquals(expected, buildFunction("main") {
+        assertEquals(expected, buildFunSpec("main") {
             kdoc.append("firstJavadoc")
             kdoc.append {
                 append("secondJavadoc")
@@ -41,7 +41,7 @@ class FunSpecBuilderTest {
     }
 
     @Test fun invocation() {
-        assertEquals(expected, buildFunction("main") {
+        assertEquals(expected, buildFunSpec("main") {
             kdoc {
                 append("firstJavadoc")
                 append {

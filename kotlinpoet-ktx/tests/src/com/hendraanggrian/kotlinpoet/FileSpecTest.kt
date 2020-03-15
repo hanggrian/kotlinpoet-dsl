@@ -14,7 +14,7 @@ class FileSpecTest {
                 .addComment("long ")
                 .addComment("comment")
                 .build(),
-            buildFile("com.example", "MyClass") {
+            buildFileSpec("com.example", "MyClass") {
                 addComment("A ")
                 addComment("very ")
                 addComment("long ")

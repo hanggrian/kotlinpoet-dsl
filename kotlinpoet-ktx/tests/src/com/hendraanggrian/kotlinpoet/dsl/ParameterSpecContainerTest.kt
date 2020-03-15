@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.buildParameter
+import com.hendraanggrian.kotlinpoet.parameterSpecOf
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterSpec
 import kotlin.test.Test
@@ -18,11 +18,11 @@ class ParameterSpecContainerTest {
         ParameterSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(buildParameter<Parameter1>("parameter1"))
-        container += buildParameter<Parameter2>("parameter2")
+        container.add(parameterSpecOf<Parameter1>("parameter1"))
+        container += parameterSpecOf<Parameter2>("parameter2")
         assertThat(specs).containsExactly(
-            buildParameter<Parameter1>("parameter1"),
-            buildParameter<Parameter2>("parameter2")
+            parameterSpecOf<Parameter1>("parameter1"),
+            parameterSpecOf<Parameter2>("parameter2")
         )
     }
 
@@ -32,9 +32,9 @@ class ParameterSpecContainerTest {
         container["parameter2"] = ClassName(packageName, "Parameter2")
         container { "parameter3"(ClassName(packageName, "Parameter3")) { } }
         assertThat(specs).containsExactly(
-            buildParameter<Parameter1>("parameter1"),
-            buildParameter<Parameter2>("parameter2"),
-            buildParameter<Parameter3>("parameter3")
+            parameterSpecOf<Parameter1>("parameter1"),
+            parameterSpecOf<Parameter2>("parameter2"),
+            parameterSpecOf<Parameter3>("parameter3")
         )
     }
 
@@ -43,9 +43,9 @@ class ParameterSpecContainerTest {
         container["parameter2"] = Parameter2::class.java
         container { "parameter3"(Parameter3::class.java) { } }
         assertThat(specs).containsExactly(
-            buildParameter<Parameter1>("parameter1"),
-            buildParameter<Parameter2>("parameter2"),
-            buildParameter<Parameter3>("parameter3")
+            parameterSpecOf<Parameter1>("parameter1"),
+            parameterSpecOf<Parameter2>("parameter2"),
+            parameterSpecOf<Parameter3>("parameter3")
         )
     }
 
@@ -54,9 +54,9 @@ class ParameterSpecContainerTest {
         container["parameter2"] = Parameter2::class
         container { "parameter3"(Parameter3::class) { } }
         assertThat(specs).containsExactly(
-            buildParameter<Parameter1>("parameter1"),
-            buildParameter<Parameter2>("parameter2"),
-            buildParameter<Parameter3>("parameter3")
+            parameterSpecOf<Parameter1>("parameter1"),
+            parameterSpecOf<Parameter2>("parameter2"),
+            parameterSpecOf<Parameter3>("parameter3")
         )
     }
 
@@ -64,8 +64,8 @@ class ParameterSpecContainerTest {
         container.add<Parameter1>("parameter1")
         container { "parameter2"<Parameter2> { } }
         assertThat(specs).containsExactly(
-            buildParameter<Parameter1>("parameter1"),
-            buildParameter<Parameter2>("parameter2")
+            parameterSpecOf<Parameter1>("parameter1"),
+            parameterSpecOf<Parameter2>("parameter2")
         )
     }
 
