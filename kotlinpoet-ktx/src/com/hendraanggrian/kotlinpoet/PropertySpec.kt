@@ -82,19 +82,19 @@ inline fun PropertySpec.Builder.build(builderAction: PropertySpecBuilder.() -> U
 @KotlinpoetDslMarker
 class PropertySpecBuilder @PublishedApi internal constructor(private val nativeBuilder: PropertySpec.Builder) {
 
-    /** Annotations of this builder. */
+    /** Annotations of this property. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
-    /** Modifiers of this builder. */
+    /** Modifiers of this property. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
-    /** Type variables of this builder. */
+    /** Type variables of this property. */
     val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
 
-    /** Tags variables of this builder. */
+    /** Tags variables of this property. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
-    /** Originating elements of this builder. */
+    /** Originating elements of this property. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** True to create a `var` instead of a `val`. */

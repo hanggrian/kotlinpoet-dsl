@@ -84,7 +84,7 @@ inline fun ParameterSpec.Builder.build(builderAction: ParameterSpecBuilder.() ->
 class ParameterSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this parameter. */
-    val kdocBuilder: CodeBlock.Builder get() = nativeBuilder.kdoc
+    val kdocCodeBlock: CodeBlock.Builder get() = nativeBuilder.kdoc
 
     /** Annotations of this parameter. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations

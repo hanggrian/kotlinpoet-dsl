@@ -171,37 +171,40 @@ inline fun TypeSpec.Builder.build(builderAction: TypeSpecBuilder.() -> Unit): Ty
 @KotlinpoetDslMarker
 class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: TypeSpec.Builder) {
 
-    /** Tags variables of this builder. */
+    /** Initializer index of this type. */
+    val initializerIndex: Int get() = nativeBuilder.initializerIndex
+
+    /** Tags variables of this type. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
-    /** Originating elements of this builder. */
+    /** Originating elements of this type. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
-    /** Modifiers of this builder. */
+    /** Modifiers of this type. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
 
-    /** Super interfaces of this builder. */
-    val superInterfaces: MutableMap<TypeName, CodeBlock?> get() = nativeBuilder.superinterfaces
+    /** Super interfaces of this type. */
+    val superinterfaces: MutableMap<TypeName, CodeBlock?> get() = nativeBuilder.superinterfaces
 
-    /** Enum constants of this builder. */
+    /** Enum constants of this type. */
     val enumConstants: MutableMap<String, TypeSpec> get() = nativeBuilder.enumConstants
 
-    /** Annotations of this builder. */
+    /** Annotations of this type. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotationSpecs
 
-    /** Type variables of this builder. */
+    /** Type variables of this type. */
     val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
 
-    /** Super class constructor parameters of this builder. */
+    /** Super class constructor parameters of this type. */
     val superclassConstructorParameters: MutableList<CodeBlock> get() = nativeBuilder.superclassConstructorParameters
 
-    /** Properties of this builder. */
+    /** Properties of this type. */
     val propertySpecs: MutableList<PropertySpec> get() = nativeBuilder.propertySpecs
 
-    /** Functions of this builder. */
+    /** Functions of this type. */
     val funSpecs: MutableList<FunSpec> get() = nativeBuilder.funSpecs
 
-    /** Types of this builder. */
+    /** Types of this type. */
     val typeSpecs: MutableList<TypeSpec> get() = nativeBuilder.typeSpecs
 
     /** Configure kdoc without DSL. */
@@ -268,17 +271,17 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         }
 
     /** Set superclass to [type]. */
-    fun superClass(type: Type) {
+    fun superclass(type: Type) {
         nativeBuilder.superclass(type)
     }
 
     /** Set superclass to [type]. */
-    fun superClass(type: KClass<*>) {
+    fun superclass(type: KClass<*>) {
         nativeBuilder.superclass(type)
     }
 
     /** Set superclass to [T]. */
-    inline fun <reified T> superClass() = superClass(T::class)
+    inline fun <reified T> superclass() = superclass(T::class)
 
     /** Add super class constructor parameters like [String.format]. */
     fun addSuperclassConstructorParameter(format: String, vararg args: Any) {
@@ -294,22 +297,22 @@ class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuild
         addSuperclassConstructorParameter(buildCodeBlock(builderAction))
 
     /** Add superinterface to [type]. */
-    fun addSuperInterface(type: TypeName) {
+    fun addSuperinterface(type: TypeName) {
         nativeBuilder.addSuperinterface(type)
     }
 
     /** Add superinterface to [type]. */
-    fun addSuperInterface(type: Type) {
+    fun addSuperinterface(type: Type) {
         nativeBuilder.addSuperinterface(type)
     }
 
     /** Add superinterface to [type]. */
-    fun addSuperInterface(type: KClass<*>) {
+    fun addSuperinterface(type: KClass<*>) {
         nativeBuilder.addSuperinterface(type)
     }
 
     /** Add superinterface to [T]. */
-    inline fun <reified T> addSuperInterface() = addSuperInterface(T::class)
+    inline fun <reified T> addSuperinterface() = addSuperinterface(T::class)
 
     /** Add enum constant named [name]. */
     fun addEnumConstant(name: String) {

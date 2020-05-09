@@ -67,22 +67,22 @@ inline fun FunSpec.Builder.build(builderAction: FunSpecBuilder.() -> Unit): FunS
 class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FunSpec.Builder) :
     CodeBlockContainer() {
 
-    /** Annotations of this builder. */
+    /** Annotations of this function. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
-    /** Modifiers of this builder. */
+    /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
-    /** Type variables of this builder. */
+    /** Type variables of this function. */
     val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
 
-    /** Parameters of this builder. */
+    /** Parameters of this function. */
     val parameterSpecs: MutableList<ParameterSpec> get() = nativeBuilder.parameters
 
-    /** Tags variables of this builder. */
+    /** Tags variables of this function. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
-    /** Originating elements of this builder. */
+    /** Originating elements of this function. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** Configure kdoc without DSL. */

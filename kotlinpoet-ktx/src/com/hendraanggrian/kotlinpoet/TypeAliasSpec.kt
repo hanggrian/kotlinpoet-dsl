@@ -2,6 +2,7 @@ package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
 import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeAliasSpec
@@ -69,11 +70,17 @@ inline fun TypeAliasSpec.Builder.build(builderAction: TypeAliasSpecBuilder.() ->
 @KotlinpoetDslMarker
 class TypeAliasSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: TypeAliasSpec.Builder) {
 
-    /** Modifiers of this builder. */
+    /** Modifiers of this type alias. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
 
-    /** Type variables of this builder. */
+    /** Type variables of this type alias. */
     val typeVariables: MutableSet<TypeVariableName> get() = nativeBuilder.typeVariables
+
+    /** Annotations of this type alias. */
+    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+
+    /** Tags variables of this type alias. */
+    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Add type-alias modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

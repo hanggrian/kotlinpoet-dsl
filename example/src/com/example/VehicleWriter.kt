@@ -42,7 +42,7 @@ class VehicleWriter {
     fun write(name: String, wheelCount: Int) {
         buildFileSpec(PACKAGE_NAME, name) {
             types.addClass(name) {
-                addSuperInterface(VEHICLE_NAME)
+                addSuperinterface(VEHICLE_NAME)
                 functions {
                     "getName" {
                         addModifiers(KModifier.PUBLIC)

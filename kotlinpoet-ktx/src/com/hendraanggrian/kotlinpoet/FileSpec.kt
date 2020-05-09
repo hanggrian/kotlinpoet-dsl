@@ -38,6 +38,12 @@ inline fun FileSpec.Builder.build(builderAction: FileSpecBuilder.() -> Unit): Fi
 @KotlinpoetDslMarker
 class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FileSpec.Builder) {
 
+    /** Package name of this file. */
+    val packageName: String get() = nativeBuilder.packageName
+
+    /** Name of this file. */
+    val name: String get() = nativeBuilder.name
+
     /** Tags variables of this file. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
