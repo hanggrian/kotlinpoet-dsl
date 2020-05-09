@@ -19,8 +19,8 @@ class AnnotationSpecContainerTest {
         AnnotationSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(annotationSpecOf<Annotation1>())
-        container += annotationSpecOf<Annotation2>()
+        container += annotationSpecOf<Annotation1>()
+        container += listOf(annotationSpecOf<Annotation2>())
         assertThat(annotations).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>()

@@ -23,8 +23,8 @@ class TypeSpecContainerTest {
         TypeSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(classTypeSpecOf("Class1"))
-        container += classTypeSpecOf("Class2")
+        container += classTypeSpecOf("Class1")
+        container += listOf(classTypeSpecOf("Class2"))
         assertThat(types).containsExactly(
             classTypeSpecOf("Class1"),
             classTypeSpecOf("Class2")

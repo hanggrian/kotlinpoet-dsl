@@ -21,8 +21,8 @@ class FunSpecContainerTest {
         FunSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(funSpecOf("func"))
-        container += constructorFunSpecOf()
+        container += funSpecOf("func")
+        container += listOf(constructorFunSpecOf())
         assertThat(funs).containsExactly(
             funSpecOf("func"),
             constructorFunSpecOf()

@@ -6,25 +6,9 @@
 KotlinPoet KTX
 ==============
 Lightweight Kotlin extension of [KotlinPoet], providing Kotlin DSL functionality and other convenient solutions. 
-
- * Full of convenient methods to achieve minimum code writing possible.
- * Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
- * Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
-
-Download
---------
-```gradle
-repositories {
-    jcenter()
-}
-
-dependencies {
-    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
-}
-```
-
-Build everything with DSL
--------------------------
+* Full of convenient methods to achieve minimum code writing possible.
+* Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
+* Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
 
 ```kotlin
 buildFileSpec("com.example.helloworld", "HelloWorld") {
@@ -41,6 +25,21 @@ buildFileSpec("com.example.helloworld", "HelloWorld") {
     }
 }.writeTo(System.out)
 ```
+
+Download
+--------
+```gradle
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
+}
+```
+
+Usage
+-----
 
 ### Use `T::class` as parameters
 `KClass<*>` can now be used as format arguments. There is also inline reified type function whenever possible.
@@ -115,8 +114,7 @@ addClass("Car") {
 }
 ```
 
-Fluent TypeName API
--------------------
+### Fluent TypeName API
 Write `TypeName` and all its subtypes fluently.
 
 ```kotlin

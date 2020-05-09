@@ -24,7 +24,8 @@ import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
 /** Builds a new class [TypeSpec] from [type]. */
-fun classTypeSpecOf(type: String): TypeSpec = TypeSpec.classBuilder(type).build()
+fun classTypeSpecOf(type: String): TypeSpec =
+    TypeSpec.classBuilder(type).build()
 
 /**
  * Builds a new class [TypeSpec] from [type],
@@ -34,7 +35,8 @@ inline fun buildClassTypeSpec(type: String, builderAction: TypeSpecBuilder.() ->
     TypeSpec.classBuilder(type).build(builderAction)
 
 /** Builds a new class [TypeSpec] from [type]. */
-fun classTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.classBuilder(type).build()
+fun classTypeSpecOf(type: ClassName): TypeSpec =
+    TypeSpec.classBuilder(type).build()
 
 /**
  * Builds a new class [TypeSpec] from [type],
@@ -44,7 +46,8 @@ inline fun buildClassTypeSpec(type: ClassName, builderAction: TypeSpecBuilder.()
     TypeSpec.classBuilder(type).build(builderAction)
 
 /** Builds a expect new class [TypeSpec] from [type]. */
-fun expectClassTypeSpecOf(type: String): TypeSpec = TypeSpec.expectClassBuilder(type).build()
+fun expectClassTypeSpecOf(type: String): TypeSpec =
+    TypeSpec.expectClassBuilder(type).build()
 
 /**
  * Builds a new expect class [TypeSpec] from [type],
@@ -54,7 +57,8 @@ inline fun buildExpectClassTypeSpec(type: String, builderAction: TypeSpecBuilder
     TypeSpec.expectClassBuilder(type).build(builderAction)
 
 /** Builds a new expect class [TypeSpec] from [type]. */
-fun expectClassTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.expectClassBuilder(type).build()
+fun expectClassTypeSpecOf(type: ClassName): TypeSpec =
+    TypeSpec.expectClassBuilder(type).build()
 
 /**
  * Builds a new expect class [TypeSpec] from [type],
@@ -64,7 +68,8 @@ inline fun buildExpectClassTypeSpec(type: ClassName, builderAction: TypeSpecBuil
     TypeSpec.expectClassBuilder(type).build(builderAction)
 
 /** Builds a new object [TypeSpec] from [type]. */
-fun objectTypeSpecOf(type: String): TypeSpec = TypeSpec.objectBuilder(type).build()
+fun objectTypeSpecOf(type: String): TypeSpec =
+    TypeSpec.objectBuilder(type).build()
 
 /**
  * Builds a new object [TypeSpec] from [type],
@@ -74,7 +79,8 @@ inline fun buildObjectTypeSpec(type: String, builderAction: TypeSpecBuilder.() -
     TypeSpec.objectBuilder(type).build(builderAction)
 
 /** Builds a new object class [TypeSpec] from [type]. */
-fun objectTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.objectBuilder(type).build()
+fun objectTypeSpecOf(type: ClassName): TypeSpec =
+    TypeSpec.objectBuilder(type).build()
 
 /**
  * Builds a new object [TypeSpec] from [type],
@@ -84,7 +90,8 @@ inline fun buildObjectTypeSpec(type: ClassName, builderAction: TypeSpecBuilder.(
     TypeSpec.objectBuilder(type).build(builderAction)
 
 /** Builds a new companion object [TypeSpec] from [type]. */
-fun companionObjectTypeSpecOf(type: String? = null): TypeSpec = TypeSpec.companionObjectBuilder(type).build()
+fun companionObjectTypeSpecOf(type: String? = null): TypeSpec =
+    TypeSpec.companionObjectBuilder(type).build()
 
 /**
  * Builds a new object [TypeSpec] from [type],
@@ -94,7 +101,8 @@ inline fun buildCompanionObjectTypeSpec(type: String? = null, builderAction: Typ
     TypeSpec.companionObjectBuilder(type).build(builderAction)
 
 /** Builds a new interface [TypeSpec] from [type]. */
-fun interfaceTypeSpecOf(type: String): TypeSpec = TypeSpec.interfaceBuilder(type).build()
+fun interfaceTypeSpecOf(type: String): TypeSpec =
+    TypeSpec.interfaceBuilder(type).build()
 
 /**
  * Builds a new interface [TypeSpec] from [type],
@@ -104,7 +112,8 @@ inline fun buildInterfaceTypeSpec(type: String, builderAction: TypeSpecBuilder.(
     TypeSpec.interfaceBuilder(type).build(builderAction)
 
 /** Builds a new interface [TypeSpec] from [type]. */
-fun interfaceTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.interfaceBuilder(type).build()
+fun interfaceTypeSpecOf(type: ClassName): TypeSpec =
+    TypeSpec.interfaceBuilder(type).build()
 
 /**
  * Builds a new interface [TypeSpec] from [type],
@@ -114,7 +123,8 @@ inline fun buildInterfaceTypeSpec(type: ClassName, builderAction: TypeSpecBuilde
     TypeSpec.interfaceBuilder(type).build(builderAction)
 
 /** Builds a new enum [TypeSpec] from [type]. */
-fun enumTypeSpecOf(type: String): TypeSpec = TypeSpec.enumBuilder(type).build()
+fun enumTypeSpecOf(type: String): TypeSpec =
+    TypeSpec.enumBuilder(type).build()
 
 /**
  * Builds a new enum [TypeSpec] from [type],
@@ -124,7 +134,8 @@ inline fun buildEnumTypeSpec(type: String, builderAction: TypeSpecBuilder.() -> 
     TypeSpec.enumBuilder(type).build(builderAction)
 
 /** Builds a new enum [TypeSpec] from [type]. */
-fun enumTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.enumBuilder(type).build()
+fun enumTypeSpecOf(type: ClassName): TypeSpec =
+    TypeSpec.enumBuilder(type).build()
 
 /**
  * Builds a new enum [TypeSpec] from [type],
@@ -134,7 +145,8 @@ inline fun buildEnumTypeSpec(type: ClassName, builderAction: TypeSpecBuilder.() 
     TypeSpec.enumBuilder(type).build(builderAction)
 
 /** Builds a new anonymous [TypeSpec]. */
-fun anonymousTypeSpecOf(): TypeSpec = TypeSpec.anonymousClassBuilder().build()
+fun anonymousTypeSpecOf(): TypeSpec =
+    TypeSpec.anonymousClassBuilder().build()
 
 /**
  * Builds a new anonymous [TypeSpec],
@@ -144,7 +156,8 @@ inline fun buildAnonymousTypeSpec(builderAction: TypeSpecBuilder.() -> Unit): Ty
     TypeSpec.anonymousClassBuilder().build(builderAction)
 
 /** Builds a new annotation [TypeSpec] from [type]. */
-fun annotationTypeSpecOf(type: String): TypeSpec = TypeSpec.annotationBuilder(type).build()
+fun annotationTypeSpecOf(type: String): TypeSpec =
+    TypeSpec.annotationBuilder(type).build()
 
 /**
  * Builds a new annotation [TypeSpec] from [type],
@@ -154,7 +167,8 @@ inline fun buildAnnotationTypeSpec(type: String, builderAction: TypeSpecBuilder.
     TypeSpec.annotationBuilder(type).build(builderAction)
 
 /** Builds a new annotation [TypeSpec] from [type]. */
-fun annotationTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.annotationBuilder(type).build()
+fun annotationTypeSpecOf(type: ClassName): TypeSpec =
+    TypeSpec.annotationBuilder(type).build()
 
 /**
  * Builds a new annotation [TypeSpec] from [type],
@@ -169,7 +183,7 @@ inline fun TypeSpec.Builder.build(builderAction: TypeSpecBuilder.() -> Unit): Ty
 
 /** Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class TypeSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: TypeSpec.Builder) {
+class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
 
     /** Initializer index of this type. */
     val initializerIndex: Int get() = nativeBuilder.initializerIndex

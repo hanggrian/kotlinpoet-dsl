@@ -80,7 +80,7 @@ inline fun PropertySpec.Builder.build(builderAction: PropertySpecBuilder.() -> U
 
 /** Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class PropertySpecBuilder @PublishedApi internal constructor(private val nativeBuilder: PropertySpec.Builder) {
+class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** Annotations of this property. */
     val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations

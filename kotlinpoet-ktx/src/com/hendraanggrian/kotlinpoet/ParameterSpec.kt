@@ -14,7 +14,8 @@ import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
-fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(this)
+fun VariableElement.asParameterSpec(): ParameterSpec =
+    ParameterSpec.get(this)
 
 /** Builds a new [ParameterSpec] from [type]. */
 fun parameterSpecOf(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
@@ -81,7 +82,7 @@ inline fun ParameterSpec.Builder.build(builderAction: ParameterSpecBuilder.() ->
 
 /** Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class ParameterSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: ParameterSpec.Builder) {
+class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this parameter. */
     val kdocCodeBlock: CodeBlock.Builder get() = nativeBuilder.kdoc

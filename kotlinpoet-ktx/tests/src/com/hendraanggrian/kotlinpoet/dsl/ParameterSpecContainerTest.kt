@@ -19,8 +19,8 @@ class ParameterSpecContainerTest {
         ParameterSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(parameterSpecOf<Parameter1>("parameter1"))
-        container += parameterSpecOf<Parameter2>("parameter2")
+        container += parameterSpecOf<Parameter1>("parameter1")
+        container += listOf(parameterSpecOf<Parameter2>("parameter2"))
         assertThat(parameters).containsExactly(
             parameterSpecOf<Parameter1>("parameter1"),
             parameterSpecOf<Parameter2>("parameter2")

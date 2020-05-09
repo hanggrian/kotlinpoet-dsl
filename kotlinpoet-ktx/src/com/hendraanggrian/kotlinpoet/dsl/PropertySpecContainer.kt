@@ -10,14 +10,17 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/** A [PropertySpecContainer] is responsible for managing a set of property instances. */
-abstract class PropertySpecContainer {
-
-    /** Add collection of properties to this container. */
-    abstract fun addAll(specs: Iterable<PropertySpec>): Boolean
+private interface PropertySpecAddable {
 
     /** Add property to this container. */
-    abstract fun add(spec: PropertySpec)
+    fun add(spec: PropertySpec)
+
+    /** Add collection of properties to this container. */
+    fun addAll(specs: Iterable<PropertySpec>): Boolean
+}
+
+/** A [PropertySpecContainer] is responsible for managing a set of property instances. */
+abstract class PropertySpecContainer : PropertySpecAddable {
 
     /** Add property from [type] and [name], returning the property added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
@@ -67,8 +70,11 @@ abstract class PropertySpecContainer {
     ): PropertySpec = buildPropertySpec<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Convenient method to add property with operator function. */
-    operator fun plusAssign(spec: PropertySpec) {
-        add(spec)
+    operator fun plusAssign(spec: PropertySpec): Unit = add(spec)
+
+    /** Convenient method to add collection of properties with operator function. */
+    operator fun plusAssign(specs: Iterable<PropertySpec>) {
+        addAll(specs)
     }
 
     /** Convenient method to add property with operator function. */
@@ -89,10 +95,8 @@ abstract class PropertySpecContainer {
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class PropertySpecContainerScope(private val container: PropertySpecContainer) : PropertySpecContainer() {
-
-    override fun addAll(specs: Iterable<PropertySpec>): Boolean = container.addAll(specs)
-    override fun add(spec: PropertySpec): Unit = container.add(spec)
+class PropertySpecContainerScope(container: PropertySpecContainer) : PropertySpecContainer(),
+    PropertySpecAddable by container {
 
     /** Convenient method to add property with receiver type. */
     inline operator fun String.invoke(

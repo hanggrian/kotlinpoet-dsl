@@ -12,7 +12,8 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun typeAliasSpecOf(name: String, type: TypeName): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+fun typeAliasSpecOf(name: String, type: TypeName): TypeAliasSpec =
+    TypeAliasSpec.builder(name, type).build()
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
@@ -25,13 +26,16 @@ inline fun buildTypeAliasSpec(
 ): TypeAliasSpec = TypeAliasSpec.builder(name, type).build(builderAction)
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun typeAliasSpecOf(name: String, type: Type): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+fun typeAliasSpecOf(name: String, type: Type): TypeAliasSpec =
+    TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [type]. */
-fun typeAliasSpecOf(name: String, type: KClass<*>): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+fun typeAliasSpecOf(name: String, type: KClass<*>): TypeAliasSpec =
+    TypeAliasSpec.builder(name, type).build()
 
 /** Builds a new [TypeAliasSpec] from [name] and [T]. */
-inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec = typeAliasSpecOf(name, T::class)
+inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec =
+    typeAliasSpecOf(name, T::class)
 
 /**
  * Builds a new [TypeAliasSpec] from [name] and [type],
@@ -68,7 +72,7 @@ inline fun TypeAliasSpec.Builder.build(builderAction: TypeAliasSpecBuilder.() ->
 
 /** Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class TypeAliasSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: TypeAliasSpec.Builder) {
+class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
 
     /** Modifiers of this type alias. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers

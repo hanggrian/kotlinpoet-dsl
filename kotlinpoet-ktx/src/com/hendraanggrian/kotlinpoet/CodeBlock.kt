@@ -8,7 +8,8 @@ import com.squareup.kotlinpoet.CodeBlock
  *
  * @see kotlin.text.format
  */
-fun codeBlockOf(format: String, vararg args: Any): CodeBlock = CodeBlock.of(format, *args)
+fun codeBlockOf(format: String, vararg args: Any): CodeBlock =
+    CodeBlock.of(format, *args)
 
 /**
  * Builds a new [CodeBlock],
@@ -23,7 +24,7 @@ inline fun CodeBlock.Builder.build(builderAction: CodeBlockBuilder.() -> Unit): 
 
 /** Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class CodeBlockBuilder @PublishedApi internal constructor(private val nativeBuilder: CodeBlock.Builder) :
+class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) :
     CodeBlockContainer() {
 
     /** Returns true if this builder contains no code. */

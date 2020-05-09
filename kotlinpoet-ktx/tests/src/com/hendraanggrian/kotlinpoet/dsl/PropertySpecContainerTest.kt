@@ -19,8 +19,8 @@ class PropertySpecContainerTest {
         PropertySpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(propertySpecOf<Property1>("property1"))
-        container += propertySpecOf<Property2>("property2")
+        container += propertySpecOf<Property1>("property1")
+        container += listOf(propertySpecOf<Property2>("property2"))
         assertThat(properties).containsExactly(
             propertySpecOf<Property1>("property1"),
             propertySpecOf<Property2>("property2")

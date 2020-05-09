@@ -21,7 +21,8 @@ import com.squareup.kotlinpoet.TypeSpec
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
-fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(packageName, type)
+fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec =
+    FileSpec.get(packageName, type)
 
 /**
  * Builds a new [FileSpec],
@@ -36,7 +37,7 @@ inline fun FileSpec.Builder.build(builderAction: FileSpecBuilder.() -> Unit): Fi
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FileSpec.Builder) {
+class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
 
     /** Package name of this file. */
     val packageName: String get() = nativeBuilder.packageName

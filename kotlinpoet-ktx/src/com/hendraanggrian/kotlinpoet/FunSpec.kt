@@ -19,7 +19,8 @@ import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
 /** Builds a new [FunSpec] from [name]. */
-fun funSpecOf(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
+fun funSpecOf(name: String): FunSpec =
+    FunSpecBuilder(FunSpec.builder(name)).build()
 
 /**
  * Builds a new [FunSpec] from [name],
@@ -29,7 +30,8 @@ inline fun buildFunSpec(name: String, builderAction: FunSpecBuilder.() -> Unit):
     FunSpec.builder(name).build(builderAction)
 
 /** Builds a new constructor [FunSpec]. */
-fun constructorFunSpecOf(): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).build()
+fun constructorFunSpecOf(): FunSpec =
+    FunSpecBuilder(FunSpec.constructorBuilder()).build()
 
 /**
  * Builds a new constructor [FunSpec],
@@ -39,7 +41,8 @@ inline fun buildConstructorFunSpec(builderAction: FunSpecBuilder.() -> Unit): Fu
     FunSpecBuilder(FunSpec.constructorBuilder()).apply(builderAction).build()
 
 /** Builds a new getter [FunSpec]. */
-fun getterFunSpecOf(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).build()
+fun getterFunSpecOf(): FunSpec =
+    FunSpecBuilder(FunSpec.getterBuilder()).build()
 
 /**
  * Builds a new getter [FunSpec],
@@ -49,7 +52,8 @@ inline fun buildGetterFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec
     FunSpec.getterBuilder().build(builderAction)
 
 /** Builds a new setter [FunSpec]. */
-fun setterFunSpecOf(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
+fun setterFunSpecOf(): FunSpec =
+    FunSpecBuilder(FunSpec.setterBuilder()).build()
 
 /**
  * Builds a new setter [FunSpec],
@@ -64,7 +68,7 @@ inline fun FunSpec.Builder.build(builderAction: FunSpecBuilder.() -> Unit): FunS
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilder: FunSpec.Builder) :
+class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     CodeBlockContainer() {
 
     /** Annotations of this function. */

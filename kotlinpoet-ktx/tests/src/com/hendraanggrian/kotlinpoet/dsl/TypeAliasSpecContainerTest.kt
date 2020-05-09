@@ -19,8 +19,8 @@ class TypeAliasSpecContainerTest {
         TypeAliasSpecContainerScope(container).configuration()
 
     @Test fun nativeSpec() {
-        container.add(typeAliasSpecOf<TypeAlias1>("typeAlias1"))
-        container += typeAliasSpecOf<TypeAlias2>("typeAlias2")
+        container += typeAliasSpecOf<TypeAlias1>("typeAlias1")
+        container += listOf(typeAliasSpecOf<TypeAlias2>("typeAlias2"))
         assertThat(typeAliases).containsExactly(
             typeAliasSpecOf<TypeAlias1>("typeAlias1"),
             typeAliasSpecOf<TypeAlias2>("typeAlias2")

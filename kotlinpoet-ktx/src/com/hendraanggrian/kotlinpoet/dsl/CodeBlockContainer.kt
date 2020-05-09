@@ -32,10 +32,12 @@ abstract class CodeBlockContainer : CodeBlockAppendable {
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCodeBlock(builderAction).also { append(it) }
 
-    override fun appendln() = appendln("")
+    override fun appendln(): Unit =
+        appendln("")
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) =
+        appendln(buildCodeBlock(builderAction))
 
     /** Starts the control flow. */
     abstract fun beginFlow(flow: String, vararg args: Any)
@@ -54,7 +56,8 @@ abstract class KdocContainer : CodeBlockAppendable {
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCodeBlock(builderAction).also { append(it) }
 
-    override fun appendln(): Unit = append(SystemProperties.LINE_SEPARATOR)
+    override fun appendln(): Unit =
+        append(SystemProperties.LINE_SEPARATOR)
 
     override fun appendln(format: String, vararg args: Any) {
         append(format, *args)
@@ -62,7 +65,8 @@ abstract class KdocContainer : CodeBlockAppendable {
     }
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) =
+        appendln(buildCodeBlock(builderAction))
 
     /** Convenient method to add code block with operator function. */
     operator fun plusAssign(value: String) {
@@ -87,9 +91,10 @@ abstract class KdocContainer : CodeBlockAppendable {
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class KdocContainerScope(private val container: KdocContainer) : KdocContainer(), CodeBlockAppendable by container {
+class KdocContainerScope(private val container: KdocContainer) : KdocContainer(),
+    CodeBlockAppendable by container {
 
-    override fun appendln(code: CodeBlock): Unit = container.appendln(code)
     override fun appendln(): Unit = container.appendln()
+    override fun appendln(code: CodeBlock): Unit = container.appendln(code)
     override fun appendln(format: String, vararg args: Any): Unit = container.appendln(format, *args)
 }
