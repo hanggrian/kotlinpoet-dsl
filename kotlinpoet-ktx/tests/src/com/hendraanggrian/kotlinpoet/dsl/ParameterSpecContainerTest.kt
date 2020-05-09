@@ -7,10 +7,11 @@ import com.squareup.kotlinpoet.ParameterSpec
 import kotlin.test.Test
 
 class ParameterSpecContainerTest {
-    private val specs = mutableListOf<ParameterSpec>()
+    private val parameters = mutableListOf<ParameterSpec>()
     private val container = object : ParameterSpecContainer() {
+        override fun addAll(specs: Iterable<ParameterSpec>): Boolean = parameters.addAll(specs)
         override fun add(spec: ParameterSpec) {
-            specs += spec
+            parameters += spec
         }
     }
 
@@ -20,7 +21,7 @@ class ParameterSpecContainerTest {
     @Test fun nativeSpec() {
         container.add(parameterSpecOf<Parameter1>("parameter1"))
         container += parameterSpecOf<Parameter2>("parameter2")
-        assertThat(specs).containsExactly(
+        assertThat(parameters).containsExactly(
             parameterSpecOf<Parameter1>("parameter1"),
             parameterSpecOf<Parameter2>("parameter2")
         )
@@ -31,7 +32,7 @@ class ParameterSpecContainerTest {
         container.add("parameter1", ClassName(packageName, "Parameter1"))
         container["parameter2"] = ClassName(packageName, "Parameter2")
         container { "parameter3"(ClassName(packageName, "Parameter3")) { } }
-        assertThat(specs).containsExactly(
+        assertThat(parameters).containsExactly(
             parameterSpecOf<Parameter1>("parameter1"),
             parameterSpecOf<Parameter2>("parameter2"),
             parameterSpecOf<Parameter3>("parameter3")
@@ -42,7 +43,7 @@ class ParameterSpecContainerTest {
         container.add("parameter1", Parameter1::class.java)
         container["parameter2"] = Parameter2::class.java
         container { "parameter3"(Parameter3::class.java) { } }
-        assertThat(specs).containsExactly(
+        assertThat(parameters).containsExactly(
             parameterSpecOf<Parameter1>("parameter1"),
             parameterSpecOf<Parameter2>("parameter2"),
             parameterSpecOf<Parameter3>("parameter3")
@@ -53,7 +54,7 @@ class ParameterSpecContainerTest {
         container.add("parameter1", Parameter1::class)
         container["parameter2"] = Parameter2::class
         container { "parameter3"(Parameter3::class) { } }
-        assertThat(specs).containsExactly(
+        assertThat(parameters).containsExactly(
             parameterSpecOf<Parameter1>("parameter1"),
             parameterSpecOf<Parameter2>("parameter2"),
             parameterSpecOf<Parameter3>("parameter3")
@@ -63,7 +64,7 @@ class ParameterSpecContainerTest {
     @Test fun reifiedType() {
         container.add<Parameter1>("parameter1")
         container { "parameter2"<Parameter2> { } }
-        assertThat(specs).containsExactly(
+        assertThat(parameters).containsExactly(
             parameterSpecOf<Parameter1>("parameter1"),
             parameterSpecOf<Parameter2>("parameter2")
         )

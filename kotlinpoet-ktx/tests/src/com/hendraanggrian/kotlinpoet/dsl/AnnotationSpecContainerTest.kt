@@ -7,10 +7,11 @@ import com.squareup.kotlinpoet.ClassName
 import kotlin.test.Test
 
 class AnnotationSpecContainerTest {
-    private val specs = mutableListOf<AnnotationSpec>()
+    private val annotations = mutableListOf<AnnotationSpec>()
     private val container = object : AnnotationSpecContainer() {
+        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = annotations.addAll(specs)
         override fun add(spec: AnnotationSpec) {
-            specs += spec
+            annotations += spec
         }
     }
 
@@ -20,7 +21,7 @@ class AnnotationSpecContainerTest {
     @Test fun nativeSpec() {
         container.add(annotationSpecOf<Annotation1>())
         container += annotationSpecOf<Annotation2>()
-        assertThat(specs).containsExactly(
+        assertThat(annotations).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>()
         )
@@ -31,7 +32,7 @@ class AnnotationSpecContainerTest {
         container.add(ClassName(packageName, "Annotation1"))
         container += ClassName(packageName, "Annotation2")
         container { (ClassName(packageName, "Annotation3")) { } }
-        assertThat(specs).containsExactly(
+        assertThat(annotations).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>(),
             annotationSpecOf<Annotation3>()
@@ -42,7 +43,7 @@ class AnnotationSpecContainerTest {
         container.add(Annotation1::class.java)
         container += Annotation2::class.java
         container { (Annotation3::class.java) { } }
-        assertThat(specs).containsExactly(
+        assertThat(annotations).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>(),
             annotationSpecOf<Annotation3>()
@@ -53,7 +54,7 @@ class AnnotationSpecContainerTest {
         container.add(Annotation1::class)
         container += Annotation2::class
         container { Annotation3::class { } }
-        assertThat(specs).containsExactly(
+        assertThat(annotations).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>(),
             annotationSpecOf<Annotation3>()
@@ -62,7 +63,7 @@ class AnnotationSpecContainerTest {
 
     @Test fun reifiedType() {
         container.add<Annotation1>()
-        assertThat(specs).containsExactly(annotationSpecOf<Annotation1>())
+        assertThat(annotations).containsExactly(annotationSpecOf<Annotation1>())
     }
 
     annotation class Annotation1

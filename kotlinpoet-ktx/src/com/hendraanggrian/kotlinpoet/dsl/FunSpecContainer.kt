@@ -15,6 +15,9 @@ import com.squareup.kotlinpoet.FunSpec
 /** A [FunSpecContainer] is responsible for managing a set of function instances. */
 abstract class FunSpecContainer {
 
+    /** Add collection of functions to this container. */
+    abstract fun addAll(specs: Iterable<FunSpec>): Boolean
+
     /** Add function to this container. */
     abstract fun add(spec: FunSpec)
 
@@ -61,7 +64,8 @@ abstract class FunSpecContainer {
 @KotlinpoetDslMarker
 class FunSpecContainerScope(private val container: FunSpecContainer) : FunSpecContainer() {
 
-    override fun add(spec: FunSpec) = container.add(spec)
+    override fun addAll(specs: Iterable<FunSpec>): Boolean = container.addAll(specs)
+    override fun add(spec: FunSpec): Unit = container.add(spec)
 
     /** Convenient function to add function with receiver type. */
     inline operator fun String.invoke(builderAction: FunSpecBuilder.() -> Unit): FunSpec = add(this, builderAction)

@@ -24,6 +24,9 @@ import com.squareup.kotlinpoet.TypeSpec
 /** A [TypeSpecContainer] is responsible for managing a set of type instances. */
 abstract class TypeSpecContainer {
 
+    /** Add collection of types to this container. */
+    abstract fun addAll(specs: Iterable<TypeSpec>): Boolean
+
     /** Add type to this container. */
     abstract fun add(spec: TypeSpec)
 
@@ -135,7 +138,8 @@ abstract class TypeSpecContainer {
 @KotlinpoetDslMarker
 class TypeSpecContainerScope(private val container: TypeSpecContainer) : TypeSpecContainer() {
 
-    override fun add(spec: TypeSpec) = container.add(spec)
+    override fun addAll(specs: Iterable<TypeSpec>): Boolean = container.addAll(specs)
+    override fun add(spec: TypeSpec): Unit = container.add(spec)
 
     /** Convenient method to add class with receiver type. */
     inline operator fun String.invoke(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =

@@ -11,6 +11,9 @@ import kotlin.reflect.KClass
 /** An [AnnotationSpecContainer] is responsible for managing a set of annotation instances. */
 abstract class AnnotationSpecContainer {
 
+    /** Add collection of annotations to this container. */
+    abstract fun addAll(specs: Iterable<AnnotationSpec>): Boolean
+
     /** Add annotation to this container. */
     abstract fun add(spec: AnnotationSpec)
 
@@ -67,7 +70,8 @@ abstract class AnnotationSpecContainer {
 @KotlinpoetDslMarker
 class AnnotationSpecContainerScope(private val container: AnnotationSpecContainer) : AnnotationSpecContainer() {
 
-    override fun add(spec: AnnotationSpec) = container.add(spec)
+    override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = container.addAll(specs)
+    override fun add(spec: AnnotationSpec): Unit = container.add(spec)
 
     /** Convenient method to add annotation with receiver type. */
     inline operator fun ClassName.invoke(builderAction: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =

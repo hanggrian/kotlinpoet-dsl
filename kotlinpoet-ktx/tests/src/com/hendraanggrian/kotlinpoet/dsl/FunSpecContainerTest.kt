@@ -9,10 +9,11 @@ import com.squareup.kotlinpoet.FunSpec
 import kotlin.test.Test
 
 class FunSpecContainerTest {
-    private val specs = mutableListOf<FunSpec>()
+    private val funs = mutableListOf<FunSpec>()
     private val container = object : FunSpecContainer() {
+        override fun addAll(specs: Iterable<FunSpec>): Boolean = funs.addAll(specs)
         override fun add(spec: FunSpec) {
-            specs += spec
+            funs += spec
         }
     }
 
@@ -22,7 +23,7 @@ class FunSpecContainerTest {
     @Test fun nativeSpec() {
         container.add(funSpecOf("func"))
         container += constructorFunSpecOf()
-        assertThat(specs).containsExactly(
+        assertThat(funs).containsExactly(
             funSpecOf("func"),
             constructorFunSpecOf()
         )
@@ -32,7 +33,7 @@ class FunSpecContainerTest {
         container.add("func1")
         container += "func2"
         container { "func3" { } }
-        assertThat(specs).containsExactly(
+        assertThat(funs).containsExactly(
             funSpecOf("func1"),
             funSpecOf("func2"),
             funSpecOf("func3")
@@ -43,7 +44,7 @@ class FunSpecContainerTest {
         container.addConstructor()
         container.addGetter()
         container.addSetter()
-        assertThat(specs).containsExactly(
+        assertThat(funs).containsExactly(
             constructorFunSpecOf(),
             getterFunSpecOf(),
             setterFunSpecOf()

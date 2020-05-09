@@ -12,6 +12,9 @@ import kotlin.reflect.KClass
 /** An [TypeAliasSpecContainer] is responsible for managing a set of type alias instances. */
 abstract class TypeAliasSpecContainer {
 
+    /** Add collection of fields to this container. */
+    abstract fun addAll(specs: Iterable<TypeAliasSpec>): Boolean
+
     /** Add type alias to this container. */
     abstract fun add(spec: TypeAliasSpec)
 
@@ -68,7 +71,8 @@ abstract class TypeAliasSpecContainer {
 @KotlinpoetDslMarker
 class TypeAliasSpecContainerScope(private val container: TypeAliasSpecContainer) : TypeAliasSpecContainer() {
 
-    override fun add(spec: TypeAliasSpec) = container.add(spec)
+    override fun addAll(specs: Iterable<TypeAliasSpec>): Boolean = container.addAll(specs)
+    override fun add(spec: TypeAliasSpec): Unit = container.add(spec)
 
     /** Convenient method to add type alias with receiver type. */
     inline operator fun String.invoke(type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =

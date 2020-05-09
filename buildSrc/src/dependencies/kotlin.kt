@@ -1,4 +1,4 @@
-const val VERSION_KOTLIN = "1.3.70"
+const val VERSION_KOTLIN = "1.3.72"
 private const val VERSION_DOKKA = "0.10.1"
 
 fun Dependencies.dokka(module: String? = null) =

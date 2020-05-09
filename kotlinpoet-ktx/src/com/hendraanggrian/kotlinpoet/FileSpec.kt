@@ -46,6 +46,7 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Configure annotations without DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
+        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = nativeBuilder.annotations.addAll(specs)
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
@@ -62,6 +63,7 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Configure types without DSL. */
     val types: TypeSpecContainer = object : TypeSpecContainer() {
+        override fun addAll(specs: Iterable<TypeSpec>): Boolean = specs.manualAddAll(::add)
         override fun add(spec: TypeSpec) {
             nativeBuilder.addType(spec)
         }
@@ -73,6 +75,7 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Configure functions without DSL. */
     val functions: FunSpecContainer = object : FunSpecContainer() {
+        override fun addAll(specs: Iterable<FunSpec>): Boolean = specs.manualAddAll(::add)
         override fun add(spec: FunSpec) {
             nativeBuilder.addFunction(spec)
         }
@@ -84,6 +87,7 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Configure properties without DSL. */
     val properties: PropertySpecContainer = object : PropertySpecContainer() {
+        override fun addAll(specs: Iterable<PropertySpec>): Boolean = specs.manualAddAll(::add)
         override fun add(spec: PropertySpec) {
             nativeBuilder.addProperty(spec)
         }
@@ -95,6 +99,7 @@ class FileSpecBuilder @PublishedApi internal constructor(private val nativeBuild
 
     /** Configure type-aliases without DSL. */
     val typeAliases: TypeAliasSpecContainer = object : TypeAliasSpecContainer() {
+        override fun addAll(specs: Iterable<TypeAliasSpec>): Boolean = specs.manualAddAll(::add)
         override fun add(spec: TypeAliasSpec) {
             nativeBuilder.addTypeAlias(spec)
         }

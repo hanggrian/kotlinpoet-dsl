@@ -13,6 +13,9 @@ import kotlin.reflect.KClass
 /** A [ParameterSpecContainer] is responsible for managing a set of parameter instances. */
 abstract class ParameterSpecContainer {
 
+    /** Add collection of parameters to this container. */
+    abstract fun addAll(specs: Iterable<ParameterSpec>): Boolean
+
     /** Add parameter to this container. */
     abstract fun add(spec: ParameterSpec)
 
@@ -88,7 +91,8 @@ abstract class ParameterSpecContainer {
 @KotlinpoetDslMarker
 class ParameterSpecContainerScope(private val container: ParameterSpecContainer) : ParameterSpecContainer() {
 
-    override fun add(spec: ParameterSpec) = container.add(spec)
+    override fun addAll(specs: Iterable<ParameterSpec>): Boolean = container.addAll(specs)
+    override fun add(spec: ParameterSpec): Unit = container.add(spec)
 
     /** Convenient method to add parameter with receiver type. */
     inline operator fun String.invoke(

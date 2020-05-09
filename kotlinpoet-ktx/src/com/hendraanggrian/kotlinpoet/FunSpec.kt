@@ -102,6 +102,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Configure annotations without DSL. */
     val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
+        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = nativeBuilder.annotations.addAll(specs)
         override fun add(spec: AnnotationSpec) {
             nativeBuilder.addAnnotation(spec)
         }
@@ -220,6 +221,7 @@ class FunSpecBuilder @PublishedApi internal constructor(private val nativeBuilde
 
     /** Configure parameters without DSL. */
     val parameters: ParameterSpecContainer = object : ParameterSpecContainer() {
+        override fun addAll(specs: Iterable<ParameterSpec>): Boolean = nativeBuilder.parameters.addAll(specs)
         override fun add(spec: ParameterSpec) {
             nativeBuilder.addParameter(spec)
         }
