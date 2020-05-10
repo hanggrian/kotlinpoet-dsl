@@ -1,8 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
-import com.squareup.kotlinpoet.AnnotationSpec
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeAliasSpec
@@ -80,9 +81,6 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     /** Type variables of this type alias. */
     val typeVariables: MutableSet<TypeVariableName> get() = nativeBuilder.typeVariables
 
-    /** Annotations of this type alias. */
-    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
-
     /** Tags variables of this type alias. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
@@ -101,7 +99,14 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
         nativeBuilder.addTypeVariable(typeVariable)
     }
 
-    /** Configure kdoc without DSL. */
+    /** Annotations of this type alias. */
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
+
+    /** Configures annotations of this type alias. */
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+        AnnotationSpecListScope(annotations).configuration()
+
+    /** Kdoc of this type alias. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -112,7 +117,7 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
         }
     }
 
-    /** Configure kdoc with DSL. */
+    /** Configures kdoc of this type alias. */
     inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
         KdocContainerScope(kdoc).configuration()
 

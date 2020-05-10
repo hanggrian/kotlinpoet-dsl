@@ -1,16 +1,15 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainerScope
-import com.squareup.kotlinpoet.AnnotationSpec
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.FunSpecList
+import com.hendraanggrian.kotlinpoet.collections.FunSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecList
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecList
+import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
@@ -49,72 +48,76 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Annotations of this file. */
-    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
-    /** Configure annotations without DSL. */
-    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
-        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = nativeBuilder.annotations.addAll(specs)
-        override fun add(spec: AnnotationSpec) {
-            nativeBuilder.addAnnotation(spec)
-        }
-    }
-
-    /** Configure annotations with DSL. */
-    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
-        AnnotationSpecContainerScope(annotations).configuration()
+    /** Configures annotations for this file. */
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add file comment like [String.format]. */
     fun addComment(format: String, vararg args: Any) {
         nativeBuilder.addComment(format, *args)
     }
 
-    /** Configure types without DSL. */
-    val types: TypeSpecContainer = object : TypeSpecContainer() {
-        override fun addAll(specs: Iterable<TypeSpec>): Boolean = specs.manualAddAll(::add)
-        override fun add(spec: TypeSpec) {
-            nativeBuilder.addType(spec)
+    /**
+     * Types of this file.
+     * Returns a fake list where the only supported operation is `add`.
+     */
+    val types: TypeSpecList = object : TypeSpecList(FakeList()) {
+        override fun add(element: TypeSpec): Boolean {
+            nativeBuilder.addType(element)
+            return true
         }
     }
 
-    /** Configure types with DSL. */
-    inline fun types(configuration: TypeSpecContainerScope.() -> Unit) =
-        TypeSpecContainerScope(types).configuration()
+    /** Configures types for this file. */
+    inline fun types(configuration: TypeSpecListScope.() -> Unit) =
+        TypeSpecListScope(types).configuration()
 
-    /** Configure functions without DSL. */
-    val functions: FunSpecContainer = object : FunSpecContainer() {
-        override fun addAll(specs: Iterable<FunSpec>): Boolean = specs.manualAddAll(::add)
-        override fun add(spec: FunSpec) {
-            nativeBuilder.addFunction(spec)
+    /**
+     * Functions of this file.
+     * Returns a fake list where the only supported operation is `add`.
+     */
+    val functions: FunSpecList = object : FunSpecList(FakeList()) {
+        override fun add(element: FunSpec): Boolean {
+            nativeBuilder.addFunction(element)
+            return true
         }
     }
 
-    /** Configure functions with DSL. */
-    inline fun functions(configuration: FunSpecContainerScope.() -> Unit) =
-        FunSpecContainerScope(functions).configuration()
+    /** Configures functions for this file. */
+    inline fun functions(configuration: FunSpecListScope.() -> Unit) =
+        FunSpecListScope(functions).configuration()
 
-    /** Configure properties without DSL. */
-    val properties: PropertySpecContainer = object : PropertySpecContainer() {
-        override fun addAll(specs: Iterable<PropertySpec>): Boolean = specs.manualAddAll(::add)
-        override fun add(spec: PropertySpec) {
-            nativeBuilder.addProperty(spec)
+    /**
+     * Properties of this file.
+     * Returns a fake list where the only supported operation is `add`.
+     */
+    val properties: PropertySpecList = object : PropertySpecList(FakeList()) {
+        override fun add(element: PropertySpec): Boolean {
+            nativeBuilder.addProperty(element)
+            return true
         }
     }
 
-    /** Configure properties with DSL. */
-    inline fun properties(configuration: PropertySpecContainerScope.() -> Unit) =
-        PropertySpecContainerScope(properties).configuration()
+    /** Configures properties for this file. */
+    inline fun properties(configuration: PropertySpecListScope.() -> Unit) =
+        PropertySpecListScope(properties).configuration()
 
-    /** Configure type-aliases without DSL. */
-    val typeAliases: TypeAliasSpecContainer = object : TypeAliasSpecContainer() {
-        override fun addAll(specs: Iterable<TypeAliasSpec>): Boolean = specs.manualAddAll(::add)
-        override fun add(spec: TypeAliasSpec) {
-            nativeBuilder.addTypeAlias(spec)
+    /**
+     * Type aliases of this file.
+     * Returns a fake list where the only supported operation is `add`.
+     */
+    val typeAliases: TypeAliasSpecList = object : TypeAliasSpecList(FakeList()) {
+        override fun add(element: TypeAliasSpec): Boolean {
+            nativeBuilder.addTypeAlias(element)
+            return true
         }
     }
 
-    /** Configure type-aliases with DSL. */
-    inline fun typeAliases(configuration: TypeAliasSpecContainerScope.() -> Unit) =
-        TypeAliasSpecContainerScope(typeAliases).configuration()
+    /** Configures type aliases for this file. */
+    inline fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit) =
+        TypeAliasSpecListScope(typeAliases).configuration()
 
     /** Add import. */
     fun addImport(constant: Enum<*>) {
@@ -184,4 +187,49 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
 
     /** Returns native spec. */
     fun build(): FileSpec = nativeBuilder.build()
+
+    /**
+     * @see kotlin.collections.EmptyList
+     */
+    private class FakeList<T> : MutableList<T> {
+        companion object {
+            const val ERROR_MESSAGE = "FileSpec doesn't have real access to the requested specs. " +
+                "The only supported behavior is `add`."
+        }
+
+        override fun equals(other: Any?): Boolean = other is List<*> && other.isEmpty()
+        override fun hashCode(): Int = 1
+        override fun toString(): String = "[]"
+
+        override val size: Int get() = 0
+        override fun isEmpty(): Boolean = true
+        override fun contains(element: T): Boolean = false
+        override fun containsAll(elements: Collection<T>): Boolean = elements.isEmpty()
+
+        override fun get(index: Int): Nothing =
+            throw IndexOutOfBoundsException("Fake list doesn't contain element at index $index.")
+
+        override fun indexOf(element: T): Int = -1
+        override fun lastIndexOf(element: T): Int = -1
+
+        override fun iterator(): Nothing = error(ERROR_MESSAGE)
+        override fun listIterator(): Nothing = error(ERROR_MESSAGE)
+        override fun listIterator(index: Int): Nothing = error(ERROR_MESSAGE)
+
+        override fun subList(fromIndex: Int, toIndex: Int): MutableList<T> {
+            if (fromIndex == 0 && toIndex == 0) return this
+            throw IndexOutOfBoundsException("fromIndex: $fromIndex, toIndex: $toIndex")
+        }
+
+        override fun add(element: T): Nothing = error(ERROR_MESSAGE)
+        override fun add(index: Int, element: T): Nothing = error(ERROR_MESSAGE)
+        override fun addAll(index: Int, elements: Collection<T>): Nothing = error(ERROR_MESSAGE)
+        override fun addAll(elements: Collection<T>): Nothing = error(ERROR_MESSAGE)
+        override fun clear(): Nothing = error(ERROR_MESSAGE)
+        override fun remove(element: T): Nothing = error(ERROR_MESSAGE)
+        override fun removeAll(elements: Collection<T>): Nothing = error(ERROR_MESSAGE)
+        override fun removeAt(index: Int): Nothing = error(ERROR_MESSAGE)
+        override fun retainAll(elements: Collection<T>): Nothing = error(ERROR_MESSAGE)
+        override fun set(index: Int, element: T): Nothing = error(ERROR_MESSAGE)
+    }
 }

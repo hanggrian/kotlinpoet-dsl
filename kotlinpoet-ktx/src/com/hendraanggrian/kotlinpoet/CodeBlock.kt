@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockContainer
 import com.squareup.kotlinpoet.CodeBlock
 
 /**

@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.TypeSpecBuilder
@@ -21,17 +21,9 @@ import com.hendraanggrian.kotlinpoet.objectTypeSpecOf
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeSpec
 
-private interface TypeSpecAddable {
-
-    /** Add type to this container. */
-    fun add(spec: TypeSpec)
-
-    /** Add collection of types to this container. */
-    fun addAll(specs: Iterable<TypeSpec>): Boolean
-}
-
-/** A [TypeSpecContainer] is responsible for managing a set of type instances. */
-abstract class TypeSpecContainer : TypeSpecAddable {
+/** A [TypeSpecList] is responsible for managing a set of type instances. */
+open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) :
+    MutableList<TypeSpec> by actualList {
 
     /** Add class type from [type], returning the type added. */
     fun addClass(type: String): TypeSpec = classTypeSpecOf(type).also { add(it) }
@@ -143,20 +135,11 @@ abstract class TypeSpecContainer : TypeSpecAddable {
     /** Add annotation type from [type] with custom initialization [builderAction], returning the type added. */
     inline fun addAnnotation(type: ClassName, builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =
         buildAnnotationTypeSpec(type, builderAction).also { add(it) }
-
-    /** Convenient method to add type with operator function. */
-    operator fun plusAssign(spec: TypeSpec): Unit = add(spec)
-
-    /** Convenient method to add collection of types with operator function. */
-    operator fun plusAssign(specs: Iterable<TypeSpec>) {
-        addAll(specs)
-    }
 }
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class TypeSpecContainerScope(container: TypeSpecContainer) : TypeSpecContainer(),
-    TypeSpecAddable by container {
+open class TypeSpecListScope(actualList: MutableList<TypeSpec>) : TypeSpecList(actualList) {
 
     /** Convenient method to add class with receiver type. */
     inline operator fun String.invoke(builderAction: TypeSpecBuilder.() -> Unit): TypeSpec =

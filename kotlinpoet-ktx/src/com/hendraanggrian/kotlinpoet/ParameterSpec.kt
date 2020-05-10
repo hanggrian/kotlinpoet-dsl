@@ -1,10 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
-import com.squareup.kotlinpoet.AnnotationSpec
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
@@ -87,16 +86,13 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     /** Kdoc of this parameter. */
     val kdocCodeBlock: CodeBlock.Builder get() = nativeBuilder.kdoc
 
-    /** Annotations of this parameter. */
-    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
-
     /** Modifiers of this parameter. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
     /** Tags variables of this parameter. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
-    /** Configure kdoc without DSL. */
+    /** Kdoc of this parameter. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -107,21 +103,16 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
         }
     }
 
-    /** Configure kdoc with DSL. */
+    /** Configures kdoc of this parameter. */
     inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
         KdocContainerScope(kdoc).configuration()
 
-    /** Configure annotations without DSL. */
-    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
-        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = nativeBuilder.annotations.addAll(specs)
-        override fun add(spec: AnnotationSpec) {
-            nativeBuilder.addAnnotation(spec)
-        }
-    }
+    /** Annotations of this parameter. */
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
-    /** Configure annotations with DSL. */
-    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
-        AnnotationSpecContainerScope(annotations).configuration()
+    /** Configures annotations of this parameter. */
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add parameter modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

@@ -1,21 +1,19 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.FunSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainerScope
-import com.squareup.kotlinpoet.AnnotationSpec
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.FunSpecList
+import com.hendraanggrian.kotlinpoet.collections.FunSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecList
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
@@ -203,25 +201,13 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     /** Enum constants of this type. */
     val enumConstants: MutableMap<String, TypeSpec> get() = nativeBuilder.enumConstants
 
-    /** Annotations of this type. */
-    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotationSpecs
-
     /** Type variables of this type. */
     val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
 
     /** Super class constructor parameters of this type. */
     val superclassConstructorParameters: MutableList<CodeBlock> get() = nativeBuilder.superclassConstructorParameters
 
-    /** Properties of this type. */
-    val propertySpecs: MutableList<PropertySpec> get() = nativeBuilder.propertySpecs
-
-    /** Functions of this type. */
-    val funSpecs: MutableList<FunSpec> get() = nativeBuilder.funSpecs
-
-    /** Types of this type. */
-    val typeSpecs: MutableList<TypeSpec> get() = nativeBuilder.typeSpecs
-
-    /** Configure kdoc without DSL. */
+    /** Kdoc of this type. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -232,21 +218,16 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
         }
     }
 
-    /** Configure kdoc with DSL. */
+    /** Configures kdoc of this type. */
     inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
         KdocContainerScope(kdoc).configuration()
 
-    /** Configure annotations without DSL. */
-    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
-        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = nativeBuilder.annotationSpecs.addAll(specs)
-        override fun add(spec: AnnotationSpec) {
-            nativeBuilder.addAnnotation(spec)
-        }
-    }
+    /** Annotations of this type. */
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotationSpecs)
 
-    /** Configure annotations with DSL. */
-    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
-        AnnotationSpecContainerScope(annotations).configuration()
+    /** Configures annotations of this type. */
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add type modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -338,17 +319,12 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
         nativeBuilder.addEnumConstant(name, spec)
     }
 
-    /** Configure properties without DSL. */
-    val properties: PropertySpecContainer = object : PropertySpecContainer() {
-        override fun addAll(specs: Iterable<PropertySpec>): Boolean = nativeBuilder.propertySpecs.addAll(specs)
-        override fun add(spec: PropertySpec) {
-            nativeBuilder.addProperty(spec)
-        }
-    }
+    /** Properties of this type. */
+    val properties: PropertySpecList = PropertySpecList(nativeBuilder.propertySpecs)
 
-    /** Configure properties with DSL. */
-    inline fun properties(configuration: PropertySpecContainerScope.() -> Unit) =
-        PropertySpecContainerScope(properties).configuration()
+    /** Configures properties of this type. */
+    inline fun properties(configuration: PropertySpecListScope.() -> Unit) =
+        PropertySpecListScope(properties).configuration()
 
     /** Add initializer block containing [code]. */
     fun addInitializerBlock(code: CodeBlock): CodeBlock = code.also { nativeBuilder.addInitializerBlock(it) }
@@ -357,29 +333,19 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     inline fun addInitializerBlock(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         addInitializerBlock(buildCodeBlock(builderAction))
 
-    /** Configure functions without DSL. */
-    val functions: FunSpecContainer = object : FunSpecContainer() {
-        override fun addAll(specs: Iterable<FunSpec>): Boolean = nativeBuilder.funSpecs.addAll(specs)
-        override fun add(spec: FunSpec) {
-            nativeBuilder.addFunction(spec)
-        }
-    }
+    /** Functions of this type. */
+    val functions: FunSpecList = FunSpecList(nativeBuilder.funSpecs)
 
-    /** Configure functions with DSL. */
-    inline fun functions(configuration: FunSpecContainerScope.() -> Unit) =
-        FunSpecContainerScope(functions).configuration()
+    /** Configures functions of this type. */
+    inline fun functions(configuration: FunSpecListScope.() -> Unit) =
+        FunSpecListScope(functions).configuration()
 
-    /** Configure types without DSL. */
-    val types: TypeSpecContainer = object : TypeSpecContainer() {
-        override fun addAll(specs: Iterable<TypeSpec>): Boolean = nativeBuilder.typeSpecs.addAll(specs)
-        override fun add(spec: TypeSpec) {
-            nativeBuilder.addType(spec)
-        }
-    }
+    /** Types of this type. */
+    val types: TypeSpecList = TypeSpecList(nativeBuilder.typeSpecs)
 
-    /** Configure types with DSL. */
-    inline fun types(configuration: TypeSpecContainerScope.() -> Unit) =
-        TypeSpecContainerScope(types).configuration()
+    /** Configures types of this type. */
+    inline fun types(configuration: TypeSpecListScope.() -> Unit) =
+        TypeSpecListScope(types).configuration()
 
     /** Add originating element. */
     fun addOriginatingElement(originatingElement: Element) {

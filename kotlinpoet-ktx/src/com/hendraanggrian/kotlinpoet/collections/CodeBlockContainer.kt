@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.CodeBlockBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
@@ -30,7 +30,7 @@ abstract class CodeBlockContainer : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCodeBlock(builderAction).also { append(it) }
+        buildCodeBlock(builderAction).also(::append)
 
     override fun appendln(): Unit =
         appendln("")
@@ -54,7 +54,7 @@ abstract class KdocContainer : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCodeBlock(builderAction).also { append(it) }
+        buildCodeBlock(builderAction).also(::append)
 
     override fun appendln(): Unit =
         append(SystemProperties.LINE_SEPARATOR)

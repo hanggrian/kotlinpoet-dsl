@@ -1,17 +1,15 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.CodeBlockContainer
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainer
-import com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope
-import com.hendraanggrian.kotlinpoet.dsl.ParameterSpecContainer
-import com.hendraanggrian.kotlinpoet.dsl.ParameterSpecContainerScope
-import com.squareup.kotlinpoet.AnnotationSpec
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import com.hendraanggrian.kotlinpoet.collections.ParameterSpecList
+import com.hendraanggrian.kotlinpoet.collections.ParameterSpecListScope
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
@@ -71,17 +69,11 @@ inline fun FunSpec.Builder.build(builderAction: FunSpecBuilder.() -> Unit): FunS
 class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     CodeBlockContainer() {
 
-    /** Annotations of this function. */
-    val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
-
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
     /** Type variables of this function. */
     val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
-
-    /** Parameters of this function. */
-    val parameterSpecs: MutableList<ParameterSpec> get() = nativeBuilder.parameters
 
     /** Tags variables of this function. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
@@ -89,7 +81,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     /** Originating elements of this function. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
-    /** Configure kdoc without DSL. */
+    /** Kdoc of this function. */
     val kdoc: KdocContainer = object : KdocContainer() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
@@ -100,21 +92,16 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
         }
     }
 
-    /** Configure kdoc with DSL. */
+    /** Configures kdoc of this function. */
     inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
         KdocContainerScope(kdoc).configuration()
 
-    /** Configure annotations without DSL. */
-    val annotations: AnnotationSpecContainer = object : AnnotationSpecContainer() {
-        override fun addAll(specs: Iterable<AnnotationSpec>): Boolean = nativeBuilder.annotations.addAll(specs)
-        override fun add(spec: AnnotationSpec) {
-            nativeBuilder.addAnnotation(spec)
-        }
-    }
+    /** Annotations of this function. */
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
-    /** Configure annotations with DSL. */
-    inline fun annotations(configuration: AnnotationSpecContainerScope.() -> Unit) =
-        AnnotationSpecContainerScope(annotations).configuration()
+    /** Configures annotations of this function. */
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add function modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -223,17 +210,12 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     /** Add return line to [T]. */
     inline fun <reified T> returns() = returns(T::class)
 
-    /** Configure parameters without DSL. */
-    val parameters: ParameterSpecContainer = object : ParameterSpecContainer() {
-        override fun addAll(specs: Iterable<ParameterSpec>): Boolean = nativeBuilder.parameters.addAll(specs)
-        override fun add(spec: ParameterSpec) {
-            nativeBuilder.addParameter(spec)
-        }
-    }
+    /** Parameters of this function. */
+    val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)
 
-    /** Configure parameters with DSL. */
-    inline fun parameters(configuration: ParameterSpecContainerScope.() -> Unit) =
-        ParameterSpecContainerScope(parameters).configuration()
+    /** Configures parameters of this function. */
+    inline fun parameters(configuration: ParameterSpecListScope.() -> Unit) =
+        ParameterSpecListScope(parameters).configuration()
 
     /** Call this constructor with [String] arguments. */
     fun callThisConstructor(vararg args: String) {

@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder
@@ -9,17 +9,9 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-private interface TypeAliasSpecAddable {
-
-    /** Add type alias to this container. */
-    fun add(spec: TypeAliasSpec)
-
-    /** Add collection of fields to this container. */
-    fun addAll(specs: Iterable<TypeAliasSpec>): Boolean
-}
-
-/** An [TypeAliasSpecContainer] is responsible for managing a set of type alias instances. */
-abstract class TypeAliasSpecContainer : TypeAliasSpecAddable {
+/** An [TypeAliasSpecList] is responsible for managing a set of type alias instances. */
+open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAliasSpec>) :
+    MutableList<TypeAliasSpec> by actualList {
 
     /** Add type alias from [name] and [type], returning the type alias added. */
     fun add(name: String, type: TypeName): TypeAliasSpec =
@@ -54,14 +46,6 @@ abstract class TypeAliasSpecContainer : TypeAliasSpecAddable {
         buildTypeAliasSpec<T>(name, builderAction).also { add(it) }
 
     /** Convenient method to add type alias with operator function. */
-    operator fun plusAssign(spec: TypeAliasSpec): Unit = add(spec)
-
-    /** Convenient method to add collection of type aliases with operator function. */
-    operator fun plusAssign(specs: Iterable<TypeAliasSpec>) {
-        addAll(specs)
-    }
-
-    /** Convenient method to add type alias with operator function. */
     operator fun set(name: String, type: TypeName) {
         add(name, type)
     }
@@ -79,8 +63,7 @@ abstract class TypeAliasSpecContainer : TypeAliasSpecAddable {
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class TypeAliasSpecContainerScope(container: TypeAliasSpecContainer) : TypeAliasSpecContainer(),
-    TypeAliasSpecAddable by container {
+class TypeAliasSpecListScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecList(actualList) {
 
     /** Convenient method to add type alias with receiver type. */
     inline operator fun String.invoke(type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =

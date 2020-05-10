@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.PropertySpecBuilder
@@ -10,17 +10,9 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-private interface PropertySpecAddable {
-
-    /** Add property to this container. */
-    fun add(spec: PropertySpec)
-
-    /** Add collection of properties to this container. */
-    fun addAll(specs: Iterable<PropertySpec>): Boolean
-}
-
-/** A [PropertySpecContainer] is responsible for managing a set of property instances. */
-abstract class PropertySpecContainer : PropertySpecAddable {
+/** A [PropertySpecList] is responsible for managing a set of property instances. */
+open class PropertySpecList internal constructor(actualList: MutableList<PropertySpec>) :
+    MutableList<PropertySpec> by actualList {
 
     /** Add property from [type] and [name], returning the property added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
@@ -70,14 +62,6 @@ abstract class PropertySpecContainer : PropertySpecAddable {
     ): PropertySpec = buildPropertySpec<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
 
     /** Convenient method to add property with operator function. */
-    operator fun plusAssign(spec: PropertySpec): Unit = add(spec)
-
-    /** Convenient method to add collection of properties with operator function. */
-    operator fun plusAssign(specs: Iterable<PropertySpec>) {
-        addAll(specs)
-    }
-
-    /** Convenient method to add property with operator function. */
     operator fun set(name: String, type: TypeName) {
         add(name, type)
     }
@@ -95,8 +79,7 @@ abstract class PropertySpecContainer : PropertySpecAddable {
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class PropertySpecContainerScope(container: PropertySpecContainer) : PropertySpecContainer(),
-    PropertySpecAddable by container {
+class PropertySpecListScope(actualList: MutableList<PropertySpec>) : PropertySpecList(actualList) {
 
     /** Convenient method to add property with receiver type. */
     inline operator fun String.invoke(

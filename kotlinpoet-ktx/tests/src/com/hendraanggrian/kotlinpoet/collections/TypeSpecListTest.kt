@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
 import com.hendraanggrian.kotlinpoet.annotationTypeSpecOf
@@ -7,37 +7,30 @@ import com.hendraanggrian.kotlinpoet.buildEnumTypeSpec
 import com.hendraanggrian.kotlinpoet.classTypeSpecOf
 import com.hendraanggrian.kotlinpoet.interfaceTypeSpecOf
 import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.TypeSpec
 import kotlin.test.Test
 
-class TypeSpecContainerTest {
-    private val types = mutableListOf<TypeSpec>()
-    private val container = object : TypeSpecContainer() {
-        override fun addAll(specs: Iterable<TypeSpec>): Boolean = types.addAll(specs)
-        override fun add(spec: TypeSpec) {
-            types += spec
-        }
-    }
+class TypeSpecListTest {
+    private val container = TypeSpecList(mutableListOf())
 
-    private inline fun container(configuration: TypeSpecContainerScope.() -> Unit) =
-        TypeSpecContainerScope(container).configuration()
+    private inline fun container(configuration: TypeSpecListScope.() -> Unit) =
+        TypeSpecListScope(container).configuration()
 
     @Test fun nativeSpec() {
         container += classTypeSpecOf("Class1")
         container += listOf(classTypeSpecOf("Class2"))
-        assertThat(types).containsExactly(
+        assertThat(container).containsExactly(
             classTypeSpecOf("Class1"),
             classTypeSpecOf("Class2")
         )
     }
 
     @Test fun invocation() {
-        val packageName = "com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainerTest"
+        val packageName = "com.hendraanggrian.kotlinpoet.collections.TypeSpecListTest"
         container {
             "Class1" { }
             (ClassName(packageName, "MyType")) { }
         }
-        assertThat(types).containsExactly(
+        assertThat(container).containsExactly(
             classTypeSpecOf("Class1"),
             classTypeSpecOf(ClassName(packageName, "MyType"))
         )
@@ -49,7 +42,7 @@ class TypeSpecContainerTest {
         container.addEnum("Enum1") { addEnumConstant("A") }
         container.addAnonymous()
         container.addAnnotation("Annotation1")
-        assertThat(types).containsExactly(
+        assertThat(container).containsExactly(
             classTypeSpecOf("Class1"),
             interfaceTypeSpecOf("Interface1"),
             buildEnumTypeSpec("Enum1") { addEnumConstant("A") },

@@ -12,13 +12,11 @@ class VehicleWriter {
         private const val PACKAGE_NAME = "com.example.output"
         private val VEHICLE_NAME = ClassName(PACKAGE_NAME, "Vehicle")
 
-        @JvmStatic
-        fun main(args: Array<String>) {
+        @JvmStatic fun main(args: Array<String>) {
             val writer = VehicleWriter()
             writer.prepare()
             writer.write("Bike", 2)
             writer.write("Car", 4)
-            ClassName
         }
     }
 

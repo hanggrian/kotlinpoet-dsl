@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.FunSpecBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
@@ -12,17 +12,9 @@ import com.hendraanggrian.kotlinpoet.getterFunSpecOf
 import com.hendraanggrian.kotlinpoet.setterFunSpecOf
 import com.squareup.kotlinpoet.FunSpec
 
-private interface FunSpecAddable {
-
-    /** Add function to this container. */
-    fun add(spec: FunSpec)
-
-    /** Add collection of functions to this container. */
-    fun addAll(specs: Iterable<FunSpec>): Boolean
-}
-
-/** A [FunSpecContainer] is responsible for managing a set of function instances. */
-abstract class FunSpecContainer : FunSpecAddable {
+/** A [FunSpecList] is responsible for managing a set of function instances. */
+open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) :
+    MutableList<FunSpec> by actualList {
 
     /** Add function from [name], returning the function added. */
     fun add(name: String): FunSpec =
@@ -57,14 +49,6 @@ abstract class FunSpecContainer : FunSpecAddable {
         buildSetterFunSpec(builderAction).also { add(it) }
 
     /** Convenient function to add function with operator function. */
-    operator fun plusAssign(spec: FunSpec): Unit = add(spec)
-
-    /** Convenient method to add collection of functions with operator function. */
-    operator fun plusAssign(specs: Iterable<FunSpec>) {
-        addAll(specs)
-    }
-
-    /** Convenient function to add function with operator function. */
     operator fun plusAssign(name: String) {
         add(name)
     }
@@ -72,8 +56,7 @@ abstract class FunSpecContainer : FunSpecAddable {
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class FunSpecContainerScope(container: FunSpecContainer) : FunSpecContainer(),
-    FunSpecAddable by container {
+class FunSpecListScope(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
 
     /** Convenient function to add function with receiver type. */
     inline operator fun String.invoke(builderAction: FunSpecBuilder.() -> Unit): FunSpec =

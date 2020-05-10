@@ -1,29 +1,22 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
 import com.hendraanggrian.kotlinpoet.constructorFunSpecOf
 import com.hendraanggrian.kotlinpoet.funSpecOf
 import com.hendraanggrian.kotlinpoet.getterFunSpecOf
 import com.hendraanggrian.kotlinpoet.setterFunSpecOf
-import com.squareup.kotlinpoet.FunSpec
 import kotlin.test.Test
 
-class FunSpecContainerTest {
-    private val funs = mutableListOf<FunSpec>()
-    private val container = object : FunSpecContainer() {
-        override fun addAll(specs: Iterable<FunSpec>): Boolean = funs.addAll(specs)
-        override fun add(spec: FunSpec) {
-            funs += spec
-        }
-    }
+class FunSpecListTest {
+    private val container = FunSpecList(mutableListOf())
 
-    private inline fun container(configuration: FunSpecContainerScope.() -> Unit) =
-        FunSpecContainerScope(container).configuration()
+    private inline fun container(configuration: FunSpecListScope.() -> Unit) =
+        FunSpecListScope(container).configuration()
 
     @Test fun nativeSpec() {
         container += funSpecOf("func")
         container += listOf(constructorFunSpecOf())
-        assertThat(funs).containsExactly(
+        assertThat(container).containsExactly(
             funSpecOf("func"),
             constructorFunSpecOf()
         )
@@ -33,7 +26,7 @@ class FunSpecContainerTest {
         container.add("func1")
         container += "func2"
         container { "func3" { } }
-        assertThat(funs).containsExactly(
+        assertThat(container).containsExactly(
             funSpecOf("func1"),
             funSpecOf("func2"),
             funSpecOf("func3")
@@ -44,7 +37,7 @@ class FunSpecContainerTest {
         container.addConstructor()
         container.addGetter()
         container.addSetter()
-        assertThat(funs).containsExactly(
+        assertThat(container).containsExactly(
             constructorFunSpecOf(),
             getterFunSpecOf(),
             setterFunSpecOf()
