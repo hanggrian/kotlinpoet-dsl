@@ -100,11 +100,11 @@
 </tr>
 <tr>
 <td>
-<h4><a href="super-class.html">superClass</a></h4>
+<h4><a href="superclass.html">superclass</a></h4>
 </td>
 <td>
 <p>Set superclass to type.</p>
-<code><span class="keyword">var </span><span class="identifier">superClass</span><span class="symbol">: </span><span class="identifier">TypeName</span></code></td>
+<code><span class="keyword">var </span><span class="identifier">superclass</span><span class="symbol">: </span><span class="identifier">TypeName</span></code></td>
 </tr>
 <tr>
 <td>
@@ -120,7 +120,7 @@
 </td>
 <td>
 <p>Super interfaces of this type.</p>
-<code><span class="keyword">val </span><span class="identifier">superinterfaces</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><span class="identifier">TypeName</span><span class="symbol">,</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">val </span><span class="identifier">superinterfaces</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-name-map/index.html"><span class="identifier">TypeNameMap</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -144,7 +144,7 @@
 </td>
 <td>
 <p>Type variables of this type.</p>
-<code><span class="keyword">val </span><span class="identifier">typeVariables</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">val </span><span class="identifier">typeVariables</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-list.html"><span class="identifier">TypeVariableNameList</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -198,34 +198,6 @@
 <code><span class="keyword">fun </span><span class="identifier">addSuperclassConstructorParameter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code>
 <p>Add super class constructor parameters with custom <a href="add-superclass-constructor-parameter.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</a>.</p>
 <code><span class="keyword">fun </span><span class="identifier">addSuperclassConstructorParameter</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperclassConstructorParameter(kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../-code-block-builder/index.html"><span class="identifier">CodeBlockBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="add-superinterface.html">addSuperinterface</a></h4>
-</td>
-<td>
-<p>Add superinterface to <a href="add-superinterface.html#com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperinterface(com.squareup.kotlinpoet.TypeName)/type">type</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">addSuperinterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperinterface(com.squareup.kotlinpoet.TypeName)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeName</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addSuperinterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperinterface(java.lang.reflect.Type)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addSuperinterface</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addSuperinterface(kotlin.reflect.KClass((kotlin.Any)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Add superinterface to <a href="add-superinterface.html#T">T</a>.</p>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">addSuperinterface</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="add-type-variable.html">addTypeVariable</a></h4>
-</td>
-<td>
-<p>Add type variables.</p>
-<code><span class="keyword">fun </span><span class="identifier">addTypeVariable</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addTypeVariable(com.squareup.kotlinpoet.TypeVariableName)/typeVariable">typeVariable</span><span class="symbol">:</span>&nbsp;<span class="identifier">TypeVariableName</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="add-type-variables.html">addTypeVariables</a></h4>
-</td>
-<td>
-<p>Add type variables.</p>
-<code><span class="keyword">fun </span><span class="identifier">addTypeVariables</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeSpecBuilder$addTypeVariables(kotlin.collections.Iterable((com.squareup.kotlinpoet.TypeVariableName)))/typeVariables">typeVariables</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>

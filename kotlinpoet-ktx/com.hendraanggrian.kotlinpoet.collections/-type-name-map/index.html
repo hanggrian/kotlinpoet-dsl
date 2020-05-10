@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>TypeNameMap - kotlinpoet-ktx</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet.collections</a>&nbsp;/&nbsp;<a href="./index.html">TypeNameMap</a><br/>
+<br/>
+<h1>TypeNameMap</h1>
+<code><span class="keyword">class </span><span class="identifier">TypeNameMap</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><span class="identifier">TypeName</span><span class="symbol">,</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<p>A <a href="./index.html">TypeNameMap</a> is responsible for managing a set of type name instances.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="set.html">set</a></h4>
+</td>
+<td>
+<p>Add type name from <a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html">Class</a>.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.TypeNameMap$set(java.lang.reflect.Type, com.squareup.kotlinpoet.CodeBlock)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/reflect/Type.html"><span class="identifier">Type</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.TypeNameMap$set(java.lang.reflect.Type, com.squareup.kotlinpoet.CodeBlock)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add type name from <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.TypeNameMap$set(kotlin.reflect.KClass((kotlin.Any)), com.squareup.kotlinpoet.CodeBlock)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.TypeNameMap$set(kotlin.reflect.KClass((kotlin.Any)), com.squareup.kotlinpoet.CodeBlock)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Add type name from <a href="set.html#T">T</a>.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.TypeNameMap$set(com.squareup.kotlinpoet.CodeBlock)/value">value</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
