@@ -112,4 +112,4 @@ $dokka.location:com.hendraanggrian.kotlinpoet$wildcardProducerOf(com.squareup.ko
 $dokka.location:com.hendraanggrian.kotlinpoet$wildcardProducerOf(java.lang.reflect.Type)com.hendraanggrian.kotlinpoet/java.lang.reflect.-type/wildcard-producer-of.html
 $dokka.location:com.hendraanggrian.kotlinpoet$wildcardProducerOf(kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/wildcard-producer-of.html
 com.hendraanggrian.kotlinpoet
-com.hendraanggrian.kotlinpoet.dsl
+com.hendraanggrian.kotlinpoet.collections

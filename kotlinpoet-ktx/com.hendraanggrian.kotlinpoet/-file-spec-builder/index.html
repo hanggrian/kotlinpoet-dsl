@@ -10,6 +10,19 @@
 <h1>FileSpecBuilder</h1>
 <code><span class="keyword">class </span><span class="identifier">FileSpecBuilder</span></code>
 <p>Wrapper of <a href="#">FileSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Wrapper of <a href="#">FileSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<code><span class="identifier">FileSpecBuilder</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$<init>(com.squareup.kotlinpoet.FileSpec.Builder)/nativeBuilder">nativeBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -18,24 +31,17 @@
 <h4><a href="annotations.html">annotations</a></h4>
 </td>
 <td>
-<p>Configure annotations without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-spec-container/index.html"><span class="identifier">AnnotationSpecContainer</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="annotation-specs.html">annotationSpecs</a></h4>
-</td>
-<td>
 <p>Annotations of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list/index.html"><span class="identifier">AnnotationSpecList</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="functions.html">functions</a></h4>
 </td>
 <td>
-<p>Configure functions without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">functions</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-fun-spec-container/index.html"><span class="identifier">FunSpecContainer</span></a></code></td>
+<p>Functions of this file.
+Returns a fake list where the only supported operation is <code>add</code>.</p>
+<code><span class="keyword">val </span><span class="identifier">functions</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-fun-spec-list/index.html"><span class="identifier">FunSpecList</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -55,11 +61,28 @@
 </tr>
 <tr>
 <td>
+<h4><a href="name.html">name</a></h4>
+</td>
+<td>
+<p>Name of this file.</p>
+<code><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="package-name.html">packageName</a></h4>
+</td>
+<td>
+<p>Package name of this file.</p>
+<code><span class="keyword">val </span><span class="identifier">packageName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="properties.html">properties</a></h4>
 </td>
 <td>
-<p>Configure properties without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">properties</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-property-spec-container/index.html"><span class="identifier">PropertySpecContainer</span></a></code></td>
+<p>Properties of this file.
+Returns a fake list where the only supported operation is <code>add</code>.</p>
+<code><span class="keyword">val </span><span class="identifier">properties</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-property-spec-list/index.html"><span class="identifier">PropertySpecList</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -74,16 +97,18 @@
 <h4><a href="type-aliases.html">typeAliases</a></h4>
 </td>
 <td>
-<p>Configure type-aliases without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">typeAliases</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-alias-spec-container/index.html"><span class="identifier">TypeAliasSpecContainer</span></a></code></td>
+<p>Type aliases of this file.
+Returns a fake list where the only supported operation is <code>add</code>.</p>
+<code><span class="keyword">val </span><span class="identifier">typeAliases</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-alias-spec-list/index.html"><span class="identifier">TypeAliasSpecList</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="types.html">types</a></h4>
 </td>
 <td>
-<p>Configure types without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">types</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-spec-container/index.html"><span class="identifier">TypeSpecContainer</span></a></code></td>
+<p>Types of this file.
+Returns a fake list where the only supported operation is <code>add</code>.</p>
+<code><span class="keyword">val </span><span class="identifier">types</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-spec-list/index.html"><span class="identifier">TypeSpecList</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -131,8 +156,8 @@
 <h4><a href="annotations.html">annotations</a></h4>
 </td>
 <td>
-<p>Configure annotations with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-spec-container-scope/index.html"><span class="identifier">AnnotationSpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures annotations for this file.</p>
+<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list-scope/index.html"><span class="identifier">AnnotationSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -147,32 +172,32 @@
 <h4><a href="functions.html">functions</a></h4>
 </td>
 <td>
-<p>Configure functions with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">functions</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$functions(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.FunSpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-fun-spec-container-scope/index.html"><span class="identifier">FunSpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures functions for this file.</p>
+<code><span class="keyword">fun </span><span class="identifier">functions</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$functions(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.FunSpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-fun-spec-list-scope/index.html"><span class="identifier">FunSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="properties.html">properties</a></h4>
 </td>
 <td>
-<p>Configure properties with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">properties</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$properties(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.PropertySpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-property-spec-container-scope/index.html"><span class="identifier">PropertySpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures properties for this file.</p>
+<code><span class="keyword">fun </span><span class="identifier">properties</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$properties(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-property-spec-list-scope/index.html"><span class="identifier">PropertySpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="type-aliases.html">typeAliases</a></h4>
 </td>
 <td>
-<p>Configure type-aliases with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">typeAliases</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$typeAliases(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-alias-spec-container-scope/index.html"><span class="identifier">TypeAliasSpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures type aliases for this file.</p>
+<code><span class="keyword">fun </span><span class="identifier">typeAliases</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$typeAliases(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-type-alias-spec-list-scope/index.html"><span class="identifier">TypeAliasSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="types.html">types</a></h4>
 </td>
 <td>
-<p>Configure types with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">types</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$types(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.TypeSpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-type-spec-container-scope/index.html"><span class="identifier">TypeSpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures types for this file.</p>
+<code><span class="keyword">fun </span><span class="identifier">types</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$types(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-type-spec-list-scope/index.html"><span class="identifier">TypeSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>

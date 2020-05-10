@@ -10,31 +10,60 @@
 <h1>TypeAliasSpecBuilder</h1>
 <code><span class="keyword">class </span><span class="identifier">TypeAliasSpecBuilder</span></code>
 <p>Wrapper of <a href="#">TypeAliasSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Wrapper of <a href="#">TypeAliasSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<code><span class="identifier">TypeAliasSpecBuilder</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder$<init>(com.squareup.kotlinpoet.TypeAliasSpec.Builder)/nativeBuilder">nativeBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
+<h4><a href="annotations.html">annotations</a></h4>
+</td>
+<td>
+<p>Annotations of this type alias.</p>
+<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list/index.html"><span class="identifier">AnnotationSpecList</span></a></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="kdoc.html">kdoc</a></h4>
 </td>
 <td>
-<p>Configure kdoc without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code></td>
+<p>Kdoc of this type alias.</p>
+<code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="modifiers.html">modifiers</a></h4>
 </td>
 <td>
-<p>Modifiers of this builder.</p>
+<p>Modifiers of this type alias.</p>
 <code><span class="keyword">val </span><span class="identifier">modifiers</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">KModifier</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="tags.html">tags</a></h4>
+</td>
+<td>
+<p>Tags variables of this type alias.</p>
+<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="type-variables.html">typeVariables</a></h4>
 </td>
 <td>
-<p>Type variables of this builder.</p>
+<p>Type variables of this type alias.</p>
 <code><span class="keyword">val </span><span class="identifier">typeVariables</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
@@ -68,6 +97,14 @@
 </tr>
 <tr>
 <td>
+<h4><a href="annotations.html">annotations</a></h4>
+</td>
+<td>
+<p>Configures annotations of this type alias.</p>
+<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list-scope/index.html"><span class="identifier">AnnotationSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="build.html">build</a></h4>
 </td>
 <td>
@@ -79,8 +116,8 @@
 <h4><a href="kdoc.html">kdoc</a></h4>
 </td>
 <td>
-<p>Configure kdoc with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">kdoc</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder$kdoc(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container-scope/index.html"><span class="identifier">KdocContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures kdoc of this type alias.</p>
+<code><span class="keyword">fun </span><span class="identifier">kdoc</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder$kdoc(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.KdocContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-kdoc-container-scope/index.html"><span class="identifier">KdocContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>

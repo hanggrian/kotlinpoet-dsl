@@ -10,6 +10,19 @@
 <h1>ParameterSpecBuilder</h1>
 <code><span class="keyword">class </span><span class="identifier">ParameterSpecBuilder</span></code>
 <p>Wrapper of <a href="#">ParameterSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Wrapper of <a href="#">ParameterSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
+<code><span class="identifier">ParameterSpecBuilder</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$<init>(com.squareup.kotlinpoet.ParameterSpec.Builder)/nativeBuilder">nativeBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -18,16 +31,8 @@
 <h4><a href="annotations.html">annotations</a></h4>
 </td>
 <td>
-<p>Configure annotations without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-spec-container/index.html"><span class="identifier">AnnotationSpecContainer</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="annotation-specs.html">annotationSpecs</a></h4>
-</td>
-<td>
 <p>Annotations of this parameter.</p>
-<code><span class="keyword">val </span><span class="identifier">annotationSpecs</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list/index.html"><span class="identifier">AnnotationSpecList</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -42,16 +47,16 @@
 <h4><a href="kdoc.html">kdoc</a></h4>
 </td>
 <td>
-<p>Configure kdoc without DSL.</p>
-<code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code></td>
+<p>Kdoc of this parameter.</p>
+<code><span class="keyword">val </span><span class="identifier">kdoc</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a></code></td>
 </tr>
 <tr>
 <td>
-<h4><a href="kdoc-builder.html">kdocBuilder</a></h4>
+<h4><a href="kdoc-code-block.html">kdocCodeBlock</a></h4>
 </td>
 <td>
 <p>Kdoc of this parameter.</p>
-<code><span class="keyword">val </span><span class="identifier">kdocBuilder</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+<code><span class="keyword">val </span><span class="identifier">kdocCodeBlock</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
 </tr>
 <tr>
 <td>
@@ -87,8 +92,8 @@
 <h4><a href="annotations.html">annotations</a></h4>
 </td>
 <td>
-<p>Configure annotations with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-annotation-spec-container-scope/index.html"><span class="identifier">AnnotationSpecContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures annotations of this parameter.</p>
+<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list-scope/index.html"><span class="identifier">AnnotationSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -113,8 +118,8 @@
 <h4><a href="kdoc.html">kdoc</a></h4>
 </td>
 <td>
-<p>Configure kdoc with DSL.</p>
-<code><span class="keyword">fun </span><span class="identifier">kdoc</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$kdoc(kotlin.Function1((com.hendraanggrian.kotlinpoet.dsl.KdocContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.dsl/-kdoc-container-scope/index.html"><span class="identifier">KdocContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<p>Configures kdoc of this parameter.</p>
+<code><span class="keyword">fun </span><span class="identifier">kdoc</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.ParameterSpecBuilder$kdoc(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.KdocContainerScope, kotlin.Unit)))/configuration">configuration</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-kdoc-container-scope/index.html"><span class="identifier">KdocContainerScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>
