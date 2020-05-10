@@ -14,7 +14,7 @@ class TypeVariableNameTest {
             }
             
             """.trimIndent(),
-        "${buildFunSpec("go") { addTypeVariable("T".typeVarBy(INT)) }}"
+        "${buildFunSpec("go") { typeVariables.add("T", INT) }}"
     )
 
     @Test fun classBounds() = assertEquals(
@@ -23,7 +23,7 @@ class TypeVariableNameTest {
             }
             
             """.trimIndent(),
-        "${buildFunSpec("go") { addTypeVariable("T".typeVarBy(java.lang.Integer::class.java)) }}"
+        "${buildFunSpec("go") { typeVariables.add("T", java.lang.Integer::class.java) }}"
     )
 
     @Test fun kclassBounds() = assertEquals(
@@ -32,6 +32,6 @@ class TypeVariableNameTest {
             }
             
             """.trimIndent(),
-        "${buildFunSpec("go") { addTypeVariable("T".typeVarBy(java.lang.Integer::class)) }}"
+        "${buildFunSpec("go") { typeVariables.add("T", java.lang.Integer::class) }}"
     )
 }

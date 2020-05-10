@@ -26,7 +26,7 @@ private interface CodeBlockAppendable {
     }
 }
 
-abstract class CodeBlockContainer : CodeBlockAppendable {
+abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
@@ -50,7 +50,7 @@ abstract class CodeBlockContainer : CodeBlockAppendable {
 }
 
 /** A [KdocContainer] is responsible for managing a set of code instances. */
-abstract class KdocContainer : CodeBlockAppendable {
+abstract class KdocContainer internal constructor() : CodeBlockAppendable {
 
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =

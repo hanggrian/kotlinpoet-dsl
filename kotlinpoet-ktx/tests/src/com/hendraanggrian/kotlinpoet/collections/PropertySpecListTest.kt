@@ -6,15 +6,15 @@ import com.squareup.kotlinpoet.ClassName
 import kotlin.test.Test
 
 class PropertySpecListTest {
-    private val container = PropertySpecList(mutableListOf())
+    private val list = PropertySpecList(mutableListOf())
 
     private inline fun container(configuration: PropertySpecListScope.() -> Unit) =
-        PropertySpecListScope(container).configuration()
+        PropertySpecListScope(list).configuration()
 
     @Test fun nativeSpec() {
-        container += propertySpecOf<Property1>("property1")
-        container += listOf(propertySpecOf<Property2>("property2"))
-        assertThat(container).containsExactly(
+        list += propertySpecOf<Property1>("property1")
+        list += listOf(propertySpecOf<Property2>("property2"))
+        assertThat(list).containsExactly(
             propertySpecOf<Property1>("property1"),
             propertySpecOf<Property2>("property2")
         )
@@ -22,10 +22,10 @@ class PropertySpecListTest {
 
     @Test fun className() {
         val packageName = "com.hendraanggrian.kotlinpoet.collections.PropertySpecListTest"
-        container.add("property1", ClassName(packageName, "Property1"))
-        container["property2"] = ClassName(packageName, "Property2")
+        list.add("property1", ClassName(packageName, "Property1"))
+        list["property2"] = ClassName(packageName, "Property2")
         container { "property3"(ClassName(packageName, "Property3")) { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             propertySpecOf<Property1>("property1"),
             propertySpecOf<Property2>("property2"),
             propertySpecOf<Property3>("property3")
@@ -33,10 +33,10 @@ class PropertySpecListTest {
     }
 
     @Test fun javaClass() {
-        container.add("property1", Property1::class.java)
-        container["property2"] = Property2::class.java
+        list.add("property1", Property1::class.java)
+        list["property2"] = Property2::class.java
         container { "property3"(Property3::class.java) { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             propertySpecOf<Property1>("property1"),
             propertySpecOf<Property2>("property2"),
             propertySpecOf<Property3>("property3")
@@ -44,10 +44,10 @@ class PropertySpecListTest {
     }
 
     @Test fun kotlinClass() {
-        container.add("property1", Property1::class)
-        container["property2"] = Property2::class
+        list.add("property1", Property1::class)
+        list["property2"] = Property2::class
         container { "property3"(Property3::class) { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             propertySpecOf<Property1>("property1"),
             propertySpecOf<Property2>("property2"),
             propertySpecOf<Property3>("property3")
@@ -55,9 +55,9 @@ class PropertySpecListTest {
     }
 
     @Test fun reifiedType() {
-        container.add<Property1>("field1")
+        list.add<Property1>("field1")
         container { "field2"<Property2> { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             propertySpecOf<Property1>("field1"),
             propertySpecOf<Property2>("field2")
         )

@@ -7,11 +7,11 @@ import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.collections.ParameterSpecList
 import com.hendraanggrian.kotlinpoet.collections.ParameterSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameList
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
@@ -72,9 +72,6 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
-    /** Type variables of this function. */
-    val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
-
     /** Tags variables of this function. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
@@ -113,15 +110,8 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
         nativeBuilder.addModifiers(modifiers)
     }
 
-    /** Add type variables. */
-    fun addTypeVariables(typeVariables: Iterable<TypeVariableName>) {
-        nativeBuilder.addTypeVariables(typeVariables)
-    }
-
-    /** Add type variables. */
-    fun addTypeVariable(typeVariable: TypeVariableName) {
-        nativeBuilder.addTypeVariable(typeVariable)
-    }
+    /** Type variables of this function. */
+    val typeVariables: TypeVariableNameList = TypeVariableNameList(nativeBuilder.typeVariables)
 
     /** Set receiver to type. */
     var receiver: TypeName

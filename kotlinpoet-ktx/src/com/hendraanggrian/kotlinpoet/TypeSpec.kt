@@ -8,15 +8,16 @@ import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.collections.PropertySpecList
 import com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeNameMap
 import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
 import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameList
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
@@ -195,14 +196,8 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     /** Modifiers of this type. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
 
-    /** Super interfaces of this type. */
-    val superinterfaces: MutableMap<TypeName, CodeBlock?> get() = nativeBuilder.superinterfaces
-
     /** Enum constants of this type. */
     val enumConstants: MutableMap<String, TypeSpec> get() = nativeBuilder.enumConstants
-
-    /** Type variables of this type. */
-    val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
 
     /** Super class constructor parameters of this type. */
     val superclassConstructorParameters: MutableList<CodeBlock> get() = nativeBuilder.superclassConstructorParameters
@@ -234,15 +229,8 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    /** Add type variables. */
-    fun addTypeVariable(typeVariable: TypeVariableName) {
-        nativeBuilder.addTypeVariable(typeVariable)
-    }
-
-    /** Add type variables. */
-    fun addTypeVariables(typeVariables: Iterable<TypeVariableName>) {
-        nativeBuilder.addTypeVariables(typeVariables)
-    }
+    /** Type variables of this type. */
+    val typeVariables: TypeVariableNameList = TypeVariableNameList(nativeBuilder.typeVariables)
 
     /** Set primary constructor to type. */
     var primaryConstructor: FunSpec?
@@ -259,7 +247,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
         buildConstructorFunSpec(builderAction).also { primaryConstructor = it }
 
     /** Set superclass to type. */
-    var superClass: TypeName
+    var superclass: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {
             nativeBuilder.superclass(value)
@@ -291,23 +279,8 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     inline fun addSuperclassConstructorParameter(builderAction: CodeBlockBuilder.() -> Unit) =
         addSuperclassConstructorParameter(buildCodeBlock(builderAction))
 
-    /** Add superinterface to [type]. */
-    fun addSuperinterface(type: TypeName) {
-        nativeBuilder.addSuperinterface(type)
-    }
-
-    /** Add superinterface to [type]. */
-    fun addSuperinterface(type: Type) {
-        nativeBuilder.addSuperinterface(type)
-    }
-
-    /** Add superinterface to [type]. */
-    fun addSuperinterface(type: KClass<*>) {
-        nativeBuilder.addSuperinterface(type)
-    }
-
-    /** Add superinterface to [T]. */
-    inline fun <reified T> addSuperinterface() = addSuperinterface(T::class)
+    /** Super interfaces of this type. */
+    val superinterfaces: TypeNameMap get() = TypeNameMap(nativeBuilder.superinterfaces)
 
     /** Add enum constant named [name]. */
     fun addEnumConstant(name: String) {

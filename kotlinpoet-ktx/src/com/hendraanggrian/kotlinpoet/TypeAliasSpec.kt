@@ -4,11 +4,11 @@ import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameSet
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
@@ -78,9 +78,6 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     /** Modifiers of this type alias. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
 
-    /** Type variables of this type alias. */
-    val typeVariables: MutableSet<TypeVariableName> get() = nativeBuilder.typeVariables
-
     /** Tags variables of this type alias. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
@@ -89,15 +86,8 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    /** Add type variables. */
-    fun addTypeVariables(typeVariables: Iterable<TypeVariableName>) {
-        nativeBuilder.addTypeVariables(typeVariables)
-    }
-
-    /** Add type variables. */
-    fun addTypeVariable(typeVariable: TypeVariableName) {
-        nativeBuilder.addTypeVariable(typeVariable)
-    }
+    /** Type variables of this type alias. */
+    val typeVariables: TypeVariableNameSet = TypeVariableNameSet(nativeBuilder.typeVariables)
 
     /** Annotations of this type alias. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)

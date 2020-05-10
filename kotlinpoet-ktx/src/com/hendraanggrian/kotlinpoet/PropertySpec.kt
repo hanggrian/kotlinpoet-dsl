@@ -4,12 +4,12 @@ import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameList
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
@@ -84,9 +84,6 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     /** Modifiers of this property. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
 
-    /** Type variables of this property. */
-    val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
-
     /** Tags variables of this property. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
@@ -127,15 +124,8 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    /** Add type variables. */
-    fun addTypeVariables(typeVariables: Iterable<TypeVariableName>) {
-        nativeBuilder.addTypeVariables(typeVariables)
-    }
-
-    /** Add type variables. */
-    fun addTypeVariable(typeVariable: TypeVariableName) {
-        nativeBuilder.addTypeVariable(typeVariable)
-    }
+    /** Type variables of this property. */
+    val typeVariables: TypeVariableNameList = TypeVariableNameList(nativeBuilder.typeVariables)
 
     /** Initialize field value like [String.format]. */
     fun initializer(format: String, vararg args: Any) {

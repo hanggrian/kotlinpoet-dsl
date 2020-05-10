@@ -6,15 +6,15 @@ import com.squareup.kotlinpoet.ClassName
 import kotlin.test.Test
 
 class AnnotationSpecListTest {
-    private val container = AnnotationSpecList(mutableListOf())
+    private val list = AnnotationSpecList(mutableListOf())
 
     private inline fun container(configuration: AnnotationSpecListScope.() -> Unit) =
-        AnnotationSpecListScope(container).configuration()
+        AnnotationSpecListScope(list).configuration()
 
     @Test fun nativeSpec() {
-        container += annotationSpecOf<Annotation1>()
-        container += listOf(annotationSpecOf<Annotation2>())
-        assertThat(container).containsExactly(
+        list += annotationSpecOf<Annotation1>()
+        list += listOf(annotationSpecOf<Annotation2>())
+        assertThat(list).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>()
         )
@@ -22,10 +22,10 @@ class AnnotationSpecListTest {
 
     @Test fun className() {
         val packageName = "com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListTest"
-        container.add(ClassName(packageName, "Annotation1"))
-        container += ClassName(packageName, "Annotation2")
+        list.add(ClassName(packageName, "Annotation1"))
+        list += ClassName(packageName, "Annotation2")
         container { (ClassName(packageName, "Annotation3")) { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>(),
             annotationSpecOf<Annotation3>()
@@ -33,10 +33,10 @@ class AnnotationSpecListTest {
     }
 
     @Test fun javaClass() {
-        container.add(Annotation1::class.java)
-        container += Annotation2::class.java
+        list.add(Annotation1::class.java)
+        list += Annotation2::class.java
         container { (Annotation3::class.java) { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>(),
             annotationSpecOf<Annotation3>()
@@ -44,10 +44,10 @@ class AnnotationSpecListTest {
     }
 
     @Test fun kotlinClass() {
-        container.add(Annotation1::class)
-        container += Annotation2::class
+        list.add(Annotation1::class)
+        list += Annotation2::class
         container { Annotation3::class { } }
-        assertThat(container).containsExactly(
+        assertThat(list).containsExactly(
             annotationSpecOf<Annotation1>(),
             annotationSpecOf<Annotation2>(),
             annotationSpecOf<Annotation3>()
@@ -55,8 +55,8 @@ class AnnotationSpecListTest {
     }
 
     @Test fun reifiedType() {
-        container.add<Annotation1>()
-        assertThat(container).containsExactly(annotationSpecOf<Annotation1>())
+        list.add<Annotation1>()
+        assertThat(list).containsExactly(annotationSpecOf<Annotation1>())
     }
 
     annotation class Annotation1
