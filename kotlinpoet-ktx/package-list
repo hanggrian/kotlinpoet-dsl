@@ -45,7 +45,6 @@ $dokka.location:com.hendraanggrian.kotlinpoet$annotate(kotlin.reflect.KClass((ko
 $dokka.location:com.hendraanggrian.kotlinpoet$annotate(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((com.squareup.kotlinpoet.ClassName)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/annotate.html
 $dokka.location:com.hendraanggrian.kotlinpoet$annotate(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((java.lang.Class((kotlin.Annotation)))))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/annotate.html
 $dokka.location:com.hendraanggrian.kotlinpoet$annotate(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.reflect.KClass((kotlin.Annotation)))))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/annotate.html
-$dokka.location:com.hendraanggrian.kotlinpoet$asAnnotationSpec(javax.lang.model.element.AnnotationMirror)com.hendraanggrian.kotlinpoet/javax.lang.model.element.-annotation-mirror/as-annotation-spec.html
 $dokka.location:com.hendraanggrian.kotlinpoet$asAnnotationSpec(kotlin.Annotation, kotlin.Boolean)com.hendraanggrian.kotlinpoet/kotlin.-annotation/as-annotation-spec.html
 $dokka.location:com.hendraanggrian.kotlinpoet$asNotNull(com.squareup.kotlinpoet.ClassName)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-class-name/as-not-null.html
 $dokka.location:com.hendraanggrian.kotlinpoet$asNotNull(com.squareup.kotlinpoet.LambdaTypeName)com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-lambda-type-name/as-not-null.html
@@ -65,7 +64,6 @@ $dokka.location:com.hendraanggrian.kotlinpoet$asNullable(com.squareup.kotlinpoet
 $dokka.location:com.hendraanggrian.kotlinpoet$asNullable(java.lang.Class((kotlin.Any)))com.hendraanggrian.kotlinpoet/java.lang.-class/as-nullable.html
 $dokka.location:com.hendraanggrian.kotlinpoet$asNullable(java.lang.reflect.Type)com.hendraanggrian.kotlinpoet/java.lang.reflect.-type/as-nullable.html
 $dokka.location:com.hendraanggrian.kotlinpoet$asNullable(kotlin.reflect.KClass((kotlin.Any)))com.hendraanggrian.kotlinpoet/kotlin.reflect.-k-class/as-nullable.html
-$dokka.location:com.hendraanggrian.kotlinpoet$asParameterSpec(javax.lang.model.element.VariableElement)com.hendraanggrian.kotlinpoet/javax.lang.model.element.-variable-element/as-parameter-spec.html
 $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.AnnotationSpec.Builder, kotlin.Function1((com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder, kotlin.Unit)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-annotation-spec.-builder/build.html
 $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.CodeBlock.Builder, kotlin.Function1((com.hendraanggrian.kotlinpoet.CodeBlockBuilder, kotlin.Unit)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-code-block.-builder/build.html
 $dokka.location:com.hendraanggrian.kotlinpoet$build(com.squareup.kotlinpoet.FileSpec.Builder, kotlin.Function1((com.hendraanggrian.kotlinpoet.FileSpecBuilder, kotlin.Unit)))com.hendraanggrian.kotlinpoet/com.squareup.kotlinpoet.-file-spec.-builder/build.html
