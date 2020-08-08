@@ -16,7 +16,19 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
 
     /** Add property from [type] and [name], returning the property added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf(name, type, *modifiers).also { add(it) }
+        propertySpecOf(name, type, *modifiers).also(::plusAssign)
+
+    /** Add property from [type] and [name], returning the property added. */
+    fun add(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
+        propertySpecOf(name, type, *modifiers).also(::plusAssign)
+
+    /** Add property from [type] and [name], returning the property added. */
+    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
+        propertySpecOf(name, type, *modifiers).also(::plusAssign)
+
+    /** Add property from reified [T] and [name], returning the property added. */
+    inline fun <reified T> add(name: String, vararg modifiers: KModifier): PropertySpec =
+        propertySpecOf<T>(name, *modifiers).also(::plusAssign)
 
     /** Add property from [type] and [name] with custom initialization [builderAction], returning the property added. */
     inline fun add(
@@ -24,11 +36,7 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
         type: TypeName,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
-
-    /** Add property from [type] and [name], returning the property added. */
-    fun add(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf(name, type, *modifiers).also { add(it) }
+    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Add property from [type] and [name] with custom initialization [builderAction], returning the property added. */
     inline fun add(
@@ -36,11 +44,7 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
         type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
-
-    /** Add property from [type] and [name], returning the property added. */
-    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf(name, type, *modifiers).also { add(it) }
+    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Add property from [type] and [name] with custom initialization [builderAction], returning the property added. */
     inline fun add(
@@ -48,33 +52,23 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
         type: KClass<*>,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
-
-    /** Add property from reified [T] and [name], returning the property added. */
-    inline fun <reified T> add(name: String, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf<T>(name, *modifiers).also { add(it) }
+    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Add property from reified [T] and [name] with custom initialization [builderAction], returning the property added. */
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
+    ): PropertySpec = buildPropertySpec<T>(name, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Convenient method to add property with operator function. */
-    operator fun set(name: String, type: TypeName) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: TypeName): Unit = plusAssign(propertySpecOf(name, type))
 
     /** Convenient method to add property with operator function. */
-    operator fun set(name: String, type: Type) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: Type): Unit = plusAssign(propertySpecOf(name, type))
 
     /** Convenient method to add property with operator function. */
-    operator fun set(name: String, type: KClass<*>) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: KClass<*>): Unit = plusAssign(propertySpecOf(name, type))
 }
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */

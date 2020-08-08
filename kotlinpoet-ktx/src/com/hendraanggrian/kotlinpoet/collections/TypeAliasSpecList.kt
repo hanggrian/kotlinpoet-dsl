@@ -14,51 +14,52 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     MutableList<TypeAliasSpec> by actualList {
 
     /** Add type alias from [name] and [type], returning the type alias added. */
-    fun add(name: String, type: TypeName): TypeAliasSpec =
-        typeAliasSpecOf(name, type).also { add(it) }
-
-    /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
-    inline fun add(name: String, type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAliasSpec(name, type, builderAction).also { add(it) }
+    fun add(name: String, type: TypeName): TypeAliasSpec = typeAliasSpecOf(name, type).also(::plusAssign)
 
     /** Add type alias from [name] and [type], returning the type alias added. */
-    fun add(name: String, type: Type): TypeAliasSpec =
-        typeAliasSpecOf(name, type).also { add(it) }
-
-    /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
-    inline fun add(name: String, type: Type, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAliasSpec(name, type, builderAction).also { add(it) }
+    fun add(name: String, type: Type): TypeAliasSpec = typeAliasSpecOf(name, type).also(::plusAssign)
 
     /** Add type alias from [name] and [type], returning the type alias added. */
-    fun add(name: String, type: KClass<*>): TypeAliasSpec =
-        typeAliasSpecOf(name, type).also { add(it) }
-
-    /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
-    inline fun add(name: String, type: KClass<*>, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAliasSpec(name, type, builderAction).also { add(it) }
+    fun add(name: String, type: KClass<*>): TypeAliasSpec = typeAliasSpecOf(name, type).also(::plusAssign)
 
     /** Add type alias from [name] and reified [T], returning the type alias added. */
-    inline fun <reified T> add(name: String): TypeAliasSpec =
-        typeAliasSpecOf<T>(name).also { add(it) }
+    inline fun <reified T> add(name: String): TypeAliasSpec = typeAliasSpecOf<T>(name).also(::plusAssign)
+
+    /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
+    inline fun add(
+        name: String,
+        type: TypeName,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = buildTypeAliasSpec(name, type, builderAction).also(::plusAssign)
+
+    /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
+    inline fun add(
+        name: String,
+        type: Type,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = buildTypeAliasSpec(name, type, builderAction).also(::plusAssign)
+
+    /** Add type alias from [name] and [type] with custom initialization [builderAction], returning the type alias added. */
+    inline fun add(
+        name: String,
+        type: KClass<*>,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = buildTypeAliasSpec(name, type, builderAction).also(::plusAssign)
 
     /** Add type alias from [name] and reified [T] with custom initialization [builderAction], returning the type alias added. */
-    inline fun <reified T> add(name: String, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        buildTypeAliasSpec<T>(name, builderAction).also { add(it) }
+    inline fun <reified T> add(
+        name: String,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = buildTypeAliasSpec<T>(name, builderAction).also(::plusAssign)
 
     /** Convenient method to add type alias with operator function. */
-    operator fun set(name: String, type: TypeName) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: TypeName): Unit = plusAssign(typeAliasSpecOf(name, type))
 
     /** Convenient method to add type alias with operator function. */
-    operator fun set(name: String, type: Type) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: Type): Unit = plusAssign(typeAliasSpecOf(name, type))
 
     /** Convenient method to add type alias with operator function. */
-    operator fun set(name: String, type: KClass<*>) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: KClass<*>): Unit = plusAssign(typeAliasSpecOf(name, type))
 }
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
@@ -66,18 +67,25 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
 class TypeAliasSpecListScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecList(actualList) {
 
     /** Convenient method to add type alias with receiver type. */
-    inline operator fun String.invoke(type: TypeName, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        add(this, type, builderAction)
+    inline operator fun String.invoke(
+        type: TypeName,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = add(this, type, builderAction)
 
     /** Convenient method to add type alias with receiver type. */
-    inline operator fun String.invoke(type: Type, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        add(this, type, builderAction)
+    inline operator fun String.invoke(
+        type: Type,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = add(this, type, builderAction)
 
     /** Convenient method to add type alias with receiver type. */
-    inline operator fun String.invoke(type: KClass<*>, builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        add(this, type, builderAction)
+    inline operator fun String.invoke(
+        type: KClass<*>,
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = add(this, type, builderAction)
 
     /** Convenient method to add type alias with receiver type. */
-    inline operator fun <reified T> String.invoke(builderAction: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec =
-        add(this, T::class, builderAction)
+    inline operator fun <reified T> String.invoke(
+        builderAction: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec = add(this, T::class, builderAction)
 }

@@ -16,58 +16,59 @@ import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
-/** Builds a new [FunSpec] from [name]. */
-fun funSpecOf(name: String): FunSpec =
-    FunSpecBuilder(FunSpec.builder(name)).build()
+/** Builds new [FunSpec] with [name]. */
+fun funSpecOf(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
+
+/** Builds new constructor [FunSpec]. */
+fun emptyConstructorFunSpec(): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).build()
+
+/** Builds new getter [FunSpec]. */
+fun emptyGetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).build()
+
+/** Builds new setter [FunSpec]. */
+fun emptySetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
 
 /**
- * Builds a new [FunSpec] from [name],
+ * Builds new [FunSpec] with [name],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildFunSpec(name: String, builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpec.builder(name).build(builderAction)
-
-/** Builds a new constructor [FunSpec]. */
-fun constructorFunSpecOf(): FunSpec =
-    FunSpecBuilder(FunSpec.constructorBuilder()).build()
+inline fun buildFunSpec(
+    name: String,
+    builderAction: FunSpecBuilder.() -> Unit
+): FunSpec = FunSpec.builder(name).build(builderAction)
 
 /**
- * Builds a new constructor [FunSpec],
+ * Builds new constructor [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildConstructorFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpecBuilder(FunSpec.constructorBuilder()).apply(builderAction).build()
-
-/** Builds a new getter [FunSpec]. */
-fun getterFunSpecOf(): FunSpec =
-    FunSpecBuilder(FunSpec.getterBuilder()).build()
+inline fun buildConstructorFunSpec(
+    builderAction: FunSpecBuilder.() -> Unit
+): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).apply(builderAction).build()
 
 /**
- * Builds a new getter [FunSpec],
+ * Builds new getter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildGetterFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpec.getterBuilder().build(builderAction)
-
-/** Builds a new setter [FunSpec]. */
-fun setterFunSpecOf(): FunSpec =
-    FunSpecBuilder(FunSpec.setterBuilder()).build()
+inline fun buildGetterFunSpec(
+    builderAction: FunSpecBuilder.() -> Unit
+): FunSpec = FunSpec.getterBuilder().build(builderAction)
 
 /**
- * Builds a new setter [FunSpec],
+ * Builds new setter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildSetterFunSpec(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpec.setterBuilder().build(builderAction)
+inline fun buildSetterFunSpec(
+    builderAction: FunSpecBuilder.() -> Unit
+): FunSpec = FunSpec.setterBuilder().build(builderAction)
 
 /** Modify existing [FunSpec.Builder] using provided [builderAction] and then building it. */
-inline fun FunSpec.Builder.build(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpecBuilder(this).apply(builderAction).build()
+inline fun FunSpec.Builder.build(
+    builderAction: FunSpecBuilder.() -> Unit
+): FunSpec = FunSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
-    CodeBlockContainer() {
+class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockContainer() {
 
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
@@ -235,6 +236,10 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     inline fun callSuperConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
         callSuperConstructor(buildCodeBlock(builderAction))
 
+    override fun appendNamed(format: String, args: Map<String, *>) {
+        nativeBuilder.addNamedCode(format, args)
+    }
+
     override fun append(format: String, vararg args: Any) {
         nativeBuilder.addCode(format, *args)
     }
@@ -259,9 +264,9 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
         nativeBuilder.addStatement(format, *args)
     }
 
-    /** Add named code. */
-    fun addNamedCode(format: String, args: Map<String, *>) {
-        nativeBuilder.addNamedCode(format, args)
+    /** Clear current code. */
+    fun clear() {
+        nativeBuilder.clearBody()
     }
 
     /** Add comment like [String.format]. */

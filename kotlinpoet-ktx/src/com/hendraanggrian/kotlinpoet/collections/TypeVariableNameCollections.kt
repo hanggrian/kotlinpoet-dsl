@@ -22,9 +22,7 @@ private interface TypeVariableNameCollection : MutableCollection<TypeVariableNam
     fun add(name: String, vararg bounds: KClass<*>): Boolean = add(name.typeVarBy(*bounds))
 
     /** Convenient method to add type name with operator function. */
-    operator fun plusAssign(type: String) {
-        add(type)
-    }
+    operator fun plusAssign(name: String): Unit = plusAssign(name.typeVarOf())
 }
 
 /** A [TypeVariableNameList] is responsible for managing a set of type variable name instances. */

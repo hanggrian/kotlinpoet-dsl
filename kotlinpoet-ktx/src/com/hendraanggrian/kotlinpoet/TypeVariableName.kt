@@ -9,8 +9,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** Returns a [TypeVariableName] without bounds. */
-inline fun String.typeVarOf(variance: KModifier? = null): TypeVariableName =
-    TypeVariableName(this, variance)
+inline fun String.typeVarOf(variance: KModifier? = null): TypeVariableName = TypeVariableName(this, variance)
 
 /** Returns a [TypeVariableName] with [TypeName] bounds. */
 inline fun String.typeVarBy(vararg bounds: TypeName, variance: KModifier? = null): TypeVariableName =

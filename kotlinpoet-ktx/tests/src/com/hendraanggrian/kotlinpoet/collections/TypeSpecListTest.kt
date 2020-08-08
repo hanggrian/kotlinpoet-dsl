@@ -2,9 +2,9 @@ package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
 import com.hendraanggrian.kotlinpoet.annotationTypeSpecOf
-import com.hendraanggrian.kotlinpoet.anonymousTypeSpecOf
 import com.hendraanggrian.kotlinpoet.buildEnumTypeSpec
 import com.hendraanggrian.kotlinpoet.classTypeSpecOf
+import com.hendraanggrian.kotlinpoet.emptyAnonymousTypeSpec
 import com.hendraanggrian.kotlinpoet.interfaceTypeSpecOf
 import com.squareup.kotlinpoet.ClassName
 import kotlin.test.Test
@@ -46,7 +46,7 @@ class TypeSpecListTest {
             classTypeSpecOf("Class1"),
             interfaceTypeSpecOf("Interface1"),
             buildEnumTypeSpec("Enum1") { addEnumConstant("A") },
-            anonymousTypeSpecOf(),
+            emptyAnonymousTypeSpec(),
             annotationTypeSpecOf("Annotation1")
         )
     }

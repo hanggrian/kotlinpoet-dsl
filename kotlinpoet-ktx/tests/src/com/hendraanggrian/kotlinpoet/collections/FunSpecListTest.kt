@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.constructorFunSpecOf
+import com.hendraanggrian.kotlinpoet.emptyConstructorFunSpec
+import com.hendraanggrian.kotlinpoet.emptyGetterFunSpec
+import com.hendraanggrian.kotlinpoet.emptySetterFunSpec
 import com.hendraanggrian.kotlinpoet.funSpecOf
-import com.hendraanggrian.kotlinpoet.getterFunSpecOf
-import com.hendraanggrian.kotlinpoet.setterFunSpecOf
 import kotlin.test.Test
 
 class FunSpecListTest {
@@ -15,21 +15,19 @@ class FunSpecListTest {
 
     @Test fun nativeSpec() {
         list += funSpecOf("func")
-        list += listOf(constructorFunSpecOf())
+        list += listOf(emptyConstructorFunSpec())
         assertThat(list).containsExactly(
             funSpecOf("func"),
-            constructorFunSpecOf()
+            emptyConstructorFunSpec()
         )
     }
 
     @Test fun string() {
         list.add("func1")
-        list += "func2"
-        container { "func3" { } }
+        container { "func2" { } }
         assertThat(list).containsExactly(
             funSpecOf("func1"),
-            funSpecOf("func2"),
-            funSpecOf("func3")
+            funSpecOf("func2")
         )
     }
 
@@ -38,9 +36,9 @@ class FunSpecListTest {
         list.addGetter()
         list.addSetter()
         assertThat(list).containsExactly(
-            constructorFunSpecOf(),
-            getterFunSpecOf(),
-            setterFunSpecOf()
+            emptyConstructorFunSpec(),
+            emptyGetterFunSpec(),
+            emptySetterFunSpec()
         )
     }
 }

@@ -16,7 +16,19 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
 
     /** Add parameter from [type] and [name], returning the parameter added. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
-        parameterSpecOf(name, type, *modifiers).also { add(it) }
+        parameterSpecOf(name, type, *modifiers).also(::plusAssign)
+
+    /** Add parameter from [type] and [name], returning the parameter added. */
+    fun add(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
+        parameterSpecOf(name, type, *modifiers).also(::plusAssign)
+
+    /** Add parameter from [type] and [name], returning the parameter added. */
+    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
+        parameterSpecOf(name, type, *modifiers).also(::plusAssign)
+
+    /** Add parameter from reified [T] and [name], returning the parameter added. */
+    inline fun <reified T> add(name: String, vararg modifiers: KModifier): ParameterSpec =
+        parameterSpecOf<T>(name, *modifiers).also(::plusAssign)
 
     /** Add parameter from [type] and [name] with custom initialization [builderAction], returning the parameter added. */
     inline fun add(
@@ -24,11 +36,7 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
         type: TypeName,
         vararg modifiers: KModifier,
         builderAction: ParameterSpecBuilder.() -> Unit
-    ): ParameterSpec = buildParameterSpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
-
-    /** Add parameter from [type] and [name], returning the parameter added. */
-    fun add(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
-        parameterSpecOf(name, type, *modifiers).also { add(it) }
+    ): ParameterSpec = buildParameterSpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Add parameter from [type] and [name] with custom initialization [builderAction], returning the parameter added. */
     inline fun add(
@@ -36,11 +44,7 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
         type: Type,
         vararg modifiers: KModifier,
         builderAction: ParameterSpecBuilder.() -> Unit
-    ): ParameterSpec = buildParameterSpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
-
-    /** Add parameter from [type] and [name], returning the parameter added. */
-    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
-        parameterSpecOf(name, type, *modifiers).also { add(it) }
+    ): ParameterSpec = buildParameterSpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Add parameter from [type] and [name] with custom initialization [builderAction], returning the parameter added. */
     inline fun add(
@@ -48,33 +52,23 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
         type: KClass<*>,
         vararg modifiers: KModifier,
         builderAction: ParameterSpecBuilder.() -> Unit
-    ): ParameterSpec = buildParameterSpec(name, type, *modifiers, builderAction = builderAction).also { add(it) }
-
-    /** Add parameter from reified [T] and [name], returning the parameter added. */
-    inline fun <reified T> add(name: String, vararg modifiers: KModifier): ParameterSpec =
-        parameterSpecOf<T>(name, *modifiers).also { add(it) }
+    ): ParameterSpec = buildParameterSpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Add parameter from reified [T] and [name] with custom initialization [builderAction], returning the parameter added. */
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
         builderAction: ParameterSpecBuilder.() -> Unit
-    ): ParameterSpec = buildParameterSpec<T>(name, *modifiers, builderAction = builderAction).also { add(it) }
+    ): ParameterSpec = buildParameterSpec<T>(name, *modifiers, builderAction = builderAction).also(::plusAssign)
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: TypeName) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: TypeName): Unit = plusAssign(parameterSpecOf(name, type))
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: Type) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: Type): Unit = plusAssign(parameterSpecOf(name, type))
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: KClass<*>) {
-        add(name, type)
-    }
+    operator fun set(name: String, type: KClass<*>): Unit = plusAssign(parameterSpecOf(name, type))
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */

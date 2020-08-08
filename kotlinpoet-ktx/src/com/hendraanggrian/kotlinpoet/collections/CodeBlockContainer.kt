@@ -7,7 +7,7 @@ import com.squareup.kotlinpoet.CodeBlock
 
 private interface CodeBlockAppendable {
 
-    /** Add code block to this container. */
+    /** Add code with arguments to this container. */
     fun append(format: String, vararg args: Any)
 
     /** Add code block to this container. */
@@ -28,16 +28,17 @@ private interface CodeBlockAppendable {
 
 abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
 
+    /** Add named code to this container. */
+    abstract fun appendNamed(format: String, args: Map<String, *>)
+
     /** Add code block with custom initialization [builderAction], returning the block added. */
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCodeBlock(builderAction).also(::append)
 
-    override fun appendln(): Unit =
-        appendln("")
+    override fun appendln(): Unit = appendln("")
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) =
-        appendln(buildCodeBlock(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
 
     /** Starts the control flow. */
     abstract fun beginFlow(flow: String, vararg args: Any)
@@ -56,8 +57,7 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
         buildCodeBlock(builderAction).also(::append)
 
-    override fun appendln(): Unit =
-        append(SystemProperties.LINE_SEPARATOR)
+    override fun appendln(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
     override fun appendln(format: String, vararg args: Any) {
         append(format, *args)
@@ -65,18 +65,13 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     }
 
     /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) =
-        appendln(buildCodeBlock(builderAction))
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
 
     /** Convenient method to add code block with operator function. */
-    operator fun plusAssign(value: String) {
-        append(value)
-    }
+    operator fun plusAssign(value: String): Unit = append(value)
 
     /** Convenient method to add code block with operator function. */
-    operator fun plusAssign(code: CodeBlock) {
-        append(code)
-    }
+    operator fun plusAssign(code: CodeBlock): Unit = append(code)
 
     /**
      * @see kotlin.text.SystemProperties
@@ -91,7 +86,8 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @KotlinpoetDslMarker
-class KdocContainerScope(private val container: KdocContainer) : KdocContainer(),
+class KdocContainerScope(private val container: KdocContainer) :
+    KdocContainer(),
     CodeBlockAppendable by container {
 
     override fun appendln(): Unit = container.appendln()

@@ -14,12 +14,24 @@ import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
-/** Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers]. */
+/** Builds new [PropertySpec] from [TypeName] supplying its [name] and [modifiers]. */
 fun propertySpecOf(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
     PropertySpec.builder(name, type, *modifiers).build()
 
+/** Builds new [PropertySpec] from [Type] supplying its [name] and [modifiers]. */
+fun propertySpecOf(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
+    PropertySpec.builder(name, type, *modifiers).build()
+
+/** Builds new [PropertySpec] from [KClass] supplying its [name] and [modifiers]. */
+fun propertySpecOf(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
+    PropertySpec.builder(name, type, *modifiers).build()
+
+/** Builds new [PropertySpec] from [T] supplying its [name] and [modifiers]. */
+inline fun <reified T> propertySpecOf(name: String, vararg modifiers: KModifier): PropertySpec =
+    PropertySpec.builder(name, T::class, *modifiers).build()
+
 /**
- * Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers],
+ * Builds new [PropertySpec] from [TypeName] supplying its [name] and [modifiers],
  * by populating newly created [PropertySpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildPropertySpec(
@@ -29,20 +41,8 @@ inline fun buildPropertySpec(
     builderAction: PropertySpecBuilder.() -> Unit
 ): PropertySpec = PropertySpec.builder(name, type, *modifiers).build(builderAction)
 
-/** Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers]. */
-fun propertySpecOf(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
-    PropertySpec.builder(name, type, *modifiers).build()
-
-/** Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers]. */
-fun propertySpecOf(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
-    PropertySpec.builder(name, type, *modifiers).build()
-
-/** Builds a new [PropertySpec] from [T] supplying its [name] and [modifiers]. */
-inline fun <reified T> propertySpecOf(name: String, vararg modifiers: KModifier): PropertySpec =
-    propertySpecOf(name, T::class, *modifiers)
-
 /**
- * Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers],
+ * Builds new [PropertySpec] from [Type] supplying its [name] and [modifiers],
  * by populating newly created [PropertySpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildPropertySpec(
@@ -53,7 +53,7 @@ inline fun buildPropertySpec(
 ): PropertySpec = PropertySpec.builder(name, type, *modifiers).build(builderAction)
 
 /**
- * Builds a new [PropertySpec] from [type] supplying its [name] and [modifiers],
+ * Builds new [PropertySpec] from [KClass] supplying its [name] and [modifiers],
  * by populating newly created [PropertySpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildPropertySpec(
@@ -64,18 +64,19 @@ inline fun buildPropertySpec(
 ): PropertySpec = PropertySpec.builder(name, type, *modifiers).build(builderAction)
 
 /**
- * Builds a new [PropertySpec] from [T] supplying its [name] and [modifiers],
+ * Builds new [PropertySpec] from [T] supplying its [name] and [modifiers],
  * by populating newly created [PropertySpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun <reified T> buildPropertySpec(
     name: String,
     vararg modifiers: KModifier,
     builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = buildPropertySpec(name, T::class, *modifiers, builderAction = builderAction)
+): PropertySpec = PropertySpec.builder(name, T::class, *modifiers).build(builderAction)
 
 /** Modify existing [PropertySpec.Builder] using provided [builderAction] and then building it. */
-inline fun PropertySpec.Builder.build(builderAction: PropertySpecBuilder.() -> Unit): PropertySpec =
-    PropertySpecBuilder(this).apply(builderAction).build()
+inline fun PropertySpec.Builder.build(
+    builderAction: PropertySpecBuilder.() -> Unit
+): PropertySpec = PropertySpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
@@ -167,7 +168,7 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
         }
 
     /** Set getter function, returning the function added. */
-    fun getter(): FunSpec = getterFunSpecOf().also { getter = it }
+    fun getter(): FunSpec = emptyGetterFunSpec().also { getter = it }
 
     /** Set getter function with custom initialization [builderAction], returning the function added. */
     inline fun getter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =
@@ -181,7 +182,7 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
         }
 
     /** Set setter function, returning the function added. */
-    fun setter(): FunSpec = setterFunSpecOf().also { setter = it }
+    fun setter(): FunSpec = emptySetterFunSpec().also { setter = it }
 
     /** Set setter function with custom initialization [builderAction], returning the function added. */
     inline fun setter(builderAction: FunSpecBuilder.() -> Unit): FunSpec =

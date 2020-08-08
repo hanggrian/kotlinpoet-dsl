@@ -13,6 +13,7 @@ import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.Import
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeAliasSpec
@@ -20,19 +21,22 @@ import com.squareup.kotlinpoet.TypeSpec
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
-fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec =
-    FileSpec.get(packageName, type)
+fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(packageName, type)
 
 /**
  * Builds a new [FileSpec],
  * by populating newly created [FileSpecBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildFileSpec(packageName: String, fileName: String, builderAction: FileSpecBuilder.() -> Unit): FileSpec =
-    FileSpec.builder(packageName, fileName).build(builderAction)
+inline fun buildFileSpec(
+    packageName: String,
+    fileName: String,
+    builderAction: FileSpecBuilder.() -> Unit
+): FileSpec = FileSpec.builder(packageName, fileName).build(builderAction)
 
 /** Modify existing [FileSpec.Builder] using provided [builderAction] and then building it. */
-inline fun FileSpec.Builder.build(builderAction: FileSpecBuilder.() -> Unit): FileSpec =
-    FileSpecBuilder(this).apply(builderAction).build()
+inline fun FileSpec.Builder.build(
+    builderAction: FileSpecBuilder.() -> Unit
+): FileSpec = FileSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
@@ -46,6 +50,12 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
 
     /** Tags variables of this file. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
+
+    /** Imports of this file. */
+    val imports: List<Import> get() = nativeBuilder.imports
+
+    /** Members of this file. */
+    val members: MutableList<Any> get() = nativeBuilder.members
 
     /** Annotations of this file. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)

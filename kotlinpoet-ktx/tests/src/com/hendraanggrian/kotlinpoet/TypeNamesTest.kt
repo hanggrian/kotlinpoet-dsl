@@ -3,7 +3,6 @@ package com.hendraanggrian.kotlinpoet
 import com.squareup.kotlinpoet.BOOLEAN
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFails
 
 class TypeNamesTest {
     private companion object {
@@ -51,19 +50,16 @@ class TypeNamesTest {
                 "${CLASS_NAME.annotate<Deprecated>()}"
             ).distinct().single()
         )
-        // TODO: find out why annotations are emitted twice
-        assertFails {
-            assertEquals(
-                "@kotlin.Deprecated (kotlin.String) -> kotlin.Unit",
-                listOf(
-                    "${LAMBDA_TYPE_NAME.annotate(deprecatedSpec)}",
-                    "${LAMBDA_TYPE_NAME.annotate(deprecatedClassName)}",
-                    "${LAMBDA_TYPE_NAME.annotate(Deprecated::class.java)}",
-                    "${LAMBDA_TYPE_NAME.annotate(Deprecated::class)}",
-                    "${LAMBDA_TYPE_NAME.annotate<Deprecated>()}"
-                ).distinct().single()
-            )
-        }
+        assertEquals(
+            "@kotlin.Deprecated (kotlin.String) -> kotlin.Unit",
+            listOf(
+                "${LAMBDA_TYPE_NAME.annotate(deprecatedSpec)}",
+                "${LAMBDA_TYPE_NAME.annotate(deprecatedClassName)}",
+                "${LAMBDA_TYPE_NAME.annotate(Deprecated::class.java)}",
+                "${LAMBDA_TYPE_NAME.annotate(Deprecated::class)}",
+                "${LAMBDA_TYPE_NAME.annotate<Deprecated>()}"
+            ).distinct().single()
+        )
         assertEquals(
             "@kotlin.Deprecated kotlin.collections.List<kotlin.Int>",
             listOf(

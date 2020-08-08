@@ -8,24 +8,24 @@ import com.squareup.kotlinpoet.CodeBlock
  *
  * @see kotlin.text.format
  */
-fun codeBlockOf(format: String, vararg args: Any): CodeBlock =
-    CodeBlock.of(format, *args)
+fun codeBlockOf(format: String, vararg args: Any): CodeBlock = CodeBlock.of(format, *args)
 
 /**
- * Builds a new [CodeBlock],
+ * Builds new [CodeBlock],
  * by populating newly created [CodeBlockBuilder] using provided [builderAction] and then building it.
  */
-inline fun buildCodeBlock(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-    CodeBlock.builder().build(builderAction)
+inline fun buildCodeBlock(
+    builderAction: CodeBlockBuilder.() -> Unit
+): CodeBlock = CodeBlock.builder().build(builderAction)
 
 /** Modify existing [CodeBlock.Builder] using provided [builderAction] and then building it. */
-inline fun CodeBlock.Builder.build(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-    CodeBlockBuilder(this).apply(builderAction).build()
+inline fun CodeBlock.Builder.build(
+    builderAction: CodeBlockBuilder.() -> Unit
+): CodeBlock = CodeBlockBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDslMarker
-class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) :
-    CodeBlockContainer() {
+class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer() {
 
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()
@@ -33,9 +33,8 @@ class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) :
     /** Returns true if this builder contains code. */
     fun isNotEmpty(): Boolean = nativeBuilder.isNotEmpty()
 
-    /** Adds code using named arguments. */
-    fun addNamed(format: String, arguments: Map<String, *>) {
-        nativeBuilder.addNamed(format, arguments)
+    override fun appendNamed(format: String, args: Map<String, *>) {
+        nativeBuilder.addNamed(format, args)
     }
 
     override fun append(format: String, vararg args: Any) {
@@ -70,6 +69,11 @@ class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) :
     /** Unindent current code. */
     fun unindent() {
         nativeBuilder.unindent()
+    }
+
+    /** Clear current code. */
+    fun clear() {
+        nativeBuilder.clear()
     }
 
     /** Returns native spec. */
