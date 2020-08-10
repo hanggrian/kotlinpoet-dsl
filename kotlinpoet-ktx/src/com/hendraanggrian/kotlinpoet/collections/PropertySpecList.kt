@@ -14,52 +14,52 @@ import kotlin.reflect.KClass
 open class PropertySpecList internal constructor(actualList: MutableList<PropertySpec>) :
     MutableList<PropertySpec> by actualList {
 
-    /** Add property from [type] and [name], returning the property added. */
-    fun add(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf(name, type, *modifiers).also(::plusAssign)
+    /** Add property from [TypeName]. */
+    fun add(name: String, type: TypeName, vararg modifiers: KModifier): Boolean =
+        add(propertySpecOf(name, type, *modifiers))
 
-    /** Add property from [type] and [name], returning the property added. */
-    fun add(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf(name, type, *modifiers).also(::plusAssign)
+    /** Add property from [Type]. */
+    fun add(name: String, type: Type, vararg modifiers: KModifier): Boolean =
+        add(propertySpecOf(name, type, *modifiers))
 
-    /** Add property from [type] and [name], returning the property added. */
-    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf(name, type, *modifiers).also(::plusAssign)
+    /** Add property from [KClass]. */
+    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): Boolean =
+        add(propertySpecOf(name, type, *modifiers))
 
-    /** Add property from reified [T] and [name], returning the property added. */
-    inline fun <reified T> add(name: String, vararg modifiers: KModifier): PropertySpec =
-        propertySpecOf<T>(name, *modifiers).also(::plusAssign)
+    /** Add property from [T]. */
+    inline fun <reified T> add(name: String, vararg modifiers: KModifier): Boolean =
+        add(propertySpecOf<T>(name, *modifiers))
 
-    /** Add property from [type] and [name] with custom initialization [builderAction], returning the property added. */
+    /** Add property from [TypeName] with custom initialization [builderAction]. */
     inline fun add(
         name: String,
         type: TypeName,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
+    ): Boolean = add(buildPropertySpec(name, type, *modifiers, builderAction = builderAction))
 
-    /** Add property from [type] and [name] with custom initialization [builderAction], returning the property added. */
+    /** Add property from [Type] with custom initialization [builderAction]. */
     inline fun add(
         name: String,
         type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
+    ): Boolean = add(buildPropertySpec(name, type, *modifiers, builderAction = builderAction))
 
-    /** Add property from [type] and [name] with custom initialization [builderAction], returning the property added. */
+    /** Add property from [KClass] with custom initialization [builderAction]. */
     inline fun add(
         name: String,
         type: KClass<*>,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec(name, type, *modifiers, builderAction = builderAction).also(::plusAssign)
+    ): Boolean = add(buildPropertySpec(name, type, *modifiers, builderAction = builderAction))
 
-    /** Add property from reified [T] and [name] with custom initialization [builderAction], returning the property added. */
+    /** Add property from [T] with custom initialization [builderAction]. */
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = buildPropertySpec<T>(name, *modifiers, builderAction = builderAction).also(::plusAssign)
+    ): Boolean = add(buildPropertySpec<T>(name, *modifiers, builderAction = builderAction))
 
     /** Convenient method to add property with operator function. */
     operator fun set(name: String, type: TypeName): Unit = plusAssign(propertySpecOf(name, type))
@@ -80,25 +80,25 @@ class PropertySpecListScope(actualList: MutableList<PropertySpec>) : PropertySpe
         type: TypeName,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(this, type, *modifiers, builderAction = builderAction)
+    ): Boolean = add(this, type, *modifiers, builderAction = builderAction)
 
     /** Convenient method to add property with receiver type. */
     inline operator fun String.invoke(
         type: Type,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(this, type, *modifiers, builderAction = builderAction)
+    ): Boolean = add(this, type, *modifiers, builderAction = builderAction)
 
     /** Convenient method to add property with receiver type. */
     inline operator fun String.invoke(
         type: KClass<*>,
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add(this, type, *modifiers, builderAction = builderAction)
+    ): Boolean = add(this, type, *modifiers, builderAction = builderAction)
 
     /** Convenient method to add property with receiver type. */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
         builderAction: PropertySpecBuilder.() -> Unit
-    ): PropertySpec = add<T>(this, *modifiers, builderAction = builderAction)
+    ): Boolean = add<T>(this, *modifiers, builderAction = builderAction)
 }

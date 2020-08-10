@@ -25,130 +25,130 @@ import com.squareup.kotlinpoet.TypeSpec
 open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) :
     MutableList<TypeSpec> by actualList {
 
-    /** Add class type from [type], returning the type added. */
-    fun addClass(type: String): TypeSpec = classTypeSpecOf(type).also(::plusAssign)
+    /** Add class type from name. */
+    fun addClass(type: String): Boolean = add(classTypeSpecOf(type))
 
-    /** Add class type from [type], returning the type added. */
-    fun addClass(type: ClassName): TypeSpec = classTypeSpecOf(type).also(::plusAssign)
+    /** Add class type from [ClassName]. */
+    fun addClass(type: ClassName): Boolean = add(classTypeSpecOf(type))
 
-    /** Add expect class type from [type], returning the type added. */
-    fun addExpectClass(type: String): TypeSpec = expectClassTypeSpecOf(type).also(::plusAssign)
+    /** Add expect class type from name. */
+    fun addExpectClass(type: String): Boolean = add(expectClassTypeSpecOf(type))
 
-    /** Add expect class type from [type], returning the type added. */
-    fun addExpectClass(type: ClassName): TypeSpec = expectClassTypeSpecOf(type).also(::plusAssign)
+    /** Add expect class type from [ClassName]. */
+    fun addExpectClass(type: ClassName): Boolean = add(expectClassTypeSpecOf(type))
 
-    /** Add object type from [type], returning the type added. */
-    fun addObject(type: String): TypeSpec = objectTypeSpecOf(type).also(::plusAssign)
+    /** Add object type from name. */
+    fun addObject(type: String): Boolean = add(objectTypeSpecOf(type))
 
-    /** Add object type from [type], returning the type added. */
-    fun addObject(type: ClassName): TypeSpec = objectTypeSpecOf(type).also(::plusAssign)
+    /** Add object type from [ClassName]. */
+    fun addObject(type: ClassName): Boolean = add(objectTypeSpecOf(type))
 
-    /** Add object type from [type], returning the type added. */
-    fun addCompanionObject(type: String? = null): TypeSpec = companionObjectTypeSpecOf(type).also(::plusAssign)
+    /** Add object type from name. */
+    fun addCompanionObject(type: String? = null): Boolean = add(companionObjectTypeSpecOf(type))
 
-    /** Add interface type from [type], returning the type added. */
-    fun addInterface(type: String): TypeSpec = interfaceTypeSpecOf(type).also(::plusAssign)
+    /** Add interface type from name. */
+    fun addInterface(type: String): Boolean = add(interfaceTypeSpecOf(type))
 
-    /** Add interface type from [type], returning the type added. */
-    fun addInterface(type: ClassName): TypeSpec = interfaceTypeSpecOf(type).also(::plusAssign)
+    /** Add interface type from [ClassName]. */
+    fun addInterface(type: ClassName): Boolean = add(interfaceTypeSpecOf(type))
 
-    /** Add enum type from [type], returning the type added. */
-    fun addEnum(type: String): TypeSpec = enumTypeSpecOf(type).also(::plusAssign)
+    /** Add enum type from name. */
+    fun addEnum(type: String): Boolean = add(enumTypeSpecOf(type))
 
-    /** Add enum type from [type], returning the type added. */
-    fun addEnum(type: ClassName): TypeSpec = enumTypeSpecOf(type).also(::plusAssign)
+    /** Add enum type from [ClassName]. */
+    fun addEnum(type: ClassName): Boolean = add(enumTypeSpecOf(type))
 
-    /** Add anonymous type from block, returning the type added. */
-    fun addAnonymous(): TypeSpec = emptyAnonymousTypeSpec().also(::plusAssign)
+    /** Add anonymous type from block. */
+    fun addAnonymous(): Boolean = add(emptyAnonymousTypeSpec())
 
-    /** Add annotation type from [type], returning the type added. */
-    fun addAnnotation(type: String): TypeSpec = annotationTypeSpecOf(type).also(::plusAssign)
+    /** Add annotation type from name. */
+    fun addAnnotation(type: String): Boolean = add(annotationTypeSpecOf(type))
 
-    /** Add annotation type from [type], returning the type added. */
-    fun addAnnotation(type: ClassName): TypeSpec = annotationTypeSpecOf(type).also(::plusAssign)
+    /** Add annotation type from [ClassName]. */
+    fun addAnnotation(type: ClassName): Boolean = add(annotationTypeSpecOf(type))
 
-    /** Add class type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add class type from name with custom initialization [builderAction]. */
     inline fun addClass(
         type: String,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildClassTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildClassTypeSpec(type, builderAction))
 
-    /** Add class type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add class type from [ClassName] with custom initialization [builderAction]. */
     inline fun addClass(
         type: ClassName,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildClassTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildClassTypeSpec(type, builderAction))
 
-    /** Add expect class type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add expect class type from name with custom initialization [builderAction]. */
     inline fun addExpectClass(
         type: String,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildExpectClassTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildExpectClassTypeSpec(type, builderAction))
 
-    /** Add expect class type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add expect class type from [ClassName] with custom initialization [builderAction]. */
     inline fun addExpectClass(
         type: ClassName,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildExpectClassTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildExpectClassTypeSpec(type, builderAction))
 
-    /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add object type from name with custom initialization [builderAction]. */
     inline fun addObject(
         type: String,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildObjectTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildObjectTypeSpec(type, builderAction))
 
-    /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add object type from [ClassName] with custom initialization [builderAction]. */
     inline fun addObject(
         type: ClassName,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildObjectTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildObjectTypeSpec(type, builderAction))
 
-    /** Add object type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add object type from name with custom initialization [builderAction]. */
     inline fun addCompanionObject(
         type: String? = null,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildCompanionObjectTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildCompanionObjectTypeSpec(type, builderAction))
 
-    /** Add interface type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add interface type from name with custom initialization [builderAction]. */
     inline fun addInterface(
         type: String,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildInterfaceTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildInterfaceTypeSpec(type, builderAction))
 
-    /** Add interface type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add interface type from [ClassName] with custom initialization [builderAction]. */
     inline fun addInterface(
         type: ClassName,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildInterfaceTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildInterfaceTypeSpec(type, builderAction))
 
-    /** Add enum type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add enum type from name with custom initialization [builderAction]. */
     inline fun addEnum(
         type: String,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildEnumTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildEnumTypeSpec(type, builderAction))
 
-    /** Add enum type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add enum type from [ClassName] with custom initialization [builderAction]. */
     inline fun addEnum(
         type: ClassName,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildEnumTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildEnumTypeSpec(type, builderAction))
 
-    /** Add anonymous type from block with custom initialization [builderAction], returning the type added. */
+    /** Add anonymous type from block with custom initialization [builderAction]. */
     inline fun addAnonymous(
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildAnonymousTypeSpec(builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnonymousTypeSpec(builderAction))
 
-    /** Add annotation type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add annotation type from name with custom initialization [builderAction]. */
     inline fun addAnnotation(
         type: String,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildAnnotationTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnnotationTypeSpec(type, builderAction))
 
-    /** Add annotation type from [type] with custom initialization [builderAction], returning the type added. */
+    /** Add annotation type from [ClassName] with custom initialization [builderAction]. */
     inline fun addAnnotation(
         type: ClassName,
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = buildAnnotationTypeSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnnotationTypeSpec(type, builderAction))
 }
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
@@ -158,10 +158,10 @@ open class TypeSpecListScope(actualList: MutableList<TypeSpec>) : TypeSpecList(a
     /** Convenient method to add class with receiver type. */
     inline operator fun String.invoke(
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = addClass(this, builderAction)
+    ): Boolean = addClass(this, builderAction)
 
     /** Convenient method to add class with receiver type. */
     inline operator fun ClassName.invoke(
         builderAction: TypeSpecBuilder.() -> Unit
-    ): TypeSpec = addClass(this, builderAction)
+    ): Boolean = addClass(this, builderAction)
 }

@@ -100,14 +100,14 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     }
 
     /** Configures kdoc of this parameter. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
         KdocContainerScope(kdoc).configuration()
 
     /** Annotations of this parameter. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
         AnnotationSpecListScope(annotations).configuration()
 
     /** Add parameter modifiers. */
@@ -128,8 +128,9 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
         }
 
     /** Set default value to code with custom initialization [builderAction]. */
-    inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCodeBlock(builderAction).also { defaultValue = it }
+    inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit) {
+        defaultValue = buildCodeBlock(builderAction)
+    }
 
     /** Returns native spec. */
     fun build(): ParameterSpec = nativeBuilder.build()

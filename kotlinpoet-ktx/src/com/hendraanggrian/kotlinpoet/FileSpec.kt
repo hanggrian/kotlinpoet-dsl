@@ -10,6 +10,7 @@ import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecList
 import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
 import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
@@ -58,15 +59,26 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     val members: MutableList<Any> get() = nativeBuilder.members
 
     /** Annotations of this file. */
-    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
+    val annotations: AnnotationSpecList = object : AnnotationSpecList(nativeBuilder.annotations) {
+        /** Must override because it modifies [AnnotationSpec.useSiteTarget]. */
+        override fun add(element: AnnotationSpec): Boolean {
+            nativeBuilder.addAnnotation(element)
+            return true
+        }
+    }
 
     /** Configures annotations for this file. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
         AnnotationSpecListScope(annotations).configuration()
 
     /** Add file comment like [String.format]. */
     fun addComment(format: String, vararg args: Any) {
         nativeBuilder.addComment(format, *args)
+    }
+
+    /** Clear file comment. */
+    fun clearComment() {
+        nativeBuilder.clearComment()
     }
 
     /**
@@ -81,7 +93,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures types for this file. */
-    inline fun types(configuration: TypeSpecListScope.() -> Unit) =
+    inline fun types(configuration: TypeSpecListScope.() -> Unit): Unit =
         TypeSpecListScope(types).configuration()
 
     /**
@@ -96,7 +108,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures functions for this file. */
-    inline fun functions(configuration: FunSpecListScope.() -> Unit) =
+    inline fun functions(configuration: FunSpecListScope.() -> Unit): Unit =
         FunSpecListScope(functions).configuration()
 
     /**
@@ -111,7 +123,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures properties for this file. */
-    inline fun properties(configuration: PropertySpecListScope.() -> Unit) =
+    inline fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
         PropertySpecListScope(properties).configuration()
 
     /**
@@ -126,7 +138,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures type aliases for this file. */
-    inline fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit) =
+    inline fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit): Unit =
         TypeAliasSpecListScope(typeAliases).configuration()
 
     /** Add import. */
@@ -145,14 +157,20 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Add import. */
-    fun addImport(type: KClass<*>, vararg names: String) = addImport(type.java, *names)
+    fun addImport(type: KClass<*>, vararg names: String) {
+        nativeBuilder.addImport(type.java, *names)
+    }
 
     /** Add import with reified function. */
-    inline fun <reified T> addImport(vararg names: String) = addImport(T::class, *names)
+    inline fun <reified T> addImport(vararg names: String): Unit = addImport(T::class, *names)
 
     /** Add import. */
     fun addImport(packageName: String, vararg names: String) {
         nativeBuilder.addImport(packageName, *names)
+    }
+
+    fun clearImports() {
+        nativeBuilder.clearImports()
     }
 
     /** Add aliased import. */
@@ -161,10 +179,12 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Add aliased import. */
-    fun addAliasedImport(type: KClass<*>, `as`: String) = addAliasedImport(type.java, `as`)
+    fun addAliasedImport(type: KClass<*>, `as`: String) {
+        nativeBuilder.addAliasedImport(type.java, `as`)
+    }
 
     /** Add aliased import with reified function. */
-    inline fun <reified T> addAliasedImport(`as`: String) = addAliasedImport(T::class, `as`)
+    inline fun <reified T> addAliasedImport(`as`: String): Unit = addAliasedImport(T::class, `as`)
 
     /** Add aliased import. */
     fun addAliasedImport(type: ClassName, `as`: String) {

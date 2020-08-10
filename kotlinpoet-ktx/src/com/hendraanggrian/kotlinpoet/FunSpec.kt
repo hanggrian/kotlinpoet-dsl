@@ -16,7 +16,7 @@ import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
 
-/** Builds new [FunSpec] with [name]. */
+/** Builds new [FunSpec] with name. */
 fun funSpecOf(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
 
 /** Builds new constructor [FunSpec]. */
@@ -29,7 +29,7 @@ fun emptyGetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).buil
 fun emptySetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
 
 /**
- * Builds new [FunSpec] with [name],
+ * Builds new [FunSpec] with name,
  * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
  */
 inline fun buildFunSpec(
@@ -91,14 +91,14 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Configures kdoc of this function. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) =
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
         KdocContainerScope(kdoc).configuration()
 
     /** Annotations of this function. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) =
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
         AnnotationSpecListScope(annotations).configuration()
 
     /** Add function modifiers. */
@@ -114,98 +114,156 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     /** Type variables of this function. */
     val typeVariables: TypeVariableNameList = TypeVariableNameList(nativeBuilder.typeVariables)
 
-    /** Set receiver to type. */
+    /** Set receiver to [TypeName] without kdoc. */
     var receiver: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {
             nativeBuilder.receiver(value)
         }
 
-    /** Set receiver [type] with [code] as kdoc. */
-    fun receiver(type: TypeName, code: CodeBlock) {
-        nativeBuilder.receiver(type, code)
+    /** Set receiver to [TypeName] with [CodeBlock] as kdoc. */
+    fun receiver(type: TypeName, kdocCode: CodeBlock) {
+        nativeBuilder.receiver(type, kdocCode)
     }
 
-    /** Set receiver [type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: TypeName, builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(type, buildCodeBlock(builderAction))
+    /** Set receiver to [TypeName] with String formatting as kdoc. */
+    fun receiver(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
+        nativeBuilder.receiver(type, codeBlockOf(kdocFormat, kdocArgs))
+    }
 
-    /** Set receiver [type] without kdoc. */
+    /** Set receiver to [TypeName] with custom initialization builder as kdoc. */
+    inline fun receiver(type: TypeName, kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        receiver(type, buildCodeBlock(kdocBuilderAction))
+
+    /** Set receiver to [Type] without kdoc. */
     fun receiver(type: Type) {
         nativeBuilder.receiver(type)
     }
 
-    /** Set receiver [type] with kdoc initialized like [String.format]. */
-    fun receiver(type: Type, format: String, vararg args: Any) {
-        nativeBuilder.receiver(type, format, *args)
+    /** Set receiver to [Type] with [CodeBlock] as kdoc. */
+    fun receiver(type: Type, kdocCode: CodeBlock) {
+        nativeBuilder.receiver(type, kdocCode)
     }
 
-    /** Set receiver [type] with [code] as kdoc. */
-    fun receiver(type: Type, code: CodeBlock) {
-        nativeBuilder.receiver(type, code)
+    /** Set receiver to [Type] with String formatting as kdoc. */
+    fun receiver(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
+        nativeBuilder.receiver(type, kdocFormat, *kdocArgs)
     }
 
-    /** Set receiver [type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: Type, builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(type, buildCodeBlock(builderAction))
+    /** Set receiver to [Type] with custom initialization builder as kdoc. */
+    inline fun receiver(type: Type, kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        receiver(type, buildCodeBlock(kdocBuilderAction))
 
-    /** Set receiver [type] without kdoc. */
+    /** Set receiver to [KClass] without kdoc. */
     fun receiver(type: KClass<*>) {
         nativeBuilder.receiver(type)
     }
 
-    /** Set receiver [type] with kdoc initialized like [String.format]. */
-    fun receiver(type: KClass<*>, format: String, vararg args: Any) {
-        nativeBuilder.receiver(type, format, *args)
+    /** Set receiver to [KClass] with [CodeBlock] as kdoc. */
+    fun receiver(type: KClass<*>, kdocCode: CodeBlock) {
+        nativeBuilder.receiver(type, kdocCode)
     }
 
-    /** Set receiver [type] with [code] as kdoc. */
-    fun receiver(type: KClass<*>, code: CodeBlock) {
-        nativeBuilder.receiver(type, code)
+    /** Set receiver to [KClass] with String formatting as kdoc. */
+    fun receiver(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
+        nativeBuilder.receiver(type, kdocFormat, *kdocArgs)
     }
 
-    /** Set receiver [type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: KClass<*>, builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(type, buildCodeBlock(builderAction))
+    /** Set receiver to [KClass] with custom initialization builder as kdoc. */
+    inline fun receiver(type: KClass<*>, kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        receiver(type, buildCodeBlock(kdocBuilderAction))
 
-    /** Set receiver [T] without kdoc. */
-    inline fun <reified T> receiver() = receiver(T::class)
+    /** Set receiver to [T] without kdoc. */
+    inline fun <reified T> receiver(): Unit = receiver(T::class)
 
-    /** Set receiver [T] with kdoc initialized like [String.format]. */
-    inline fun <reified T> receiver(format: String, vararg args: Any) = receiver(T::class, format, *args)
+    /** Set receiver to [T] with [CodeBlock] as kdoc. */
+    inline fun <reified T> receiver(kdocCode: CodeBlock): Unit = receiver(T::class, kdocCode)
 
-    /** Set receiver [T] with [code] as kdoc. */
-    inline fun <reified T> receiver(code: CodeBlock) = receiver(T::class, code)
+    /** Set receiver to [T] with String formatting as kdoc. */
+    inline fun <reified T> receiver(kdocFormat: String, vararg kdocArgs: Any): Unit =
+        receiver(T::class, kdocFormat, *kdocArgs)
 
-    /** Set receiver [T] with custom initialization builder as kdoc. */
-    inline fun <reified T> receiver(builderAction: CodeBlockBuilder.() -> Unit) =
-        receiver(T::class, buildCodeBlock(builderAction))
+    /** Set receiver to [T] with custom initialization builder as kdoc. */
+    inline fun <reified T> receiver(kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        receiver(T::class, buildCodeBlock(kdocBuilderAction))
 
-    /** Add return line to type name. */
+    /** Set return to [TypeName] without kdoc. */
     var returns: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {
             nativeBuilder.returns(value)
         }
 
-    /** Add return line to [type]. */
+    /** Set return to [TypeName] with [CodeBlock] as kdoc. */
+    fun returns(type: TypeName, kdocCode: CodeBlock) {
+        nativeBuilder.returns(type, kdocCode)
+    }
+
+    /** Set return to [TypeName] with String formatting as kdoc. */
+    fun returns(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
+        nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
+    }
+
+    /** Set return to [TypeName] with custom initialization builder as kdoc. */
+    inline fun returns(type: TypeName, kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        returns(type, buildCodeBlock(kdocBuilderAction))
+
+    /** Set return to [Type] without kdoc. */
     fun returns(type: Type) {
         nativeBuilder.returns(type)
     }
 
-    /** Add return line to [type]. */
+    /** Set return to [Type] with [CodeBlock] as kdoc. */
+    fun returns(type: Type, kdocCode: CodeBlock) {
+        nativeBuilder.returns(type, kdocCode)
+    }
+
+    /** Set return to [Type] with String formatting as kdoc. */
+    fun returns(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
+        nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
+    }
+
+    /** Set return to [Type] with custom initialization builder as kdoc. */
+    inline fun returns(type: Type, kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        returns(type, buildCodeBlock(kdocBuilderAction))
+
+    /** Set return to [KClass] without kdoc. */
     fun returns(type: KClass<*>) {
         nativeBuilder.returns(type)
     }
 
-    /** Add return line to [T]. */
-    inline fun <reified T> returns() = returns(T::class)
+    /** Set return to [KClass] with [CodeBlock] as kdoc. */
+    fun returns(type: KClass<*>, kdocCode: CodeBlock) {
+        nativeBuilder.returns(type, kdocCode)
+    }
+
+    /** Set return to [KClass] with String formatting as kdoc. */
+    fun returns(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
+        nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
+    }
+
+    /** Set return to [KClass] with custom initialization builder as kdoc. */
+    inline fun returns(type: KClass<*>, kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        returns(type, buildCodeBlock(kdocBuilderAction))
+
+    /** Set return to [T] without kdoc. */
+    inline fun <reified T> returns(): Unit = returns(T::class)
+
+    /** Set return to [T] with [CodeBlock] as kdoc. */
+    inline fun <reified T> returns(kdocCode: CodeBlock): Unit = returns(T::class, kdocCode)
+
+    /** Set return to [T] with String formatting as kdoc. */
+    inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any) = returns(T::class, kdocFormat, *kdocArgs)
+
+    /** Set return to [T] with custom initialization builder as kdoc. */
+    inline fun <reified T> returns(kdocBuilderAction: CodeBlockBuilder.() -> Unit): Unit =
+        returns(T::class, kdocBuilderAction)
 
     /** Parameters of this function. */
     val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    inline fun parameters(configuration: ParameterSpecListScope.() -> Unit) =
+    inline fun parameters(configuration: ParameterSpecListScope.() -> Unit): Unit =
         ParameterSpecListScope(parameters).configuration()
 
     /** Call this constructor with [String] arguments. */
@@ -219,7 +277,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Call this constructor with code [builderAction]. */
-    inline fun callThisConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun callThisConstructor(builderAction: CodeBlockBuilder.() -> Unit): Unit =
         callThisConstructor(buildCodeBlock(builderAction))
 
     /** Call super constructor with [String] arguments. */
@@ -233,15 +291,15 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Call super constructor with code [builderAction]. */
-    inline fun callSuperConstructor(builderAction: CodeBlockBuilder.() -> Unit) =
+    inline fun callSuperConstructor(builderAction: CodeBlockBuilder.() -> Unit): Unit =
         callSuperConstructor(buildCodeBlock(builderAction))
-
-    override fun appendNamed(format: String, args: Map<String, *>) {
-        nativeBuilder.addNamedCode(format, args)
-    }
 
     override fun append(format: String, vararg args: Any) {
         nativeBuilder.addCode(format, *args)
+    }
+
+    override fun appendNamed(format: String, args: Map<String, *>) {
+        nativeBuilder.addNamedCode(format, args)
     }
 
     override fun append(code: CodeBlock) {

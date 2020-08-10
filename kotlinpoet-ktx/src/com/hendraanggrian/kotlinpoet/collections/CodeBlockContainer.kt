@@ -31,14 +31,13 @@ abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
     /** Add named code to this container. */
     abstract fun appendNamed(format: String, args: Map<String, *>)
 
-    /** Add code block with custom initialization [builderAction], returning the block added. */
-    inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCodeBlock(builderAction).also(::append)
+    /** Add code block with custom initialization [builderAction]. */
+    inline fun append(builderAction: CodeBlockBuilder.() -> Unit): Unit = append(buildCodeBlock(builderAction))
 
     override fun appendln(): Unit = appendln("")
 
-    /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
+    /** Add code block with custom initialization [builderAction] and a new line to this container. */
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit): Unit = appendln(buildCodeBlock(builderAction))
 
     /** Starts the control flow. */
     abstract fun beginFlow(flow: String, vararg args: Any)
@@ -53,9 +52,8 @@ abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
 /** A [KdocContainer] is responsible for managing a set of code instances. */
 abstract class KdocContainer internal constructor() : CodeBlockAppendable {
 
-    /** Add code block with custom initialization [builderAction], returning the block added. */
-    inline fun append(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
-        buildCodeBlock(builderAction).also(::append)
+    /** Add code block with custom initialization [builderAction]. */
+    inline fun append(builderAction: CodeBlockBuilder.() -> Unit): Unit = append(buildCodeBlock(builderAction))
 
     override fun appendln(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
@@ -64,8 +62,8 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
         appendln()
     }
 
-    /** Add code block with custom initialization [builderAction] and a new line to this container, returning the block added. */
-    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit) = appendln(buildCodeBlock(builderAction))
+    /** Add code block with custom initialization [builderAction] and a new line to this container. */
+    inline fun appendln(builderAction: CodeBlockBuilder.() -> Unit): Unit = appendln(buildCodeBlock(builderAction))
 
     /** Convenient method to add code block with operator function. */
     operator fun plusAssign(value: String): Unit = append(value)
@@ -79,8 +77,7 @@ abstract class KdocContainer internal constructor() : CodeBlockAppendable {
     private object SystemProperties {
         /** Line separator for current system. */
         @JvmField
-        val LINE_SEPARATOR =
-            checkNotNull(System.getProperty("line.separator")) { "Unable to obtain separator character." }
+        val LINE_SEPARATOR = System.getProperty("line.separator")!!
     }
 }
 

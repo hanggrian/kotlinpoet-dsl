@@ -12,40 +12,40 @@ import kotlin.reflect.KClass
 open class AnnotationSpecList internal constructor(actualList: MutableList<AnnotationSpec>) :
     MutableList<AnnotationSpec> by actualList {
 
-    /** Add annotation from [type], returning the annotation added. */
-    fun add(type: ClassName): AnnotationSpec = annotationSpecOf(type).also(::plusAssign)
+    /** Add annotation from [ClassName]. */
+    fun add(type: ClassName): Boolean = add(annotationSpecOf(type))
 
-    /** Add annotation from [type], returning the annotation added. */
-    fun add(type: Class<out Annotation>): AnnotationSpec = annotationSpecOf(type).also(::plusAssign)
+    /** Add annotation from [Class]. */
+    fun add(type: Class<out Annotation>): Boolean = add(annotationSpecOf(type))
 
-    /** Add annotation from [type], returning the annotation added. */
-    fun add(type: KClass<out Annotation>): AnnotationSpec = annotationSpecOf(type).also(::plusAssign)
+    /** Add annotation from [KClass]. */
+    fun add(type: KClass<out Annotation>): Boolean = add(annotationSpecOf(type))
 
-    /** Add annotation from reified [T], returning the annotation added. */
-    inline fun <reified T : Annotation> add(): AnnotationSpec = annotationSpecOf<T>().also(::plusAssign)
+    /** Add annotation from [T]. */
+    inline fun <reified T : Annotation> add(): Boolean = add(annotationSpecOf<T>())
 
-    /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
+    /** Add annotation from [ClassName] with custom initialization [builderAction]. */
     inline fun add(
         type: ClassName,
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = buildAnnotationSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnnotationSpec(type, builderAction))
 
-    /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
+    /** Add annotation from [Class] with custom initialization [builderAction]. */
     inline fun add(
         type: Class<out Annotation>,
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = buildAnnotationSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnnotationSpec(type, builderAction))
 
-    /** Add annotation from [type] with custom initialization [builderAction], returning the annotation added. */
+    /** Add annotation from [KClass] with custom initialization [builderAction]. */
     inline fun add(
         type: KClass<out Annotation>,
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = buildAnnotationSpec(type, builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnnotationSpec(type, builderAction))
 
-    /** Add annotation from reified [T] with custom initialization [builderAction], returning the annotation added. */
+    /** Add annotation from [T] with custom initialization [builderAction]. */
     inline fun <reified T : Annotation> add(
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = buildAnnotationSpec<T>(builderAction).also(::plusAssign)
+    ): Boolean = add(buildAnnotationSpec<T>(builderAction))
 
     /** Convenient method to add annotation with operator function. */
     operator fun plusAssign(type: ClassName): Unit = plusAssign(annotationSpecOf(type))
@@ -64,15 +64,15 @@ class AnnotationSpecListScope(actualList: MutableList<AnnotationSpec>) : Annotat
     /** Convenient method to add annotation with receiver type. */
     inline operator fun ClassName.invoke(
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = add(this, builderAction)
+    ): Boolean = add(this, builderAction)
 
     /** Convenient method to add annotation with receiver type. */
     inline operator fun Class<out Annotation>.invoke(
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = add(this, builderAction)
+    ): Boolean = add(this, builderAction)
 
     /** Convenient method to add annotation with receiver type. */
     inline operator fun KClass<out Annotation>.invoke(
         builderAction: AnnotationSpecBuilder.() -> Unit
-    ): AnnotationSpec = add(this, builderAction)
+    ): Boolean = add(this, builderAction)
 }

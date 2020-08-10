@@ -90,10 +90,12 @@ class AnnotationSpecBuilder(private val nativeBuilder: AnnotationSpec.Builder) {
     }
 
     /** Add code as a member of this annotation. */
-    fun addMember(code: CodeBlock): CodeBlock = code.also { nativeBuilder.addMember(it) }
+    fun addMember(code: CodeBlock) {
+        nativeBuilder.addMember(code)
+    }
 
     /** Add code as a member of this annotation with custom initialization [builderAction]. */
-    inline fun addMember(builderAction: CodeBlockBuilder.() -> Unit): CodeBlock =
+    inline fun addMember(builderAction: CodeBlockBuilder.() -> Unit): Unit =
         addMember(buildCodeBlock(builderAction))
 
     /** Sets [AnnotationSpec.UseSiteTarget]. */
