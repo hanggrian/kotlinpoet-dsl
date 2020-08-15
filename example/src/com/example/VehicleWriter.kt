@@ -46,13 +46,13 @@ class VehicleWriter {
                         addModifiers(KModifier.PUBLIC)
                         returns<String>()
                         annotations.add<Override>()
-                        appendln("return %S", name)
+                        appendLine("return %S", name)
                     }
                     "getWheelCount" {
                         addModifiers(KModifier.PUBLIC)
                         returns = INT
                         annotations.add<Override>()
-                        appendln("return %L", wheelCount)
+                        appendLine("return %L", wheelCount)
                     }
                 }
             }

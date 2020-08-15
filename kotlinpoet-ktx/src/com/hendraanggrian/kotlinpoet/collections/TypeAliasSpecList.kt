@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
+import com.hendraanggrian.kotlinpoet.SpecDslMarker
 import com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder
 import com.hendraanggrian.kotlinpoet.buildTypeAliasSpec
 import com.hendraanggrian.kotlinpoet.typeAliasSpecOf
@@ -63,7 +63,7 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
 }
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class TypeAliasSpecListScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecList(actualList) {
 
     /** Convenient method to add type alias with receiver type. */

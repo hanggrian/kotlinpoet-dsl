@@ -70,7 +70,7 @@ inline fun TypeAliasSpec.Builder.build(
 ): TypeAliasSpec = TypeAliasSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
 
     /** Modifiers of this type alias. */
@@ -91,8 +91,8 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this type alias. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).configuration()
+    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).builderAction()
 
     /** Kdoc of this type alias. */
     val kdoc: KdocContainer = object : KdocContainer() {
@@ -106,8 +106,8 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     }
 
     /** Configures kdoc of this type alias. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).configuration()
+    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
+        KdocContainerScope(kdoc).builderAction()
 
     /** Returns native spec. */
     fun build(): TypeAliasSpec = nativeBuilder.build()

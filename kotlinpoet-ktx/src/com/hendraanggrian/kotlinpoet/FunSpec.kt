@@ -67,7 +67,7 @@ inline fun FunSpec.Builder.build(
 ): FunSpec = FunSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockContainer() {
 
     /** Modifiers of this function. */
@@ -91,15 +91,15 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Configures kdoc of this function. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).configuration()
+    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
+        KdocContainerScope(kdoc).builderAction()
 
     /** Annotations of this function. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).configuration()
+    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).builderAction()
 
     /** Add function modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -263,8 +263,8 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    inline fun parameters(configuration: ParameterSpecListScope.() -> Unit): Unit =
-        ParameterSpecListScope(parameters).configuration()
+    inline fun parameters(builderAction: ParameterSpecListScope.() -> Unit): Unit =
+        ParameterSpecListScope(parameters).builderAction()
 
     /** Call this constructor with [String] arguments. */
     fun callThisConstructor(vararg args: String) {
@@ -318,7 +318,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
         nativeBuilder.endControlFlow()
     }
 
-    override fun appendln(format: String, vararg args: Any) {
+    override fun appendLine(format: String, vararg args: Any) {
         nativeBuilder.addStatement(format, *args)
     }
 

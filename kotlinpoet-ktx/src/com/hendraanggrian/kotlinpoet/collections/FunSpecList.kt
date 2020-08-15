@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.FunSpecBuilder
-import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
+import com.hendraanggrian.kotlinpoet.SpecDslMarker
 import com.hendraanggrian.kotlinpoet.buildConstructorFunSpec
 import com.hendraanggrian.kotlinpoet.buildFunSpec
 import com.hendraanggrian.kotlinpoet.buildGetterFunSpec
@@ -51,7 +51,7 @@ open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) :
 }
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class FunSpecListScope(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
 
     /** Convenient function to add function with receiver type. */

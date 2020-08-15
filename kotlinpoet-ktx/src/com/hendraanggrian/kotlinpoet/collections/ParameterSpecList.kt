@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.ParameterSpecBuilder
+import com.hendraanggrian.kotlinpoet.SpecDslMarker
 import com.hendraanggrian.kotlinpoet.buildParameterSpec
 import com.hendraanggrian.kotlinpoet.parameterSpecOf
 import com.squareup.kotlinpoet.KModifier
@@ -72,7 +72,7 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class ParameterSpecListScope(actualList: MutableList<ParameterSpec>) : ParameterSpecList(actualList) {
 
     /** Convenient method to add parameter with receiver type. */

@@ -40,7 +40,7 @@ inline fun FileSpec.Builder.build(
 ): FileSpec = FileSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
 
     /** Package name of this file. */
@@ -68,8 +68,8 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures annotations for this file. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).configuration()
+    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).builderAction()
 
     /** Add file comment like [String.format]. */
     fun addComment(format: String, vararg args: Any) {
@@ -93,8 +93,8 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures types for this file. */
-    inline fun types(configuration: TypeSpecListScope.() -> Unit): Unit =
-        TypeSpecListScope(types).configuration()
+    inline fun types(builderAction: TypeSpecListScope.() -> Unit): Unit =
+        TypeSpecListScope(types).builderAction()
 
     /**
      * Functions of this file.
@@ -108,8 +108,8 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures functions for this file. */
-    inline fun functions(configuration: FunSpecListScope.() -> Unit): Unit =
-        FunSpecListScope(functions).configuration()
+    inline fun functions(builderAction: FunSpecListScope.() -> Unit): Unit =
+        FunSpecListScope(functions).builderAction()
 
     /**
      * Properties of this file.
@@ -123,8 +123,8 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures properties for this file. */
-    inline fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
-        PropertySpecListScope(properties).configuration()
+    inline fun properties(builderAction: PropertySpecListScope.() -> Unit): Unit =
+        PropertySpecListScope(properties).builderAction()
 
     /**
      * Type aliases of this file.
@@ -138,8 +138,8 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures type aliases for this file. */
-    inline fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit): Unit =
-        TypeAliasSpecListScope(typeAliases).configuration()
+    inline fun typeAliases(builderAction: TypeAliasSpecListScope.() -> Unit): Unit =
+        TypeAliasSpecListScope(typeAliases).builderAction()
 
     /** Add import. */
     fun addImport(constant: Enum<*>) {

@@ -76,7 +76,7 @@ inline fun ParameterSpec.Builder.build(
 ): ParameterSpec = ParameterSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this parameter. */
@@ -100,15 +100,15 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     }
 
     /** Configures kdoc of this parameter. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).configuration()
+    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
+        KdocContainerScope(kdoc).builderAction()
 
     /** Annotations of this parameter. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).configuration()
+    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).builderAction()
 
     /** Add parameter modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

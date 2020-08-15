@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
 import com.hendraanggrian.kotlinpoet.PropertySpecBuilder
+import com.hendraanggrian.kotlinpoet.SpecDslMarker
 import com.hendraanggrian.kotlinpoet.buildPropertySpec
 import com.hendraanggrian.kotlinpoet.propertySpecOf
 import com.squareup.kotlinpoet.KModifier
@@ -72,7 +72,7 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
 }
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class PropertySpecListScope(actualList: MutableList<PropertySpec>) : PropertySpecList(actualList) {
 
     /** Convenient method to add property with receiver type. */

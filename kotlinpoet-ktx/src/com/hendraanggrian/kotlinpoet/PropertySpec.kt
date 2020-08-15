@@ -79,7 +79,7 @@ inline fun PropertySpec.Builder.build(
 ): PropertySpec = PropertySpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** Modifiers of this property. */
@@ -110,15 +110,15 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     }
 
     /** Configures kdoc of this property. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).configuration()
+    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
+        KdocContainerScope(kdoc).builderAction()
 
     /** Annotations of this property. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this property. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).configuration()
+    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).builderAction()
 
     /** Add property modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

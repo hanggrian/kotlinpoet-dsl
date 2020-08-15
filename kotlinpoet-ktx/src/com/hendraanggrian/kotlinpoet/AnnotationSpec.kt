@@ -75,7 +75,7 @@ inline fun AnnotationSpec.Builder.build(
 ): AnnotationSpec = AnnotationSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [AnnotationSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class AnnotationSpecBuilder(private val nativeBuilder: AnnotationSpec.Builder) {
 
     /** Members of this annotation. */

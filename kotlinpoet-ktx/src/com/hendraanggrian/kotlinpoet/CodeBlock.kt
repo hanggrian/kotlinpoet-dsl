@@ -24,7 +24,6 @@ inline fun CodeBlock.Builder.build(
 ): CodeBlock = CodeBlockBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
 class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer() {
 
     /** Returns true if this builder contains no code. */
@@ -53,7 +52,7 @@ class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlock
         nativeBuilder.endControlFlow()
     }
 
-    override fun appendln(format: String, vararg args: Any) {
+    override fun appendLine(format: String, vararg args: Any) {
         nativeBuilder.addStatement(format, *args)
     }
 

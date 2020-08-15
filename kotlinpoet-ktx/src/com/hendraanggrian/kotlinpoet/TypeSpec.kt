@@ -195,7 +195,7 @@ inline fun TypeSpec.Builder.build(
 ): TypeSpec = TypeSpecBuilder(this).apply(builderAction).build()
 
 /** Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
 
     /** Initializer index of this type. */
@@ -228,15 +228,15 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Configures kdoc of this type. */
-    inline fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).configuration()
+    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
+        KdocContainerScope(kdoc).builderAction()
 
     /** Annotations of this type. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotationSpecs)
 
     /** Configures annotations of this type. */
-    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).configuration()
+    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).builderAction()
 
     /** Add type modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -315,8 +315,8 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val properties: PropertySpecList = PropertySpecList(nativeBuilder.propertySpecs)
 
     /** Configures properties of this type. */
-    inline fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
-        PropertySpecListScope(properties).configuration()
+    inline fun properties(builderAction: PropertySpecListScope.() -> Unit): Unit =
+        PropertySpecListScope(properties).builderAction()
 
     /** Add initializer block containing [code]. */
     fun addInitializerBlock(code: CodeBlock) {
@@ -332,15 +332,15 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val functions: FunSpecList = FunSpecList(nativeBuilder.funSpecs)
 
     /** Configures functions of this type. */
-    inline fun functions(configuration: FunSpecListScope.() -> Unit): Unit =
-        FunSpecListScope(functions).configuration()
+    inline fun functions(builderAction: FunSpecListScope.() -> Unit): Unit =
+        FunSpecListScope(functions).builderAction()
 
     /** Types of this type. */
     val types: TypeSpecList = TypeSpecList(nativeBuilder.typeSpecs)
 
     /** Configures types of this type. */
-    inline fun types(configuration: TypeSpecListScope.() -> Unit): Unit =
-        TypeSpecListScope(types).configuration()
+    inline fun types(builderAction: TypeSpecListScope.() -> Unit): Unit =
+        TypeSpecListScope(types).builderAction()
 
     /** Add originating element. */
     fun addOriginatingElement(originatingElement: Element) {

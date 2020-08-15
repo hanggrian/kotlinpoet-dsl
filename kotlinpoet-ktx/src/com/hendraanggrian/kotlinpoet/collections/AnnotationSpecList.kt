@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder
-import com.hendraanggrian.kotlinpoet.KotlinpoetDslMarker
+import com.hendraanggrian.kotlinpoet.SpecDslMarker
 import com.hendraanggrian.kotlinpoet.annotationSpecOf
 import com.hendraanggrian.kotlinpoet.buildAnnotationSpec
 import com.squareup.kotlinpoet.AnnotationSpec
@@ -58,7 +58,7 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
 }
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
-@KotlinpoetDslMarker
+@SpecDslMarker
 class AnnotationSpecListScope(actualList: MutableList<AnnotationSpec>) : AnnotationSpecList(actualList) {
 
     /** Convenient method to add annotation with receiver type. */
