@@ -10,7 +10,7 @@ class TypeVariableNameTest {
 
     @Test fun classNameBounds() = assertEquals(
         """
-            fun <T : kotlin.Int> go() {
+            public fun <T : kotlin.Int> go(): kotlin.Unit {
             }
             
             """.trimIndent(),
@@ -19,7 +19,7 @@ class TypeVariableNameTest {
 
     @Test fun classBounds() = assertEquals(
         """
-            fun <T : java.lang.Integer> go() {
+            public fun <T : java.lang.Integer> go(): kotlin.Unit {
             }
             
             """.trimIndent(),
@@ -28,7 +28,7 @@ class TypeVariableNameTest {
 
     @Test fun kclassBounds() = assertEquals(
         """
-            fun <T : kotlin.Int> go() {
+            public fun <T : kotlin.Int> go(): kotlin.Unit {
             }
             
             """.trimIndent(),

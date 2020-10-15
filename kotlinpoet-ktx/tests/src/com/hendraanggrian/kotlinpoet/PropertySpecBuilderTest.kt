@@ -2,7 +2,6 @@ package com.hendraanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -16,7 +15,7 @@ class PropertySpecBuilderTest {
                 .build()
         )
         .addAnnotation(AnnotationSpec.builder(Deprecated::class).build())
-        .addModifiers(KModifier.PUBLIC, KModifier.FINAL)
+        .addModifiers(PUBLIC, FINAL)
         .initializer("value")
         .build()
 
@@ -27,7 +26,7 @@ class PropertySpecBuilderTest {
                 append("secondJavadoc")
             }
             annotations.add<Deprecated>()
-            addModifiers(KModifier.PUBLIC, KModifier.FINAL)
+            addModifiers(PUBLIC, FINAL)
             initializer("value")
         })
     }
@@ -43,7 +42,7 @@ class PropertySpecBuilderTest {
             annotations {
                 add<Deprecated>()
             }
-            addModifiers(KModifier.PUBLIC, KModifier.FINAL)
+            addModifiers(PUBLIC, FINAL)
             initializer("value")
         })
     }

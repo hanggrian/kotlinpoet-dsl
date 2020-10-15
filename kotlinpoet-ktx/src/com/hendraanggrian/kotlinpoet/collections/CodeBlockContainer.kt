@@ -41,14 +41,30 @@ abstract class CodeBlockContainer internal constructor() : CodeBlockAppendable {
     inline fun appendLine(builderAction: CodeBlockBuilder.() -> Unit): Unit =
         appendLine(buildCodeBlock(builderAction))
 
-    /** Starts the control flow. */
-    abstract fun beginFlow(flow: String, vararg args: Any)
+    /** Insert code flow with custom initialization [configuration]. */
+    fun appendFlow(flow: String, vararg args: Any, configuration: () -> Unit) {
+        beginFlow(flow, *args)
+        configuration()
+        endFlow()
+    }
 
-    /** Continues the control flow. */
+    /**
+     * Continues the control flow.
+     * @see CodeBlock.Builder.nextControlFlow
+     */
     abstract fun nextFlow(flow: String, vararg args: Any)
 
-    /** Stops the control flow. */
-    abstract fun endFlow()
+    /**
+     * Manually starts the control flow, as opposed to [appendFlow].
+     * @see CodeBlock.Builder.beginControlFlow
+     */
+    internal abstract fun beginFlow(flow: String, vararg args: Any)
+
+    /**
+     * Manually stops the control flow.
+     * @see CodeBlock.Builder.endControlFlow
+     */
+    internal abstract fun endFlow()
 }
 
 /** A [KdocContainer] is responsible for managing a set of code instances. */

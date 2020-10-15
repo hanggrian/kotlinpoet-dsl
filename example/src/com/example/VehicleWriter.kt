@@ -1,5 +1,7 @@
 package com.example
 
+import com.hendraanggrian.kotlinpoet.ABSTRACT
+import com.hendraanggrian.kotlinpoet.PUBLIC
 import com.hendraanggrian.kotlinpoet.buildFileSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
@@ -25,11 +27,11 @@ class VehicleWriter {
             types.addInterface("Vehicle") {
                 functions {
                     "getName" {
-                        addModifiers(KModifier.PUBLIC, KModifier.ABSTRACT)
+                        addModifiers(PUBLIC, ABSTRACT)
                         returns<String>()
                     }
                     "getWheelCount" {
-                        addModifiers(KModifier.PUBLIC, KModifier.ABSTRACT)
+                        addModifiers(PUBLIC, ABSTRACT)
                         returns = INT
                     }
                 }

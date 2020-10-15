@@ -3,7 +3,6 @@ package com.hendraanggrian.kotlinpoet
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.UNIT
 import kotlin.test.Test
@@ -18,7 +17,7 @@ class FunSpecBuilderTest {
                 .build()
         )
         .addAnnotation(AnnotationSpec.builder(Deprecated::class).build())
-        .addModifiers(KModifier.PUBLIC)
+        .addModifiers(PUBLIC)
         .returns(UNIT)
         .addParameter(ParameterSpec.builder("param", Array<String>::class).build())
         .addComment("Some comment")
@@ -32,7 +31,7 @@ class FunSpecBuilderTest {
                 append("secondJavadoc")
             }
             annotations.add<Deprecated>()
-            addModifiers(KModifier.PUBLIC)
+            addModifiers(PUBLIC)
             returns = UNIT
             parameters.add<Array<String>>("param")
             addComment("Some comment")
@@ -51,7 +50,7 @@ class FunSpecBuilderTest {
             annotations {
                 add<Deprecated>()
             }
-            addModifiers(KModifier.PUBLIC)
+            addModifiers(PUBLIC)
             returns = UNIT
             parameters {
                 add<Array<String>>("param")
