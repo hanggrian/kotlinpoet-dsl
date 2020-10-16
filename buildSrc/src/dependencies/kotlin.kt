@@ -1,7 +1,5 @@
-const val VERSION_KOTLIN = "1.4.0"
-private const val VERSION_DOKKA = "0.10.1"
+const val VERSION_KOTLIN = "1.4.10"
 
-fun Dependencies.dokka(module: String? = null) =
-    "org.jetbrains.dokka:dokka${module?.let { "-$it" }.orEmpty()}-gradle-plugin:$VERSION_DOKKA"
+fun Dependencies.dokka() = "org.jetbrains.dokka:dokka-gradle-plugin:$VERSION_KOTLIN"
 
-fun Plugins.dokka(module: String? = null) = id("org.jetbrains.dokka${module?.let { "-$it" }.orEmpty()}")
+val Plugins.dokka get() = id("org.jetbrains.dokka")

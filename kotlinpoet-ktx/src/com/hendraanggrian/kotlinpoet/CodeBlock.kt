@@ -60,14 +60,28 @@ class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlock
         nativeBuilder.add(code)
     }
 
-    /** Indent current code. */
+    /** Append an indentation. */
     fun indent() {
         nativeBuilder.indent()
     }
 
-    /** Unindent current code. */
+    /** Reverse an indentation. */
     fun unindent() {
         nativeBuilder.unindent()
+    }
+
+    /** Convenient way to configure code within single indentation. */
+    inline fun indent(configuration: () -> Unit) {
+        indent()
+        configuration()
+        unindent()
+    }
+
+    /** Convenient way to configure code within multiple indentation. */
+    inline fun indent(level: Int, configuration: () -> Unit) {
+        repeat(level) { indent() }
+        configuration()
+        repeat(level) { unindent() }
     }
 
     /** Clear current code. */
