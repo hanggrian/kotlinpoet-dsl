@@ -26,22 +26,25 @@ fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(pac
 
 /**
  * Builds a new [FileSpec],
- * by populating newly created [FileSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [FileSpecBuilder] using provided [builderAction].
  */
 inline fun buildFileSpec(
     packageName: String,
     fileName: String,
     builderAction: FileSpecBuilder.() -> Unit
-): FileSpec = FileSpec.builder(packageName, fileName).build(builderAction)
+): FileSpec = FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(builderAction).build()
 
-/** Modify existing [FileSpec.Builder] using provided [builderAction] and then building it. */
-inline fun FileSpec.Builder.build(
+/** Modify existing [FileSpec.Builder] using provided [builderAction]. */
+inline fun FileSpec.Builder.edit(
     builderAction: FileSpecBuilder.() -> Unit
-): FileSpec = FileSpecBuilder(this).apply(builderAction).build()
+): FileSpec.Builder = FileSpecBuilder(this).apply(builderAction).nativeBuilder
 
-/** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
+/**
+ * Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder.
+ * @param nativeBuilder source builder.
+ */
 @SpecDslMarker
-class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
+class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
 
     /** Package name of this file. */
     val packageName: String get() = nativeBuilder.packageName

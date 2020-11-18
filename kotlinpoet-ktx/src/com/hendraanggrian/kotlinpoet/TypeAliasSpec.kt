@@ -27,51 +27,54 @@ inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec =
 
 /**
  * Builds new [TypeAliasSpec] from name and [TypeName],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
  */
 inline fun buildTypeAliasSpec(
     name: String,
     type: TypeName,
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpec.builder(name, type).build(builderAction)
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
 
 /**
  * Builds new [TypeAliasSpec] from name and [Type],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
  */
 inline fun buildTypeAliasSpec(
     name: String,
     type: Type,
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpec.builder(name, type).build(builderAction)
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
 
 /**
  * Builds new [TypeAliasSpec] from name and [KClass],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
  */
 inline fun buildTypeAliasSpec(
     name: String,
     type: KClass<*>,
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpec.builder(name, type).build(builderAction)
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
 
 /**
  * Builds new [TypeAliasSpec] from name and [T],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
  */
 inline fun <reified T> buildTypeAliasSpec(
     name: String,
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpec.builder(name, T::class).build(builderAction)
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, T::class)).apply(builderAction).build()
 
-/** Modify existing [TypeAliasSpec.Builder] using provided [builderAction] and then building it. */
-inline fun TypeAliasSpec.Builder.build(
+/** Modify existing [TypeAliasSpec.Builder] using provided [builderAction]. */
+inline fun TypeAliasSpec.Builder.edit(
     builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpecBuilder(this).apply(builderAction).build()
+): TypeAliasSpec.Builder = TypeAliasSpecBuilder(this).apply(builderAction).nativeBuilder
 
-/** Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder. */
+/**
+ * Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder.
+ * @param nativeBuilder source builder.
+ */
 @SpecDslMarker
-class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
+class TypeAliasSpecBuilder(val nativeBuilder: TypeAliasSpec.Builder) {
 
     /** Modifiers of this type alias. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers

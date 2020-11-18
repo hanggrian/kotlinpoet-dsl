@@ -66,137 +66,140 @@ fun annotationTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.annotationBuilder
 
 /**
  * Builds new class [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildClassTypeSpec(
     type: String,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.classBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new class [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildClassTypeSpec(
     type: ClassName,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.classBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new expect class [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildExpectClassTypeSpec(
     type: String,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.expectClassBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new expect class [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildExpectClassTypeSpec(
     type: ClassName,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.expectClassBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new object [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildObjectTypeSpec(
     type: String,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.objectBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new object [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildObjectTypeSpec(
     type: ClassName,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.objectBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new object [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildCompanionObjectTypeSpec(
     type: String? = null,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.companionObjectBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.companionObjectBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new interface [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildInterfaceTypeSpec(
     type: String,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.interfaceBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new interface [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildInterfaceTypeSpec(
     type: ClassName,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.interfaceBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new enum [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildEnumTypeSpec(
     type: String,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.enumBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new enum [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildEnumTypeSpec(
     type: ClassName,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.enumBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new anonymous [TypeSpec],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildAnonymousTypeSpec(
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.anonymousClassBuilder().build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.anonymousClassBuilder()).apply(builderAction).build()
 
 /**
  * Builds new annotation [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildAnnotationTypeSpec(
     type: String,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.annotationBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(builderAction).build()
 
 /**
  * Builds new annotation [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [TypeSpecBuilder] using provided [builderAction].
  */
 inline fun buildAnnotationTypeSpec(
     type: ClassName,
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpec.annotationBuilder(type).build(builderAction)
+): TypeSpec = TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(builderAction).build()
 
-/** Modify existing [TypeSpec.Builder] using provided [builderAction] and then building it. */
-inline fun TypeSpec.Builder.build(
+/** Modify existing [TypeSpec.Builder] using provided [builderAction]. */
+inline fun TypeSpec.Builder.edit(
     builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(this).apply(builderAction).build()
+): TypeSpec.Builder = TypeSpecBuilder(this).apply(builderAction).nativeBuilder
 
-/** Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder. */
+/**
+ * Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder.
+ * @param nativeBuilder source builder.
+ */
 @SpecDslMarker
-class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
+class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
 
     /** Initializer index of this type. */
     val initializerIndex: Int get() = nativeBuilder.initializerIndex

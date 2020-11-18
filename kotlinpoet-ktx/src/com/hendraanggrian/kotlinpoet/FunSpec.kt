@@ -30,16 +30,16 @@ fun emptySetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).buil
 
 /**
  * Builds new [FunSpec] with name,
- * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [FunSpecBuilder] using provided [builderAction].
  */
 inline fun buildFunSpec(
     name: String,
     builderAction: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpec.builder(name).build(builderAction)
+): FunSpec = FunSpecBuilder(FunSpec.builder(name)).apply(builderAction).build()
 
 /**
  * Builds new constructor [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [FunSpecBuilder] using provided [builderAction].
  */
 inline fun buildConstructorFunSpec(
     builderAction: FunSpecBuilder.() -> Unit
@@ -47,28 +47,31 @@ inline fun buildConstructorFunSpec(
 
 /**
  * Builds new getter [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [FunSpecBuilder] using provided [builderAction].
  */
 inline fun buildGetterFunSpec(
     builderAction: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpec.getterBuilder().build(builderAction)
+): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).apply(builderAction).build()
 
 /**
  * Builds new setter [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [FunSpecBuilder] using provided [builderAction].
  */
 inline fun buildSetterFunSpec(
     builderAction: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpec.setterBuilder().build(builderAction)
+): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).apply(builderAction).build()
 
-/** Modify existing [FunSpec.Builder] using provided [builderAction] and then building it. */
-inline fun FunSpec.Builder.build(
+/** Modify existing [FunSpec.Builder] using provided [builderAction]. */
+inline fun FunSpec.Builder.edit(
     builderAction: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpecBuilder(this).apply(builderAction).build()
+): FunSpec.Builder = FunSpecBuilder(this).apply(builderAction).nativeBuilder
 
-/** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
+/**
+ * Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder.
+ * @param nativeBuilder source builder.
+ */
 @SpecDslMarker
-class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockContainer() {
+class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockContainer() {
 
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers

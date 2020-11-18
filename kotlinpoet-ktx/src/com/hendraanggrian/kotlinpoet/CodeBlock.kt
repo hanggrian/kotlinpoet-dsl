@@ -12,19 +12,22 @@ fun codeBlockOf(format: String, vararg args: Any): CodeBlock = CodeBlock.of(form
 
 /**
  * Builds new [CodeBlock],
- * by populating newly created [CodeBlockBuilder] using provided [builderAction] and then building it.
+ * by populating newly created [CodeBlockBuilder] using provided [builderAction].
  */
 inline fun buildCodeBlock(
     builderAction: CodeBlockBuilder.() -> Unit
-): CodeBlock = CodeBlock.builder().build(builderAction)
+): CodeBlock = CodeBlockBuilder(CodeBlock.builder()).apply(builderAction).build()
 
-/** Modify existing [CodeBlock.Builder] using provided [builderAction] and then building it. */
-inline fun CodeBlock.Builder.build(
+/** Modify existing [CodeBlock.Builder] using provided [builderAction]. */
+inline fun CodeBlock.Builder.edit(
     builderAction: CodeBlockBuilder.() -> Unit
-): CodeBlock = CodeBlockBuilder(this).apply(builderAction).build()
+): CodeBlock.Builder = CodeBlockBuilder(this).apply(builderAction).nativeBuilder
 
-/** Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder. */
-class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer() {
+/**
+ * Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder.
+ * @param nativeBuilder source builder.
+ */
+class CodeBlockBuilder(val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer() {
 
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()
