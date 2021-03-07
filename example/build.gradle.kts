@@ -3,11 +3,11 @@ plugins {
     application
 }
 
-application.mainClassName = "com.example.MyApp"
+application.mainClass.set("com.example.VehicleWriter")
 
 sourceSets["main"].java.srcDir("src")
 
 dependencies {
-    implementation(kotlin("stdlib", VERSION_KOTLIN))
-    implementation(project(":$RELEASE_ARTIFACT"))
+    api(kotlin("stdlib", VERSION_KOTLIN))
+    api(project(":$RELEASE_ARTIFACT"))
 }
