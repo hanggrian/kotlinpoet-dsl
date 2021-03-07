@@ -1,160 +1,357 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>com.hendraanggrian.kotlinpoet.collections - kotlinpoet-ktx</title>
-<link rel="stylesheet" href="../../style.css">
-</HEAD>
-<BODY>
-<a href="../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="./index.html">com.hendraanggrian.kotlinpoet.collections</a><br/>
-<br/>
-<h2>Package com.hendraanggrian.kotlinpoet.collections</h2>
-<h3>Types</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="-annotation-spec-list/index.html">AnnotationSpecList</a></h4>
-</td>
-<td>
-<p>An <a href="-annotation-spec-list/index.html">AnnotationSpecList</a> is responsible for managing a set of annotation instances.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">AnnotationSpecList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-annotation-spec-list-scope/index.html">AnnotationSpecListScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>annotations</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">class </span><span class="identifier">AnnotationSpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-annotation-spec-list/index.html"><span class="identifier">AnnotationSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-code-block-container/index.html">CodeBlockContainer</a></h4>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">CodeBlockContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlockAppendable</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-fun-spec-list/index.html">FunSpecList</a></h4>
-</td>
-<td>
-<p>A <a href="-fun-spec-list/index.html">FunSpecList</a> is responsible for managing a set of function instances.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">FunSpecList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">FunSpec</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-fun-spec-list-scope/index.html">FunSpecListScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>functions</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">class </span><span class="identifier">FunSpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-fun-spec-list/index.html"><span class="identifier">FunSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-kdoc-container/index.html">KdocContainer</a></h4>
-</td>
-<td>
-<p>A <a href="-kdoc-container/index.html">KdocContainer</a> is responsible for managing a set of code instances.</p>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">KdocContainer</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlockAppendable</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-kdoc-container-scope/index.html">KdocContainerScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>kdoc</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">class </span><span class="identifier">KdocContainerScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-kdoc-container/index.html"><span class="identifier">KdocContainer</span></a><span class="symbol">, </span><span class="identifier">CodeBlockAppendable</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-parameter-spec-list/index.html">ParameterSpecList</a></h4>
-</td>
-<td>
-<p>A <a href="-parameter-spec-list/index.html">ParameterSpecList</a> is responsible for managing a set of parameter instances.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ParameterSpecList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">ParameterSpec</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-parameter-spec-list-scope/index.html">ParameterSpecListScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>parameters</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">class </span><span class="identifier">ParameterSpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-parameter-spec-list/index.html"><span class="identifier">ParameterSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-property-spec-list/index.html">PropertySpecList</a></h4>
-</td>
-<td>
-<p>A <a href="-property-spec-list/index.html">PropertySpecList</a> is responsible for managing a set of property instances.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">PropertySpecList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">PropertySpec</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-property-spec-list-scope/index.html">PropertySpecListScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>properties</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">class </span><span class="identifier">PropertySpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-property-spec-list/index.html"><span class="identifier">PropertySpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-alias-spec-list/index.html">TypeAliasSpecList</a></h4>
-</td>
-<td>
-<p>An <a href="-type-alias-spec-list/index.html">TypeAliasSpecList</a> is responsible for managing a set of type alias instances.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TypeAliasSpecList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeAliasSpec</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-alias-spec-list-scope/index.html">TypeAliasSpecListScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>typeAliases</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">class </span><span class="identifier">TypeAliasSpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-alias-spec-list/index.html"><span class="identifier">TypeAliasSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-name-map/index.html">TypeNameMap</a></h4>
-</td>
-<td>
-<p>A <a href="-type-name-map/index.html">TypeNameMap</a> is responsible for managing a set of type name instances.</p>
-<code><span class="keyword">class </span><span class="identifier">TypeNameMap</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><span class="identifier">TypeName</span><span class="symbol">,</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">?</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-spec-list/index.html">TypeSpecList</a></h4>
-</td>
-<td>
-<p>A <a href="-type-spec-list/index.html">TypeSpecList</a> is responsible for managing a set of type instances.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TypeSpecList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeSpec</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-spec-list-scope/index.html">TypeSpecListScope</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>types</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">TypeSpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-type-spec-list/index.html"><span class="identifier">TypeSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-variable-name-list.html">TypeVariableNameList</a></h4>
-</td>
-<td>
-<p>A <a href="-type-variable-name-list.html">TypeVariableNameList</a> is responsible for managing a set of type variable name instances.</p>
-<code><span class="keyword">class </span><span class="identifier">TypeVariableNameList</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">TypeVariableNameCollection</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="-type-variable-name-set.html">TypeVariableNameSet</a></h4>
-</td>
-<td>
-<p>A <a href="-type-variable-name-set.html">TypeVariableNameSet</a> is responsible for managing a set of type variable name instances.</p>
-<code><span class="keyword">class </span><span class="identifier">TypeVariableNameSet</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><span class="identifier">TypeVariableName</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">TypeVariableNameCollection</span></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.hendraanggrian.kotlinpoet.collections</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="../../styles/style.css" rel="Stylesheet">
+    <link href="../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <link href="../../styles/main.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="../../scripts/main.js" async="async"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+        <script type="text/javascript" src="../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="com.hendraanggrian.kotlinpoet.collections////PointingToDeclaration//-282956220">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../index.html">kotlinpoet-ktx</a>/<a href="index.html">com.hendraanggrian.kotlinpoet.collections</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Package com.</span><wbr></wbr><span>hendraanggrian.</span><wbr></wbr><span>kotlinpoet.</span><wbr></wbr><span>collections</span></h1>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Types</h2>
+              <div class="table" data-togglable="Types"><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="AnnotationSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-annotation-spec-list/index.html">AnnotationSpecList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-annotation-spec-list/index.html">AnnotationSpecList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="AnnotationSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="AnnotationSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>An <a href="-annotation-spec-list/index.html">AnnotationSpecList</a> is responsible for managing a set of annotation instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="AnnotationSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-annotation-spec-list-scope/index.html">AnnotationSpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-annotation-spec-list-scope/index.html">AnnotationSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;) : <a href="-annotation-spec-list/index.html">AnnotationSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="AnnotationSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="AnnotationSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>annotations</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="CodeBlockContainer" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-code-block-container/index.html">CodeBlockContainer</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">abstract class <a href="-code-block-container/index.html">CodeBlockContainer</a> : <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/CodeBlockAppendable///PointingToDeclaration/">CodeBlockAppendable</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="FunSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-fun-spec-list/index.html">FunSpecList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-fun-spec-list/index.html">FunSpecList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/FunSpec///PointingToDeclaration/">FunSpec</span>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="FunSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="FunSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-fun-spec-list/index.html">FunSpecList</a> is responsible for managing a set of function instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="FunSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-fun-spec-list-scope/index.html">FunSpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-fun-spec-list-scope/index.html">FunSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/FunSpec///PointingToDeclaration/">FunSpec</span>&gt;) : <a href="-fun-spec-list/index.html">FunSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="FunSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="FunSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FFunSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>functions</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="KdocContainer" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-kdoc-container/index.html">KdocContainer</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">abstract class <a href="-kdoc-container/index.html">KdocContainer</a> : <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/CodeBlockAppendable///PointingToDeclaration/">CodeBlockAppendable</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="KdocContainer" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="KdocContainer" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainer%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-kdoc-container/index.html">KdocContainer</a> is responsible for managing a set of code instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="KdocContainerScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-kdoc-container-scope/index.html">KdocContainerScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-kdoc-container-scope/index.html">KdocContainerScope</a>(container: <a href="-kdoc-container/index.html">KdocContainer</a>) : <a href="-kdoc-container/index.html">KdocContainer</a>, <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/CodeBlockAppendable///PointingToDeclaration/">CodeBlockAppendable</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="KdocContainerScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="KdocContainerScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FKdocContainerScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>kdoc</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="ParameterSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-parameter-spec-list/index.html">ParameterSpecList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-parameter-spec-list/index.html">ParameterSpecList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="ParameterSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="ParameterSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-parameter-spec-list/index.html">ParameterSpecList</a> is responsible for managing a set of parameter instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="ParameterSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-parameter-spec-list-scope/index.html">ParameterSpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-parameter-spec-list-scope/index.html">ParameterSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span>&gt;) : <a href="-parameter-spec-list/index.html">ParameterSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="ParameterSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="ParameterSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FParameterSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>parameters</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="PropertySpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-property-spec-list/index.html">PropertySpecList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-property-spec-list/index.html">PropertySpecList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/PropertySpec///PointingToDeclaration/">PropertySpec</span>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="PropertySpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="PropertySpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-property-spec-list/index.html">PropertySpecList</a> is responsible for managing a set of property instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="PropertySpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-property-spec-list-scope/index.html">PropertySpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-property-spec-list-scope/index.html">PropertySpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/PropertySpec///PointingToDeclaration/">PropertySpec</span>&gt;) : <a href="-property-spec-list/index.html">PropertySpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="PropertySpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="PropertySpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FPropertySpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>properties</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeAliasSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-alias-spec-list/index.html">TypeAliasSpecList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-type-alias-spec-list/index.html">TypeAliasSpecList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeAliasSpec///PointingToDeclaration/">TypeAliasSpec</span>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeAliasSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeAliasSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>An <a href="-type-alias-spec-list/index.html">TypeAliasSpecList</a> is responsible for managing a set of type alias instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeAliasSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-alias-spec-list-scope/index.html">TypeAliasSpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-type-alias-spec-list-scope/index.html">TypeAliasSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeAliasSpec///PointingToDeclaration/">TypeAliasSpec</span>&gt;) : <a href="-type-alias-spec-list/index.html">TypeAliasSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeAliasSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeAliasSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeAliasSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>typeAliases</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeNameMap" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-name-map/index.html">TypeNameMap</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-type-name-map/index.html">TypeNameMap</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span>, <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span>?&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeNameMap" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeNameMap" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeNameMap%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-type-name-map/index.html">TypeNameMap</a> is responsible for managing a set of type name instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-spec-list/index.html">TypeSpecList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-type-spec-list/index.html">TypeSpecList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeSpec///PointingToDeclaration/">TypeSpec</span>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeSpecList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-type-spec-list/index.html">TypeSpecList</a> is responsible for managing a set of type instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-spec-list-scope/index.html">TypeSpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open class <a href="-type-spec-list-scope/index.html">TypeSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeSpec///PointingToDeclaration/">TypeSpec</span>&gt;) : <a href="-type-spec-list/index.html">TypeSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeSpecListScope%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Receiver for the <code>types</code> block providing an extended set of operators for the configuration.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeVariableNameList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-variable-name-list/index.html">TypeVariableNameList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-type-variable-name-list/index.html">TypeVariableNameList</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeVariableName///PointingToDeclaration/">TypeVariableName</span>&gt; , <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/TypeVariableNameCollection///PointingToDeclaration/">TypeVariableNameCollection</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeVariableNameList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeVariableNameList" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameList%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-type-variable-name-list/index.html">TypeVariableNameList</a> is responsible for managing a set of type variable name instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeVariableNameSet" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-type-variable-name-set/index.html">TypeVariableNameSet</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="-type-variable-name-set/index.html">TypeVariableNameSet</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html">MutableSet</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/TypeVariableName///PointingToDeclaration/">TypeVariableName</span>&gt; , <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/TypeVariableNameCollection///PointingToDeclaration/">TypeVariableNameCollection</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeVariableNameSet" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" anchor-label="TypeVariableNameSet" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FTypeVariableNameSet%2F%2F%2FPointingToDeclaration%2F%5D%2FClasslikes%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>A <a href="-type-variable-name-set/index.html">TypeVariableNameSet</a> is responsible for managing a set of type variable name instances.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

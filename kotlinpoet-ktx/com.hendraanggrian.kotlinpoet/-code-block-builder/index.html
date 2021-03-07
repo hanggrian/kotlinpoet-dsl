@@ -1,130 +1,366 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>CodeBlockBuilder - kotlinpoet-ktx</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet</a>&nbsp;/&nbsp;<a href="./index.html">CodeBlockBuilder</a><br/>
-<br/>
-<h1>CodeBlockBuilder</h1>
-<code><span class="keyword">class </span><span class="identifier">CodeBlockBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/index.html"><span class="identifier">CodeBlockContainer</span></a></code>
-<p>Wrapper of <a href="#">CodeBlock.Builder</a>, providing DSL support as a replacement to Java builder.</p>
-<h3>Constructors</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="-init-.html">&lt;init&gt;</a></h4>
-</td>
-<td>
-<p>Wrapper of <a href="#">CodeBlock.Builder</a>, providing DSL support as a replacement to Java builder.</p>
-<code><span class="identifier">CodeBlockBuilder</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$<init>(com.squareup.kotlinpoet.CodeBlock.Builder)/nativeBuilder">nativeBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">)</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="append.html">append</a></h4>
-</td>
-<td>
-<p>Add code with arguments to this container.</p>
-<code><span class="keyword">fun </span><span class="identifier">append</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$append(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$append(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Add code block to this container.</p>
-<code><span class="keyword">fun </span><span class="identifier">append</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$append(com.squareup.kotlinpoet.CodeBlock)/code">code</span><span class="symbol">:</span>&nbsp;<span class="identifier">CodeBlock</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="append-line.html">appendLine</a></h4>
-</td>
-<td>
-<p>Add code block with a new line to this container.</p>
-<code><span class="keyword">fun </span><span class="identifier">appendLine</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$appendLine(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$appendLine(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="append-named.html">appendNamed</a></h4>
-</td>
-<td>
-<p>Add named code to this container.</p>
-<code><span class="keyword">fun </span><span class="identifier">appendNamed</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$appendNamed(kotlin.String, kotlin.collections.Map((kotlin.String, kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$appendNamed(kotlin.String, kotlin.collections.Map((kotlin.String, kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="begin-flow.html">beginFlow</a></h4>
-</td>
-<td>
-<p>Starts the control flow.</p>
-<code><span class="keyword">fun </span><span class="identifier">beginFlow</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$beginFlow(kotlin.String, kotlin.Array((kotlin.Any)))/flow">flow</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$beginFlow(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="build.html">build</a></h4>
-</td>
-<td>
-<p>Returns native spec.</p>
-<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">CodeBlock</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="clear.html">clear</a></h4>
-</td>
-<td>
-<p>Clear current code.</p>
-<code><span class="keyword">fun </span><span class="identifier">clear</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="end-flow.html">endFlow</a></h4>
-</td>
-<td>
-<p>Stops the control flow.</p>
-<code><span class="keyword">fun </span><span class="identifier">endFlow</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="indent.html">indent</a></h4>
-</td>
-<td>
-<p>Indent current code.</p>
-<code><span class="keyword">fun </span><span class="identifier">indent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="is-empty.html">isEmpty</a></h4>
-</td>
-<td>
-<p>Returns true if this builder contains no code.</p>
-<code><span class="keyword">fun </span><span class="identifier">isEmpty</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="is-not-empty.html">isNotEmpty</a></h4>
-</td>
-<td>
-<p>Returns true if this builder contains code.</p>
-<code><span class="keyword">fun </span><span class="identifier">isNotEmpty</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="next-flow.html">nextFlow</a></h4>
-</td>
-<td>
-<p>Continues the control flow.</p>
-<code><span class="keyword">fun </span><span class="identifier">nextFlow</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$nextFlow(kotlin.String, kotlin.Array((kotlin.Any)))/flow">flow</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.CodeBlockBuilder$nextFlow(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="unindent.html">unindent</a></h4>
-</td>
-<td>
-<p>Unindent current code.</p>
-<code><span class="keyword">fun </span><span class="identifier">unindent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>CodeBlockBuilder</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <link href="../../../styles/main.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/main.js" async="async"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+        <script type="text/javascript" src="../../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="com.hendraanggrian.kotlinpoet/CodeBlockBuilder///PointingToDeclaration//-282956220">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">kotlinpoet-ktx</a>/<a href="../index.html">com.hendraanggrian.kotlinpoet</a>/<a href="index.html">CodeBlockBuilder</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Code</span><wbr></wbr><span>Block</span><wbr></wbr><span>Builder</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="index.html">CodeBlockBuilder</a>(nativeBuilder: <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock.Builder///PointingToDeclaration/">CodeBlock.Builder</span>) : <a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/index.html">CodeBlockContainer</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Wrapper of <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock.Builder///PointingToDeclaration/">CodeBlock.Builder</span>, providing DSL support as a replacement to Java builder.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">nativeBuilder</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">source builder.</p></div></div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FCodeBlockBuilder%2F%23com.squareup.kotlinpoet.CodeBlock.Builder%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220" anchor-label="CodeBlockBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FCodeBlockBuilder%2F%23com.squareup.kotlinpoet.CodeBlock.Builder%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-code-block-builder.html">CodeBlockBuilder</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FCodeBlockBuilder%2F%23com.squareup.kotlinpoet.CodeBlock.Builder%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="-code-block-builder.html">CodeBlockBuilder</a>(nativeBuilder: <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock.Builder///PointingToDeclaration/">CodeBlock.Builder</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">source builder.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append.html">append</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append.html">append</a>(builderAction: <a href="index.html">CodeBlockBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2Fappend%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add code block with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/CodeBlockContainer/builderAction/#/PointingToCallableParameters(-1)/">builderAction</span>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="append.html">append</a>(code: <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add code block to this container.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="append.html">append</a>(format: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg args: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="append" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fappend%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add code with arguments to this container.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendFlow" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append-flow.html">appendFlow</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append-flow.html">appendFlow</a>(flow: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg args: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>, configuration: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendFlow" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendFlow" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Insert code flow with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/CodeBlockContainer/configuration/#/PointingToCallableParameters(-1)/">configuration</span>.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append-line.html">appendLine</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append-line.html">appendLine</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add empty new line to this container.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/index.html#%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">appendLine</a>(code: <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockAppendable%2FappendLine%2F%23com.squareup.kotlinpoet.CodeBlock%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add code block with a new line to this container.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-code-block-container/append-line.html">appendLine</a>(builderAction: <a href="index.html">CodeBlockBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FCodeBlockContainer%2FappendLine%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.CodeBlockBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add code block with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/CodeBlockContainer/builderAction/#/PointingToCallableParameters(-1)/">builderAction</span> and a new line to this container.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="append-line.html">appendLine</a>(format: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg args: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendLine" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendLine%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add code block with a new line to this container.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendNamed" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="append-named.html">appendNamed</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="append-named.html">appendNamed</a>(format: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, args: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, *&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendNamed" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="appendNamed" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FappendNamed%2F%23kotlin.String%23kotlin.collections.Map%5Bkotlin.String%2C*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add named code to this container.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="build" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="build.html">build</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="build.html">build</a>(): <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="build" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="build" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Returns native spec.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clear" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="clear.html">clear</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="clear.html">clear</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clear" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clear" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Clear current code.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="equals" id="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="hashCode" id="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="indent.html">indent</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="indent.html">indent</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Append an indentation.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="indent.html">indent</a>(configuration: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient way to configure code within single indentation.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="indent.html">indent</a>(level: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, configuration: () -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Findent%2F%23kotlin.Int%23kotlin.Function0%5Bkotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient way to configure code within multiple indentation.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isEmpty" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-empty.html">isEmpty</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="is-empty.html">isEmpty</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isEmpty" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isEmpty" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Returns true if this builder contains no code.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isNotEmpty" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-not-empty.html">isNotEmpty</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="is-not-empty.html">isNotEmpty</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isNotEmpty" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isNotEmpty" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FisNotEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Returns true if this builder contains code.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="nextFlow" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="next-flow.html">nextFlow</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="next-flow.html">nextFlow</a>(flow: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg args: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="nextFlow" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="nextFlow" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnextFlow%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Continues the control flow.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="toString" id="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="unindent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="unindent.html">unindent</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="unindent.html">unindent</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="unindent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="unindent" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2Funindent%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Reverse an indentation.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="nativeBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="native-builder.html">nativeBuilder</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="nativeBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="native-builder.html">nativeBuilder</a>: <span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock.Builder///PointingToDeclaration/">CodeBlock.Builder</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="nativeBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FCodeBlockBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>source builder.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

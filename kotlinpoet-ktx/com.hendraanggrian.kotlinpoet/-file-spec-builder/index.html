@@ -1,236 +1,540 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>FileSpecBuilder - kotlinpoet-ktx</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet</a>&nbsp;/&nbsp;<a href="./index.html">FileSpecBuilder</a><br/>
-<br/>
-<h1>FileSpecBuilder</h1>
-<code><span class="keyword">class </span><span class="identifier">FileSpecBuilder</span></code>
-<p>Wrapper of <a href="#">FileSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
-<h3>Constructors</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="-init-.html">&lt;init&gt;</a></h4>
-</td>
-<td>
-<p>Wrapper of <a href="#">FileSpec.Builder</a>, providing DSL support as a replacement to Java builder.</p>
-<code><span class="identifier">FileSpecBuilder</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$<init>(com.squareup.kotlinpoet.FileSpec.Builder)/nativeBuilder">nativeBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">)</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="annotations.html">annotations</a></h4>
-</td>
-<td>
-<p>Annotations of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">annotations</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list/index.html"><span class="identifier">AnnotationSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="functions.html">functions</a></h4>
-</td>
-<td>
-<p>Functions of this file.
-Returns a fake list where the only supported operation is <code>add</code>.</p>
-<code><span class="keyword">val </span><span class="identifier">functions</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-fun-spec-list/index.html"><span class="identifier">FunSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="imports.html">imports</a></h4>
-</td>
-<td>
-<p>Imports of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">imports</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Import</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="indent.html">indent</a></h4>
-</td>
-<td>
-<p>Set indent text.</p>
-<code><span class="keyword">var </span><span class="identifier">indent</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="indent-size.html">indentSize</a></h4>
-</td>
-<td>
-<p>Convenient method to set <a href="indent.html">indent</a> with space the length of <a href="indent-size.html">indentSize</a>.</p>
-<code><span class="keyword">var </span><span class="identifier">indentSize</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="members.html">members</a></h4>
-</td>
-<td>
-<p>Members of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">members</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="name.html">name</a></h4>
-</td>
-<td>
-<p>Name of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="package-name.html">packageName</a></h4>
-</td>
-<td>
-<p>Package name of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">packageName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="properties.html">properties</a></h4>
-</td>
-<td>
-<p>Properties of this file.
-Returns a fake list where the only supported operation is <code>add</code>.</p>
-<code><span class="keyword">val </span><span class="identifier">properties</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-property-spec-list/index.html"><span class="identifier">PropertySpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="tags.html">tags</a></h4>
-</td>
-<td>
-<p>Tags variables of this file.</p>
-<code><span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="type-aliases.html">typeAliases</a></h4>
-</td>
-<td>
-<p>Type aliases of this file.
-Returns a fake list where the only supported operation is <code>add</code>.</p>
-<code><span class="keyword">val </span><span class="identifier">typeAliases</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-alias-spec-list/index.html"><span class="identifier">TypeAliasSpecList</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="types.html">types</a></h4>
-</td>
-<td>
-<p>Types of this file.
-Returns a fake list where the only supported operation is <code>add</code>.</p>
-<code><span class="keyword">val </span><span class="identifier">types</span><span class="symbol">: </span><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-spec-list/index.html"><span class="identifier">TypeSpecList</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="add-aliased-import.html">addAliasedImport</a></h4>
-</td>
-<td>
-<p>Add aliased import.</p>
-<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(java.lang.Class((kotlin.Any)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(java.lang.Class((kotlin.Any)), kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">ClassName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String, kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">ClassName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String, kotlin.String)/member">member</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.ClassName, kotlin.String, kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.MemberName, kotlin.String)/member">member</span><span class="symbol">:</span>&nbsp;<span class="identifier">MemberName</span><span class="symbol">, </span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(com.squareup.kotlinpoet.MemberName, kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Add aliased import with reified function.</p>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">addAliasedImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addAliasedImport(kotlin.String)/as">as</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="add-comment.html">addComment</a></h4>
-</td>
-<td>
-<p>Add file comment like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/format.html">String.format</a>.</p>
-<code><span class="keyword">fun </span><span class="identifier">addComment</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addComment(kotlin.String, kotlin.Array((kotlin.Any)))/format">format</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addComment(kotlin.String, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="add-import.html">addImport</a></h4>
-</td>
-<td>
-<p>Add import.</p>
-<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.Enum(()))/constant">constant</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html"><span class="identifier">Enum</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(com.squareup.kotlinpoet.ClassName, kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">ClassName</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(com.squareup.kotlinpoet.ClassName, kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(java.lang.Class((kotlin.Any)), kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(java.lang.Class((kotlin.Any)), kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.reflect.KClass((kotlin.Any)), kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
-<code><span class="keyword">fun </span><span class="identifier">addImport</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.String, kotlin.Array((kotlin.String)))/packageName">packageName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.String, kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Add import with reified function.</p>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">addImport</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$addImport(kotlin.Array((kotlin.String)))/names">names</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="annotations.html">annotations</a></h4>
-</td>
-<td>
-<p>Configures annotations for this file.</p>
-<code><span class="keyword">fun </span><span class="identifier">annotations</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$annotations(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list-scope/index.html"><span class="identifier">AnnotationSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="build.html">build</a></h4>
-</td>
-<td>
-<p>Returns native spec.</p>
-<code><span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">FileSpec</span></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="clear-comment.html">clearComment</a></h4>
-</td>
-<td>
-<p>Clear file comment.</p>
-<code><span class="keyword">fun </span><span class="identifier">clearComment</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="clear-imports.html">clearImports</a></h4>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">clearImports</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="functions.html">functions</a></h4>
-</td>
-<td>
-<p>Configures functions for this file.</p>
-<code><span class="keyword">fun </span><span class="identifier">functions</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$functions(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.FunSpecListScope, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-fun-spec-list-scope/index.html"><span class="identifier">FunSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="properties.html">properties</a></h4>
-</td>
-<td>
-<p>Configures properties for this file.</p>
-<code><span class="keyword">fun </span><span class="identifier">properties</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$properties(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-property-spec-list-scope/index.html"><span class="identifier">PropertySpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="type-aliases.html">typeAliases</a></h4>
-</td>
-<td>
-<p>Configures type aliases for this file.</p>
-<code><span class="keyword">fun </span><span class="identifier">typeAliases</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$typeAliases(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-type-alias-spec-list-scope/index.html"><span class="identifier">TypeAliasSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="types.html">types</a></h4>
-</td>
-<td>
-<p>Configures types for this file.</p>
-<code><span class="keyword">fun </span><span class="identifier">types</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.FileSpecBuilder$types(kotlin.Function1((com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet.collections/-type-spec-list-scope/index.html"><span class="identifier">TypeSpecListScope</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>FileSpecBuilder</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <link href="../../../styles/main.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/main.js" async="async"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+        <script type="text/javascript" src="../../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="com.hendraanggrian.kotlinpoet/FileSpecBuilder///PointingToDeclaration//-282956220">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">kotlinpoet-ktx</a>/<a href="../index.html">com.hendraanggrian.kotlinpoet</a>/<a href="index.html">FileSpecBuilder</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>File</span><wbr></wbr><span>Spec</span><wbr></wbr><span>Builder</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="index.html">FileSpecBuilder</a>(nativeBuilder: <span data-unresolved-link="com.squareup.kotlinpoet/FileSpec.Builder///PointingToDeclaration/">FileSpec.Builder</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Wrapper of <span data-unresolved-link="com.squareup.kotlinpoet/FileSpec.Builder///PointingToDeclaration/">FileSpec.Builder</span>, providing DSL support as a replacement to Java builder.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">nativeBuilder</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">source builder.</p></div></div></div></div></div></div></div></div></div>
+              </div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FFileSpecBuilder%2F%23com.squareup.kotlinpoet.FileSpec.Builder%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220" anchor-label="FileSpecBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FFileSpecBuilder%2F%23com.squareup.kotlinpoet.FileSpec.Builder%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-file-spec-builder.html">FileSpecBuilder</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FFileSpecBuilder%2F%23com.squareup.kotlinpoet.FileSpec.Builder%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="-file-spec-builder.html">FileSpecBuilder</a>(nativeBuilder: <span data-unresolved-link="com.squareup.kotlinpoet/FileSpec.Builder///PointingToDeclaration/">FileSpec.Builder</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">source builder.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-aliased-import.html">addAliasedImport</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun &lt;<a href="add-aliased-import.html">T</a>&gt; <a href="add-aliased-import.html">addAliasedImport</a>(as: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add aliased import with reified function.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-aliased-import.html">addAliasedImport</a>(type: <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>, as: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add aliased import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-aliased-import.html">addAliasedImport</a>(member: <span data-unresolved-link="com.squareup.kotlinpoet/MemberName///PointingToDeclaration/">MemberName</span>, as: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.MemberName%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add aliased import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-aliased-import.html">addAliasedImport</a>(type: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>&lt;*&gt;, as: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23java.lang.Class%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add aliased import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-aliased-import.html">addAliasedImport</a>(type: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;*&gt;, as: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add aliased import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-aliased-import.html">addAliasedImport</a>(type: <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>, member: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, as: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAliasedImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddAliasedImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.String%23kotlin.String%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add aliased import.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addComment" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-comment.html">addComment</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-comment.html">addComment</a>(format: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg args: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addComment" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addComment" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddComment%2F%23kotlin.String%23kotlin.Array%5Bkotlin.Any%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add file comment like <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/index.html">String.format</a>.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-import.html">addImport</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun &lt;<a href="add-import.html">T</a>&gt; <a href="add-import.html">addImport</a>(vararg names: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add import with reified function.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-import.html">addImport</a>(constant: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a>&lt;*&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.Enum%5B*%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-import.html">addImport</a>(type: <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>, vararg names: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-import.html">addImport</a>(type: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>&lt;*&gt;, vararg names: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23java.lang.Class%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-import.html">addImport</a>(packageName: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg names: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.String%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add import.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-import.html">addImport</a>(type: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;*&gt;, vararg names: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addImport" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FaddImport%2F%23kotlin.reflect.KClass%5B*%5D%23kotlin.Array%5Bkotlin.String%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add import.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="annotations" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="annotations.html">annotations</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="annotations.html">annotations</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list-scope/index.html">AnnotationSpecListScope</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="annotations" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="annotations" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Configures annotations for this file.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="build" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="build.html">build</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="build.html">build</a>(): <span data-unresolved-link="com.squareup.kotlinpoet/FileSpec///PointingToDeclaration/">FileSpec</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="build" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="build" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fbuild%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Returns native spec.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clearComment" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="clear-comment.html">clearComment</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="clear-comment.html">clearComment</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clearComment" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clearComment" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearComment%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Clear file comment.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearImports%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clearImports" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearImports%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="clear-imports.html">clearImports</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FclearImports%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="clear-imports.html">clearImports</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="equals" id="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="functions" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="functions.html">functions</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="functions.html">functions</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet.collections/-fun-spec-list-scope/index.html">FunSpecListScope</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="functions" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="functions" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.FunSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Configures functions for this file.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="hashCode" id="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="properties" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="properties.html">properties</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="properties.html">properties</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet.collections/-property-spec-list-scope/index.html">PropertySpecListScope</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="properties" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="properties" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.PropertySpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Configures properties for this file.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="toString" id="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="typeAliases" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="type-aliases.html">typeAliases</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="type-aliases.html">typeAliases</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-alias-spec-list-scope/index.html">TypeAliasSpecListScope</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="typeAliases" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="typeAliases" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Configures type aliases for this file.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="types" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="types.html">types</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="types.html">types</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-spec-list-scope/index.html">TypeSpecListScope</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="types" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="types" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.collections.TypeSpecListScope%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Configures types for this file.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="annotations" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="annotations.html">annotations</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="annotations" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="annotations.html">annotations</a>: <a href="../../com.hendraanggrian.kotlinpoet.collections/-annotation-spec-list/index.html">AnnotationSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="annotations" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fannotations%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Annotations of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="functions" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="functions.html">functions</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="functions" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="functions.html">functions</a>: <a href="../../com.hendraanggrian.kotlinpoet.collections/-fun-spec-list/index.html">FunSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="functions" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ffunctions%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Functions of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="imports" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="imports.html">imports</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="imports" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="imports.html">imports</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/Import///PointingToDeclaration/">Import</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="imports" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fimports%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Imports of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="indent.html">indent</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">var <a href="indent.html">indent</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="indent" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Findent%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Set indent text.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="indentSize" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="indent-size.html">indentSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="indentSize" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">var <a href="indent-size.html">indentSize</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="indentSize" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FindentSize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to set <a href="indent.html">indent</a> with space the length of <a href="indent-size.html">indentSize</a>.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="members" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="members.html">members</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="members" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="members.html">members</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="members" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fmembers%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Members of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="name" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="name.html">name</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="name" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="name.html">name</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="name" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fname%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Name of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="nativeBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="native-builder.html">nativeBuilder</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="nativeBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="native-builder.html">nativeBuilder</a>: <span data-unresolved-link="com.squareup.kotlinpoet/FileSpec.Builder///PointingToDeclaration/">FileSpec.Builder</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="nativeBuilder" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FnativeBuilder%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>source builder.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="packageName" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="package-name.html">packageName</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="packageName" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="package-name.html">packageName</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="packageName" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FpackageName%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Package name of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="properties" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="properties.html">properties</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="properties" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="properties.html">properties</a>: <a href="../../com.hendraanggrian.kotlinpoet.collections/-property-spec-list/index.html">PropertySpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="properties" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Fproperties%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Properties of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="tags" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="tags.html">tags</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="tags" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="tags.html">tags</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;*&gt;, *&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="tags" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftags%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Tags variables of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="typeAliases" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="type-aliases.html">typeAliases</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="typeAliases" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="type-aliases.html">typeAliases</a>: <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-alias-spec-list/index.html">TypeAliasSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="typeAliases" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2FtypeAliases%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Type aliases of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="types" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="types.html">types</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="types" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">val <a href="types.html">types</a>: <a href="../../com.hendraanggrian.kotlinpoet.collections/-type-spec-list/index.html">TypeSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="types" id="%5Bcom.hendraanggrian.kotlinpoet%2FFileSpecBuilder%2Ftypes%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Types of this file.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

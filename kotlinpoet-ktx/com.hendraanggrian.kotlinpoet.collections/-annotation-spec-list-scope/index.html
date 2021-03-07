@@ -1,42 +1,647 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>AnnotationSpecListScope - kotlinpoet-ktx</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">kotlinpoet-ktx</a>&nbsp;/&nbsp;<a href="../index.html">com.hendraanggrian.kotlinpoet.collections</a>&nbsp;/&nbsp;<a href="./index.html">AnnotationSpecListScope</a><br/>
-<br/>
-<h1>AnnotationSpecListScope</h1>
-<code><span class="keyword">class </span><span class="identifier">AnnotationSpecListScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-annotation-spec-list/index.html"><span class="identifier">AnnotationSpecList</span></a></code>
-<p>Receiver for the <code>annotations</code> block providing an extended set of operators for the configuration.</p>
-<h3>Constructors</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="-init-.html">&lt;init&gt;</a></h4>
-</td>
-<td>
-<p>Receiver for the <code>annotations</code> block providing an extended set of operators for the configuration.</p>
-<code><span class="identifier">AnnotationSpecListScope</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope$<init>(kotlin.collections.MutableList((com.squareup.kotlinpoet.AnnotationSpec)))/actualList">actualList</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><span class="identifier">AnnotationSpec</span><span class="symbol">&gt;</span><span class="symbol">)</span></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="invoke.html">invoke</a></h4>
-</td>
-<td>
-<p>Convenient method to add annotation with receiver type.</p>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">ClassName</span><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope$invoke(com.squareup.kotlinpoet.ClassName, kotlin.Function1((com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html"><span class="identifier">AnnotationSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://docs.oracle.com/javase/6/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html"><span class="identifier">Annotation</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope$invoke(java.lang.Class((kotlin.Annotation)), kotlin.Function1((com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html"><span class="identifier">AnnotationSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html"><span class="identifier">Annotation</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope$invoke(kotlin.reflect.KClass((kotlin.Annotation)), kotlin.Function1((com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder, kotlin.Unit)))/builderAction">builderAction</span><span class="symbol">:</span>&nbsp;<a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html"><span class="identifier">AnnotationSpecBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
-</tr>
-</tbody>
-</table>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AnnotationSpecListScope</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+    <link href="../../../styles/main.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/main.js" async="async"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn">
+        <div id="logo"></div>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+        <script type="text/javascript" src="../../../scripts/pages.js"></script>
+        <script type="text/javascript" src="../../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="com.hendraanggrian.kotlinpoet.collections/AnnotationSpecListScope///PointingToDeclaration//-282956220">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../index.html">kotlinpoet-ktx</a>/<a href="../index.html">com.hendraanggrian.kotlinpoet.collections</a>/<a href="index.html">AnnotationSpecListScope</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Annotation</span><wbr></wbr><span>Spec</span><wbr></wbr><span>List</span><wbr></wbr><span>Scope</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">class <a href="index.html">AnnotationSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;) : <a href="../-annotation-spec-list/index.html">AnnotationSpecList</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Receiver for the <code>annotations</code> block providing an extended set of operators for the configuration.</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+            <div class="tabs-section-body">
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2FAnnotationSpecListScope%2F%23kotlin.collections.MutableList%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220" anchor-label="AnnotationSpecListScope" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2FAnnotationSpecListScope%2F%23kotlin.collections.MutableList%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-annotation-spec-list-scope.html">AnnotationSpecListScope</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2FAnnotationSpecListScope%2F%23kotlin.collections.MutableList%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FConstructors%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="-annotation-spec-list-scope.html">AnnotationSpecListScope</a>(actualList: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2Fadd%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2Fadd%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2Fadd%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2Fadd%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-annotation-spec-list/add.html">add</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2Fadd%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2Fadd%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun &lt;<a href="../-annotation-spec-list/add.html">T</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt; <a href="../-annotation-spec-list/add.html">add</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <a href="../-annotation-spec-list/add.html">T</a>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="../-annotation-spec-list/add.html">add</a>(type: <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="../-annotation-spec-list/add.html">add</a>(type: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun &lt;<a href="../-annotation-spec-list/add.html">T</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt; <a href="../-annotation-spec-list/add.html">add</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <a href="../-annotation-spec-list/add.html">T</a> with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/AnnotationSpecList/builderAction/#/PointingToCallableParameters(-1)/">builderAction</span>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">fun <a href="../-annotation-spec-list/add.html">add</a>(type: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2Fadd%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">add</a>(element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2Fadd%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">add</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="../-annotation-spec-list/add.html">add</a>(type: <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>, builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23com.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span> with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/AnnotationSpecList/builderAction/#/PointingToCallableParameters(-1)/">builderAction</span>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="../-annotation-spec-list/add.html">add</a>(type: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;, builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23java.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a> with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/AnnotationSpecList/builderAction/#/PointingToCallableParameters(-1)/">builderAction</span>.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline fun <a href="../-annotation-spec-list/add.html">add</a>(type: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;, builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="add" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2Fadd%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Add annotation from <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a> with custom initialization <span data-unresolved-link="com.hendraanggrian.kotlinpoet.collections/AnnotationSpecList/builderAction/#/PointingToCallableParameters(-1)/">builderAction</span>.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.Int%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="addAll" id="%5Bkotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.Int%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">addAll</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.Int%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">addAll</a>(elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2FaddAll%2F%23kotlin.Int%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">addAll</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="clear" id="%5Bkotlin.collections%2FMutableList%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">clear</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2Fclear%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">clear</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2Fcontains%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="contains" id="%5Bkotlin.collections%2FList%2Fcontains%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FList%2Fcontains%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">contains</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2Fcontains%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator override fun <a href="index.html#%5Bkotlin.collections%2FList%2Fcontains%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">contains</a>(element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2FcontainsAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="containsAll" id="%5Bkotlin.collections%2FList%2FcontainsAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FList%2FcontainsAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">containsAll</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2FcontainsAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FList%2FcontainsAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">containsAll</a>(elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="equals" id="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-set/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator fun <a href="../-type-variable-name-set/index.html#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FIterable%2FforEach%2F%23java.util.function.Consumer%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="forEach" id="%5Bkotlin.collections%2FIterable%2FforEach%2F%23java.util.function.Consumer%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FIterable%2FforEach%2F%23java.util.function.Consumer%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">forEach</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FIterable%2FforEach%2F%23java.util.function.Consumer%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="index.html#%5Bkotlin.collections%2FIterable%2FforEach%2F%23java.util.function.Consumer%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">forEach</a>(p0: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html">Consumer</a>&lt;in <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2Fget%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="get" id="%5Bkotlin.collections%2FList%2Fget%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2Fget%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">get</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2Fget%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2Fget%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">get</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="hashCode" id="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2FindexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="indexOf" id="%5Bkotlin.collections%2FList%2FindexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FList%2FindexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">indexOf</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2FindexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FList%2FindexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">indexOf</a>(element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="invoke.html">invoke</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline operator fun <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>.<a href="invoke.html">invoke</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fcom.squareup.kotlinpoet.ClassName%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to add annotation with receiver type.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline operator fun <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;.<a href="invoke.html">invoke</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fjava.lang.Class%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to add annotation with receiver type.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">inline operator fun <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;.<a href="invoke.html">invoke</a>(builderAction: <a href="../../com.hendraanggrian.kotlinpoet/-annotation-spec-builder/index.html">AnnotationSpecBuilder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="invoke" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Finvoke%2Fkotlin.reflect.KClass%5Bkotlin.Annotation%5D%23kotlin.Function1%5Bcom.hendraanggrian.kotlinpoet.AnnotationSpecBuilder%2Ckotlin.Unit%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to add annotation with receiver type.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="isEmpty" id="%5Bkotlin.collections%2FList%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">isEmpty</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2FisEmpty%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">isEmpty</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2Fiterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="iterator" id="%5Bkotlin.collections%2FList%2Fiterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2Fiterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">iterator</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2Fiterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2Fiterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">iterator</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/index.html">MutableIterator</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2FlastIndexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="lastIndexOf" id="%5Bkotlin.collections%2FList%2FlastIndexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FList%2FlastIndexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">lastIndexOf</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2FlastIndexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FList%2FlastIndexOf%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">lastIndexOf</a>(element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FlistIterator%2F%23%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2FlistIterator%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="listIterator" id="%5Bkotlin.collections%2FMutableList%2FlistIterator%2F%23%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2FlistIterator%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FlistIterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">listIterator</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FlistIterator%2F%23%2FPointingToDeclaration%2F%2C+kotlin.collections%2FMutableList%2FlistIterator%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FlistIterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">listIterator</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list-iterator/index.html">MutableListIterator</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FlistIterator%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">listIterator</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list-iterator/index.html">MutableListIterator</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FCollection%2FparallelStream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="parallelStream" id="%5Bkotlin.collections%2FCollection%2FparallelStream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-set/index.html#%5Bkotlin.collections%2FCollection%2FparallelStream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">parallelStream</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FCollection%2FparallelStream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../-type-variable-name-set/index.html#%5Bkotlin.collections%2FCollection%2FparallelStream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">parallelStream</a>(): <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Stream</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-annotation-spec-list/plus-assign.html">plusAssign</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%2C+com.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="../-annotation-spec-list/plus-assign.html">plusAssign</a>(type: <span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23com.squareup.kotlinpoet.ClassName%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to add annotation with operator function.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="../-annotation-spec-list/plus-assign.html">plusAssign</a>(type: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23java.lang.Class%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to add annotation with operator function.</div></div>
+<div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="../-annotation-spec-list/plus-assign.html">plusAssign</a>(type: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>&lt;out <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="brief "><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="plusAssign" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecList%2FplusAssign%2F%23kotlin.reflect.KClass%5Bkotlin.Annotation%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>Convenient method to add annotation with operator function.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2Fremove%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="remove" id="%5Bkotlin.collections%2FMutableList%2Fremove%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2Fremove%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">remove</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2Fremove%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2Fremove%2F%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">remove</a>(element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FremoveAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="removeAll" id="%5Bkotlin.collections%2FMutableList%2FremoveAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2FremoveAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">removeAll</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FremoveAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2FremoveAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">removeAll</a>(elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FremoveAt%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="removeAt" id="%5Bkotlin.collections%2FMutableList%2FremoveAt%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FremoveAt%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">removeAt</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FremoveAt%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FremoveAt%2F%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">removeAt</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableCollection%2FremoveIf%2F%23java.util.function.Predicate%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="removeIf" id="%5Bkotlin.collections%2FMutableCollection%2FremoveIf%2F%23java.util.function.Predicate%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableCollection%2FremoveIf%2F%23java.util.function.Predicate%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">removeIf</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableCollection%2FremoveIf%2F%23java.util.function.Predicate%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="index.html#%5Bkotlin.collections%2FMutableCollection%2FremoveIf%2F%23java.util.function.Predicate%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">removeIf</a>(p0: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">Predicate</a>&lt;in <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FreplaceAll%2F%23java.util.function.UnaryOperator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="replaceAll" id="%5Bkotlin.collections%2FMutableList%2FreplaceAll%2F%23java.util.function.UnaryOperator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2FreplaceAll%2F%23java.util.function.UnaryOperator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">replaceAll</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FreplaceAll%2F%23java.util.function.UnaryOperator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2FreplaceAll%2F%23java.util.function.UnaryOperator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">replaceAll</a>(p0: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/UnaryOperator.html">UnaryOperator</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FretainAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="retainAll" id="%5Bkotlin.collections%2FMutableList%2FretainAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2FretainAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">retainAll</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FretainAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2FretainAll%2F%23kotlin.collections.Collection%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">retainAll</a>(elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html">Collection</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2Fset%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="set" id="%5Bkotlin.collections%2FMutableList%2Fset%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2Fset%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">set</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2Fset%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open operator override fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2Fset%2F%23kotlin.Int%23com.squareup.kotlinpoet.AnnotationSpec%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">set</a>(index: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, element: <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>): <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2Fsort%2F%23java.util.Comparator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="sort" id="%5Bkotlin.collections%2FMutableList%2Fsort%2F%23java.util.Comparator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bkotlin.collections%2FMutableList%2Fsort%2F%23java.util.Comparator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">sort</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2Fsort%2F%23java.util.Comparator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="index.html#%5Bkotlin.collections%2FMutableList%2Fsort%2F%23java.util.Comparator%5Bcom.squareup.kotlinpoet.AnnotationSpec%5D%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">sort</a>(p0: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">Comparator</a>&lt;in <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FList%2Fspliterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="spliterator" id="%5Bkotlin.collections%2FList%2Fspliterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2Fspliterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">spliterator</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FList%2Fspliterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FList%2Fspliterator%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">spliterator</a>(): <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Spliterator.html">Spliterator</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FCollection%2Fstream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="stream" id="%5Bkotlin.collections%2FCollection%2Fstream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-set/index.html#%5Bkotlin.collections%2FCollection%2Fstream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">stream</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FCollection%2Fstream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../-type-variable-name-set/index.html#%5Bkotlin.collections%2FCollection%2Fstream%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">stream</a>(): <a href="https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html">Stream</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin.collections%2FMutableList%2FsubList%2F%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="subList" id="%5Bkotlin.collections%2FMutableList%2FsubList%2F%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FsubList%2F%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">subList</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin.collections%2FMutableList%2FsubList%2F%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="../-type-variable-name-list/index.html#%5Bkotlin.collections%2FMutableList%2FsubList%2F%23kotlin.Int%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">subList</a>(fromIndex: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, toIndex: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" anchor-label="toString" id="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="../-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><div class="symbol monospace">open fun <a href="../-type-variable-name-set/index.html#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-282956220">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="size" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":kotlinpoet-ktx:dokkaHtml/main" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="index.html#%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220">size</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":kotlinpoet-ktx:dokkaHtml/main"><a data-name="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" anchor-label="size" id="%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220" data-filterable-set=":kotlinpoet-ktx:dokkaHtml/main"></a><div class="symbol monospace">open override val <a href="index.html#%5Bcom.hendraanggrian.kotlinpoet.collections%2FAnnotationSpecListScope%2Fsize%2F%23%2FPointingToDeclaration%2F%5D%2FProperties%2F-282956220">size</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
