@@ -7,7 +7,7 @@ gitPublish {
     branch.set("gh-pages")
     contents.from(
         "src",
-        "../$RELEASE_ARTIFACT/build/dokka"
+        "../$RELEASE_ARTIFACT/build/dokka/html"
     )
 }
 

@@ -48,16 +48,23 @@ tasks {
         args("-F", "src/**/*.kt")
     }
 
-    dokkaHtml {
-        moduleName.set(RELEASE_ARTIFACT)
-        outputDirectory.set(buildDir.resolve("dokka"))
+    dokkaJavadoc {
+        dokkaSourceSets {
+            "main" {
+                sourceLink {
+                    localDirectory.set(projectDir.resolve("src"))
+                    remoteUrl.set(getReleaseSourceUrl())
+                    remoteLineSuffix.set("#L")
+                }
+            }
+        }
     }
 }
 
 val dokkaJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
-    from(tasks.dokkaHtml)
-    dependsOn(tasks.dokkaHtml)
+    from(tasks.dokkaJavadoc)
+    dependsOn(tasks.dokkaJavadoc)
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
