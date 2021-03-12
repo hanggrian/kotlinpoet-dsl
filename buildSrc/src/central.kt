@@ -1,9 +1,6 @@
-import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.TaskProvider
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
@@ -15,18 +12,20 @@ private val OSSRH_PASSWORD get() = System.getenv("OSSRH_PASSWORD")
 
 private fun isReleaseSnapshot() = RELEASE_VERSION.endsWith("SNAPSHOT")
 
-fun Project.mavenCentral(
-    dokkaJar: TaskProvider<Jar>,
-    sourcesJar: TaskProvider<Jar>,
-    libraryName: String = RELEASE_ARTIFACT
-) {
+fun org.gradle.api.Project.publishJvm(libraryName: String = RELEASE_ARTIFACT) =
+    publish("java", libraryName)
+
+fun org.gradle.api.Project.publishAndroid(libraryName: String = RELEASE_ARTIFACT) =
+    afterEvaluate { publish("release", libraryName) }
+
+private fun org.gradle.api.Project.publish(softwareComponent: String, libraryName: String) {
     lateinit var mavenJava: Provider<MavenPublication>
     extensions.configure<PublishingExtension>("publishing") {
         repositories {
             maven {
                 val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
                 val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                url = uri(if (isReleaseSnapshot()) snapshotsRepoUrl else releasesRepoUrl)
+                url = `java.net`.URI(if (isReleaseSnapshot()) snapshotsRepoUrl else releasesRepoUrl)
                 credentials {
                     username = OSSRH_USERNAME
                     password = OSSRH_PASSWORD
@@ -38,9 +37,9 @@ fun Project.mavenCentral(
                 groupId = RELEASE_GROUP
                 artifactId = libraryName
                 version = RELEASE_VERSION
-                from(components["java"])
-                artifact(dokkaJar.get())
-                artifact(sourcesJar.get())
+                from(components[softwareComponent])
+                artifact(tasks["dokkaJar"])
+                artifact(tasks["sourcesJar"])
                 pom {
                     name.set(libraryName)
                     description.set(RELEASE_DESCRIPTION)
@@ -67,6 +66,10 @@ fun Project.mavenCentral(
             }
         }
     }
-    extensions.configure<SigningExtension>("signing") { sign(mavenJava.get()) }
-    tasks.withType<Sign> { onlyIf { isReleaseSnapshot() } }
+    extensions.configure<SigningExtension>("signing") {
+        sign(mavenJava.get())
+    }
+    tasks.withType<Sign> {
+        onlyIf { isReleaseSnapshot() }
+    }
 }
