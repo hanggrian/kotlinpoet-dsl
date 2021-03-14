@@ -1,15 +1,15 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import io.github.hendraanggrian.kotlinpoet.typeAliasSpecOf
 import com.squareup.kotlinpoet.ClassName
+import io.github.hendraanggrian.kotlinpoet.typeAliasSpecOf
 import kotlin.test.Test
 
-class TypeAliasSpecListTest {
-    private val list = TypeAliasSpecList(mutableListOf())
+class TypeAliasSpecHandlerTest {
+    private val list = TypeAliasSpecHandler(mutableListOf())
 
-    private inline fun container(configuration: TypeAliasSpecListScope.() -> Unit) =
-        TypeAliasSpecListScope(list).configuration()
+    private inline fun container(configuration: TypeAliasSpecHandlerScope.() -> Unit) =
+        TypeAliasSpecHandlerScope(list).configuration()
 
     @Test fun nativeSpec() {
         list += typeAliasSpecOf<TypeAlias1>("typeAlias1")
@@ -21,7 +21,7 @@ class TypeAliasSpecListTest {
     }
 
     @Test fun className() {
-        val packageName = "io.github.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListTest"
+        val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecHandlerTest"
         list.add("typeAlias1", ClassName(packageName, "TypeAlias1"))
         list["typeAlias2"] = ClassName(packageName, "TypeAlias2")
         container { "typeAlias3"(ClassName(packageName, "TypeAlias3")) { } }

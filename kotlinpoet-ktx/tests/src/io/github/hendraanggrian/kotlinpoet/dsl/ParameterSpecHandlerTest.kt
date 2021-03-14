@@ -1,15 +1,15 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import io.github.hendraanggrian.kotlinpoet.parameterSpecOf
 import com.squareup.kotlinpoet.ClassName
+import io.github.hendraanggrian.kotlinpoet.parameterSpecOf
 import kotlin.test.Test
 
-class ParameterSpecListTest {
-    private val list = ParameterSpecList(mutableListOf())
+class ParameterSpecHandlerTest {
+    private val list = ParameterSpecHandler(mutableListOf())
 
-    private inline fun container(configuration: ParameterSpecListScope.() -> Unit) =
-        ParameterSpecListScope(list).configuration()
+    private inline fun container(configuration: ParameterSpecHandlerScope.() -> Unit) =
+        ParameterSpecHandlerScope(list).configuration()
 
     @Test fun nativeSpec() {
         list += parameterSpecOf<Parameter1>("parameter1")
@@ -21,7 +21,7 @@ class ParameterSpecListTest {
     }
 
     @Test fun className() {
-        val packageName = "io.github.hendraanggrian.kotlinpoet.collections.ParameterSpecListTest"
+        val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.ParameterSpecHandlerTest"
         list.add("parameter1", ClassName(packageName, "Parameter1"))
         list["parameter2"] = ClassName(packageName, "Parameter2")
         container { "parameter3"(ClassName(packageName, "Parameter3")) { } }

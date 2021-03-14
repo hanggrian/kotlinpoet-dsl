@@ -14,11 +14,16 @@ fun org.gradle.api.artifacts.dsl.DependencyHandler.ktlint(module: String? = null
         else -> "com.pinterest.ktlint:ktlint-$module:$VERSION_KTLINT"
     }
 
-fun org.gradle.api.Project.ktlint() {
+fun org.gradle.api.Project.ktlint(
+    extraDependency: (add: (dependencyNotation: Any) -> Unit) -> Unit = { }
+) {
     val configuration = configurations.register("ktlint")
     dependencies {
         configuration {
             invoke(ktlint())
+            extraDependency { dependencyNotation ->
+                invoke(dependencyNotation)
+            }
         }
     }
     tasks {

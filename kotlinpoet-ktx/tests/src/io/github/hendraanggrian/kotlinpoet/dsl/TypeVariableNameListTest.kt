@@ -1,13 +1,13 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth
+import com.squareup.kotlinpoet.asTypeName
 import io.github.hendraanggrian.kotlinpoet.typeVarBy
 import io.github.hendraanggrian.kotlinpoet.typeVarOf
-import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
 class TypeVariableNameListTest {
-    private val list = TypeVariableNameList(mutableListOf())
+    private val list = TypeVariableNameHandler(mutableListOf())
 
     @Test fun test() {
         list += "Q"

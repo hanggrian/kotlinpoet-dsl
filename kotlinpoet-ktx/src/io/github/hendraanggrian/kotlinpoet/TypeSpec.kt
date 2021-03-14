@@ -6,18 +6,20 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.FunSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.FunSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainer
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainerScope
-import io.github.hendraanggrian.kotlinpoet.collections.PropertySpecList
-import io.github.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.TypeNameMap
-import io.github.hendraanggrian.kotlinpoet.collections.TypeSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.TypeVariableNameList
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.FunSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.FunSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.PropertySpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.PropertySpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeNameHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeNameHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandlerScope
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
@@ -66,133 +68,133 @@ fun annotationTypeSpecOf(type: ClassName): TypeSpec = TypeSpec.annotationBuilder
 
 /**
  * Builds new class [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildClassTypeSpec(
     type: String,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new class [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildClassTypeSpec(
     type: ClassName,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new expect class [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildExpectClassTypeSpec(
     type: String,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new expect class [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildExpectClassTypeSpec(
     type: ClassName,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new object [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildObjectTypeSpec(
     type: String,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new object [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildObjectTypeSpec(
     type: ClassName,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new object [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildCompanionObjectTypeSpec(
     type: String? = null,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.companionObjectBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.companionObjectBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new interface [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildInterfaceTypeSpec(
     type: String,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new interface [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildInterfaceTypeSpec(
     type: ClassName,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new enum [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildEnumTypeSpec(
     type: String,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new enum [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildEnumTypeSpec(
     type: ClassName,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new anonymous [TypeSpec],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildAnonymousTypeSpec(
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.anonymousClassBuilder()).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.anonymousClassBuilder()).apply(configuration).build()
 
 /**
  * Builds new annotation [TypeSpec] from name,
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildAnnotationTypeSpec(
     type: String,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(configuration).build()
 
 /**
  * Builds new annotation [TypeSpec] from [ClassName],
- * by populating newly created [TypeSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
 inline fun buildAnnotationTypeSpec(
     type: ClassName,
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec = TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(builderAction).build()
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec = TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(configuration).build()
 
-/** Modify existing [TypeSpec.Builder] using provided [builderAction]. */
+/** Modify existing [TypeSpec.Builder] using provided [configuration]. */
 inline fun TypeSpec.Builder.edit(
-    builderAction: TypeSpecBuilder.() -> Unit
-): TypeSpec.Builder = TypeSpecBuilder(this).apply(builderAction).nativeBuilder
+    configuration: TypeSpecBuilder.() -> Unit
+): TypeSpec.Builder = TypeSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder.
@@ -220,7 +222,7 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     val superclassConstructorParameters: MutableList<CodeBlock> get() = nativeBuilder.superclassConstructorParameters
 
     /** Kdoc of this type. */
-    val kdoc: KdocContainer = object : KdocContainer() {
+    val kdoc: KdocHandler = object : KdocHandler() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -231,15 +233,15 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Configures kdoc of this type. */
-    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).builderAction()
+    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+        KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this type. */
-    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotationSpecs)
+    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotationSpecs)
 
     /** Configures annotations of this type. */
-    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).builderAction()
+    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+        AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add type modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -247,7 +249,11 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Type variables of this type. */
-    val typeVariables: TypeVariableNameList = TypeVariableNameList(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
+
+    /** Configures type variables of this type. */
+    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+        TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Set primary constructor to type. */
     var primaryConstructor: FunSpec?
@@ -261,9 +267,9 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
         nativeBuilder.primaryConstructor(emptyConstructorFunSpec())
     }
 
-    /** Set primary constructor to type with [builderAction]. */
-    inline fun primaryConstructor(builderAction: FunSpecBuilder.() -> Unit) {
-        primaryConstructor = buildConstructorFunSpec(builderAction)
+    /** Set primary constructor to type with [configuration]. */
+    inline fun primaryConstructor(configuration: FunSpecBuilder.() -> Unit) {
+        primaryConstructor = buildConstructorFunSpec(configuration)
     }
 
     /** Set superclass to type. */
@@ -296,13 +302,17 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
         nativeBuilder.addSuperclassConstructorParameter(code)
     }
 
-    /** Add super class constructor parameters with custom [builderAction]. */
-    inline fun addSuperclassConstructorParameter(builderAction: CodeBlockBuilder.() -> Unit) {
-        addSuperclassConstructorParameter(buildCodeBlock(builderAction))
+    /** Add super class constructor parameters with custom [configuration]. */
+    inline fun addSuperclassConstructorParameter(configuration: CodeBlockBuilder.() -> Unit) {
+        addSuperclassConstructorParameter(buildCodeBlock(configuration))
     }
 
     /** Super interfaces of this type. */
-    val superinterfaces: TypeNameMap get() = TypeNameMap(nativeBuilder.superinterfaces)
+    val superinterfaces: TypeNameHandler get() = TypeNameHandler(nativeBuilder.superinterfaces)
+
+    /** Configures super interfaces of this type. */
+    inline fun superinterfaces(configuration: TypeNameHandlerScope.() -> Unit): Unit =
+        TypeNameHandlerScope(superinterfaces).configuration()
 
     /** Add enum constant with name. */
     fun addEnumConstant(name: String) {
@@ -315,35 +325,35 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Properties of this type. */
-    val properties: PropertySpecList = PropertySpecList(nativeBuilder.propertySpecs)
+    val properties: PropertySpecHandler = PropertySpecHandler(nativeBuilder.propertySpecs)
 
     /** Configures properties of this type. */
-    inline fun properties(builderAction: PropertySpecListScope.() -> Unit): Unit =
-        PropertySpecListScope(properties).builderAction()
+    inline fun properties(configuration: PropertySpecHandlerScope.() -> Unit): Unit =
+        PropertySpecHandlerScope(properties).configuration()
 
     /** Add initializer block containing [code]. */
     fun addInitializerBlock(code: CodeBlock) {
         nativeBuilder.addInitializerBlock(code)
     }
 
-    /** Add initializer block containing code with custom initialization [builderAction]. */
-    inline fun addInitializerBlock(builderAction: CodeBlockBuilder.() -> Unit) {
-        addInitializerBlock(buildCodeBlock(builderAction))
+    /** Add initializer block containing code with custom initialization [configuration]. */
+    inline fun addInitializerBlock(configuration: CodeBlockBuilder.() -> Unit) {
+        addInitializerBlock(buildCodeBlock(configuration))
     }
 
     /** Functions of this type. */
-    val functions: FunSpecList = FunSpecList(nativeBuilder.funSpecs)
+    val functions: FunSpecHandler = FunSpecHandler(nativeBuilder.funSpecs)
 
     /** Configures functions of this type. */
-    inline fun functions(builderAction: FunSpecListScope.() -> Unit): Unit =
-        FunSpecListScope(functions).builderAction()
+    inline fun functions(configuration: FunSpecHandlerScope.() -> Unit): Unit =
+        FunSpecHandlerScope(functions).configuration()
 
     /** Types of this type. */
-    val types: TypeSpecList = TypeSpecList(nativeBuilder.typeSpecs)
+    val types: TypeSpecHandler = TypeSpecHandler(nativeBuilder.typeSpecs)
 
     /** Configures types of this type. */
-    inline fun types(builderAction: TypeSpecListScope.() -> Unit): Unit =
-        TypeSpecListScope(types).builderAction()
+    inline fun types(configuration: TypeSpecHandlerScope.() -> Unit): Unit =
+        TypeSpecHandlerScope(types).configuration()
 
     /** Add originating element. */
     fun addOriginatingElement(originatingElement: Element) {

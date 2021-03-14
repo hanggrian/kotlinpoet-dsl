@@ -5,11 +5,12 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainer
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainerScope
-import io.github.hendraanggrian.kotlinpoet.collections.TypeVariableNameList
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandlerScope
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
@@ -32,51 +33,51 @@ inline fun <reified T> propertySpecOf(name: String, vararg modifiers: KModifier)
 
 /**
  * Builds new [PropertySpec] from [TypeName] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [builderAction].
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun buildPropertySpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
-    builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(builderAction).build()
+    configuration: PropertySpecBuilder.() -> Unit
+): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
 
 /**
  * Builds new [PropertySpec] from [Type] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [builderAction].
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun buildPropertySpec(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
-    builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(builderAction).build()
+    configuration: PropertySpecBuilder.() -> Unit
+): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
 
 /**
  * Builds new [PropertySpec] from [KClass] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [builderAction].
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun buildPropertySpec(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
-    builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(builderAction).build()
+    configuration: PropertySpecBuilder.() -> Unit
+): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
 
 /**
  * Builds new [PropertySpec] from [T] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [builderAction].
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun <reified T> buildPropertySpec(
     name: String,
     vararg modifiers: KModifier,
-    builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, T::class, *modifiers)).apply(builderAction).build()
+    configuration: PropertySpecBuilder.() -> Unit
+): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, T::class, *modifiers)).apply(configuration).build()
 
-/** Modify existing [PropertySpec.Builder] using provided [builderAction]. */
+/** Modify existing [PropertySpec.Builder] using provided [configuration]. */
 inline fun PropertySpec.Builder.edit(
-    builderAction: PropertySpecBuilder.() -> Unit
-): PropertySpec.Builder = PropertySpecBuilder(this).apply(builderAction).nativeBuilder
+    configuration: PropertySpecBuilder.() -> Unit
+): PropertySpec.Builder = PropertySpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder.
@@ -102,7 +103,7 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
         }
 
     /** Kdoc of this property. */
-    val kdoc: KdocContainer = object : KdocContainer() {
+    val kdoc: KdocHandler = object : KdocHandler() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -113,15 +114,15 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
     }
 
     /** Configures kdoc of this property. */
-    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).builderAction()
+    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+        KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this property. */
-    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
+    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this property. */
-    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).builderAction()
+    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+        AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add property modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -129,7 +130,11 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
     }
 
     /** Type variables of this property. */
-    val typeVariables: TypeVariableNameList = TypeVariableNameList(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
+
+    /** Configures type variables of this property. */
+    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+        TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Initialize field value like [String.format]. */
     fun initializer(format: String, vararg args: Any) {
@@ -143,9 +148,9 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
             nativeBuilder.initializer(value)
         }
 
-    /** Initialize field value with custom initialization [builderAction]. */
-    inline fun initializer(builderAction: CodeBlockBuilder.() -> Unit) {
-        initializer = buildCodeBlock(builderAction)
+    /** Initialize field value with custom initialization [configuration]. */
+    inline fun initializer(configuration: CodeBlockBuilder.() -> Unit) {
+        initializer = buildCodeBlock(configuration)
     }
 
     /** Delegate field value like [String.format]. */
@@ -160,9 +165,9 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
             nativeBuilder.delegate(value)
         }
 
-    /** Delegate field value with custom initialization [builderAction]. */
-    inline fun delegate(builderAction: CodeBlockBuilder.() -> Unit) {
-        delegate = buildCodeBlock(builderAction)
+    /** Delegate field value with custom initialization [configuration]. */
+    inline fun delegate(configuration: CodeBlockBuilder.() -> Unit) {
+        delegate = buildCodeBlock(configuration)
     }
 
     /** Set getter function from [FunSpec]. */
@@ -177,9 +182,9 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
         nativeBuilder.getter(emptyGetterFunSpec())
     }
 
-    /** Set getter function with custom initialization [builderAction]. */
-    inline fun getter(builderAction: FunSpecBuilder.() -> Unit) {
-        getter = buildGetterFunSpec(builderAction)
+    /** Set getter function with custom initialization [configuration]. */
+    inline fun getter(configuration: FunSpecBuilder.() -> Unit) {
+        getter = buildGetterFunSpec(configuration)
     }
 
     /** Set setter function from [FunSpec]. */
@@ -194,9 +199,9 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
         nativeBuilder.setter(emptySetterFunSpec())
     }
 
-    /** Set setter function with custom initialization [builderAction]. */
-    inline fun setter(builderAction: FunSpecBuilder.() -> Unit) {
-        setter = buildSetterFunSpec(builderAction)
+    /** Set setter function with custom initialization [configuration]. */
+    inline fun setter(configuration: FunSpecBuilder.() -> Unit) {
+        setter = buildSetterFunSpec(configuration)
     }
 
     /** Set receiver to type. */

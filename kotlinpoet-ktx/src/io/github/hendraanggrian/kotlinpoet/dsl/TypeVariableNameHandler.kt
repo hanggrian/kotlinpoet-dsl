@@ -1,13 +1,19 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
+import io.github.hendraanggrian.kotlinpoet.SpecDslMarker
 import io.github.hendraanggrian.kotlinpoet.typeVarBy
 import io.github.hendraanggrian.kotlinpoet.typeVarOf
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-private interface TypeVariableNameCollection : MutableCollection<TypeVariableName> {
+/**
+ * A [TypeVariableNameHandler] is responsible for managing a set of type variable name instances.
+ * Since Kotlinpoet keep [TypeVariableName] in lists and sets, this class extends [Collection].
+ */
+open class TypeVariableNameHandler internal constructor(actualList: MutableCollection<TypeVariableName>) :
+    MutableCollection<TypeVariableName> by actualList {
 
     /** Add a [TypeVariableName] without bounds. */
     fun add(name: String): Boolean = add(name.typeVarOf())
@@ -25,12 +31,7 @@ private interface TypeVariableNameCollection : MutableCollection<TypeVariableNam
     operator fun plusAssign(name: String): Unit = plusAssign(name.typeVarOf())
 }
 
-/** A [TypeVariableNameList] is responsible for managing a set of type variable name instances. */
-class TypeVariableNameList internal constructor(actualList: MutableList<TypeVariableName>) :
-    MutableList<TypeVariableName> by actualList,
-    TypeVariableNameCollection
-
-/** A [TypeVariableNameSet] is responsible for managing a set of type variable name instances. */
-class TypeVariableNameSet internal constructor(actualList: MutableSet<TypeVariableName>) :
-    MutableSet<TypeVariableName> by actualList,
-    TypeVariableNameCollection
+/** Receiver for the `typeVariables` function type providing an extended set of operators for the configuration. */
+@SpecDslMarker
+class TypeVariableNameHandlerScope(actualList: MutableCollection<TypeVariableName>) :
+    TypeVariableNameHandler(actualList)

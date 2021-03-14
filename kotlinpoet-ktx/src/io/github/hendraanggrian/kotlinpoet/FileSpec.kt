@@ -9,16 +9,16 @@ import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeSpec
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.FunSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.FunSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.PropertySpecList
-import io.github.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.TypeAliasSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.TypeSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.FunSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.FunSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.PropertySpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.PropertySpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeSpecHandlerScope
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
@@ -26,18 +26,18 @@ fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(pac
 
 /**
  * Builds a new [FileSpec],
- * by populating newly created [FileSpecBuilder] using provided [builderAction].
+ * by populating newly created [FileSpecBuilder] using provided [configuration].
  */
 inline fun buildFileSpec(
     packageName: String,
     fileName: String,
-    builderAction: FileSpecBuilder.() -> Unit
-): FileSpec = FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(builderAction).build()
+    configuration: FileSpecBuilder.() -> Unit
+): FileSpec = FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
 
-/** Modify existing [FileSpec.Builder] using provided [builderAction]. */
+/** Modify existing [FileSpec.Builder] using provided [configuration]. */
 inline fun FileSpec.Builder.edit(
-    builderAction: FileSpecBuilder.() -> Unit
-): FileSpec.Builder = FileSpecBuilder(this).apply(builderAction).nativeBuilder
+    configuration: FileSpecBuilder.() -> Unit
+): FileSpec.Builder = FileSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder.
@@ -62,7 +62,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     val members: MutableList<Any> get() = nativeBuilder.members
 
     /** Annotations of this file. */
-    val annotations: AnnotationSpecList = object : AnnotationSpecList(nativeBuilder.annotations) {
+    val annotations: AnnotationSpecHandler = object : AnnotationSpecHandler(nativeBuilder.annotations) {
         /** Must override because it modifies [AnnotationSpec.useSiteTarget]. */
         override fun add(element: AnnotationSpec): Boolean {
             nativeBuilder.addAnnotation(element)
@@ -71,8 +71,8 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures annotations for this file. */
-    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).builderAction()
+    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+        AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add file comment like [String.format]. */
     fun addComment(format: String, vararg args: Any) {
@@ -88,7 +88,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
      * Types of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val types: TypeSpecList = object : TypeSpecList(FakeList()) {
+    val types: TypeSpecHandler = object : TypeSpecHandler(FakeList()) {
         override fun add(element: TypeSpec): Boolean {
             nativeBuilder.addType(element)
             return true
@@ -96,14 +96,14 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures types for this file. */
-    inline fun types(builderAction: TypeSpecListScope.() -> Unit): Unit =
-        TypeSpecListScope(types).builderAction()
+    inline fun types(configuration: TypeSpecHandlerScope.() -> Unit): Unit =
+        TypeSpecHandlerScope(types).configuration()
 
     /**
      * Functions of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val functions: FunSpecList = object : FunSpecList(FakeList()) {
+    val functions: FunSpecHandler = object : FunSpecHandler(FakeList()) {
         override fun add(element: FunSpec): Boolean {
             nativeBuilder.addFunction(element)
             return true
@@ -111,14 +111,14 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures functions for this file. */
-    inline fun functions(builderAction: FunSpecListScope.() -> Unit): Unit =
-        FunSpecListScope(functions).builderAction()
+    inline fun functions(configuration: FunSpecHandlerScope.() -> Unit): Unit =
+        FunSpecHandlerScope(functions).configuration()
 
     /**
      * Properties of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val properties: PropertySpecList = object : PropertySpecList(FakeList()) {
+    val properties: PropertySpecHandler = object : PropertySpecHandler(FakeList()) {
         override fun add(element: PropertySpec): Boolean {
             nativeBuilder.addProperty(element)
             return true
@@ -126,14 +126,14 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures properties for this file. */
-    inline fun properties(builderAction: PropertySpecListScope.() -> Unit): Unit =
-        PropertySpecListScope(properties).builderAction()
+    inline fun properties(configuration: PropertySpecHandlerScope.() -> Unit): Unit =
+        PropertySpecHandlerScope(properties).configuration()
 
     /**
      * Type aliases of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val typeAliases: TypeAliasSpecList = object : TypeAliasSpecList(FakeList()) {
+    val typeAliases: TypeAliasSpecHandler = object : TypeAliasSpecHandler(FakeList()) {
         override fun add(element: TypeAliasSpec): Boolean {
             nativeBuilder.addTypeAlias(element)
             return true
@@ -141,8 +141,8 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures type aliases for this file. */
-    inline fun typeAliases(builderAction: TypeAliasSpecListScope.() -> Unit): Unit =
-        TypeAliasSpecListScope(typeAliases).builderAction()
+    inline fun typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit): Unit =
+        TypeAliasSpecHandlerScope(typeAliases).configuration()
 
     /** Add import. */
     fun addImport(constant: Enum<*>) {

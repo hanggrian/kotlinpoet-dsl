@@ -1,4 +1,4 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.squareup.kotlinpoet.FunSpec
 import io.github.hendraanggrian.kotlinpoet.FunSpecBuilder
@@ -12,8 +12,8 @@ import io.github.hendraanggrian.kotlinpoet.emptyGetterFunSpec
 import io.github.hendraanggrian.kotlinpoet.emptySetterFunSpec
 import io.github.hendraanggrian.kotlinpoet.funSpecOf
 
-/** A [FunSpecList] is responsible for managing a set of function instances. */
-open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) :
+/** A [FunSpecHandler] is responsible for managing a set of function instances. */
+open class FunSpecHandler internal constructor(actualList: MutableList<FunSpec>) :
     MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
@@ -28,34 +28,34 @@ open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) :
     /** Add setter function. */
     fun addSetter(): Boolean = add(emptySetterFunSpec())
 
-    /** Add function from name with custom initialization [builderAction]. */
+    /** Add function from name with custom initialization [configuration]. */
     inline fun add(
         name: String,
-        builderAction: FunSpecBuilder.() -> Unit
-    ): Boolean = add(buildFunSpec(name, builderAction))
+        configuration: FunSpecBuilder.() -> Unit
+    ): Boolean = add(buildFunSpec(name, configuration))
 
-    /** Add constructor function with custom initialization [builderAction]. */
+    /** Add constructor function with custom initialization [configuration]. */
     inline fun addConstructor(
-        builderAction: FunSpecBuilder.() -> Unit
-    ): Boolean = add(buildConstructorFunSpec(builderAction))
+        configuration: FunSpecBuilder.() -> Unit
+    ): Boolean = add(buildConstructorFunSpec(configuration))
 
-    /** Add getter function with custom initialization [builderAction]. */
+    /** Add getter function with custom initialization [configuration]. */
     inline fun addGetter(
-        builderAction: FunSpecBuilder.() -> Unit
-    ): Boolean = add(buildGetterFunSpec(builderAction))
+        configuration: FunSpecBuilder.() -> Unit
+    ): Boolean = add(buildGetterFunSpec(configuration))
 
-    /** Add setter function with custom initialization [builderAction]. */
+    /** Add setter function with custom initialization [configuration]. */
     inline fun addSetter(
-        builderAction: FunSpecBuilder.() -> Unit
-    ): Boolean = add(buildSetterFunSpec(builderAction))
+        configuration: FunSpecBuilder.() -> Unit
+    ): Boolean = add(buildSetterFunSpec(configuration))
 }
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class FunSpecListScope(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
+class FunSpecHandlerScope(actualList: MutableList<FunSpec>) : FunSpecHandler(actualList) {
 
     /** Convenient function to add function with receiver type. */
     inline operator fun String.invoke(
-        builderAction: FunSpecBuilder.() -> Unit
-    ): Boolean = add(this, builderAction)
+        configuration: FunSpecBuilder.() -> Unit
+    ): Boolean = add(this, configuration)
 }

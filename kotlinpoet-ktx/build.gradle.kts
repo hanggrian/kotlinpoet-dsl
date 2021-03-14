@@ -1,12 +1,12 @@
+group = RELEASE_GROUP
+version = RELEASE_VERSION
+
 plugins {
     kotlin("jvm")
     dokka
     `maven-publish`
     signing
 }
-
-group = RELEASE_GROUP
-version = RELEASE_VERSION
 
 sourceSets {
     getByName("main") {

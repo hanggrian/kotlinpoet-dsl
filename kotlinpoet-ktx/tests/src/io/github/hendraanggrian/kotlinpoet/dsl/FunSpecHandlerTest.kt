@@ -1,4 +1,4 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
 import io.github.hendraanggrian.kotlinpoet.emptyConstructorFunSpec
@@ -7,11 +7,11 @@ import io.github.hendraanggrian.kotlinpoet.emptySetterFunSpec
 import io.github.hendraanggrian.kotlinpoet.funSpecOf
 import kotlin.test.Test
 
-class FunSpecListTest {
-    private val list = FunSpecList(mutableListOf())
+class FunSpecHandlerTest {
+    private val list = FunSpecHandler(mutableListOf())
 
-    private inline fun container(configuration: FunSpecListScope.() -> Unit) =
-        FunSpecListScope(list).configuration()
+    private inline fun container(configuration: FunSpecHandlerScope.() -> Unit) =
+        FunSpecHandlerScope(list).configuration()
 
     @Test fun nativeSpec() {
         list += funSpecOf("func")

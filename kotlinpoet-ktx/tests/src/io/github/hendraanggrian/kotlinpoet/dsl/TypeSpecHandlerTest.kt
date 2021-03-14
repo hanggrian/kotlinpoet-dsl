@@ -1,19 +1,19 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
+import com.squareup.kotlinpoet.ClassName
 import io.github.hendraanggrian.kotlinpoet.annotationTypeSpecOf
 import io.github.hendraanggrian.kotlinpoet.buildEnumTypeSpec
 import io.github.hendraanggrian.kotlinpoet.classTypeSpecOf
 import io.github.hendraanggrian.kotlinpoet.emptyAnonymousTypeSpec
 import io.github.hendraanggrian.kotlinpoet.interfaceTypeSpecOf
-import com.squareup.kotlinpoet.ClassName
 import kotlin.test.Test
 
-class TypeSpecListTest {
-    private val list = TypeSpecList(mutableListOf())
+class TypeSpecHandlerTest {
+    private val list = TypeSpecHandler(mutableListOf())
 
-    private inline fun container(configuration: TypeSpecListScope.() -> Unit) =
-        TypeSpecListScope(list).configuration()
+    private inline fun container(configuration: TypeSpecHandlerScope.() -> Unit) =
+        TypeSpecHandlerScope(list).configuration()
 
     @Test fun nativeSpec() {
         list += classTypeSpecOf("Class1")
@@ -25,7 +25,7 @@ class TypeSpecListTest {
     }
 
     @Test fun invocation() {
-        val packageName = "io.github.hendraanggrian.kotlinpoet.collections.TypeSpecListTest"
+        val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.TypeSpecHandlerTest"
         container {
             "Class1" { }
             (ClassName(packageName, "MyType")) { }

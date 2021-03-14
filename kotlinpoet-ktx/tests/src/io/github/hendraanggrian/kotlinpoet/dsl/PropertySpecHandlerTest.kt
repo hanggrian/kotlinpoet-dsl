@@ -1,15 +1,15 @@
-package io.github.hendraanggrian.kotlinpoet.collections
+package io.github.hendraanggrian.kotlinpoet.dsl
 
 import com.google.common.truth.Truth.assertThat
-import io.github.hendraanggrian.kotlinpoet.propertySpecOf
 import com.squareup.kotlinpoet.ClassName
+import io.github.hendraanggrian.kotlinpoet.propertySpecOf
 import kotlin.test.Test
 
-class PropertySpecListTest {
-    private val list = PropertySpecList(mutableListOf())
+class PropertySpecHandlerTest {
+    private val list = PropertySpecHandler(mutableListOf())
 
-    private inline fun container(configuration: PropertySpecListScope.() -> Unit) =
-        PropertySpecListScope(list).configuration()
+    private inline fun container(configuration: PropertySpecHandlerScope.() -> Unit) =
+        PropertySpecHandlerScope(list).configuration()
 
     @Test fun nativeSpec() {
         list += propertySpecOf<Property1>("property1")
@@ -21,7 +21,7 @@ class PropertySpecListTest {
     }
 
     @Test fun className() {
-        val packageName = "io.github.hendraanggrian.kotlinpoet.collections.PropertySpecListTest"
+        val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.PropertySpecHandlerTest"
         list.add("property1", ClassName(packageName, "Property1"))
         list["property2"] = ClassName(packageName, "Property2")
         container { "property3"(ClassName(packageName, "Property3")) { } }

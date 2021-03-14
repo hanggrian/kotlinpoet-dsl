@@ -4,11 +4,12 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeName
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainer
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainerScope
-import io.github.hendraanggrian.kotlinpoet.collections.TypeVariableNameSet
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandlerScope
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
@@ -27,47 +28,47 @@ inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec =
 
 /**
  * Builds new [TypeAliasSpec] from name and [TypeName],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
 inline fun buildTypeAliasSpec(
     name: String,
     type: TypeName,
-    builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(configuration).build()
 
 /**
  * Builds new [TypeAliasSpec] from name and [Type],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
 inline fun buildTypeAliasSpec(
     name: String,
     type: Type,
-    builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(configuration).build()
 
 /**
  * Builds new [TypeAliasSpec] from name and [KClass],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
 inline fun buildTypeAliasSpec(
     name: String,
     type: KClass<*>,
-    builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(builderAction).build()
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, type)).apply(configuration).build()
 
 /**
  * Builds new [TypeAliasSpec] from name and [T],
- * by populating newly created [TypeAliasSpecBuilder] using provided [builderAction].
+ * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
 inline fun <reified T> buildTypeAliasSpec(
     name: String,
-    builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, T::class)).apply(builderAction).build()
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, T::class)).apply(configuration).build()
 
-/** Modify existing [TypeAliasSpec.Builder] using provided [builderAction]. */
+/** Modify existing [TypeAliasSpec.Builder] using provided [configuration]. */
 inline fun TypeAliasSpec.Builder.edit(
-    builderAction: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec.Builder = TypeAliasSpecBuilder(this).apply(builderAction).nativeBuilder
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): TypeAliasSpec.Builder = TypeAliasSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder.
@@ -88,17 +89,21 @@ class TypeAliasSpecBuilder(val nativeBuilder: TypeAliasSpec.Builder) {
     }
 
     /** Type variables of this type alias. */
-    val typeVariables: TypeVariableNameSet = TypeVariableNameSet(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
+
+    /** Configures type variables of this type alias. */
+    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+        TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Annotations of this type alias. */
-    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
+    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this type alias. */
-    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).builderAction()
+    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+        AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Kdoc of this type alias. */
-    val kdoc: KdocContainer = object : KdocContainer() {
+    val kdoc: KdocHandler = object : KdocHandler() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -109,8 +114,8 @@ class TypeAliasSpecBuilder(val nativeBuilder: TypeAliasSpec.Builder) {
     }
 
     /** Configures kdoc of this type alias. */
-    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).builderAction()
+    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+        KdocHandlerScope(kdoc).configuration()
 
     /** Returns native spec. */
     fun build(): TypeAliasSpec = nativeBuilder.build()

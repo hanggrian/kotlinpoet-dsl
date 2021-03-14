@@ -4,10 +4,10 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
-import io.github.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainer
-import io.github.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandler
+import io.github.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
@@ -29,51 +29,51 @@ inline fun <reified T> parameterSpecOf(name: String, vararg modifiers: KModifier
 
 /**
  * Builds new [ParameterSpec] from [TypeName],
- * by populating newly created [ParameterSpecBuilder] using provided [builderAction].
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
 inline fun buildParameterSpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
-    builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
+    configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
 
 /**
  * Builds new [ParameterSpec] from [Type],
- * by populating newly created [ParameterSpecBuilder] using provided [builderAction].
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
 inline fun buildParameterSpec(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
-    builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
+    configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
 
 /**
  * Builds new [ParameterSpec] from [KClass],
- * by populating newly created [ParameterSpecBuilder] using provided [builderAction].
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
 inline fun buildParameterSpec(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
-    builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(builderAction).build()
+    configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
 
 /**
  * Builds new [ParameterSpec] from [T],
- * by populating newly created [ParameterSpecBuilder] using provided [builderAction].
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
 inline fun <reified T> buildParameterSpec(
     name: String,
     vararg modifiers: KModifier,
-    builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers)).apply(builderAction).build()
+    configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers)).apply(configuration).build()
 
-/** Modify existing [ParameterSpec.Builder] using provided [builderAction]. */
+/** Modify existing [ParameterSpec.Builder] using provided [configuration]. */
 inline fun ParameterSpec.Builder.edit(
-    builderAction: ParameterSpecBuilder.() -> Unit
-): ParameterSpec.Builder = ParameterSpecBuilder(this).apply(builderAction).nativeBuilder
+    configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec.Builder = ParameterSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder.
@@ -92,7 +92,7 @@ class ParameterSpecBuilder(val nativeBuilder: ParameterSpec.Builder) {
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Kdoc of this parameter. */
-    val kdoc: KdocContainer = object : KdocContainer() {
+    val kdoc: KdocHandler = object : KdocHandler() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -103,15 +103,15 @@ class ParameterSpecBuilder(val nativeBuilder: ParameterSpec.Builder) {
     }
 
     /** Configures kdoc of this parameter. */
-    inline fun kdoc(builderAction: KdocContainerScope.() -> Unit): Unit =
-        KdocContainerScope(kdoc).builderAction()
+    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+        KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this parameter. */
-    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
+    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    inline fun annotations(builderAction: AnnotationSpecListScope.() -> Unit): Unit =
-        AnnotationSpecListScope(annotations).builderAction()
+    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+        AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add parameter modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -130,9 +130,9 @@ class ParameterSpecBuilder(val nativeBuilder: ParameterSpec.Builder) {
             nativeBuilder.defaultValue(value)
         }
 
-    /** Set default value to code with custom initialization [builderAction]. */
-    inline fun defaultValue(builderAction: CodeBlockBuilder.() -> Unit) {
-        defaultValue = buildCodeBlock(builderAction)
+    /** Set default value to code with custom initialization [configuration]. */
+    inline fun defaultValue(configuration: CodeBlockBuilder.() -> Unit) {
+        defaultValue = buildCodeBlock(configuration)
     }
 
     /** Returns native spec. */
