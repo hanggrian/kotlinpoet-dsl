@@ -95,14 +95,14 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Configures kdoc of this function. */
-    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
         KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this function. */
     val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
         AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add function modifiers. */
@@ -119,7 +119,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
 
     /** Configures type variables of this function. */
-    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+    fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
         TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Set receiver to [TypeName] without kdoc. */
@@ -271,7 +271,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     val parameters: ParameterSpecHandler = ParameterSpecHandler(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    inline fun parameters(configuration: ParameterSpecHandlerScope.() -> Unit): Unit =
+    fun parameters(configuration: ParameterSpecHandlerScope.() -> Unit): Unit =
         ParameterSpecHandlerScope(parameters).configuration()
 
     /** Call this constructor with [String] arguments. */

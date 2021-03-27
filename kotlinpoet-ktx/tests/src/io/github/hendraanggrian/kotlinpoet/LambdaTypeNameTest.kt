@@ -10,7 +10,8 @@ import kotlin.test.assertEquals
 
 class LambdaTypeNameTest {
 
-    @Test fun parameterSpecListParameters() {
+    @Test
+    fun parameterSpecListParameters() {
         val int = parameterSpecOf<Int>("int")
         val string = parameterSpecOf<String>("string")
         assertEquals(
@@ -31,7 +32,8 @@ class LambdaTypeNameTest {
         )
     }
 
-    @Test fun typeVarargParameters() {
+    @Test
+    fun typeVarargParameters() {
         assertEquals(
             "kotlin.Double.() -> kotlin.Unit",
             "${UNIT.lambdaBy(receiver = DOUBLE)}"
@@ -50,7 +52,8 @@ class LambdaTypeNameTest {
         )
     }
 
-    @Test fun parameterSpecVarargParameters() {
+    @Test
+    fun parameterSpecVarargParameters() {
         val int = parameterSpecOf<Int>("int")
         val string = parameterSpecOf<String>("string")
         assertEquals(

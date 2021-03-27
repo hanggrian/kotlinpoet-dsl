@@ -11,7 +11,8 @@ class PropertySpecHandlerTest {
     private inline fun container(configuration: PropertySpecHandlerScope.() -> Unit) =
         PropertySpecHandlerScope(list).configuration()
 
-    @Test fun nativeSpec() {
+    @Test
+    fun nativeSpec() {
         list += propertySpecOf<Property1>("property1")
         list += listOf(propertySpecOf<Property2>("property2"))
         assertThat(list).containsExactly(
@@ -20,7 +21,8 @@ class PropertySpecHandlerTest {
         )
     }
 
-    @Test fun className() {
+    @Test
+    fun className() {
         val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.PropertySpecHandlerTest"
         list.add("property1", ClassName(packageName, "Property1"))
         list["property2"] = ClassName(packageName, "Property2")
@@ -32,7 +34,8 @@ class PropertySpecHandlerTest {
         )
     }
 
-    @Test fun javaClass() {
+    @Test
+    fun javaClass() {
         list.add("property1", Property1::class.java)
         list["property2"] = Property2::class.java
         container { "property3"(Property3::class.java) { } }
@@ -43,7 +46,8 @@ class PropertySpecHandlerTest {
         )
     }
 
-    @Test fun kotlinClass() {
+    @Test
+    fun kotlinClass() {
         list.add("property1", Property1::class)
         list["property2"] = Property2::class
         container { "property3"(Property3::class) { } }
@@ -54,7 +58,8 @@ class PropertySpecHandlerTest {
         )
     }
 
-    @Test fun reifiedType() {
+    @Test
+    fun reifiedType() {
         list.add<Property1>("field1")
         container { "field2"<Property2> { } }
         assertThat(list).containsExactly(

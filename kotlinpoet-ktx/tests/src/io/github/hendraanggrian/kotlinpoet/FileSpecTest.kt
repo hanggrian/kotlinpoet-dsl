@@ -6,7 +6,8 @@ import kotlin.test.assertEquals
 
 class FileSpecTest {
 
-    @Test fun comments() {
+    @Test
+    fun comments() {
         assertEquals(
             FileSpec.builder("com.example", "MyClass")
                 .addComment("A ")

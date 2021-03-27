@@ -71,7 +71,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures annotations for this file. */
-    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
         AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add file comment like [String.format]. */
@@ -96,7 +96,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures types for this file. */
-    inline fun types(configuration: TypeSpecHandlerScope.() -> Unit): Unit =
+    fun types(configuration: TypeSpecHandlerScope.() -> Unit): Unit =
         TypeSpecHandlerScope(types).configuration()
 
     /**
@@ -111,7 +111,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures functions for this file. */
-    inline fun functions(configuration: FunSpecHandlerScope.() -> Unit): Unit =
+    fun functions(configuration: FunSpecHandlerScope.() -> Unit): Unit =
         FunSpecHandlerScope(functions).configuration()
 
     /**
@@ -126,7 +126,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures properties for this file. */
-    inline fun properties(configuration: PropertySpecHandlerScope.() -> Unit): Unit =
+    fun properties(configuration: PropertySpecHandlerScope.() -> Unit): Unit =
         PropertySpecHandlerScope(properties).configuration()
 
     /**
@@ -141,7 +141,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Configures type aliases for this file. */
-    inline fun typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit): Unit =
+    fun typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit): Unit =
         TypeAliasSpecHandlerScope(typeAliases).configuration()
 
     /** Add import. */

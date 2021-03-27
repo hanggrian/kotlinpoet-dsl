@@ -92,14 +92,14 @@ class TypeAliasSpecBuilder(val nativeBuilder: TypeAliasSpec.Builder) {
     val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
 
     /** Configures type variables of this type alias. */
-    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+    fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
         TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Annotations of this type alias. */
     val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this type alias. */
-    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
         AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Kdoc of this type alias. */
@@ -114,7 +114,7 @@ class TypeAliasSpecBuilder(val nativeBuilder: TypeAliasSpec.Builder) {
     }
 
     /** Configures kdoc of this type alias. */
-    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
         KdocHandlerScope(kdoc).configuration()
 
     /** Returns native spec. */

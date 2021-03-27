@@ -15,7 +15,8 @@ class AnnotationSpecBuilderTest {
         )
         .build()
 
-    @Test fun simple() {
+    @Test
+    fun simple() {
         assertEquals(expected, buildAnnotationSpec<Deprecated> {
             addMember("message", "Old stuff")
             addMember {
@@ -24,7 +25,8 @@ class AnnotationSpecBuilderTest {
         })
     }
 
-    @Test fun invocation() {
+    @Test
+    fun invocation() {
         assertEquals(expected, buildAnnotationSpec<Deprecated> {
             addMember("message", "Old stuff")
             addMember {

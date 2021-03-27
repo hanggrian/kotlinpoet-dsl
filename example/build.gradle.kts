@@ -3,9 +3,15 @@ plugins {
     application
 }
 
-application.mainClass.set("com.example.VehicleWriter")
+application {
+    mainClass.set("com.example.VehicleWriter")
+}
 
-sourceSets["main"].java.srcDir("src")
+sourceSets {
+    main {
+        java.srcDir("src")
+    }
+}
 
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))

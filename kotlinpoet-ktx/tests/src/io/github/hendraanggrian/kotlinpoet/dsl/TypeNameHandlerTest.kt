@@ -8,11 +8,12 @@ import kotlin.test.Test
 class TypeNameHandlerTest {
     private val map = TypeNameHandler(mutableMapOf())
 
-    @Test fun test() {
+    @Test
+    fun test() {
         map[CHAR] = null
         map[Double::class.java] = null
         map[Boolean::class] = null
-        map.set<String>()
+        map.add<String>()
         Truth.assertThat(map.keys).containsExactly(
             CHAR,
             Double::class.java.asTypeName(),

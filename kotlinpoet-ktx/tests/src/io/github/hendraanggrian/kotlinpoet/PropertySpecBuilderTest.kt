@@ -19,7 +19,8 @@ class PropertySpecBuilderTest {
         .initializer("value")
         .build()
 
-    @Test fun simple() {
+    @Test
+    fun simple() {
         assertEquals(expected, buildPropertySpec<String>("name") {
             kdoc.append("firstJavadoc")
             kdoc.append {
@@ -31,7 +32,8 @@ class PropertySpecBuilderTest {
         })
     }
 
-    @Test fun invocation() {
+    @Test
+    fun invocation() {
         assertEquals(expected, buildPropertySpec<String>("name") {
             kdoc {
                 append("firstJavadoc")

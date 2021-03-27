@@ -11,7 +11,8 @@ class TypeAliasSpecHandlerTest {
     private inline fun container(configuration: TypeAliasSpecHandlerScope.() -> Unit) =
         TypeAliasSpecHandlerScope(list).configuration()
 
-    @Test fun nativeSpec() {
+    @Test
+    fun nativeSpec() {
         list += typeAliasSpecOf<TypeAlias1>("typeAlias1")
         list += listOf(typeAliasSpecOf<TypeAlias2>("typeAlias2"))
         assertThat(list).containsExactly(
@@ -20,7 +21,8 @@ class TypeAliasSpecHandlerTest {
         )
     }
 
-    @Test fun className() {
+    @Test
+    fun className() {
         val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.TypeAliasSpecHandlerTest"
         list.add("typeAlias1", ClassName(packageName, "TypeAlias1"))
         list["typeAlias2"] = ClassName(packageName, "TypeAlias2")
@@ -32,7 +34,8 @@ class TypeAliasSpecHandlerTest {
         )
     }
 
-    @Test fun javaClass() {
+    @Test
+    fun javaClass() {
         list.add("typeAlias1", TypeAlias1::class.java)
         list["typeAlias2"] = TypeAlias2::class.java
         container { "typeAlias3"(TypeAlias3::class.java) { } }
@@ -43,7 +46,8 @@ class TypeAliasSpecHandlerTest {
         )
     }
 
-    @Test fun kotlinClass() {
+    @Test
+    fun kotlinClass() {
         list.add("typeAlias1", TypeAlias1::class)
         list["typeAlias2"] = TypeAlias2::class
         container { "typeAlias3"(TypeAlias3::class) { } }
@@ -54,7 +58,8 @@ class TypeAliasSpecHandlerTest {
         )
     }
 
-    @Test fun reifiedType() {
+    @Test
+    fun reifiedType() {
         list.add<TypeAlias1>("typeAlias1")
         container { "typeAlias2"<TypeAlias2> { } }
         assertThat(list).containsExactly(

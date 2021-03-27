@@ -11,7 +11,8 @@ class ParameterSpecHandlerTest {
     private inline fun container(configuration: ParameterSpecHandlerScope.() -> Unit) =
         ParameterSpecHandlerScope(list).configuration()
 
-    @Test fun nativeSpec() {
+    @Test
+    fun nativeSpec() {
         list += parameterSpecOf<Parameter1>("parameter1")
         list += listOf(parameterSpecOf<Parameter2>("parameter2"))
         assertThat(list).containsExactly(
@@ -20,7 +21,8 @@ class ParameterSpecHandlerTest {
         )
     }
 
-    @Test fun className() {
+    @Test
+    fun className() {
         val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.ParameterSpecHandlerTest"
         list.add("parameter1", ClassName(packageName, "Parameter1"))
         list["parameter2"] = ClassName(packageName, "Parameter2")
@@ -32,7 +34,8 @@ class ParameterSpecHandlerTest {
         )
     }
 
-    @Test fun javaClass() {
+    @Test
+    fun javaClass() {
         list.add("parameter1", Parameter1::class.java)
         list["parameter2"] = Parameter2::class.java
         container { "parameter3"(Parameter3::class.java) { } }
@@ -43,7 +46,8 @@ class ParameterSpecHandlerTest {
         )
     }
 
-    @Test fun kotlinClass() {
+    @Test
+    fun kotlinClass() {
         list.add("parameter1", Parameter1::class)
         list["parameter2"] = Parameter2::class
         container { "parameter3"(Parameter3::class) { } }
@@ -54,7 +58,8 @@ class ParameterSpecHandlerTest {
         )
     }
 
-    @Test fun reifiedType() {
+    @Test
+    fun reifiedType() {
         list.add<Parameter1>("parameter1")
         container { "parameter2"<Parameter2> { } }
         assertThat(list).containsExactly(

@@ -10,11 +10,13 @@ class ClassNameTest {
         const val EXPECTED = "com.example.MyClass"
     }
 
-    @Test fun classOf() {
+    @Test
+    fun classOf() {
         assertEquals(EXPECTED, "${"com.example".classOf("MyClass")}")
     }
 
-    @Test fun asClassName() {
+    @Test
+    fun asClassName() {
         assertEquals(EXPECTED, "${MyClass::class.java.asClassName()}")
         assertEquals(EXPECTED, "${MyClass::class.asClassName()}")
     }

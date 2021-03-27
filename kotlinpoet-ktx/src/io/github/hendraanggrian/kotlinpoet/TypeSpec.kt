@@ -233,14 +233,14 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Configures kdoc of this type. */
-    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
         KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this type. */
     val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotationSpecs)
 
     /** Configures annotations of this type. */
-    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
         AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add type modifiers. */
@@ -252,7 +252,7 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
 
     /** Configures type variables of this type. */
-    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+    fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
         TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Set primary constructor to type. */
@@ -311,7 +311,7 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     val superinterfaces: TypeNameHandler get() = TypeNameHandler(nativeBuilder.superinterfaces)
 
     /** Configures super interfaces of this type. */
-    inline fun superinterfaces(configuration: TypeNameHandlerScope.() -> Unit): Unit =
+    fun superinterfaces(configuration: TypeNameHandlerScope.() -> Unit): Unit =
         TypeNameHandlerScope(superinterfaces).configuration()
 
     /** Add enum constant with name. */
@@ -328,7 +328,7 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     val properties: PropertySpecHandler = PropertySpecHandler(nativeBuilder.propertySpecs)
 
     /** Configures properties of this type. */
-    inline fun properties(configuration: PropertySpecHandlerScope.() -> Unit): Unit =
+    fun properties(configuration: PropertySpecHandlerScope.() -> Unit): Unit =
         PropertySpecHandlerScope(properties).configuration()
 
     /** Add initializer block containing [code]. */
@@ -345,14 +345,14 @@ class TypeSpecBuilder(val nativeBuilder: TypeSpec.Builder) {
     val functions: FunSpecHandler = FunSpecHandler(nativeBuilder.funSpecs)
 
     /** Configures functions of this type. */
-    inline fun functions(configuration: FunSpecHandlerScope.() -> Unit): Unit =
+    fun functions(configuration: FunSpecHandlerScope.() -> Unit): Unit =
         FunSpecHandlerScope(functions).configuration()
 
     /** Types of this type. */
     val types: TypeSpecHandler = TypeSpecHandler(nativeBuilder.typeSpecs)
 
     /** Configures types of this type. */
-    inline fun types(configuration: TypeSpecHandlerScope.() -> Unit): Unit =
+    fun types(configuration: TypeSpecHandlerScope.() -> Unit): Unit =
         TypeSpecHandlerScope(types).configuration()
 
     /** Add originating element. */

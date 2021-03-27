@@ -103,14 +103,14 @@ class ParameterSpecBuilder(val nativeBuilder: ParameterSpec.Builder) {
     }
 
     /** Configures kdoc of this parameter. */
-    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
         KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this parameter. */
     val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
         AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add parameter modifiers. */

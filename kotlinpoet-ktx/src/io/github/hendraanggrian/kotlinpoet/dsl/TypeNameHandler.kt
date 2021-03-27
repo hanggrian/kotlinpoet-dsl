@@ -12,15 +12,35 @@ open class TypeNameHandler internal constructor(actualMap: MutableMap<TypeName, 
     MutableMap<TypeName, CodeBlock?> by actualMap {
 
     /** Add type name from [Class]. */
-    operator fun set(key: Type, value: CodeBlock?): Unit = set(key.asTypeName(), value)
+    fun add(key: Type, value: CodeBlock? = null): CodeBlock? = put(key.asTypeName(), value)
 
     /** Add type name from [KClass]. */
-    operator fun set(key: KClass<*>, value: CodeBlock?): Unit = set(key.asTypeName(), value)
+    fun add(key: KClass<*>, value: CodeBlock? = null): CodeBlock? = put(key.asTypeName(), value)
 
     /** Add type name from [T]. */
-    inline fun <reified T> set(value: CodeBlock? = null): Unit = set(T::class.asTypeName(), value)
+    inline fun <reified T> add(value: CodeBlock? = null): CodeBlock? = put(T::class.asTypeName(), value)
+
+    /** Convenient method to add type variable name with operator function. */
+    @Suppress("NOTHING_TO_INLINE")
+    inline operator fun set(name: Type, value: CodeBlock?) {
+        add(name, value)
+    }
+
+    /** Convenient method to add type variable name with operator function. */
+    @Suppress("NOTHING_TO_INLINE")
+    inline operator fun set(name: KClass<*>, value: CodeBlock?) {
+        add(name, value)
+    }
 }
 
 /** Receiver for the `superinterfaces` function type providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class TypeNameHandlerScope(actualList: MutableMap<TypeName, CodeBlock?>) : TypeNameHandler(actualList)
+class TypeNameHandlerScope internal constructor(actualList: MutableMap<TypeName, CodeBlock?>) :
+    TypeNameHandler(actualList) {
+
+    /** @see TypeNameHandler.set */
+    operator fun Type.invoke(value: CodeBlock?): CodeBlock? = add(this, value)
+
+    /** @see TypeNameHandler.set */
+    operator fun KClass<*>.invoke(value: CodeBlock?): CodeBlock? = add(this, value)
+}

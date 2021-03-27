@@ -13,7 +13,8 @@ class CodeBlockBuilderTest {
         .endControlFlow()
         .build()
 
-    @Test fun simple() {
+    @Test
+    fun simple() {
         assertEquals(expected, buildCodeBlock {
             appendLine("int total = 0")
             appendFlow("for (int i = 0; i < 10; i++)") {
@@ -22,7 +23,8 @@ class CodeBlockBuilderTest {
         })
     }
 
-    @Test fun escapeSpecialChar() {
+    @Test
+    fun escapeSpecialChar() {
         assertFails { codeBlockOf("100%") }
         assertEquals("100%", "${codeBlockOf("100%%")}")
         assertEquals("100%S", "${codeBlockOf("100%%S")}")

@@ -18,41 +18,41 @@ open class ParameterSpecHandler internal constructor(actualList: MutableList<Par
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): Boolean =
         add(parameterSpecOf(name, type, *modifiers))
 
-    /** Add parameter from [Type]. */
-    fun add(name: String, type: Type, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf(name, type, *modifiers))
-
-    /** Add parameter from [KClass]. */
-    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf(name, type, *modifiers))
-
-    /** Add parameter from [T]. */
-    inline fun <reified T> add(name: String, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf<T>(name, *modifiers))
-
     /** Add parameter from [TypeName] with custom initialization [configuration]. */
-    inline fun add(
+    fun add(
         name: String,
         type: TypeName,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(buildParameterSpec(name, type, *modifiers, configuration = configuration))
 
+    /** Add parameter from [Type]. */
+    fun add(name: String, type: Type, vararg modifiers: KModifier): Boolean =
+        add(parameterSpecOf(name, type, *modifiers))
+
     /** Add parameter from [Type] with custom initialization [configuration]. */
-    inline fun add(
+    fun add(
         name: String,
         type: Type,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(buildParameterSpec(name, type, *modifiers, configuration = configuration))
 
+    /** Add parameter from [KClass]. */
+    fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): Boolean =
+        add(parameterSpecOf(name, type, *modifiers))
+
     /** Add parameter from [KClass] with custom initialization [configuration]. */
-    inline fun add(
+    fun add(
         name: String,
         type: KClass<*>,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(buildParameterSpec(name, type, *modifiers, configuration = configuration))
+
+    /** Add parameter from [T]. */
+    inline fun <reified T> add(name: String, vararg modifiers: KModifier): Boolean =
+        add(parameterSpecOf<T>(name, *modifiers))
 
     /** Add parameter from [T] with custom initialization [configuration]. */
     inline fun <reified T> add(
@@ -62,41 +62,64 @@ open class ParameterSpecHandler internal constructor(actualList: MutableList<Par
     ): Boolean = add(buildParameterSpec<T>(name, *modifiers, configuration = configuration))
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: TypeName): Unit = plusAssign(parameterSpecOf(name, type))
+    @Suppress("NOTHING_TO_INLINE")
+    inline operator fun set(name: String, type: TypeName) {
+        add(name, type)
+    }
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: Type): Unit = plusAssign(parameterSpecOf(name, type))
+    @Suppress("NOTHING_TO_INLINE")
+    inline operator fun set(name: String, type: Type) {
+        add(name, type)
+    }
 
     /** Convenient method to add parameter with operator function. */
-    operator fun set(name: String, type: KClass<*>): Unit = plusAssign(parameterSpecOf(name, type))
+    @Suppress("NOTHING_TO_INLINE")
+    inline operator fun set(name: String, type: KClass<*>) {
+        add(name, type)
+    }
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class ParameterSpecHandlerScope(actualList: MutableList<ParameterSpec>) : ParameterSpecHandler(actualList) {
+class ParameterSpecHandlerScope internal constructor(actualList: MutableList<ParameterSpec>) :
+    ParameterSpecHandler(actualList) {
 
-    /** Convenient method to add parameter with receiver type. */
-    inline operator fun String.invoke(
+    /** @see ParameterSpecHandler.add */
+    operator fun String.invoke(type: TypeName, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
+
+    /** @see ParameterSpecHandler.add */
+    operator fun String.invoke(
         type: TypeName,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** Convenient method to add parameter with receiver type. */
-    inline operator fun String.invoke(
+    /** @see ParameterSpecHandler.add */
+    operator fun String.invoke(type: Type, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
+
+    /** @see ParameterSpecHandler.add */
+    operator fun String.invoke(
         type: Type,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** Convenient method to add parameter with receiver type. */
-    inline operator fun String.invoke(
+    /** @see ParameterSpecHandler.add */
+    operator fun String.invoke(type: KClass<*>, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
+
+    /** @see ParameterSpecHandler.add */
+    operator fun String.invoke(
         type: KClass<*>,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** Convenient method to add parameter with receiver type. */
+    /** @see ParameterSpecHandler.add */
+    inline operator fun <reified T> String.invoke(vararg modifiers: KModifier): Boolean =
+        add<T>(this, *modifiers)
+
+    /** @see ParameterSpecHandler.add */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit

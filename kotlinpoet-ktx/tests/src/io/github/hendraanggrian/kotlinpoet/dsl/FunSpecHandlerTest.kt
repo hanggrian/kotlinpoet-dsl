@@ -13,7 +13,8 @@ class FunSpecHandlerTest {
     private inline fun container(configuration: FunSpecHandlerScope.() -> Unit) =
         FunSpecHandlerScope(list).configuration()
 
-    @Test fun nativeSpec() {
+    @Test
+    fun nativeSpec() {
         list += funSpecOf("func")
         list += listOf(emptyConstructorFunSpec())
         assertThat(list).containsExactly(
@@ -22,7 +23,8 @@ class FunSpecHandlerTest {
         )
     }
 
-    @Test fun string() {
+    @Test
+    fun string() {
         list.add("func1")
         container { "func2" { } }
         assertThat(list).containsExactly(
@@ -31,7 +33,8 @@ class FunSpecHandlerTest {
         )
     }
 
-    @Test fun others() {
+    @Test
+    fun others() {
         list.addConstructor()
         list.addGetter()
         list.addSetter()

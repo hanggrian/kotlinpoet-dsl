@@ -6,9 +6,11 @@ import kotlin.test.assertEquals
 
 class TypeVariableNameTest {
 
-    @Test fun noBounds() = assertEquals("T", "${"T".typeVarOf()}")
+    @Test
+    fun noBounds() = assertEquals("T", "${"T".typeVarOf()}")
 
-    @Test fun classNameBounds() = assertEquals(
+    @Test
+    fun classNameBounds() = assertEquals(
         """
             public fun <T : kotlin.Int> go(): kotlin.Unit {
             }
@@ -17,7 +19,8 @@ class TypeVariableNameTest {
         "${buildFunSpec("go") { typeVariables.add("T", INT) }}"
     )
 
-    @Test fun classBounds() = assertEquals(
+    @Test
+    fun classBounds() = assertEquals(
         """
             public fun <T : java.lang.Integer> go(): kotlin.Unit {
             }
@@ -26,7 +29,8 @@ class TypeVariableNameTest {
         "${buildFunSpec("go") { typeVariables.add("T", java.lang.Integer::class.java) }}"
     )
 
-    @Test fun kclassBounds() = assertEquals(
+    @Test
+    fun kclassBounds() = assertEquals(
         """
             public fun <T : kotlin.Int> go(): kotlin.Unit {
             }

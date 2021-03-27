@@ -16,35 +16,35 @@ open class TypeAliasSpecHandler internal constructor(actualList: MutableList<Typ
     /** Add type alias from [TypeName]. */
     fun add(name: String, type: TypeName): Boolean = add(typeAliasSpecOf(name, type))
 
-    /** Add type alias from [Type]. */
-    fun add(name: String, type: Type): Boolean = add(typeAliasSpecOf(name, type))
-
-    /** Add type alias from [KClass]. */
-    fun add(name: String, type: KClass<*>): Boolean = add(typeAliasSpecOf(name, type))
-
-    /** Add type alias from [T]. */
-    inline fun <reified T> add(name: String): Boolean = add(typeAliasSpecOf<T>(name))
-
     /** Add type alias from [TypeName] with custom initialization [configuration]. */
-    inline fun add(
+    fun add(
         name: String,
         type: TypeName,
         configuration: TypeAliasSpecBuilder.() -> Unit
     ): Boolean = add(buildTypeAliasSpec(name, type, configuration))
 
+    /** Add type alias from [Type]. */
+    fun add(name: String, type: Type): Boolean = add(typeAliasSpecOf(name, type))
+
     /** Add type alias from [Type] with custom initialization [configuration]. */
-    inline fun add(
+    fun add(
         name: String,
         type: Type,
         configuration: TypeAliasSpecBuilder.() -> Unit
     ): Boolean = add(buildTypeAliasSpec(name, type, configuration))
 
+    /** Add type alias from [KClass]. */
+    fun add(name: String, type: KClass<*>): Boolean = add(typeAliasSpecOf(name, type))
+
     /** Add type alias from [KClass] with custom initialization [configuration]. */
-    inline fun add(
+    fun add(
         name: String,
         type: KClass<*>,
         configuration: TypeAliasSpecBuilder.() -> Unit
     ): Boolean = add(buildTypeAliasSpec(name, type, configuration))
+
+    /** Add type alias from [T]. */
+    inline fun <reified T> add(name: String): Boolean = add(typeAliasSpecOf<T>(name))
 
     /** Add type alias from [T] with custom initialization [configuration]. */
     inline fun <reified T> add(
@@ -64,28 +64,31 @@ open class TypeAliasSpecHandler internal constructor(actualList: MutableList<Typ
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class TypeAliasSpecHandlerScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecHandler(actualList) {
+class TypeAliasSpecHandlerScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
+    TypeAliasSpecHandler(actualList) {
 
-    /** Convenient method to add type alias with receiver type. */
-    inline operator fun String.invoke(
-        type: TypeName,
-        configuration: TypeAliasSpecBuilder.() -> Unit
-    ): Boolean = add(this, type, configuration)
+    /** @see TypeAliasSpecHandler.add */
+    operator fun String.invoke(type: TypeName): Boolean = add(this, type)
 
-    /** Convenient method to add type alias with receiver type. */
-    inline operator fun String.invoke(
-        type: Type,
-        configuration: TypeAliasSpecBuilder.() -> Unit
-    ): Boolean = add(this, type, configuration)
+    /** @see TypeAliasSpecHandler.add */
+    operator fun String.invoke(type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
+        add(this, type, configuration)
 
-    /** Convenient method to add type alias with receiver type. */
-    inline operator fun String.invoke(
-        type: KClass<*>,
-        configuration: TypeAliasSpecBuilder.() -> Unit
-    ): Boolean = add(this, type, configuration)
+    /** @see TypeAliasSpecHandler.add */
+    operator fun String.invoke(type: Type): Boolean = add(this, type)
 
-    /** Convenient method to add type alias with receiver type. */
-    inline operator fun <reified T> String.invoke(
-        configuration: TypeAliasSpecBuilder.() -> Unit
-    ): Boolean = add(this, T::class, configuration)
+    /** @see TypeAliasSpecHandler.add */
+    operator fun String.invoke(type: Type, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
+        add(this, type, configuration)
+
+    /** @see TypeAliasSpecHandler.add */
+    operator fun String.invoke(type: KClass<*>): Boolean = add(this, type)
+
+    /** @see TypeAliasSpecHandler.add */
+    operator fun String.invoke(type: KClass<*>, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
+        add(this, type, configuration)
+
+    /** @see TypeAliasSpecHandler.add */
+    inline operator fun <reified T> String.invoke(configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
+        add<T>(this, configuration)
 }

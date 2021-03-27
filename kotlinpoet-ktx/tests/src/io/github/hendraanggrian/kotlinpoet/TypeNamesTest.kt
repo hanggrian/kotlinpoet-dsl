@@ -14,7 +14,8 @@ class TypeNamesTest {
         val WILDCARD_TYPE_NAME = Any::class.wildcardProducerOf()
     }
 
-    @Test fun nullability() {
+    @Test
+    fun nullability() {
         val nullableClassName = CLASS_NAME.asNullable()
         val nullableLambdaTypeName = LAMBDA_TYPE_NAME.asNullable()
         val nullableParameterizedTypeName = PARAMETERIZED_TYPE_NAME.asNullable()
@@ -37,7 +38,8 @@ class TypeNamesTest {
         assertEquals("out kotlin.Any", "${nullableWildcardTypeName.asNotNull()}")
     }
 
-    @Test fun annotations() {
+    @Test
+    fun annotations() {
         val deprecatedClassName = "kotlin".classOf("Deprecated")
         val deprecatedSpec = annotationSpecOf(deprecatedClassName)
         assertEquals(

@@ -114,14 +114,14 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
     }
 
     /** Configures kdoc of this property. */
-    inline fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
+    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
         KdocHandlerScope(kdoc).configuration()
 
     /** Annotations of this property. */
     val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
 
     /** Configures annotations of this property. */
-    inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
         AnnotationSpecHandlerScope(annotations).configuration()
 
     /** Add property modifiers. */
@@ -133,7 +133,7 @@ class PropertySpecBuilder(val nativeBuilder: PropertySpec.Builder) {
     val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
 
     /** Configures type variables of this property. */
-    inline fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
+    fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
         TypeVariableNameHandlerScope(typeVariables).configuration()
 
     /** Initialize field value like [String.format]. */

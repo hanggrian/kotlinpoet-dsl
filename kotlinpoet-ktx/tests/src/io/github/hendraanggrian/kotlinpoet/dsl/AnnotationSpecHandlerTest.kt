@@ -11,7 +11,8 @@ class AnnotationSpecHandlerTest {
     private inline fun container(configuration: AnnotationSpecHandlerScope.() -> Unit) =
         AnnotationSpecHandlerScope(list).configuration()
 
-    @Test fun nativeSpec() {
+    @Test
+    fun nativeSpec() {
         list += annotationSpecOf<Annotation1>()
         list += listOf(annotationSpecOf<Annotation2>())
         assertThat(list).containsExactly(
@@ -20,7 +21,8 @@ class AnnotationSpecHandlerTest {
         )
     }
 
-    @Test fun className() {
+    @Test
+    fun className() {
         val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerTest"
         list.add(ClassName(packageName, "Annotation1"))
         list += ClassName(packageName, "Annotation2")
@@ -32,7 +34,8 @@ class AnnotationSpecHandlerTest {
         )
     }
 
-    @Test fun javaClass() {
+    @Test
+    fun javaClass() {
         list.add(Annotation1::class.java)
         list += Annotation2::class.java
         container { (Annotation3::class.java) { } }
@@ -43,7 +46,8 @@ class AnnotationSpecHandlerTest {
         )
     }
 
-    @Test fun kotlinClass() {
+    @Test
+    fun kotlinClass() {
         list.add(Annotation1::class)
         list += Annotation2::class
         container { Annotation3::class { } }
@@ -54,7 +58,8 @@ class AnnotationSpecHandlerTest {
         )
     }
 
-    @Test fun reifiedType() {
+    @Test
+    fun reifiedType() {
         list.add<Annotation1>()
         assertThat(list).containsExactly(annotationSpecOf<Annotation1>())
     }

@@ -15,7 +15,8 @@ class TypeSpecHandlerTest {
     private inline fun container(configuration: TypeSpecHandlerScope.() -> Unit) =
         TypeSpecHandlerScope(list).configuration()
 
-    @Test fun nativeSpec() {
+    @Test
+    fun nativeSpec() {
         list += classTypeSpecOf("Class1")
         list += listOf(classTypeSpecOf("Class2"))
         assertThat(list).containsExactly(
@@ -24,11 +25,12 @@ class TypeSpecHandlerTest {
         )
     }
 
-    @Test fun invocation() {
+    @Test
+    fun invocation() {
         val packageName = "io.github.hendraanggrian.kotlinpoet.dsl.TypeSpecHandlerTest"
         container {
-            "Class1" { }
-            (ClassName(packageName, "MyType")) { }
+            `class`("Class1")
+            `class`(ClassName(packageName, "MyType"))
         }
         assertThat(list).containsExactly(
             classTypeSpecOf("Class1"),
@@ -36,7 +38,8 @@ class TypeSpecHandlerTest {
         )
     }
 
-    @Test fun others() {
+    @Test
+    fun others() {
         list.addClass("Class1")
         list.addInterface("Interface1")
         list.addEnum("Enum1") { addEnumConstant("A") }
