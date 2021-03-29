@@ -58,7 +58,7 @@ open class ParameterSpecHandler internal constructor(actualList: MutableList<Par
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
-        configuration: ParameterSpecBuilder.() -> Unit
+        noinline configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(buildParameterSpec<T>(name, *modifiers, configuration = configuration))
 
     /** Convenient method to add parameter with operator function. */
@@ -122,6 +122,6 @@ class ParameterSpecHandlerScope internal constructor(actualList: MutableList<Par
     /** @see ParameterSpecHandler.add */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
-        configuration: ParameterSpecBuilder.() -> Unit
+        noinline configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add<T>(this, *modifiers, configuration = configuration)
 }

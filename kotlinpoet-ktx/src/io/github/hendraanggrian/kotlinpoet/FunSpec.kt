@@ -33,46 +33,40 @@ fun emptySetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).buil
  * Builds new [FunSpec] with name,
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-inline fun buildFunSpec(
-    name: String,
-    configuration: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
+fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec =
+    FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
 
 /**
  * Builds new constructor [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-inline fun buildConstructorFunSpec(
-    configuration: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).apply(configuration).build()
+fun buildConstructorFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec =
+    FunSpecBuilder(FunSpec.constructorBuilder()).apply(configuration).build()
 
 /**
  * Builds new getter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-inline fun buildGetterFunSpec(
-    configuration: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).apply(configuration).build()
+fun buildGetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec =
+    FunSpecBuilder(FunSpec.getterBuilder()).apply(configuration).build()
 
 /**
  * Builds new setter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-inline fun buildSetterFunSpec(
-    configuration: FunSpecBuilder.() -> Unit
-): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).apply(configuration).build()
+fun buildSetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec =
+    FunSpecBuilder(FunSpec.setterBuilder()).apply(configuration).build()
 
 /** Modify existing [FunSpec.Builder] using provided [configuration]. */
-inline fun FunSpec.Builder.edit(
-    configuration: FunSpecBuilder.() -> Unit
-): FunSpec.Builder = FunSpecBuilder(this).apply(configuration).nativeBuilder
+fun FunSpec.Builder.edit(configuration: FunSpecBuilder.() -> Unit): FunSpec.Builder =
+    FunSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
 @SpecDslMarker
-class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
+class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
 
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
@@ -140,7 +134,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Set receiver to [TypeName] with custom initialization builder as kdoc. */
-    inline fun receiver(type: TypeName, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
+    fun receiver(type: TypeName, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
         receiver(type, buildCodeBlock(kdocconfiguration))
 
     /** Set receiver to [Type] without kdoc. */
@@ -159,7 +153,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Set receiver to [Type] with custom initialization builder as kdoc. */
-    inline fun receiver(type: Type, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
+    fun receiver(type: Type, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
         receiver(type, buildCodeBlock(kdocconfiguration))
 
     /** Set receiver to [KClass] without kdoc. */
@@ -178,8 +172,8 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Set receiver to [KClass] with custom initialization builder as kdoc. */
-    inline fun receiver(type: KClass<*>, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
-        receiver(type, buildCodeBlock(kdocconfiguration))
+    fun receiver(type: KClass<*>, kdocConfiguration: CodeBlockBuilder.() -> Unit): Unit =
+        receiver(type, buildCodeBlock(kdocConfiguration))
 
     /** Set receiver to [T] without kdoc. */
     inline fun <reified T> receiver(): Unit = receiver(T::class)
@@ -192,8 +186,8 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
         receiver(T::class, kdocFormat, *kdocArgs)
 
     /** Set receiver to [T] with custom initialization builder as kdoc. */
-    inline fun <reified T> receiver(kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
-        receiver(T::class, buildCodeBlock(kdocconfiguration))
+    inline fun <reified T> receiver(noinline kdocConfiguration: CodeBlockBuilder.() -> Unit): Unit =
+        receiver(T::class, buildCodeBlock(kdocConfiguration))
 
     /** Set return to [TypeName] without kdoc. */
     var returns: TypeName
@@ -213,7 +207,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Set return to [TypeName] with custom initialization builder as kdoc. */
-    inline fun returns(type: TypeName, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
+    fun returns(type: TypeName, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
         returns(type, buildCodeBlock(kdocconfiguration))
 
     /** Set return to [Type] without kdoc. */
@@ -232,7 +226,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Set return to [Type] with custom initialization builder as kdoc. */
-    inline fun returns(type: Type, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
+    fun returns(type: Type, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
         returns(type, buildCodeBlock(kdocconfiguration))
 
     /** Set return to [KClass] without kdoc. */
@@ -251,8 +245,8 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Set return to [KClass] with custom initialization builder as kdoc. */
-    inline fun returns(type: KClass<*>, kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
-        returns(type, buildCodeBlock(kdocconfiguration))
+    fun returns(type: KClass<*>, kdocConfiguration: CodeBlockBuilder.() -> Unit): Unit =
+        returns(type, buildCodeBlock(kdocConfiguration))
 
     /** Set return to [T] without kdoc. */
     inline fun <reified T> returns(): Unit = returns(T::class)
@@ -264,8 +258,8 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any) = returns(T::class, kdocFormat, *kdocArgs)
 
     /** Set return to [T] with custom initialization builder as kdoc. */
-    inline fun <reified T> returns(kdocconfiguration: CodeBlockBuilder.() -> Unit): Unit =
-        returns(T::class, kdocconfiguration)
+    inline fun <reified T> returns(noinline kdocConfiguration: CodeBlockBuilder.() -> Unit): Unit =
+        returns(T::class, kdocConfiguration)
 
     /** Parameters of this function. */
     val parameters: ParameterSpecHandler = ParameterSpecHandler(nativeBuilder.parameters)
@@ -285,7 +279,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Call this constructor with code [configuration]. */
-    inline fun callThisConstructor(configuration: CodeBlockBuilder.() -> Unit): Unit =
+    fun callThisConstructor(configuration: CodeBlockBuilder.() -> Unit): Unit =
         callThisConstructor(buildCodeBlock(configuration))
 
     /** Call super constructor with [String] arguments. */
@@ -299,7 +293,7 @@ class FunSpecBuilder(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
     }
 
     /** Call super constructor with code [configuration]. */
-    inline fun callSuperConstructor(configuration: CodeBlockBuilder.() -> Unit): Unit =
+    fun callSuperConstructor(configuration: CodeBlockBuilder.() -> Unit): Unit =
         callSuperConstructor(buildCodeBlock(configuration))
 
     override fun append(format: String, vararg args: Any) {

@@ -28,23 +28,19 @@ fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(pac
  * Builds a new [FileSpec],
  * by populating newly created [FileSpecBuilder] using provided [configuration].
  */
-inline fun buildFileSpec(
-    packageName: String,
-    fileName: String,
-    configuration: FileSpecBuilder.() -> Unit
-): FileSpec = FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
+fun buildFileSpec(packageName: String, fileName: String, configuration: FileSpecBuilder.() -> Unit): FileSpec =
+    FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
 
 /** Modify existing [FileSpec.Builder] using provided [configuration]. */
-inline fun FileSpec.Builder.edit(
-    configuration: FileSpecBuilder.() -> Unit
-): FileSpec.Builder = FileSpecBuilder(this).apply(configuration).nativeBuilder
+fun FileSpec.Builder.edit(configuration: FileSpecBuilder.() -> Unit): FileSpec.Builder =
+    FileSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
 @SpecDslMarker
-class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
+class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) {
 
     /** Package name of this file. */
     val packageName: String get() = nativeBuilder.packageName
@@ -212,7 +208,7 @@ class FileSpecBuilder(val nativeBuilder: FileSpec.Builder) {
         }
 
     /** Convenient method to set [indent] with space the length of [indentSize]. */
-    inline var indentSize: Int
+    var indentSize: Int
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {
             indent = buildString { repeat(value) { append(' ') } }

@@ -30,7 +30,7 @@ inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec =
  * Builds new [TypeAliasSpec] from name and [TypeName],
  * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
-inline fun buildTypeAliasSpec(
+fun buildTypeAliasSpec(
     name: String,
     type: TypeName,
     configuration: TypeAliasSpecBuilder.() -> Unit
@@ -40,7 +40,7 @@ inline fun buildTypeAliasSpec(
  * Builds new [TypeAliasSpec] from name and [Type],
  * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
-inline fun buildTypeAliasSpec(
+fun buildTypeAliasSpec(
     name: String,
     type: Type,
     configuration: TypeAliasSpecBuilder.() -> Unit
@@ -50,7 +50,7 @@ inline fun buildTypeAliasSpec(
  * Builds new [TypeAliasSpec] from name and [KClass],
  * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
-inline fun buildTypeAliasSpec(
+fun buildTypeAliasSpec(
     name: String,
     type: KClass<*>,
     configuration: TypeAliasSpecBuilder.() -> Unit
@@ -62,20 +62,19 @@ inline fun buildTypeAliasSpec(
  */
 inline fun <reified T> buildTypeAliasSpec(
     name: String,
-    configuration: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec = TypeAliasSpecBuilder(TypeAliasSpec.builder(name, T::class)).apply(configuration).build()
+    noinline configuration: TypeAliasSpecBuilder.() -> Unit
+): TypeAliasSpec = buildTypeAliasSpec(name, T::class, configuration)
 
 /** Modify existing [TypeAliasSpec.Builder] using provided [configuration]. */
-inline fun TypeAliasSpec.Builder.edit(
-    configuration: TypeAliasSpecBuilder.() -> Unit
-): TypeAliasSpec.Builder = TypeAliasSpecBuilder(this).apply(configuration).nativeBuilder
+fun TypeAliasSpec.Builder.edit(configuration: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec.Builder =
+    TypeAliasSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
 @SpecDslMarker
-class TypeAliasSpecBuilder(val nativeBuilder: TypeAliasSpec.Builder) {
+class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec.Builder) {
 
     /** Modifiers of this type alias. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers

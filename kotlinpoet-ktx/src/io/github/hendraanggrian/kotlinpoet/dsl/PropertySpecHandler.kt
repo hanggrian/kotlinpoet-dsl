@@ -58,7 +58,7 @@ open class PropertySpecHandler internal constructor(actualList: MutableList<Prop
     inline fun <reified T> add(
         name: String,
         vararg modifiers: KModifier,
-        configuration: PropertySpecBuilder.() -> Unit
+        noinline configuration: PropertySpecBuilder.() -> Unit
     ): Boolean = add(buildPropertySpec<T>(name, *modifiers, configuration = configuration))
 
     /** Convenient method to add property with operator function. */
@@ -122,6 +122,6 @@ class PropertySpecHandlerScope internal constructor(actualList: MutableList<Prop
     /** @see PropertySpecHandler.add */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
-        configuration: PropertySpecBuilder.() -> Unit
+        noinline configuration: PropertySpecBuilder.() -> Unit
     ): Boolean = add<T>(this, *modifiers, configuration = configuration)
 }

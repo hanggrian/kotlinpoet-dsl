@@ -37,7 +37,7 @@ open class AnnotationSpecHandler internal constructor(actualList: MutableList<An
     inline fun <reified T : Annotation> add(): Boolean = add(annotationSpecOf<T>())
 
     /** Add annotation from [T] with custom initialization [configuration]. */
-    inline fun <reified T : Annotation> add(configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
+    inline fun <reified T : Annotation> add(noinline configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
         add(buildAnnotationSpec<T>(configuration))
 
     /** Convenient method to add annotation with operator function. */

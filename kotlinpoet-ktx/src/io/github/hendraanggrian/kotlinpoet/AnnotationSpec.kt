@@ -29,57 +29,47 @@ inline fun <reified T : Annotation> annotationSpecOf(): AnnotationSpec = Annotat
  * Builds new [AnnotationSpec] from [ClassName],
  * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
  */
-inline fun buildAnnotationSpec(
-    type: ClassName,
-    configuration: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
+fun buildAnnotationSpec(type: ClassName, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
 
 /**
  * Builds new [AnnotationSpec] from [ParameterizedTypeName],
  * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
  */
-inline fun buildAnnotationSpec(
-    type: ParameterizedTypeName,
-    configuration: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
+fun buildAnnotationSpec(type: ParameterizedTypeName, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
 
 /**
  * Builds new [AnnotationSpec] from [Class],
  * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
  */
-inline fun buildAnnotationSpec(
-    type: Class<out Annotation>,
-    configuration: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
+fun buildAnnotationSpec(type: Class<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
 
 /**
  * Builds new [AnnotationSpec] from [KClass],
  * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
  */
-inline fun buildAnnotationSpec(
-    type: KClass<out Annotation>,
-    configuration: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
+fun buildAnnotationSpec(type: KClass<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
 
 /**
  * Builds new [AnnotationSpec] from [T],
  * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
  */
-inline fun <reified T : Annotation> buildAnnotationSpec(
-    configuration: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec = AnnotationSpecBuilder(AnnotationSpec.builder(T::class)).apply(configuration).build()
+inline fun <reified T : Annotation> buildAnnotationSpec(noinline configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+    buildAnnotationSpec(T::class, configuration)
 
 /** Modify existing [AnnotationSpec.Builder] using provided [configuration]. */
-inline fun AnnotationSpec.Builder.edit(
-    configuration: AnnotationSpecBuilder.() -> Unit
-): AnnotationSpec.Builder = AnnotationSpecBuilder(this).apply(configuration).nativeBuilder
+fun AnnotationSpec.Builder.edit(configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec.Builder =
+    AnnotationSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [AnnotationSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
 @SpecDslMarker
-class AnnotationSpecBuilder(val nativeBuilder: AnnotationSpec.Builder) {
+class AnnotationSpecBuilder internal constructor(val nativeBuilder: AnnotationSpec.Builder) {
 
     /** Members of this annotation. */
     val members: MutableList<CodeBlock> get() = nativeBuilder.members
@@ -98,7 +88,7 @@ class AnnotationSpecBuilder(val nativeBuilder: AnnotationSpec.Builder) {
     }
 
     /** Add code as a member of this annotation with custom initialization [configuration]. */
-    inline fun addMember(configuration: CodeBlockBuilder.() -> Unit): Unit =
+    fun addMember(configuration: CodeBlockBuilder.() -> Unit): Unit =
         addMember(buildCodeBlock(configuration))
 
     /** Sets [AnnotationSpec.UseSiteTarget]. */

@@ -47,10 +47,8 @@ open class TypeAliasSpecHandler internal constructor(actualList: MutableList<Typ
     inline fun <reified T> add(name: String): Boolean = add(typeAliasSpecOf<T>(name))
 
     /** Add type alias from [T] with custom initialization [configuration]. */
-    inline fun <reified T> add(
-        name: String,
-        configuration: TypeAliasSpecBuilder.() -> Unit
-    ): Boolean = add(buildTypeAliasSpec<T>(name, configuration))
+    inline fun <reified T> add(name: String, noinline configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
+        add(buildTypeAliasSpec<T>(name, configuration))
 
     /** Convenient method to add type alias with operator function. */
     operator fun set(name: String, type: TypeName): Unit = plusAssign(typeAliasSpecOf(name, type))
@@ -89,6 +87,6 @@ class TypeAliasSpecHandlerScope internal constructor(actualList: MutableList<Typ
         add(this, type, configuration)
 
     /** @see TypeAliasSpecHandler.add */
-    inline operator fun <reified T> String.invoke(configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
+    inline operator fun <reified T> String.invoke(noinline configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add<T>(this, configuration)
 }

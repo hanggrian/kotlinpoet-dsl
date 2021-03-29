@@ -31,7 +31,7 @@ inline fun <reified T> parameterSpecOf(name: String, vararg modifiers: KModifier
  * Builds new [ParameterSpec] from [TypeName],
  * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
-inline fun buildParameterSpec(
+fun buildParameterSpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -42,7 +42,7 @@ inline fun buildParameterSpec(
  * Builds new [ParameterSpec] from [Type],
  * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
-inline fun buildParameterSpec(
+fun buildParameterSpec(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
@@ -53,7 +53,7 @@ inline fun buildParameterSpec(
  * Builds new [ParameterSpec] from [KClass],
  * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
-inline fun buildParameterSpec(
+fun buildParameterSpec(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -67,20 +67,19 @@ inline fun buildParameterSpec(
 inline fun <reified T> buildParameterSpec(
     name: String,
     vararg modifiers: KModifier,
-    configuration: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers)).apply(configuration).build()
+    noinline configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec = buildParameterSpec(name, T::class, *modifiers, configuration = configuration)
 
 /** Modify existing [ParameterSpec.Builder] using provided [configuration]. */
-inline fun ParameterSpec.Builder.edit(
-    configuration: ParameterSpecBuilder.() -> Unit
-): ParameterSpec.Builder = ParameterSpecBuilder(this).apply(configuration).nativeBuilder
+fun ParameterSpec.Builder.edit(configuration: ParameterSpecBuilder.() -> Unit): ParameterSpec.Builder =
+    ParameterSpecBuilder(this).apply(configuration).nativeBuilder
 
 /**
  * Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
 @SpecDslMarker
-class ParameterSpecBuilder(val nativeBuilder: ParameterSpec.Builder) {
+class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this parameter. */
     val kdocCode: CodeBlock.Builder get() = nativeBuilder.kdoc
@@ -131,7 +130,7 @@ class ParameterSpecBuilder(val nativeBuilder: ParameterSpec.Builder) {
         }
 
     /** Set default value to code with custom initialization [configuration]. */
-    inline fun defaultValue(configuration: CodeBlockBuilder.() -> Unit) {
+    fun defaultValue(configuration: CodeBlockBuilder.() -> Unit) {
         defaultValue = buildCodeBlock(configuration)
     }
 
