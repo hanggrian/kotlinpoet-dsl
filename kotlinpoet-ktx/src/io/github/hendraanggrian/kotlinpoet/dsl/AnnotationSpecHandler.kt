@@ -9,8 +9,7 @@ import io.github.hendraanggrian.kotlinpoet.buildAnnotationSpec
 import kotlin.reflect.KClass
 
 /** An [AnnotationSpecHandler] is responsible for managing a set of annotation instances. */
-open class AnnotationSpecHandler internal constructor(actualList: MutableList<AnnotationSpec>) :
-    MutableList<AnnotationSpec> by actualList {
+open class AnnotationSpecHandler(actualList: MutableList<AnnotationSpec>) : MutableList<AnnotationSpec> by actualList {
 
     /** Add annotation from [ClassName]. */
     fun add(type: ClassName): Boolean = add(annotationSpecOf(type))
@@ -61,8 +60,7 @@ open class AnnotationSpecHandler internal constructor(actualList: MutableList<An
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class AnnotationSpecHandlerScope internal constructor(actualList: MutableList<AnnotationSpec>) :
-    AnnotationSpecHandler(actualList) {
+class AnnotationSpecHandlerScope(actualList: MutableList<AnnotationSpec>) : AnnotationSpecHandler(actualList) {
 
     /** @see AnnotationSpecHandler.add */
     operator fun ClassName.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean = add(this, configuration)

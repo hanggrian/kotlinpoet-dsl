@@ -10,8 +10,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** An [TypeAliasSpecHandler] is responsible for managing a set of type alias instances. */
-open class TypeAliasSpecHandler internal constructor(actualList: MutableList<TypeAliasSpec>) :
-    MutableList<TypeAliasSpec> by actualList {
+open class TypeAliasSpecHandler(actualList: MutableList<TypeAliasSpec>) : MutableList<TypeAliasSpec> by actualList {
 
     /** Add type alias from [TypeName]. */
     fun add(name: String, type: TypeName): Boolean = add(typeAliasSpecOf(name, type))
@@ -62,8 +61,7 @@ open class TypeAliasSpecHandler internal constructor(actualList: MutableList<Typ
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class TypeAliasSpecHandlerScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
-    TypeAliasSpecHandler(actualList) {
+class TypeAliasSpecHandlerScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecHandler(actualList) {
 
     /** @see TypeAliasSpecHandler.add */
     operator fun String.invoke(type: TypeName): Boolean = add(this, type)

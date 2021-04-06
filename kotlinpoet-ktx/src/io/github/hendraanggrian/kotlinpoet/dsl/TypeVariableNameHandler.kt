@@ -12,7 +12,7 @@ import kotlin.reflect.KClass
  * A [TypeVariableNameHandler] is responsible for managing a set of type variable name instances.
  * Since Kotlinpoet keep [TypeVariableName] in lists and sets, this class extends [Collection].
  */
-open class TypeVariableNameHandler internal constructor(actualList: MutableCollection<TypeVariableName>) :
+open class TypeVariableNameHandler(actualList: MutableCollection<TypeVariableName>) :
     MutableCollection<TypeVariableName> by actualList {
 
     /** Add a [TypeVariableName] without bounds. */
@@ -36,7 +36,7 @@ open class TypeVariableNameHandler internal constructor(actualList: MutableColle
 
 /** Receiver for the `typeVariables` function type providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class TypeVariableNameHandlerScope internal constructor(actualList: MutableCollection<TypeVariableName>) :
+class TypeVariableNameHandlerScope(actualList: MutableCollection<TypeVariableName>) :
     TypeVariableNameHandler(actualList) {
 
     /** @see TypeVariableNameHandler.add */

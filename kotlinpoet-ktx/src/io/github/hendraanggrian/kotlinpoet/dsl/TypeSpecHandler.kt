@@ -22,8 +22,7 @@ import io.github.hendraanggrian.kotlinpoet.interfaceTypeSpecOf
 import io.github.hendraanggrian.kotlinpoet.objectTypeSpecOf
 
 /** A [TypeSpecHandler] is responsible for managing a set of type instances. */
-open class TypeSpecHandler internal constructor(actualList: MutableList<TypeSpec>) :
-    MutableList<TypeSpec> by actualList {
+open class TypeSpecHandler(actualList: MutableList<TypeSpec>) : MutableList<TypeSpec> by actualList {
 
     /** Add class type from name. */
     fun addClass(type: String): Boolean = add(classTypeSpecOf(type))
@@ -126,7 +125,7 @@ open class TypeSpecHandler internal constructor(actualList: MutableList<TypeSpec
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-open class TypeSpecHandlerScope internal constructor(actualList: MutableList<TypeSpec>) : TypeSpecHandler(actualList) {
+open class TypeSpecHandlerScope(actualList: MutableList<TypeSpec>) : TypeSpecHandler(actualList) {
 
     /** @see TypeSpecHandler.addClass */
     fun `class`(type: String): Boolean = addClass(type)

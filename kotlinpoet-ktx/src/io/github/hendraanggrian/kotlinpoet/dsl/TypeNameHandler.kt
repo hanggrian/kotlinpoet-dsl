@@ -8,7 +8,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [TypeNameHandler] is responsible for managing a set of type name instances. */
-open class TypeNameHandler internal constructor(actualMap: MutableMap<TypeName, CodeBlock?>) :
+open class TypeNameHandler(actualMap: MutableMap<TypeName, CodeBlock?>) :
     MutableMap<TypeName, CodeBlock?> by actualMap {
 
     /** Add type name from [Class]. */
@@ -35,8 +35,7 @@ open class TypeNameHandler internal constructor(actualMap: MutableMap<TypeName, 
 
 /** Receiver for the `superinterfaces` function type providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class TypeNameHandlerScope internal constructor(actualList: MutableMap<TypeName, CodeBlock?>) :
-    TypeNameHandler(actualList) {
+class TypeNameHandlerScope(actualList: MutableMap<TypeName, CodeBlock?>) : TypeNameHandler(actualList) {
 
     /** @see TypeNameHandler.set */
     operator fun Type.invoke(value: CodeBlock?): CodeBlock? = add(this, value)

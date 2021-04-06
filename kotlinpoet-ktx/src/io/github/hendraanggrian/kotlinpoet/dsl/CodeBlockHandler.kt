@@ -34,7 +34,7 @@ private interface CodeBlockAppendable {
         appendLine(buildCodeBlock(configuration))
 }
 
-abstract class CodeBlockHandler internal constructor() : CodeBlockAppendable {
+abstract class CodeBlockHandler : CodeBlockAppendable {
 
     /** Add named code to this container. */
     abstract fun appendNamed(format: String, args: Map<String, *>)
@@ -68,7 +68,7 @@ abstract class CodeBlockHandler internal constructor() : CodeBlockAppendable {
 }
 
 /** A [KdocHandler] is responsible for managing a set of code instances. */
-abstract class KdocHandler internal constructor() : CodeBlockAppendable {
+abstract class KdocHandler : CodeBlockAppendable {
 
     override fun appendLine(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
@@ -99,9 +99,7 @@ abstract class KdocHandler internal constructor() : CodeBlockAppendable {
 }
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
-class KdocHandlerScope internal constructor(private val handler: KdocHandler) :
-    KdocHandler(),
-    CodeBlockAppendable by handler {
+class KdocHandlerScope(private val handler: KdocHandler) : KdocHandler(), CodeBlockAppendable by handler {
 
     override fun appendLine(): Unit = handler.appendLine()
     override fun appendLine(code: CodeBlock): Unit = handler.appendLine(code)

@@ -7,26 +7,23 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
-const val OSSRH_URL_RELEASES = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-const val OSSRH_URL_SNAPSHOTS = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-
 private val OSSRH_USERNAME get() = System.getenv("OSSRH_USERNAME")
 private val OSSRH_PASSWORD get() = System.getenv("OSSRH_PASSWORD")
 
-fun org.gradle.api.Project.publishJvm(libraryName: String = RELEASE_ARTIFACT) =
-    publish("java", libraryName)
+fun org.gradle.api.Project.publishJvm(artifact: String = RELEASE_ARTIFACT) =
+    publish("java", artifact)
 
-fun org.gradle.api.Project.publishAndroid(libraryName: String = RELEASE_ARTIFACT) =
-    afterEvaluate { publish("release", libraryName) }
+fun org.gradle.api.Project.publishAndroid(artifact: String = RELEASE_ARTIFACT) =
+    afterEvaluate { publish("release", artifact) }
 
-private fun org.gradle.api.Project.publish(softwareComponent: String, libraryName: String) {
+private fun org.gradle.api.Project.publish(component: String, artifact: String) {
     checkNotNull(tasks.findByName("javadocJar")) { "Missing task `javadocJar` for this publication" }
     checkNotNull(tasks.findByName("sourcesJar")) { "Missing task `sourcesJar` for this publication" }
     lateinit var mavenJava: Provider<MavenPublication>
     extensions.configure<PublishingExtension>("publishing") {
         repositories {
             maven {
-                url = `java.net`.URI(if (isReleaseSnapshot()) OSSRH_URL_SNAPSHOTS else OSSRH_URL_RELEASES)
+                url = `java.net`.URI(if (isReleaseSnapshot()) REPO_OSSRH_SNAPSHOTS else REPO_OSSRH_RELEASES)
                 credentials {
                     username = OSSRH_USERNAME
                     password = OSSRH_PASSWORD
@@ -36,13 +33,13 @@ private fun org.gradle.api.Project.publish(softwareComponent: String, libraryNam
         publications {
             mavenJava = register<MavenPublication>("mavenJava") {
                 groupId = RELEASE_GROUP
-                artifactId = libraryName
+                artifactId = artifact
                 version = RELEASE_VERSION
-                from(components[softwareComponent])
+                from(components[component])
                 artifact(tasks["javadocJar"])
                 artifact(tasks["sourcesJar"])
                 pom {
-                    name.set(libraryName)
+                    name.set(artifact)
                     description.set(RELEASE_DESCRIPTION)
                     url.set(RELEASE_URL)
                     licenses {

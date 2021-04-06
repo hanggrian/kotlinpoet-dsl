@@ -13,8 +13,7 @@ import io.github.hendraanggrian.kotlinpoet.emptySetterFunSpec
 import io.github.hendraanggrian.kotlinpoet.funSpecOf
 
 /** A [FunSpecHandler] is responsible for managing a set of function instances. */
-open class FunSpecHandler internal constructor(actualList: MutableList<FunSpec>) :
-    MutableList<FunSpec> by actualList {
+open class FunSpecHandler(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
     fun add(name: String): Boolean = add(funSpecOf(name))
@@ -43,7 +42,7 @@ open class FunSpecHandler internal constructor(actualList: MutableList<FunSpec>)
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class FunSpecHandlerScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecHandler(actualList) {
+class FunSpecHandlerScope(actualList: MutableList<FunSpec>) : FunSpecHandler(actualList) {
 
     /** @see FunSpecHandler.add */
     operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)

@@ -11,8 +11,7 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [ParameterSpecHandler] is responsible for managing a set of parameter instances. */
-open class ParameterSpecHandler internal constructor(actualList: MutableList<ParameterSpec>) :
-    MutableList<ParameterSpec> by actualList {
+open class ParameterSpecHandler(actualList: MutableList<ParameterSpec>) : MutableList<ParameterSpec> by actualList {
 
     /** Add parameter from [TypeName]. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): Boolean =
@@ -82,8 +81,7 @@ open class ParameterSpecHandler internal constructor(actualList: MutableList<Par
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
 @SpecDslMarker
-class ParameterSpecHandlerScope internal constructor(actualList: MutableList<ParameterSpec>) :
-    ParameterSpecHandler(actualList) {
+class ParameterSpecHandlerScope(actualList: MutableList<ParameterSpec>) : ParameterSpecHandler(actualList) {
 
     /** @see ParameterSpecHandler.add */
     operator fun String.invoke(type: TypeName, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
