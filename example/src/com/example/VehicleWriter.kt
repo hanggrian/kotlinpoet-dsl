@@ -1,11 +1,11 @@
 package com.example
 
+import com.hendraanggrian.kotlinpoet.ABSTRACT
+import com.hendraanggrian.kotlinpoet.PUBLIC
+import com.hendraanggrian.kotlinpoet.buildFileSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
-import io.github.hendraanggrian.kotlinpoet.ABSTRACT
-import io.github.hendraanggrian.kotlinpoet.PUBLIC
-import io.github.hendraanggrian.kotlinpoet.buildFileSpec
 import java.nio.file.Paths
 
 class VehicleWriter {
@@ -14,7 +14,8 @@ class VehicleWriter {
         private const val PACKAGE_NAME = "com.example.output"
         private val VEHICLE_NAME = ClassName(PACKAGE_NAME, "Vehicle")
 
-        @JvmStatic fun main(args: Array<String>) {
+        @JvmStatic
+        fun main(args: Array<String>) {
             val writer = VehicleWriter()
             writer.prepare()
             writer.write("Bike", 2)
