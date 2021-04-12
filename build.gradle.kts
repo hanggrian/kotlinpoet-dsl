@@ -1,6 +1,7 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
+        maven(REPOSITORIES_GIT_PUBLISH)
     }
     dependencies {
         classpath(kotlin("gradle-plugin", VERSION_KOTLIN))
@@ -11,7 +12,7 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     tasks {
         withType<Delete> {
