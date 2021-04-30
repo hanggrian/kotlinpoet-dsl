@@ -17,14 +17,14 @@ sourceSets {
     }
 }
 
+ktlint()
+
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
     api(squareup("kotlinpoet", VERSION_KOTLINPOET))
     testImplementation(kotlin("test-junit", VERSION_KOTLIN))
     testImplementation(google("truth", "truth", VERSION_TRUTH))
 }
-
-ktlint()
 
 tasks {
     dokkaJavadoc {
@@ -38,15 +38,6 @@ tasks {
             }
         }
     }
-    register<Jar>("javadocJar") {
-        archiveClassifier.set("javadoc")
-        from(dokkaJavadoc)
-        dependsOn(dokkaJavadoc)
-    }
-    register<Jar>("sourcesJar") {
-        archiveClassifier.set("sources")
-        from(sourceSets.main.get().allSource)
-    }
 }
 
-publishJvm()
+mavenPublishJvm()
