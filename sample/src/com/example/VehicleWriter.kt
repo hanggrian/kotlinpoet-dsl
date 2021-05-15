@@ -1,7 +1,6 @@
 package com.example
 
 import com.hendraanggrian.kotlinpoet.ABSTRACT
-import com.hendraanggrian.kotlinpoet.PUBLIC
 import com.hendraanggrian.kotlinpoet.buildFileSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
@@ -24,20 +23,29 @@ class VehicleWriter {
     }
 
     fun prepare() {
+        buildFileSpec(PACKAGE_NAME, "Asd") {
+            types.addClass("Asd") {
+                properties.add<String>("hoho") {
+                    getter {
+                        appendLine("return %S", "hehe")
+                    }
+                }
+            }
+        }.writeTo(Paths.get("example/src"))
         buildFileSpec(PACKAGE_NAME, "Vehicle") {
             types.addInterface("Vehicle") {
                 functions {
                     "getName" {
-                        addModifiers(PUBLIC, ABSTRACT)
+                        addModifiers(ABSTRACT)
                         returns<String>()
                     }
                     "getWheelCount" {
-                        addModifiers(PUBLIC, ABSTRACT)
+                        addModifiers(ABSTRACT)
                         returns = INT
                     }
                 }
             }
-        }.writeTo(Paths.get("demo/src"))
+        }.writeTo(Paths.get("sample/src"))
     }
 
     fun write(name: String, wheelCount: Int) {
@@ -46,19 +54,17 @@ class VehicleWriter {
                 superinterfaces[VEHICLE_NAME] = null
                 functions {
                     "getName" {
-                        addModifiers(KModifier.PUBLIC)
+                        addModifiers(KModifier.OVERRIDE)
                         returns<String>()
-                        annotations.add<Override>()
                         appendLine("return %S", name)
                     }
                     "getWheelCount" {
-                        addModifiers(KModifier.PUBLIC)
+                        addModifiers(KModifier.OVERRIDE)
                         returns = INT
-                        annotations.add<Override>()
                         appendLine("return %L", wheelCount)
                     }
                 }
             }
-        }.writeTo(Paths.get("demo/src"))
+        }.writeTo(Paths.get("sample/src"))
     }
 }

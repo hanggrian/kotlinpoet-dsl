@@ -1,3 +1,3 @@
 include("kotlinpoet-ktx")
-include("example")
+include("sample")
 include("website")
