@@ -1,1 +1,1 @@
-sourceset_dependencies = '{":kotlinpoet-ktx:dokkaHtml/main": []}'
+sourceset_dependencies='{":kotlinpoet-ktx:dokkaHtml/main":[]}'
