@@ -9,5 +9,4 @@ script:
   - ./gradlew build --scan -s
 
 env:
-  - OSSRH_USERNAME=stub
-  - OSSRH_PASSWORD=stub
+  - OSSRH_USERNAME=stub OSSRH_PASSWORD=stub
