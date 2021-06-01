@@ -1,11 +1,11 @@
-[![download](https://api.bintray.com/packages/hendraanggrian/maven/kotlinpoet-ktx/images/download.svg)](https://bintray.com/hendraanggrian/maven/kotlinpoet-ktx/_latestVersion)
+[![version](https://api.bintray.com/packages/hendraanggrian/maven/kotlinpoet-ktx/images/download.svg)](https://bintray.com/hendraanggrian/maven/kotlinpoet-ktx/_latestVersion)
 [![build](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx.svg)](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx)
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![license](https://img.shields.io/github/license/hendraanggrian/kotlinpoet-ktx)](http://www.apache.org/licenses/LICENSE-2.0)
 
 KotlinPoet KTX
 ==============
-Lightweight Kotlin extension of [KotlinPoet], providing Kotlin DSL functionality and other convenient solutions. 
+Lightweight Kotlin extension of [KotlinPoet], providing Kotlin DSL functionality and other convenient solutions.
 * Full of convenient methods to achieve minimum code writing possible.
 * Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
 * Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
@@ -123,10 +123,10 @@ val listener: LambdaTypeName = null.lambdaBy(returnType = "kotlin".classOf("Unit
 val memberOfString: MemberTypeName = myClass.memberOf("myField")
 val pairOfInteger: ParameterizedTypeName = "kotlin".classOf("Pair").parameterizedBy(Int::class, Int::class)
 val tVariable: TypeVariableName = "T".typeVarOf()
-val producerOfCharSequence: WildcardTypeName = "kotlin".classOf("CharSequence").producerOf() 
+val producerOfCharSequence: WildcardTypeName = "kotlin".classOf("CharSequence").producerOf()
 ```
 
-If you have access to those types, they can also be strongly-typed. 
+If you have access to those types, they can also be strongly-typed.
 
 ```kotlin
 val myClass = com.example.MyClass.asClassName()
