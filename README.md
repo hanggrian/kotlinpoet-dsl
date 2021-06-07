@@ -1,11 +1,13 @@
-[![version](https://api.bintray.com/packages/hendraanggrian/maven/kotlinpoet-ktx/images/download.svg)](https://bintray.com/hendraanggrian/maven/kotlinpoet-ktx/_latestVersion)
-[![build](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx.svg)](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx)
-[![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![license](https://img.shields.io/github/license/hendraanggrian/kotlinpoet-ktx)](http://www.apache.org/licenses/LICENSE-2.0)
+[![version](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-ktx)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-ktx)
+[![build](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-ktx)](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx)
+[![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081)](https://ktlint.github.io)
+[![license](https://img.shields.io/github/license/hendraanggrian/kotlinpoet-ktx)](https://github.com/hendraanggrian/kotlinpoet-ktx/blob/main/LICENSE)
 
 KotlinPoet KTX
 ==============
-Lightweight Kotlin extension of [KotlinPoet], providing Kotlin DSL functionality and other convenient solutions.
+
+Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet),
+providing Kotlin DSL functionality and other convenient solutions.
 * Full of convenient methods to achieve minimum code writing possible.
 * Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
 * Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
@@ -28,15 +30,18 @@ buildFileSpec("com.example.helloworld", "HelloWorld") {
 
 Download
 --------
+
 ```gradle
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
+    implementation "com.hendraanggrian:kotlinpoet-ktx:${version}"
 }
 ```
+
+Snapshots of the development version are available in [Sonatype's snapshots repository](https://s01.oss.sonatype.org/content/repositories/snapshots/).
 
 Usage
 -----
@@ -134,5 +139,3 @@ val listener = null.lambdaBy(returnType = Unit::class)
 val pairOfInteger = parameterizedTypeNameOf<android.util.Pair>(Int::class, Int::class)
 val subtypeOfCharSequence = wildcardTypeNameProducerOf<kotlin.CharSequence>()
 ```
-
-[KotlinPoet]: https://github.com/square/kotlinpoet
