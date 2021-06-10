@@ -47,6 +47,7 @@ Usage
 -----
 
 ### Use `T::class` as parameters
+
 `KClass<*>` can now be used as format arguments. There is also inline reified type function whenever possible.
 
 ```kotlin
@@ -63,6 +64,7 @@ buildFieldSpec<Int>("count") {
 ```
 
 ### Optional DSL
+
 Some elements (field, method, parameter, etc.) are wrapped in container class. These containers have ability to add components with/without invoking DSL.
 
 For example, 2 examples below will produce the same result.
@@ -120,6 +122,7 @@ addClass("Car") {
 ```
 
 ### Fluent TypeName API
+
 Write `TypeName` and all its subtypes fluently.
 
 ```kotlin
