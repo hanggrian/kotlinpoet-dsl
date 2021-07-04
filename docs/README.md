@@ -1,7 +1,6 @@
 [![version](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-ktx)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-ktx)
 [![build](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-ktx)](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx)
 [![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081)](https://ktlint.github.io)
-[![license](https://img.shields.io/github/license/hendraanggrian/kotlinpoet-ktx)](https://github.com/hendraanggrian/kotlinpoet-ktx/blob/main/LICENSE)
 
 KotlinPoet KTX
 ==============
