@@ -36,7 +36,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.hendraanggrian:kotlinpoet-ktx:${version}"
+    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
 }
 ```
 
