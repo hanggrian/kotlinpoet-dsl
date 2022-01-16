@@ -1,11 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
-import com.hendraanggrian.kotlinpoet.dsl.KdocHandler
-import com.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
-import com.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandler
-import com.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandlerScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.KdocCollection
+import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeAliasSpec
@@ -73,7 +71,7 @@ fun TypeAliasSpec.Builder.edit(configuration: TypeAliasSpecBuilder.() -> Unit): 
  * Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecDslMarker
+@SpecMarker
 class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec.Builder) {
 
     /** Modifiers of this type alias. */
@@ -88,21 +86,21 @@ class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec
     }
 
     /** Type variables of this type alias. */
-    val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this type alias. */
-    fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
-        TypeVariableNameHandlerScope(typeVariables).configuration()
+    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit =
+        typeVariables.configuration()
 
     /** Annotations of this type alias. */
-    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
+    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
 
     /** Configures annotations of this type alias. */
-    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
-        AnnotationSpecHandlerScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
+        AnnotationSpecCollectionScope(annotations).configuration()
 
     /** Kdoc of this type alias. */
-    val kdoc: KdocHandler = object : KdocHandler() {
+    val kdoc: KdocCollection = object : KdocCollection() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -113,8 +111,7 @@ class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec
     }
 
     /** Configures kdoc of this type alias. */
-    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
-        KdocHandlerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
 
     /** Returns native spec. */
     fun build(): TypeAliasSpec = nativeBuilder.build()

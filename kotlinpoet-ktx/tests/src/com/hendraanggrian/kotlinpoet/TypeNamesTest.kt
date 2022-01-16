@@ -1,5 +1,6 @@
 package com.hendraanggrian.kotlinpoet
 
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.BOOLEAN
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -41,7 +42,7 @@ class TypeNamesTest {
     @Test
     fun annotations() {
         val deprecatedClassName = "kotlin".classOf("Deprecated")
-        val deprecatedSpec = annotationSpecOf(deprecatedClassName)
+        val deprecatedSpec = AnnotationSpec.builder(deprecatedClassName).build()
         assertEquals(
             "@kotlin.Deprecated kotlin.String",
             listOf(

@@ -1,14 +1,12 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
-import com.hendraanggrian.kotlinpoet.dsl.CodeBlockHandler
-import com.hendraanggrian.kotlinpoet.dsl.KdocHandler
-import com.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
-import com.hendraanggrian.kotlinpoet.dsl.ParameterSpecHandler
-import com.hendraanggrian.kotlinpoet.dsl.ParameterSpecHandlerScope
-import com.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandler
-import com.hendraanggrian.kotlinpoet.dsl.TypeVariableNameHandlerScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockCollection
+import com.hendraanggrian.kotlinpoet.collections.KdocCollection
+import com.hendraanggrian.kotlinpoet.collections.ParameterSpecCollection
+import com.hendraanggrian.kotlinpoet.collections.ParameterSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
@@ -16,18 +14,6 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
 import kotlin.reflect.KClass
-
-/** Builds new [FunSpec] with name. */
-fun funSpecOf(name: String): FunSpec = FunSpecBuilder(FunSpec.builder(name)).build()
-
-/** Builds new constructor [FunSpec]. */
-fun emptyConstructorFunSpec(): FunSpec = FunSpecBuilder(FunSpec.constructorBuilder()).build()
-
-/** Builds new getter [FunSpec]. */
-fun emptyGetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.getterBuilder()).build()
-
-/** Builds new setter [FunSpec]. */
-fun emptySetterFunSpec(): FunSpec = FunSpecBuilder(FunSpec.setterBuilder()).build()
 
 /**
  * Builds new [FunSpec] with name,
@@ -65,8 +51,8 @@ fun FunSpec.Builder.edit(configuration: FunSpecBuilder.() -> Unit): FunSpec.Buil
  * Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecDslMarker
-class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : CodeBlockHandler() {
+@SpecMarker
+class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : CodeBlockCollection() {
 
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
@@ -78,7 +64,7 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** Kdoc of this function. */
-    val kdoc: KdocHandler = object : KdocHandler() {
+    val kdoc: KdocCollection = object : KdocCollection() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -89,15 +75,14 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     }
 
     /** Configures kdoc of this function. */
-    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
-        KdocHandlerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
 
     /** Annotations of this function. */
-    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
+    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
-        AnnotationSpecHandlerScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
+        AnnotationSpecCollectionScope(annotations).configuration()
 
     /** Add function modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -110,11 +95,10 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     }
 
     /** Type variables of this function. */
-    val typeVariables: TypeVariableNameHandler = TypeVariableNameHandler(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this function. */
-    fun typeVariables(configuration: TypeVariableNameHandlerScope.() -> Unit): Unit =
-        TypeVariableNameHandlerScope(typeVariables).configuration()
+    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit = typeVariables.configuration()
 
     /** Set receiver to [TypeName] without kdoc. */
     var receiver: TypeName
@@ -262,11 +246,11 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
         returns(T::class, kdocConfiguration)
 
     /** Parameters of this function. */
-    val parameters: ParameterSpecHandler = ParameterSpecHandler(nativeBuilder.parameters)
+    val parameters: ParameterSpecCollection = ParameterSpecCollection(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    fun parameters(configuration: ParameterSpecHandlerScope.() -> Unit): Unit =
-        ParameterSpecHandlerScope(parameters).configuration()
+    fun parameters(configuration: ParameterSpecCollectionScope.() -> Unit): Unit =
+        ParameterSpecCollectionScope(parameters).configuration()
 
     /** Call this constructor with [String] arguments. */
     fun callThisConstructor(vararg args: String) {

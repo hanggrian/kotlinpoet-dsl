@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.CodeBlockHandler
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockCollection
 import com.squareup.kotlinpoet.CodeBlock
 
 /**
@@ -24,7 +24,7 @@ fun CodeBlock.Builder.edit(configuration: CodeBlockBuilder.() -> Unit): CodeBloc
  * Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder) : CodeBlockHandler() {
+class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder) : CodeBlockCollection() {
 
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()

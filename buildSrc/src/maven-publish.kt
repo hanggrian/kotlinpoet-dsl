@@ -52,10 +52,10 @@ private fun Project.mavenPublish(artifact: String, javadoc: Any, sources: Any, c
     publishing.repositories.maven {
         url = `java.net`.URI(if (isSnapshot()) REPOSITORIES_OSSRH_SNAPSHOTS else REPOSITORIES_OSSRH_RELEASES)
         credentials {
-            username = checkNotNull(System.getenv("OSSRH_USERNAME")) {
+            username = checkNotNull(System.getenv("OSSRH_USER")) {
                 "Missing environment `OSSRH_USERNAME` for this publication"
             }
-            password = checkNotNull(System.getenv("OSSRH_PASSWORD")) {
+            password = checkNotNull(System.getenv("OSSRH_PASS")) {
                 "Missing environment `OSSRH_PASSWORD` for this publication"
             }
         }

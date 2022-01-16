@@ -1,5 +1,5 @@
 [![version](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-ktx)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-ktx)
-[![build](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-ktx)](https://travis-ci.com/hendraanggrian/kotlinpoet-ktx)
+[![build](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-ktx)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-ktx)
 [![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081)](https://ktlint.github.io)
 
 KotlinPoet KTX
@@ -7,9 +7,9 @@ KotlinPoet KTX
 
 Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet),
 providing Kotlin DSL functionality and other convenient solutions.
-* Full of convenient methods to achieve minimum code writing possible.
-* Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
-* Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
+- Full of convenient methods to achieve minimum code writing possible.
+- Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
+- Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
 
 ```kotlin
 buildFileSpec("com.example.helloworld", "HelloWorld") {

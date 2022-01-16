@@ -4,10 +4,10 @@ dist: trusty
 jdk: oraclejdk11
 
 env:
-  - OSSRH_USERNAME=stub OSSRH_PASSWORD=stub
+  - OSSRH_USER=stub OSSRH_PASS=stub
 
 script:
-  - ./gradlew build
+  - ./gradlew build --info
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

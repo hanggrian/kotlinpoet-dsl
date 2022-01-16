@@ -1,31 +1,14 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandler
-import com.hendraanggrian.kotlinpoet.dsl.AnnotationSpecHandlerScope
-import com.hendraanggrian.kotlinpoet.dsl.KdocHandler
-import com.hendraanggrian.kotlinpoet.dsl.KdocHandlerScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.KdocCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
-
-/** Builds new [ParameterSpec] from [TypeName]. */
-fun parameterSpecOf(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
-    ParameterSpec.builder(name, type, *modifiers).build()
-
-/** Builds new [ParameterSpec] from [Type]. */
-fun parameterSpecOf(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
-    ParameterSpec.builder(name, type, *modifiers).build()
-
-/** Builds new [ParameterSpec] from [KClass]. */
-fun parameterSpecOf(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
-    ParameterSpec.builder(name, type, *modifiers).build()
-
-/** Builds new [ParameterSpec] from [T]. */
-inline fun <reified T> parameterSpecOf(name: String, vararg modifiers: KModifier): ParameterSpec =
-    ParameterSpec.builder(name, T::class, *modifiers).build()
 
 /**
  * Builds new [ParameterSpec] from [TypeName],
@@ -78,7 +61,7 @@ fun ParameterSpec.Builder.edit(configuration: ParameterSpecBuilder.() -> Unit): 
  * Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecDslMarker
+@SpecMarker
 class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this parameter. */
@@ -91,7 +74,7 @@ class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Kdoc of this parameter. */
-    val kdoc: KdocHandler = object : KdocHandler() {
+    val kdoc: KdocCollection = object : KdocCollection() {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -102,15 +85,14 @@ class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec
     }
 
     /** Configures kdoc of this parameter. */
-    fun kdoc(configuration: KdocHandlerScope.() -> Unit): Unit =
-        KdocHandlerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
 
     /** Annotations of this parameter. */
-    val annotations: AnnotationSpecHandler = AnnotationSpecHandler(nativeBuilder.annotations)
+    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit): Unit =
-        AnnotationSpecHandlerScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
+        AnnotationSpecCollectionScope(annotations).configuration()
 
     /** Add parameter modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

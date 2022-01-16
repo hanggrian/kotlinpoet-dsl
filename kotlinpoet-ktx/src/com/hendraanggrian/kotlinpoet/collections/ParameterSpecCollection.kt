@@ -1,21 +1,22 @@
-package com.hendraanggrian.kotlinpoet.dsl
+@file:Suppress("NOTHING_TO_INLINE")
+
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.ParameterSpecBuilder
-import com.hendraanggrian.kotlinpoet.SpecDslMarker
+import com.hendraanggrian.kotlinpoet.SpecMarker
 import com.hendraanggrian.kotlinpoet.buildParameterSpec
-import com.hendraanggrian.kotlinpoet.parameterSpecOf
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/** A [ParameterSpecHandler] is responsible for managing a set of parameter instances. */
-open class ParameterSpecHandler(actualList: MutableList<ParameterSpec>) : MutableList<ParameterSpec> by actualList {
+/** A [ParameterSpecCollection] is responsible for managing a set of parameter instances. */
+open class ParameterSpecCollection(actualList: MutableList<ParameterSpec>) : MutableList<ParameterSpec> by actualList {
 
     /** Add parameter from [TypeName]. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf(name, type, *modifiers))
+        add(ParameterSpec.builder(name, type, *modifiers).build())
 
     /** Add parameter from [TypeName] with custom initialization [configuration]. */
     fun add(
@@ -27,7 +28,7 @@ open class ParameterSpecHandler(actualList: MutableList<ParameterSpec>) : Mutabl
 
     /** Add parameter from [Type]. */
     fun add(name: String, type: Type, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf(name, type, *modifiers))
+        add(ParameterSpec.builder(name, type, *modifiers).build())
 
     /** Add parameter from [Type] with custom initialization [configuration]. */
     fun add(
@@ -39,7 +40,7 @@ open class ParameterSpecHandler(actualList: MutableList<ParameterSpec>) : Mutabl
 
     /** Add parameter from [KClass]. */
     fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf(name, type, *modifiers))
+        add(ParameterSpec.builder(name, type, *modifiers).build())
 
     /** Add parameter from [KClass] with custom initialization [configuration]. */
     fun add(
@@ -51,7 +52,7 @@ open class ParameterSpecHandler(actualList: MutableList<ParameterSpec>) : Mutabl
 
     /** Add parameter from [T]. */
     inline fun <reified T> add(name: String, vararg modifiers: KModifier): Boolean =
-        add(parameterSpecOf<T>(name, *modifiers))
+        add(ParameterSpec.builder(name, T::class, *modifiers).build())
 
     /** Add parameter from [T] with custom initialization [configuration]. */
     inline fun <reified T> add(
@@ -61,63 +62,47 @@ open class ParameterSpecHandler(actualList: MutableList<ParameterSpec>) : Mutabl
     ): Boolean = add(buildParameterSpec<T>(name, *modifiers, configuration = configuration))
 
     /** Convenient method to add parameter with operator function. */
-    @Suppress("NOTHING_TO_INLINE")
     inline operator fun set(name: String, type: TypeName) {
         add(name, type)
     }
 
     /** Convenient method to add parameter with operator function. */
-    @Suppress("NOTHING_TO_INLINE")
     inline operator fun set(name: String, type: Type) {
         add(name, type)
     }
 
     /** Convenient method to add parameter with operator function. */
-    @Suppress("NOTHING_TO_INLINE")
     inline operator fun set(name: String, type: KClass<*>) {
         add(name, type)
     }
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
-@SpecDslMarker
-class ParameterSpecHandlerScope(actualList: MutableList<ParameterSpec>) : ParameterSpecHandler(actualList) {
+@SpecMarker
+class ParameterSpecCollectionScope(actualList: MutableList<ParameterSpec>) : ParameterSpecCollection(actualList) {
 
-    /** @see ParameterSpecHandler.add */
-    operator fun String.invoke(type: TypeName, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
-
-    /** @see ParameterSpecHandler.add */
+    /** @see ParameterSpecCollection.add */
     operator fun String.invoke(
         type: TypeName,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see ParameterSpecHandler.add */
-    operator fun String.invoke(type: Type, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
-
-    /** @see ParameterSpecHandler.add */
+    /** @see ParameterSpecCollection.add */
     operator fun String.invoke(
         type: Type,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see ParameterSpecHandler.add */
-    operator fun String.invoke(type: KClass<*>, vararg modifiers: KModifier): Boolean = add(this, type, *modifiers)
-
-    /** @see ParameterSpecHandler.add */
+    /** @see ParameterSpecCollection.add */
     operator fun String.invoke(
         type: KClass<*>,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see ParameterSpecHandler.add */
-    inline operator fun <reified T> String.invoke(vararg modifiers: KModifier): Boolean =
-        add<T>(this, *modifiers)
-
-    /** @see ParameterSpecHandler.add */
+    /** @see ParameterSpecCollection.add */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
         noinline configuration: ParameterSpecBuilder.() -> Unit

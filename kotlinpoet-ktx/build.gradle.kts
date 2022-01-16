@@ -27,17 +27,6 @@ dependencies {
 }
 
 tasks {
-    dokkaJavadoc {
-        dokkaSourceSets {
-            "main" {
-                sourceLink {
-                    localDirectory.set(projectDir.resolve("src"))
-                    remoteUrl.set(getGithubRemoteUrl())
-                    remoteLineSuffix.set("#L")
-                }
-            }
-        }
-    }
     dokkaHtml {
         outputDirectory.set(buildDir.resolve("dokka/$RELEASE_ARTIFACT"))
     }

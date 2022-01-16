@@ -1,6 +1,7 @@
-package com.hendraanggrian.kotlinpoet.dsl
+@file:Suppress("NOTHING_TO_INLINE")
 
-import com.hendraanggrian.kotlinpoet.SpecDslMarker
+package com.hendraanggrian.kotlinpoet.collections
+
 import com.hendraanggrian.kotlinpoet.typeVarBy
 import com.hendraanggrian.kotlinpoet.typeVarOf
 import com.squareup.kotlinpoet.TypeName
@@ -9,10 +10,10 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /**
- * A [TypeVariableNameHandler] is responsible for managing a set of type variable name instances.
+ * A [TypeVariableNameCollection] is responsible for managing a set of type variable name instances.
  * Since Kotlinpoet keep [TypeVariableName] in lists and sets, this class extends [Collection].
  */
-open class TypeVariableNameHandler(actualList: MutableCollection<TypeVariableName>) :
+class TypeVariableNameCollection(actualList: MutableCollection<TypeVariableName>) :
     MutableCollection<TypeVariableName> by actualList {
 
     /** Add a [TypeVariableName] without bounds. */
@@ -28,23 +29,7 @@ open class TypeVariableNameHandler(actualList: MutableCollection<TypeVariableNam
     fun add(name: String, vararg bounds: KClass<*>): Boolean = add(name.typeVarBy(*bounds))
 
     /** Convenient method to add type name with operator function. */
-    @Suppress("NOTHING_TO_INLINE")
     inline operator fun plusAssign(name: String) {
         add(name)
     }
-}
-
-/** Receiver for the `typeVariables` function type providing an extended set of operators for the configuration. */
-@SpecDslMarker
-class TypeVariableNameHandlerScope(actualList: MutableCollection<TypeVariableName>) :
-    TypeVariableNameHandler(actualList) {
-
-    /** @see TypeVariableNameHandler.add */
-    operator fun String.invoke(vararg bounds: TypeName): Boolean = add(this, *bounds)
-
-    /** @see TypeVariableNameHandler.add */
-    operator fun String.invoke(vararg bounds: Type): Boolean = add(this, *bounds)
-
-    /** @see TypeVariableNameHandler.add */
-    operator fun String.invoke(vararg bounds: KClass<*>): Boolean = add(this, *bounds)
 }

@@ -1,4 +1,4 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth
 import com.squareup.kotlinpoet.asTypeName
@@ -7,7 +7,8 @@ import com.hendraanggrian.kotlinpoet.typeVarOf
 import kotlin.test.Test
 
 class TypeVariableNameListTest {
-    private val list = TypeVariableNameHandler(mutableListOf())
+
+    private val list = TypeVariableNameCollection(mutableListOf())
 
     @Test
     fun test() {

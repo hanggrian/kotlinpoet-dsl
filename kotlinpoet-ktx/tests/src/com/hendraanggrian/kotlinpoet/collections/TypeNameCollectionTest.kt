@@ -1,12 +1,13 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth
 import com.squareup.kotlinpoet.CHAR
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class TypeNameHandlerTest {
-    private val map = TypeNameHandler(mutableMapOf())
+class TypeNameCollectionTest {
+
+    private val map = TypeNameCollection(mutableMapOf())
 
     @Test
     fun test() {

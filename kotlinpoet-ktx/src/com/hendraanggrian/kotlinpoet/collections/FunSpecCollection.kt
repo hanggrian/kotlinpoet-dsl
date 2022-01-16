@@ -1,58 +1,52 @@
-package com.hendraanggrian.kotlinpoet.dsl
+@file:Suppress("NOTHING_TO_INLINE")
+
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.FunSpecBuilder
-import com.hendraanggrian.kotlinpoet.SpecDslMarker
+import com.hendraanggrian.kotlinpoet.SpecMarker
 import com.hendraanggrian.kotlinpoet.buildConstructorFunSpec
 import com.hendraanggrian.kotlinpoet.buildFunSpec
 import com.hendraanggrian.kotlinpoet.buildGetterFunSpec
 import com.hendraanggrian.kotlinpoet.buildSetterFunSpec
-import com.hendraanggrian.kotlinpoet.emptyConstructorFunSpec
-import com.hendraanggrian.kotlinpoet.emptyGetterFunSpec
-import com.hendraanggrian.kotlinpoet.emptySetterFunSpec
-import com.hendraanggrian.kotlinpoet.funSpecOf
 import com.squareup.kotlinpoet.FunSpec
 
-/** A [FunSpecHandler] is responsible for managing a set of function instances. */
-open class FunSpecHandler(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
+/** A [FunSpecCollection] is responsible for managing a set of function instances. */
+open class FunSpecCollection(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
-    fun add(name: String): Boolean = add(funSpecOf(name))
+    fun add(name: String): Boolean = add(FunSpec.builder(name).build())
 
     /** Add function from name with custom initialization [configuration]. */
     fun add(name: String, configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildFunSpec(name, configuration))
 
     /** Add constructor function. */
-    fun addConstructor(): Boolean = add(emptyConstructorFunSpec())
+    fun addConstructor(): Boolean = add(FunSpec.constructorBuilder().build())
 
     /** Add constructor function with custom initialization [configuration]. */
     fun addConstructor(configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildConstructorFunSpec(configuration))
 
     /** Add getter function. */
-    fun addGetter(): Boolean = add(emptyGetterFunSpec())
+    fun addGetter(): Boolean = add(FunSpec.getterBuilder().build())
 
     /** Add getter function with custom initialization [configuration]. */
     fun addGetter(configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildGetterFunSpec(configuration))
 
     /** Add setter function. */
-    fun addSetter(): Boolean = add(emptySetterFunSpec())
+    fun addSetter(): Boolean = add(FunSpec.setterBuilder().build())
 
     /** Add setter function with custom initialization [configuration]. */
     fun addSetter(configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildSetterFunSpec(configuration))
+
+    /** Convenient method to add function with operator function. */
+    inline operator fun plusAssign(name: String) {
+        add(name)
+    }
 }
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
-@SpecDslMarker
-class FunSpecHandlerScope(actualList: MutableList<FunSpec>) : FunSpecHandler(actualList) {
+@SpecMarker
+class FunSpecCollectionScope(actualList: MutableList<FunSpec>) : FunSpecCollection(actualList) {
 
-    /** @see FunSpecHandler.add */
+    /** @see FunSpecCollection.add */
     operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)
-
-    /** @see FunSpecHandler.addConstructor */
-    fun String.constructor(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)
-
-    /** @see FunSpecHandler.addGetter */
-    fun String.getter(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)
-
-    /** @see FunSpecHandler.addSetter */
-    fun String.setter(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)
 }

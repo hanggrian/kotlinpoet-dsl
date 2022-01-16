@@ -1,6 +1,6 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.SpecDslMarker
+import com.hendraanggrian.kotlinpoet.SpecMarker
 import com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder
 import com.hendraanggrian.kotlinpoet.buildTypeAliasSpec
 import com.hendraanggrian.kotlinpoet.typeAliasSpecOf
@@ -9,8 +9,8 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/** An [TypeAliasSpecHandler] is responsible for managing a set of type alias instances. */
-open class TypeAliasSpecHandler(actualList: MutableList<TypeAliasSpec>) : MutableList<TypeAliasSpec> by actualList {
+/** An [TypeAliasSpecCollection] is responsible for managing a set of type alias instances. */
+open class TypeAliasSpecCollection(actualList: MutableList<TypeAliasSpec>) : MutableList<TypeAliasSpec> by actualList {
 
     /** Add type alias from [TypeName]. */
     fun add(name: String, type: TypeName): Boolean = add(typeAliasSpecOf(name, type))
@@ -60,31 +60,22 @@ open class TypeAliasSpecHandler(actualList: MutableList<TypeAliasSpec>) : Mutabl
 }
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
-@SpecDslMarker
-class TypeAliasSpecHandlerScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecHandler(actualList) {
+@SpecMarker
+class TypeAliasSpecCollectionScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecCollection(actualList) {
 
-    /** @see TypeAliasSpecHandler.add */
-    operator fun String.invoke(type: TypeName): Boolean = add(this, type)
-
-    /** @see TypeAliasSpecHandler.add */
+    /** @see TypeAliasSpecCollection.add */
     operator fun String.invoke(type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add(this, type, configuration)
 
-    /** @see TypeAliasSpecHandler.add */
-    operator fun String.invoke(type: Type): Boolean = add(this, type)
-
-    /** @see TypeAliasSpecHandler.add */
+    /** @see TypeAliasSpecCollection.add */
     operator fun String.invoke(type: Type, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add(this, type, configuration)
 
-    /** @see TypeAliasSpecHandler.add */
-    operator fun String.invoke(type: KClass<*>): Boolean = add(this, type)
-
-    /** @see TypeAliasSpecHandler.add */
+    /** @see TypeAliasSpecCollection.add */
     operator fun String.invoke(type: KClass<*>, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add(this, type, configuration)
 
-    /** @see TypeAliasSpecHandler.add */
+    /** @see TypeAliasSpecCollection.add */
     inline operator fun <reified T> String.invoke(noinline configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add<T>(this, configuration)
 }

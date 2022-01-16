@@ -118,27 +118,27 @@ inline fun KClass<*>.annotate(vararg types: ClassName): ClassName =
 
 /** Return a copy of [ClassName] annotated with a set of [ClassName]. */
 fun ClassName.annotate(vararg types: ClassName): ClassName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [LambdaTypeName] annotated with a set of [ClassName]. */
 fun LambdaTypeName.annotate(vararg types: ClassName): LambdaTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [ParameterizedTypeName] annotated with a set of [ClassName]. */
 fun ParameterizedTypeName.annotate(vararg types: ClassName): ParameterizedTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeName] annotated with a set of [ClassName]. */
 fun TypeName.annotate(vararg types: ClassName): TypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeVariableName] annotated with a set of [ClassName]. */
 fun TypeVariableName.annotate(vararg types: ClassName): TypeVariableName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [WildcardTypeName] annotated with a set of [ClassName]. */
 fun WildcardTypeName.annotate(vararg types: ClassName): WildcardTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeName] converted from [Type] annotated with a set of [Class]. */
 inline fun Type.annotate(vararg types: Class<out Annotation>): TypeName =
@@ -154,27 +154,27 @@ inline fun KClass<*>.annotate(vararg types: Class<out Annotation>): ClassName =
 
 /** Return a copy of [ClassName] annotated with a set of [Class]. */
 fun ClassName.annotate(vararg types: Class<out Annotation>): ClassName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [LambdaTypeName] annotated with a set of [Class]. */
 fun LambdaTypeName.annotate(vararg types: Class<out Annotation>): LambdaTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [ParameterizedTypeName] annotated with a set of [Class]. */
 fun ParameterizedTypeName.annotate(vararg types: Class<out Annotation>): ParameterizedTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeName] annotated with a set of [Class]. */
 fun TypeName.annotate(vararg types: Class<out Annotation>): TypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeVariableName] annotated with a set of [Class]. */
 fun TypeVariableName.annotate(vararg types: Class<out Annotation>): TypeVariableName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [WildcardTypeName] annotated with a set of [Class]. */
 fun WildcardTypeName.annotate(vararg types: Class<out Annotation>): WildcardTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeName] converted from [Type] annotated with a set of [KClass]. */
 inline fun Type.annotate(vararg types: KClass<out Annotation>): TypeName =
@@ -190,27 +190,27 @@ inline fun KClass<*>.annotate(vararg types: KClass<out Annotation>): ClassName =
 
 /** Return a copy of [ClassName] annotated with a set of [KClass]. */
 fun ClassName.annotate(vararg types: KClass<out Annotation>): ClassName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [LambdaTypeName] annotated with a set of [KClass]. */
 fun LambdaTypeName.annotate(vararg types: KClass<out Annotation>): LambdaTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [ParameterizedTypeName] annotated with a set of [KClass]. */
 fun ParameterizedTypeName.annotate(vararg types: KClass<out Annotation>): ParameterizedTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeName] annotated with a set of [KClass]. */
 fun TypeName.annotate(vararg types: KClass<out Annotation>): TypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeVariableName] annotated with a set of [KClass]. */
 fun TypeVariableName.annotate(vararg types: KClass<out Annotation>): TypeVariableName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [WildcardTypeName] annotated with a set of [KClass]. */
 fun WildcardTypeName.annotate(vararg types: KClass<out Annotation>): WildcardTypeName =
-    copyOf(annotations = types.map { annotationSpecOf(it) })
+    copyOf(annotations = types.map { AnnotationSpec.builder(it).build() })
 
 /** Return a copy of [TypeName] converted from [Type] annotated with [T]. */
 inline fun <reified T : Annotation> Type.annotate(): TypeName = annotate(T::class)

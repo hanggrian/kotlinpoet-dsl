@@ -1,6 +1,7 @@
-package com.hendraanggrian.kotlinpoet.dsl
+package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.CodeBlockBuilder
+import com.hendraanggrian.kotlinpoet.SpecMarker
 import com.hendraanggrian.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.CodeBlock
 
@@ -34,7 +35,7 @@ private interface CodeBlockAppendable {
         appendLine(buildCodeBlock(configuration))
 }
 
-abstract class CodeBlockHandler : CodeBlockAppendable {
+abstract class CodeBlockCollection : CodeBlockAppendable {
 
     /** Add named code to this container. */
     abstract fun appendNamed(format: String, args: Map<String, *>)
@@ -67,8 +68,8 @@ abstract class CodeBlockHandler : CodeBlockAppendable {
     internal abstract fun endFlow()
 }
 
-/** A [KdocHandler] is responsible for managing a set of code instances. */
-abstract class KdocHandler : CodeBlockAppendable {
+/** A [KdocCollection] is responsible for managing a set of code instances. */
+abstract class KdocCollection : CodeBlockAppendable {
 
     override fun appendLine(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
@@ -99,7 +100,8 @@ abstract class KdocHandler : CodeBlockAppendable {
 }
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
-class KdocHandlerScope(private val handler: KdocHandler) : KdocHandler(), CodeBlockAppendable by handler {
+@SpecMarker
+class KdocCollectionScope(private val handler: KdocCollection) : KdocCollection(), CodeBlockAppendable by handler {
 
     override fun appendLine(): Unit = handler.appendLine()
     override fun appendLine(code: CodeBlock): Unit = handler.appendLine(code)
