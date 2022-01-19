@@ -1,6 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
+import com.hendraanggrian.kotlinpoet.internal.Property1
+import com.hendraanggrian.kotlinpoet.internal.Property2
+import com.hendraanggrian.kotlinpoet.internal.Property3
+import com.hendraanggrian.kotlinpoet.internal.Property4
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
@@ -10,11 +14,6 @@ class PropertySpecCollectionTest {
     private val list = PropertySpecCollection(mutableListOf())
     private fun list(configuration: PropertySpecCollectionScope.() -> Unit) =
         PropertySpecCollectionScope(list).configuration()
-
-    private class Property1
-    private class Property2
-    private class Property3
-    private class Property4
 
     @Test
     fun add() {

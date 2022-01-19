@@ -3,6 +3,7 @@ package com.hendraanggrian.kotlinpoet
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.KdocCollection
+import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
@@ -95,7 +96,7 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
     }
 
     /** Configures kdoc of this property. */
-    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
+    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
 
     /** Annotations of this property. */
     val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
@@ -127,11 +128,6 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
             nativeBuilder.initializer(value)
         }
 
-    /** Initialize field value with custom initialization [configuration]. */
-    fun initializer(configuration: CodeBlockBuilder.() -> Unit) {
-        initializer = buildCodeBlock(configuration)
-    }
-
     /** Delegate field value like [String.format]. */
     fun delegate(format: String, vararg args: Any) {
         nativeBuilder.delegate(format, *args)
@@ -144,22 +140,12 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
             nativeBuilder.delegate(value)
         }
 
-    /** Delegate field value with custom initialization [configuration]. */
-    fun delegate(configuration: CodeBlockBuilder.() -> Unit) {
-        delegate = buildCodeBlock(configuration)
-    }
-
     /** Set getter function from [FunSpec]. */
     var getter: FunSpec
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
         set(value) {
             nativeBuilder.getter(value)
         }
-
-    /** Set getter function. */
-    fun getter() {
-        nativeBuilder.getter(FunSpec.getterBuilder().build())
-    }
 
     /** Set getter function with custom initialization [configuration]. */
     fun getter(configuration: FunSpecBuilder.() -> Unit) {
@@ -172,11 +158,6 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
         set(value) {
             nativeBuilder.setter(value)
         }
-
-    /** Set setter function. */
-    fun setter() {
-        nativeBuilder.setter(FunSpec.setterBuilder().build())
-    }
 
     /** Set setter function with custom initialization [configuration]. */
     fun setter(configuration: FunSpecBuilder.() -> Unit) {

@@ -10,7 +10,7 @@ import com.squareup.kotlinpoet.ClassName
 import kotlin.reflect.KClass
 
 /** An [AnnotationSpecCollection] is responsible for managing a set of annotation instances. */
-open class AnnotationSpecCollection(actualList: MutableList<AnnotationSpec>) :
+open class AnnotationSpecCollection internal constructor(actualList: MutableList<AnnotationSpec>) :
     MutableList<AnnotationSpec> by actualList {
 
     /** Add annotation from [ClassName]. */
@@ -59,7 +59,8 @@ open class AnnotationSpecCollection(actualList: MutableList<AnnotationSpec>) :
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class AnnotationSpecCollectionScope(actualList: MutableList<AnnotationSpec>) : AnnotationSpecCollection(actualList) {
+class AnnotationSpecCollectionScope internal constructor(actualList: MutableList<AnnotationSpec>) :
+    AnnotationSpecCollection(actualList) {
 
     /** @see AnnotationSpecCollection.add */
     operator fun ClassName.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean = add(this, configuration)

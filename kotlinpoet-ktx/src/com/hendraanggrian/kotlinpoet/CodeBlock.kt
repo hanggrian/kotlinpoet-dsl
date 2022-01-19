@@ -24,6 +24,7 @@ fun CodeBlock.Builder.edit(configuration: CodeBlockBuilder.() -> Unit): CodeBloc
  * Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
+@SpecMarker
 class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder) : CodeBlockCollection() {
 
     /** Returns true if this builder contains no code. */
@@ -40,15 +41,15 @@ class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder
         nativeBuilder.add(format, *args)
     }
 
-    override fun beginFlow(flow: String, vararg args: Any) {
-        nativeBuilder.beginControlFlow(flow, *args)
+    override fun beginControlFlow(format: String, vararg args: Any) {
+        nativeBuilder.beginControlFlow(format, *args)
     }
 
-    override fun nextFlow(flow: String, vararg args: Any) {
-        nativeBuilder.nextControlFlow(flow, *args)
+    override fun nextControlFlow(format: String, vararg args: Any) {
+        nativeBuilder.nextControlFlow(format, *args)
     }
 
-    override fun endFlow() {
+    override fun endControlFlow() {
         nativeBuilder.endControlFlow()
     }
 

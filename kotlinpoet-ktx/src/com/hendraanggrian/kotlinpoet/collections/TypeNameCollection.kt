@@ -9,7 +9,8 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [TypeNameCollection] is responsible for managing a set of type name instances. */
-class TypeNameCollection(actualMap: MutableMap<TypeName, CodeBlock?>) : MutableMap<TypeName, CodeBlock?> by actualMap {
+class TypeNameCollection internal constructor(actualMap: MutableMap<TypeName, CodeBlock?>) :
+    MutableMap<TypeName, CodeBlock?> by actualMap {
 
     /** Add type name from [Class]. */
     fun add(key: Type, value: CodeBlock? = null): CodeBlock? = put(key.asTypeName(), value)

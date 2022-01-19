@@ -1,31 +1,50 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.squareup.kotlinpoet.AnnotationSpec
+import com.hendraanggrian.kotlinpoet.internal.Annotation1
+import com.hendraanggrian.kotlinpoet.internal.Property1
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ParameterSpecBuilderTest {
-    private val expected = ParameterSpec.builder("name", String::class)
-        .addAnnotation(AnnotationSpec.builder(Deprecated::class).build())
-        .addModifiers(PUBLIC, FINAL)
-        .build()
 
     @Test
-    fun simple() {
-        assertEquals(expected, buildParameterSpec<String>("name") {
-            annotations.add<Deprecated>()
-            addModifiers(PUBLIC, FINAL)
-        })
+    fun kdoc() {
+        assertEquals(
+            buildParameterSpec<Property1>("parameter1") { kdoc.append("some doc") },
+            ParameterSpec.builder("parameter1", Property1::class).addKdoc("some doc").build()
+        )
     }
 
     @Test
-    fun invocation() {
-        assertEquals(expected, buildParameterSpec<String>("name") {
-            annotations {
-                add<Deprecated>()
-            }
-            addModifiers(PUBLIC, FINAL)
-        })
+    fun annotations() {
+        assertEquals(
+            buildParameterSpec<Property1>("parameter1") { annotations { add<Annotation1>() } },
+            ParameterSpec.builder("parameter1", Property1::class).addAnnotation(Annotation1::class).build()
+        )
+    }
+
+    @Test
+    fun addModifiers() {
+        assertEquals(
+            buildParameterSpec<Property1>("parameter1") { addModifiers(PUBLIC, FINAL, CONST) },
+            ParameterSpec.builder("parameter1", Property1::class)
+                .addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST)
+                .build()
+        )
+    }
+
+    @Test
+    fun defaultValue() {
+        assertEquals(
+            buildParameterSpec<Property1>("parameter1") { defaultValue("value1") },
+            ParameterSpec.builder("parameter1", Property1::class).defaultValue("value1").build()
+        )
+        assertEquals(
+            buildParameterSpec<Property1>("parameter2") { defaultValue = codeBlockOf("value2") },
+            ParameterSpec.builder("parameter2", Property1::class).defaultValue(CodeBlock.of("value2")).build()
+        )
     }
 }

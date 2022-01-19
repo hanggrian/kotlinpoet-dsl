@@ -1,14 +1,21 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.KdocCollection
+import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
+import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
+
+/** Converts element to [ParameterSpec]. */
+inline fun VariableElement.toParameterSpec(): ParameterSpec = ParameterSpec.get(this)
 
 /**
  * Builds new [ParameterSpec] from [TypeName],
@@ -65,7 +72,7 @@ fun ParameterSpec.Builder.edit(configuration: ParameterSpecBuilder.() -> Unit): 
 class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec.Builder) {
 
     /** Kdoc of this parameter. */
-    val kdocCode: CodeBlock.Builder get() = nativeBuilder.kdoc
+    val actualKdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
 
     /** Modifiers of this parameter. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
@@ -85,7 +92,7 @@ class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec
     }
 
     /** Configures kdoc of this parameter. */
-    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
+    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
 
     /** Annotations of this parameter. */
     val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
@@ -110,11 +117,6 @@ class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec
         set(value) {
             nativeBuilder.defaultValue(value)
         }
-
-    /** Set default value to code with custom initialization [configuration]. */
-    fun defaultValue(configuration: CodeBlockBuilder.() -> Unit) {
-        defaultValue = buildCodeBlock(configuration)
-    }
 
     /** Returns native spec. */
     fun build(): ParameterSpec = nativeBuilder.build()

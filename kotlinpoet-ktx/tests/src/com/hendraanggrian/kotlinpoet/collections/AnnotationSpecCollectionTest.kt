@@ -1,6 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
+import com.hendraanggrian.kotlinpoet.internal.Annotation1
+import com.hendraanggrian.kotlinpoet.internal.Annotation2
+import com.hendraanggrian.kotlinpoet.internal.Annotation3
+import com.hendraanggrian.kotlinpoet.internal.Annotation4
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
@@ -11,11 +15,6 @@ class AnnotationSpecCollectionTest {
     private val list = AnnotationSpecCollection(mutableListOf())
     private fun list(configuration: AnnotationSpecCollectionScope.() -> Unit) =
         AnnotationSpecCollectionScope(list).configuration()
-
-    private annotation class Annotation1
-    private annotation class Annotation2
-    private annotation class Annotation3
-    private annotation class Annotation4
 
     @Test
     fun add() {

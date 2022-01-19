@@ -1,6 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth.assertThat
+import com.hendraanggrian.kotlinpoet.internal.TypeAlias1
+import com.hendraanggrian.kotlinpoet.internal.TypeAlias2
+import com.hendraanggrian.kotlinpoet.internal.TypeAlias3
+import com.hendraanggrian.kotlinpoet.internal.TypeAlias4
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
@@ -10,11 +14,6 @@ class TypeAliasSpecCollectionTest {
     private val list = TypeAliasSpecCollection(mutableListOf())
     private fun list(configuration: TypeAliasSpecCollectionScope.() -> Unit) =
         TypeAliasSpecCollectionScope(list).configuration()
-
-    private class TypeAlias1
-    private class TypeAlias2
-    private class TypeAlias3
-    private class TypeAlias4
 
     @Test
     fun add() {

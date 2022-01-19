@@ -1,8 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.CodeBlockBuilder
 import com.hendraanggrian.kotlinpoet.SpecMarker
-import com.hendraanggrian.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.CodeBlock
 
 private interface CodeBlockAppendable {
@@ -12,10 +10,6 @@ private interface CodeBlockAppendable {
 
     /** Add code block to this container. */
     fun append(code: CodeBlock)
-
-    /** Add code block with custom initialization [configuration]. */
-    fun append(configuration: CodeBlockBuilder.() -> Unit): Unit =
-        append(buildCodeBlock(configuration))
 
     /** Add empty new line to this container. */
     fun appendLine()
@@ -29,10 +23,6 @@ private interface CodeBlockAppendable {
         // so copy from `com.squareup.javapoet.CodeBlock.addStatement`
         appendLine("%L", code)
     }
-
-    /** Add code block with custom initialization [configuration] and a new line to this container. */
-    fun appendLine(configuration: CodeBlockBuilder.() -> Unit): Unit =
-        appendLine(buildCodeBlock(configuration))
 }
 
 abstract class CodeBlockCollection : CodeBlockAppendable {
@@ -43,29 +33,29 @@ abstract class CodeBlockCollection : CodeBlockAppendable {
     override fun appendLine(): Unit = appendLine("")
 
     /** Insert code flow with custom initialization [configuration]. */
-    fun appendFlow(flow: String, vararg args: Any, configuration: () -> Unit) {
-        beginFlow(flow, *args)
+    fun appendControlFlow(format: String, vararg args: Any, configuration: () -> Unit) {
+        beginControlFlow(format, *args)
         configuration()
-        endFlow()
+        endControlFlow()
     }
+
+    /**
+     * Manually starts the control flow, as opposed to [appendControlFlow].
+     * @see CodeBlock.Builder.beginControlFlow
+     */
+    abstract fun beginControlFlow(format: String, vararg args: Any)
 
     /**
      * Continues the control flow.
      * @see CodeBlock.Builder.nextControlFlow
      */
-    abstract fun nextFlow(flow: String, vararg args: Any)
-
-    /**
-     * Manually starts the control flow, as opposed to [appendFlow].
-     * @see CodeBlock.Builder.beginControlFlow
-     */
-    internal abstract fun beginFlow(flow: String, vararg args: Any)
+    abstract fun nextControlFlow(format: String, vararg args: Any)
 
     /**
      * Manually stops the control flow.
      * @see CodeBlock.Builder.endControlFlow
      */
-    internal abstract fun endFlow()
+    abstract fun endControlFlow()
 }
 
 /** A [KdocCollection] is responsible for managing a set of code instances. */
@@ -101,7 +91,9 @@ abstract class KdocCollection : CodeBlockAppendable {
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class KdocCollectionScope(private val handler: KdocCollection) : KdocCollection(), CodeBlockAppendable by handler {
+class KdocCollectionScope internal constructor(private val handler: KdocCollection) :
+    KdocCollection(),
+    CodeBlockAppendable by handler {
 
     override fun appendLine(): Unit = handler.appendLine()
     override fun appendLine(code: CodeBlock): Unit = handler.appendLine(code)

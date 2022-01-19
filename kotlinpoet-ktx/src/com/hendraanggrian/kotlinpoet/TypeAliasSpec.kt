@@ -3,6 +3,7 @@ package com.hendraanggrian.kotlinpoet
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.KdocCollection
+import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
@@ -89,8 +90,7 @@ class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec
     val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this type alias. */
-    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit =
-        typeVariables.configuration()
+    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit = typeVariables.configuration()
 
     /** Annotations of this type alias. */
     val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
@@ -111,7 +111,7 @@ class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec
     }
 
     /** Configures kdoc of this type alias. */
-    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
+    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
 
     /** Returns native spec. */
     fun build(): TypeAliasSpec = nativeBuilder.build()

@@ -12,7 +12,8 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [ParameterSpecCollection] is responsible for managing a set of parameter instances. */
-open class ParameterSpecCollection(actualList: MutableList<ParameterSpec>) : MutableList<ParameterSpec> by actualList {
+open class ParameterSpecCollection internal constructor(actualList: MutableList<ParameterSpec>) :
+    MutableList<ParameterSpec> by actualList {
 
     /** Add parameter from [TypeName]. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): Boolean =
@@ -79,7 +80,8 @@ open class ParameterSpecCollection(actualList: MutableList<ParameterSpec>) : Mut
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class ParameterSpecCollectionScope(actualList: MutableList<ParameterSpec>) : ParameterSpecCollection(actualList) {
+class ParameterSpecCollectionScope internal constructor(actualList: MutableList<ParameterSpec>) :
+    ParameterSpecCollection(actualList) {
 
     /** @see ParameterSpecCollection.add */
     operator fun String.invoke(

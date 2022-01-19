@@ -5,6 +5,7 @@ import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.FunSpecCollection
 import com.hendraanggrian.kotlinpoet.collections.FunSpecCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.KdocCollection
+import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.PropertySpecCollection
 import com.hendraanggrian.kotlinpoet.collections.PropertySpecCollectionScope
 import com.hendraanggrian.kotlinpoet.collections.TypeNameCollection
@@ -160,7 +161,7 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     }
 
     /** Configures kdoc of this type. */
-    fun kdoc(configuration: KdocCollection.() -> Unit): Unit = kdoc.configuration()
+    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
 
     /** Annotations of this type. */
     val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotationSpecs)
@@ -186,11 +187,6 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
         set(value) {
             nativeBuilder.primaryConstructor(value)
         }
-
-    /** Set primary constructor to type. */
-    fun primaryConstructor() {
-        nativeBuilder.primaryConstructor(FunSpec.constructorBuilder().build())
-    }
 
     /** Set primary constructor to type with [configuration]. */
     fun primaryConstructor(configuration: FunSpecBuilder.() -> Unit) {
@@ -227,11 +223,6 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
         nativeBuilder.addSuperclassConstructorParameter(code)
     }
 
-    /** Add super class constructor parameters with custom [configuration]. */
-    fun addSuperclassConstructorParameter(configuration: CodeBlockBuilder.() -> Unit) {
-        addSuperclassConstructorParameter(buildCodeBlock(configuration))
-    }
-
     /** Super interfaces of this type. */
     val superinterfaces: TypeNameCollection get() = TypeNameCollection(nativeBuilder.superinterfaces)
 
@@ -260,11 +251,6 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
         nativeBuilder.addInitializerBlock(code)
     }
 
-    /** Add initializer block containing code with custom initialization [configuration]. */
-    fun addInitializerBlock(configuration: CodeBlockBuilder.() -> Unit) {
-        addInitializerBlock(buildCodeBlock(configuration))
-    }
-
     /** Functions of this type. */
     val functions: FunSpecCollection = FunSpecCollection(nativeBuilder.funSpecs)
 
@@ -278,11 +264,6 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     /** Configures types of this type. */
     fun types(configuration: TypeSpecCollectionScope.() -> Unit): Unit =
         TypeSpecCollectionScope(types).configuration()
-
-    /** Add originating element. */
-    fun addOriginatingElement(originatingElement: Element) {
-        nativeBuilder.addOriginatingElement(originatingElement)
-    }
 
     /** Returns native spec. */
     fun build(): TypeSpec = nativeBuilder.build()

@@ -11,7 +11,8 @@ import com.hendraanggrian.kotlinpoet.buildSetterFunSpec
 import com.squareup.kotlinpoet.FunSpec
 
 /** A [FunSpecCollection] is responsible for managing a set of function instances. */
-open class FunSpecCollection(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
+open class FunSpecCollection internal constructor(actualList: MutableList<FunSpec>) :
+    MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
     fun add(name: String): Boolean = add(FunSpec.builder(name).build())
@@ -45,7 +46,7 @@ open class FunSpecCollection(actualList: MutableList<FunSpec>) : MutableList<Fun
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class FunSpecCollectionScope(actualList: MutableList<FunSpec>) : FunSpecCollection(actualList) {
+class FunSpecCollectionScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecCollection(actualList) {
 
     /** @see FunSpecCollection.add */
     operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)

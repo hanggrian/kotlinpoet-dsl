@@ -13,7 +13,7 @@ import kotlin.reflect.KClass
  * A [TypeVariableNameCollection] is responsible for managing a set of type variable name instances.
  * Since Kotlinpoet keep [TypeVariableName] in lists and sets, this class extends [Collection].
  */
-class TypeVariableNameCollection(actualList: MutableCollection<TypeVariableName>) :
+class TypeVariableNameCollection internal constructor(actualList: MutableCollection<TypeVariableName>) :
     MutableCollection<TypeVariableName> by actualList {
 
     /** Add a [TypeVariableName] without bounds. */

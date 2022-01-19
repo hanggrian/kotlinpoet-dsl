@@ -12,7 +12,8 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** A [PropertySpecCollection] is responsible for managing a set of property instances. */
-open class PropertySpecCollection(actualList: MutableList<PropertySpec>) : MutableList<PropertySpec> by actualList {
+open class PropertySpecCollection internal constructor(actualList: MutableList<PropertySpec>) :
+    MutableList<PropertySpec> by actualList {
 
     /** Add property from [TypeName]. */
     fun add(name: String, type: TypeName, vararg modifiers: KModifier): Boolean =
@@ -79,7 +80,8 @@ open class PropertySpecCollection(actualList: MutableList<PropertySpec>) : Mutab
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class PropertySpecCollectionScope(actualList: MutableList<PropertySpec>) : PropertySpecCollection(actualList) {
+class PropertySpecCollectionScope internal constructor(actualList: MutableList<PropertySpec>) :
+    PropertySpecCollection(actualList) {
 
     /** @see PropertySpecCollection.add */
     operator fun String.invoke(

@@ -10,7 +10,8 @@ import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
 /** An [TypeAliasSpecCollection] is responsible for managing a set of type alias instances. */
-open class TypeAliasSpecCollection(actualList: MutableList<TypeAliasSpec>) : MutableList<TypeAliasSpec> by actualList {
+open class TypeAliasSpecCollection internal constructor(actualList: MutableList<TypeAliasSpec>) :
+    MutableList<TypeAliasSpec> by actualList {
 
     /** Add type alias from [TypeName]. */
     fun add(name: String, type: TypeName): Boolean = add(typeAliasSpecOf(name, type))
@@ -61,7 +62,8 @@ open class TypeAliasSpecCollection(actualList: MutableList<TypeAliasSpec>) : Mut
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class TypeAliasSpecCollectionScope(actualList: MutableList<TypeAliasSpec>) : TypeAliasSpecCollection(actualList) {
+class TypeAliasSpecCollectionScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
+    TypeAliasSpecCollection(actualList) {
 
     /** @see TypeAliasSpecCollection.add */
     operator fun String.invoke(type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =

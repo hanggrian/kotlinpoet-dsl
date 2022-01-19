@@ -14,7 +14,8 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeSpec
 
 /** A [TypeSpecCollection] is responsible for managing a set of type instances. */
-open class TypeSpecCollection(actualList: MutableList<TypeSpec>) : MutableList<TypeSpec> by actualList {
+open class TypeSpecCollection internal constructor(actualList: MutableList<TypeSpec>) :
+    MutableList<TypeSpec> by actualList {
 
     /** Add class type from name. */
     fun addClass(type: String): Boolean = add(TypeSpec.classBuilder(type).build())
@@ -117,4 +118,4 @@ open class TypeSpecCollection(actualList: MutableList<TypeSpec>) : MutableList<T
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class TypeSpecCollectionScope(actualList: MutableList<TypeSpec>) : TypeSpecCollection(actualList)
+class TypeSpecCollectionScope internal constructor(actualList: MutableList<TypeSpec>) : TypeSpecCollection(actualList)
