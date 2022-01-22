@@ -9,11 +9,11 @@ import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class ParameterSpecCollectionTest {
+class ParameterSpecListTest {
 
-    private val list = ParameterSpecCollection(mutableListOf())
-    private fun list(configuration: ParameterSpecCollectionScope.() -> Unit) =
-        ParameterSpecCollectionScope(list).configuration()
+    private val list = ParameterSpecList(mutableListOf())
+    private fun list(configuration: ParameterSpecListScope.() -> Unit) =
+        ParameterSpecListScope(list).configuration()
 
     @Test
     fun add() {

@@ -4,11 +4,11 @@ import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.FunSpec
 import kotlin.test.Test
 
-class FunSpecCollectionTest {
+class FunSpecListTest {
 
-    private val list = FunSpecCollection(mutableListOf())
-    private fun list(configuration: FunSpecCollectionScope.() -> Unit) =
-        FunSpecCollectionScope(list).configuration()
+    private val list = FunSpecList(mutableListOf())
+    private fun list(configuration: FunSpecListScope.() -> Unit) =
+        FunSpecListScope(list).configuration()
 
     @Test
     fun add() {

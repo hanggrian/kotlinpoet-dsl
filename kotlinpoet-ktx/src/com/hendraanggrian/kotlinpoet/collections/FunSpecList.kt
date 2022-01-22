@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.FunSpecBuilder
@@ -10,9 +8,8 @@ import com.hendraanggrian.kotlinpoet.buildGetterFunSpec
 import com.hendraanggrian.kotlinpoet.buildSetterFunSpec
 import com.squareup.kotlinpoet.FunSpec
 
-/** A [FunSpecCollection] is responsible for managing a set of function instances. */
-open class FunSpecCollection internal constructor(actualList: MutableList<FunSpec>) :
-    MutableList<FunSpec> by actualList {
+/** A [FunSpecList] is responsible for managing a set of function instances. */
+open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
     fun add(name: String): Boolean = add(FunSpec.builder(name).build())
@@ -46,8 +43,8 @@ open class FunSpecCollection internal constructor(actualList: MutableList<FunSpe
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class FunSpecCollectionScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecCollection(actualList) {
+class FunSpecListScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
 
-    /** @see FunSpecCollection.add */
+    /** @see FunSpecList.add */
     operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)
 }

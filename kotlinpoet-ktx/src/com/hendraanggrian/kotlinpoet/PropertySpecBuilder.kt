@@ -1,9 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.KdocCollection
-import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
@@ -85,7 +85,7 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
         }
 
     /** Kdoc of this property. */
-    val kdoc: KdocCollection = object : KdocCollection() {
+    val kdoc: KdocContainer = object : KdocContainer {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -96,14 +96,14 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
     }
 
     /** Configures kdoc of this property. */
-    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
 
     /** Annotations of this property. */
-    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this property. */
-    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
-        AnnotationSpecCollectionScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add property modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

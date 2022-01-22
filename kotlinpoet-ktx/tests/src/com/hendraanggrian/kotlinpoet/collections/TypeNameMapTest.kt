@@ -5,16 +5,16 @@ import com.squareup.kotlinpoet.CHAR
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class TypeNameCollectionTest {
+class TypeNameMapTest {
 
-    private val map = TypeNameCollection(mutableMapOf())
+    private val map = TypeNameMap(mutableMapOf())
 
     @Test
     fun test() {
         map[CHAR] = null
         map[Double::class.java] = null
         map[Boolean::class] = null
-        map.add<String>()
+        map.put<String>()
         Truth.assertThat(map.keys).containsExactly(
             CHAR,
             Double::class.java.asTypeName(),

@@ -1,13 +1,13 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.collections.CodeBlockCollection
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockContainer
 import com.squareup.kotlinpoet.CodeBlock
 
 /**
  * Converts string to [CodeBlock] using formatted [args].
  * @see kotlin.text.format
  */
-fun codeBlockOf(format: String, vararg args: Any): CodeBlock = CodeBlock.of(format, *args)
+inline fun codeBlockOf(format: String, vararg args: Any?): CodeBlock = CodeBlock.of(format, *args)
 
 /**
  * Builds new [CodeBlock],
@@ -25,7 +25,7 @@ fun CodeBlock.Builder.edit(configuration: CodeBlockBuilder.() -> Unit): CodeBloc
  * @param nativeBuilder source builder.
  */
 @SpecMarker
-class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder) : CodeBlockCollection() {
+class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer {
 
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()

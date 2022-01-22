@@ -1,9 +1,9 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.KdocCollection
-import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
@@ -93,14 +93,14 @@ class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec
     fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit = typeVariables.configuration()
 
     /** Annotations of this type alias. */
-    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this type alias. */
-    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
-        AnnotationSpecCollectionScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Kdoc of this type alias. */
-    val kdoc: KdocCollection = object : KdocCollection() {
+    val kdoc: KdocContainer = object : KdocContainer {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -111,7 +111,7 @@ class TypeAliasSpecBuilder internal constructor(val nativeBuilder: TypeAliasSpec
     }
 
     /** Configures kdoc of this type alias. */
-    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
 
     /** Returns native spec. */
     fun build(): TypeAliasSpec = nativeBuilder.build()

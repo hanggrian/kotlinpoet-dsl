@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.ParameterSpecBuilder
@@ -11,8 +9,8 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/** A [ParameterSpecCollection] is responsible for managing a set of parameter instances. */
-open class ParameterSpecCollection internal constructor(actualList: MutableList<ParameterSpec>) :
+/** A [ParameterSpecList] is responsible for managing a set of parameter instances. */
+open class ParameterSpecList internal constructor(actualList: MutableList<ParameterSpec>) :
     MutableList<ParameterSpec> by actualList {
 
     /** Add parameter from [TypeName]. */
@@ -80,31 +78,31 @@ open class ParameterSpecCollection internal constructor(actualList: MutableList<
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class ParameterSpecCollectionScope internal constructor(actualList: MutableList<ParameterSpec>) :
-    ParameterSpecCollection(actualList) {
+class ParameterSpecListScope internal constructor(actualList: MutableList<ParameterSpec>) :
+    ParameterSpecList(actualList) {
 
-    /** @see ParameterSpecCollection.add */
+    /** @see ParameterSpecList.add */
     operator fun String.invoke(
         type: TypeName,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see ParameterSpecCollection.add */
+    /** @see ParameterSpecList.add */
     operator fun String.invoke(
         type: Type,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see ParameterSpecCollection.add */
+    /** @see ParameterSpecList.add */
     operator fun String.invoke(
         type: KClass<*>,
         vararg modifiers: KModifier,
         configuration: ParameterSpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see ParameterSpecCollection.add */
+    /** @see ParameterSpecList.add */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
         noinline configuration: ParameterSpecBuilder.() -> Unit

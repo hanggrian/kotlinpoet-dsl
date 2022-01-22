@@ -90,7 +90,7 @@ class TypeSpecBuilderTest {
     @Test
     fun superinterfaces() {
         assertEquals(
-            buildClassTypeSpec("class1") { superinterfaces.add<Property1>() },
+            buildClassTypeSpec("class1") { superinterfaces.put<Property1>() },
             TypeSpec.classBuilder("class1")
                 .addSuperinterface(Property1::class)
                 .build()
@@ -98,9 +98,9 @@ class TypeSpecBuilderTest {
     }
 
     @Test
-    fun addEnumConstant() {
+    fun enumConstants() {
         assertEquals(
-            buildEnumTypeSpec("class1") { addEnumConstant("VALUE") },
+            buildEnumTypeSpec("class1") { enumConstants.put("VALUE") },
             TypeSpec.enumBuilder("class1").addEnumConstant("VALUE").build()
         )
     }

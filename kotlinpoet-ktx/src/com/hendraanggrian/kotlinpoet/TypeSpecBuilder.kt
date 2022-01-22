@@ -1,16 +1,18 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.FunSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.FunSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.KdocCollection
-import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.PropertySpecCollection
-import com.hendraanggrian.kotlinpoet.collections.PropertySpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.TypeNameCollection
-import com.hendraanggrian.kotlinpoet.collections.TypeSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.TypeSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.EnumConstantMap
+import com.hendraanggrian.kotlinpoet.collections.EnumConstantMapScope
+import com.hendraanggrian.kotlinpoet.collections.FunSpecList
+import com.hendraanggrian.kotlinpoet.collections.FunSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecList
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeNameMap
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
@@ -132,7 +134,11 @@ fun TypeSpec.Builder.edit(configuration: TypeSpecBuilder.() -> Unit): TypeSpec.B
 class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) {
 
     /** Initializer index of this type. */
-    val initializerIndex: Int get() = nativeBuilder.initializerIndex
+    var initializerIndex: Int
+        get() = nativeBuilder.initializerIndex
+        set(value) {
+            nativeBuilder.initializerIndex = value
+        }
 
     /** Tags variables of this type. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
@@ -143,14 +149,11 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     /** Modifiers of this type. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
 
-    /** Enum constants of this type. */
-    val enumConstants: MutableMap<String, TypeSpec> get() = nativeBuilder.enumConstants
-
     /** Super class constructor parameters of this type. */
     val superclassConstructorParameters: MutableList<CodeBlock> get() = nativeBuilder.superclassConstructorParameters
 
     /** Kdoc of this type. */
-    val kdoc: KdocCollection = object : KdocCollection() {
+    val kdoc: KdocContainer = object : KdocContainer {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -161,14 +164,14 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     }
 
     /** Configures kdoc of this type. */
-    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
 
     /** Annotations of this type. */
-    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotationSpecs)
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotationSpecs)
 
     /** Configures annotations of this type. */
-    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
-        AnnotationSpecCollectionScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add type modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -224,46 +227,46 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     }
 
     /** Super interfaces of this type. */
-    val superinterfaces: TypeNameCollection get() = TypeNameCollection(nativeBuilder.superinterfaces)
+    val superinterfaces: TypeNameMap = TypeNameMap(nativeBuilder.superinterfaces)
 
     /** Configures super interfaces of this type. */
-    fun superinterfaces(configuration: TypeNameCollection.() -> Unit): Unit = superinterfaces.configuration()
+    fun superinterfaces(configuration: TypeNameMap.() -> Unit): Unit = superinterfaces.configuration()
 
-    /** Add enum constant with name. */
-    fun addEnumConstant(name: String) {
-        nativeBuilder.addEnumConstant(name)
-    }
+    /** Enum constants of this type. */
+    val enumConstants: EnumConstantMap = EnumConstantMap(nativeBuilder.enumConstants)
 
-    /** Add enum constant with name and specified [TypeSpec]. */
-    fun addEnumConstant(name: String, spec: TypeSpec) {
-        nativeBuilder.addEnumConstant(name, spec)
-    }
+    /** Configures enum constants of this type. */
+    fun enumConstants(configuration: EnumConstantMapScope.() -> Unit): Unit =
+        EnumConstantMapScope(enumConstants).configuration()
 
     /** Properties of this type. */
-    val properties: PropertySpecCollection = PropertySpecCollection(nativeBuilder.propertySpecs)
+    val properties: PropertySpecList = PropertySpecList(nativeBuilder.propertySpecs)
 
     /** Configures properties of this type. */
-    fun properties(configuration: PropertySpecCollectionScope.() -> Unit): Unit =
-        PropertySpecCollectionScope(properties).configuration()
+    fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
+        PropertySpecListScope(properties).configuration()
 
-    /** Add initializer block containing [code]. */
+    /** Add initializer block from [CodeBlock]. */
     fun addInitializerBlock(code: CodeBlock) {
         nativeBuilder.addInitializerBlock(code)
     }
 
+    /** Add initializer block from formatted string. */
+    fun addInitializerBlock(format: String, vararg args: Any) {
+        nativeBuilder.addInitializerBlock(codeBlockOf(format, *args))
+    }
+
     /** Functions of this type. */
-    val functions: FunSpecCollection = FunSpecCollection(nativeBuilder.funSpecs)
+    val functions: FunSpecList = FunSpecList(nativeBuilder.funSpecs)
 
     /** Configures functions of this type. */
-    fun functions(configuration: FunSpecCollectionScope.() -> Unit): Unit =
-        FunSpecCollectionScope(functions).configuration()
+    fun functions(configuration: FunSpecListScope.() -> Unit): Unit = FunSpecListScope(functions).configuration()
 
     /** Types of this type. */
-    val types: TypeSpecCollection = TypeSpecCollection(nativeBuilder.typeSpecs)
+    val types: TypeSpecList = TypeSpecList(nativeBuilder.typeSpecs)
 
     /** Configures types of this type. */
-    fun types(configuration: TypeSpecCollectionScope.() -> Unit): Unit =
-        TypeSpecCollectionScope(types).configuration()
+    fun types(configuration: TypeSpecListScope.() -> Unit): Unit = TypeSpecListScope(types).configuration()
 
     /** Returns native spec. */
     fun build(): TypeSpec = nativeBuilder.build()

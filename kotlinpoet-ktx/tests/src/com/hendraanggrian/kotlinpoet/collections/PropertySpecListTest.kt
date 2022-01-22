@@ -9,11 +9,11 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class PropertySpecCollectionTest {
+class PropertySpecListTest {
 
-    private val list = PropertySpecCollection(mutableListOf())
-    private fun list(configuration: PropertySpecCollectionScope.() -> Unit) =
-        PropertySpecCollectionScope(list).configuration()
+    private val list = PropertySpecList(mutableListOf())
+    private fun list(configuration: PropertySpecListScope.() -> Unit) =
+        PropertySpecListScope(list).configuration()
 
     @Test
     fun add() {

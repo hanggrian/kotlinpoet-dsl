@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.typeVarBy
@@ -13,8 +11,8 @@ import kotlin.reflect.KClass
  * A [TypeVariableNameCollection] is responsible for managing a set of type variable name instances.
  * Since Kotlinpoet keep [TypeVariableName] in lists and sets, this class extends [Collection].
  */
-class TypeVariableNameCollection internal constructor(actualList: MutableCollection<TypeVariableName>) :
-    MutableCollection<TypeVariableName> by actualList {
+class TypeVariableNameCollection internal constructor(actualCollection: MutableCollection<TypeVariableName>) :
+    MutableCollection<TypeVariableName> by actualCollection {
 
     /** Add a [TypeVariableName] without bounds. */
     fun add(name: String): Boolean = add(name.typeVarOf())
@@ -28,7 +26,7 @@ class TypeVariableNameCollection internal constructor(actualList: MutableCollect
     /** Returns a [TypeVariableName] with [KClass] bounds. */
     fun add(name: String, vararg bounds: KClass<*>): Boolean = add(name.typeVarBy(*bounds))
 
-    /** Convenient method to add type name with operator function. */
+    /** Convenient method to add type variable name with operator function. */
     inline operator fun plusAssign(name: String) {
         add(name)
     }

@@ -9,11 +9,11 @@ import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class TypeAliasSpecCollectionTest {
+class TypeAliasSpecListTest {
 
-    private val list = TypeAliasSpecCollection(mutableListOf())
-    private fun list(configuration: TypeAliasSpecCollectionScope.() -> Unit) =
-        TypeAliasSpecCollectionScope(list).configuration()
+    private val list = TypeAliasSpecList(mutableListOf())
+    private fun list(configuration: TypeAliasSpecListScope.() -> Unit) =
+        TypeAliasSpecListScope(list).configuration()
 
     @Test
     fun add() {

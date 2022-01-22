@@ -1,15 +1,15 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.FunSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.FunSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.PropertySpecCollection
-import com.hendraanggrian.kotlinpoet.collections.PropertySpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.TypeSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.TypeSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.FunSpecList
+import com.hendraanggrian.kotlinpoet.collections.FunSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecList
+import com.hendraanggrian.kotlinpoet.collections.PropertySpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecList
+import com.hendraanggrian.kotlinpoet.collections.TypeAliasSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
+import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
@@ -58,7 +58,7 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     val members: MutableList<Any> get() = nativeBuilder.members
 
     /** Annotations of this file. */
-    val annotations: AnnotationSpecCollection = object : AnnotationSpecCollection(nativeBuilder.annotations) {
+    val annotations: AnnotationSpecList = object : AnnotationSpecList(nativeBuilder.annotations) {
         /** Must override because it modifies [AnnotationSpec.useSiteTarget]. */
         override fun add(element: AnnotationSpec): Boolean {
             nativeBuilder.addAnnotation(element)
@@ -67,8 +67,8 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures annotations for this file. */
-    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
-        AnnotationSpecCollectionScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add file comment like [String.format]. */
     fun addComment(format: String, vararg args: Any) {
@@ -84,7 +84,7 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
      * Types of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val types: TypeSpecCollection = object : TypeSpecCollection(FakeList()) {
+    val types: TypeSpecList = object : TypeSpecList(FakeList()) {
         override fun add(element: TypeSpec): Boolean {
             nativeBuilder.addType(element)
             return true
@@ -92,14 +92,13 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures types for this file. */
-    fun types(configuration: TypeSpecCollectionScope.() -> Unit): Unit =
-        TypeSpecCollectionScope(types).configuration()
+    fun types(configuration: TypeSpecListScope.() -> Unit): Unit = TypeSpecListScope(types).configuration()
 
     /**
      * Functions of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val functions: FunSpecCollection = object : FunSpecCollection(FakeList()) {
+    val functions: FunSpecList = object : FunSpecList(FakeList()) {
         override fun add(element: FunSpec): Boolean {
             nativeBuilder.addFunction(element)
             return true
@@ -107,14 +106,13 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures functions for this file. */
-    fun functions(configuration: FunSpecCollectionScope.() -> Unit): Unit =
-        FunSpecCollectionScope(functions).configuration()
+    fun functions(configuration: FunSpecListScope.() -> Unit): Unit = FunSpecListScope(functions).configuration()
 
     /**
      * Properties of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val properties: PropertySpecCollection = object : PropertySpecCollection(FakeList()) {
+    val properties: PropertySpecList = object : PropertySpecList(FakeList()) {
         override fun add(element: PropertySpec): Boolean {
             nativeBuilder.addProperty(element)
             return true
@@ -122,14 +120,14 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures properties for this file. */
-    fun properties(configuration: PropertySpecCollectionScope.() -> Unit): Unit =
-        PropertySpecCollectionScope(properties).configuration()
+    fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
+        PropertySpecListScope(properties).configuration()
 
     /**
      * Type aliases of this file.
      * Returns a fake list where the only supported operation is `add`.
      */
-    val typeAliases: TypeAliasSpecCollection = object : TypeAliasSpecCollection(FakeList()) {
+    val typeAliases: TypeAliasSpecList = object : TypeAliasSpecList(FakeList()) {
         override fun add(element: TypeAliasSpec): Boolean {
             nativeBuilder.addTypeAlias(element)
             return true
@@ -137,8 +135,8 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures type aliases for this file. */
-    fun typeAliases(configuration: TypeAliasSpecCollectionScope.() -> Unit): Unit =
-        TypeAliasSpecCollectionScope(typeAliases).configuration()
+    fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit): Unit =
+        TypeAliasSpecListScope(typeAliases).configuration()
 
     /** Add import. */
     fun addImport(constant: Enum<*>) {

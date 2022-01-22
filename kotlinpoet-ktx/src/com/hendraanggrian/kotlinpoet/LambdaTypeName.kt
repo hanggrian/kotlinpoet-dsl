@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.LambdaTypeName

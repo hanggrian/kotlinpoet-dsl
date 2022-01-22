@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder
@@ -9,8 +7,8 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import kotlin.reflect.KClass
 
-/** An [AnnotationSpecCollection] is responsible for managing a set of annotation instances. */
-open class AnnotationSpecCollection internal constructor(actualList: MutableList<AnnotationSpec>) :
+/** An [AnnotationSpecList] is responsible for managing a set of annotation instances. */
+open class AnnotationSpecList internal constructor(actualList: MutableList<AnnotationSpec>) :
     MutableList<AnnotationSpec> by actualList {
 
     /** Add annotation from [ClassName]. */
@@ -59,17 +57,17 @@ open class AnnotationSpecCollection internal constructor(actualList: MutableList
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class AnnotationSpecCollectionScope internal constructor(actualList: MutableList<AnnotationSpec>) :
-    AnnotationSpecCollection(actualList) {
+class AnnotationSpecListScope internal constructor(actualList: MutableList<AnnotationSpec>) :
+    AnnotationSpecList(actualList) {
 
-    /** @see AnnotationSpecCollection.add */
+    /** @see AnnotationSpecList.add */
     operator fun ClassName.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean = add(this, configuration)
 
-    /** @see AnnotationSpecCollection.add */
+    /** @see AnnotationSpecList.add */
     operator fun Class<out Annotation>.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
         add(this, configuration)
 
-    /** @see AnnotationSpecCollection.add */
+    /** @see AnnotationSpecList.add */
     operator fun KClass<out Annotation>.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
         add(this, configuration)
 }

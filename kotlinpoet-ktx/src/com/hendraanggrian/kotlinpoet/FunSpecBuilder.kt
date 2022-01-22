@@ -1,12 +1,12 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.CodeBlockCollection
-import com.hendraanggrian.kotlinpoet.collections.KdocCollection
-import com.hendraanggrian.kotlinpoet.collections.KdocCollectionScope
-import com.hendraanggrian.kotlinpoet.collections.ParameterSpecCollection
-import com.hendraanggrian.kotlinpoet.collections.ParameterSpecCollectionScope
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
+import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainer
+import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
+import com.hendraanggrian.kotlinpoet.collections.ParameterSpecList
+import com.hendraanggrian.kotlinpoet.collections.ParameterSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
@@ -53,7 +53,7 @@ fun FunSpec.Builder.edit(configuration: FunSpecBuilder.() -> Unit): FunSpec.Buil
  * @param nativeBuilder source builder.
  */
 @SpecMarker
-class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : CodeBlockCollection() {
+class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : CodeBlockContainer {
 
     /** Modifiers of this function. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
@@ -65,7 +65,7 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** Kdoc of this function. */
-    val kdoc: KdocCollection = object : KdocCollection() {
+    val kdoc: KdocContainer = object : KdocContainer {
         override fun append(format: String, vararg args: Any) {
             nativeBuilder.addKdoc(format, *args)
         }
@@ -76,14 +76,14 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     }
 
     /** Configures kdoc of this function. */
-    fun kdoc(configuration: KdocCollectionScope.() -> Unit): Unit = KdocCollectionScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
 
     /** Annotations of this function. */
-    val annotations: AnnotationSpecCollection = AnnotationSpecCollection(nativeBuilder.annotations)
+    val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    fun annotations(configuration: AnnotationSpecCollectionScope.() -> Unit): Unit =
-        AnnotationSpecCollectionScope(annotations).configuration()
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+        AnnotationSpecListScope(annotations).configuration()
 
     /** Add function modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -184,11 +184,11 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any) = returns(T::class, kdocFormat, *kdocArgs)
 
     /** Parameters of this function. */
-    val parameters: ParameterSpecCollection = ParameterSpecCollection(nativeBuilder.parameters)
+    val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    fun parameters(configuration: ParameterSpecCollectionScope.() -> Unit): Unit =
-        ParameterSpecCollectionScope(parameters).configuration()
+    fun parameters(configuration: ParameterSpecListScope.() -> Unit): Unit =
+        ParameterSpecListScope(parameters).configuration()
 
     /** Call this constructor with list of [CodeBlock] arguments. */
     fun callThisConstructor(args: Iterable<CodeBlock>) {

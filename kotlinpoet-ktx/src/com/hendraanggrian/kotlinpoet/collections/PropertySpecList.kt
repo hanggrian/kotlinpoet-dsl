@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.PropertySpecBuilder
@@ -11,8 +9,8 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/** A [PropertySpecCollection] is responsible for managing a set of property instances. */
-open class PropertySpecCollection internal constructor(actualList: MutableList<PropertySpec>) :
+/** A [PropertySpecList] is responsible for managing a set of property instances. */
+open class PropertySpecList internal constructor(actualList: MutableList<PropertySpec>) :
     MutableList<PropertySpec> by actualList {
 
     /** Add property from [TypeName]. */
@@ -80,31 +78,30 @@ open class PropertySpecCollection internal constructor(actualList: MutableList<P
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class PropertySpecCollectionScope internal constructor(actualList: MutableList<PropertySpec>) :
-    PropertySpecCollection(actualList) {
+class PropertySpecListScope internal constructor(actualList: MutableList<PropertySpec>) : PropertySpecList(actualList) {
 
-    /** @see PropertySpecCollection.add */
+    /** @see PropertySpecList.add */
     operator fun String.invoke(
         type: TypeName,
         vararg modifiers: KModifier,
         configuration: PropertySpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see PropertySpecCollection.add */
+    /** @see PropertySpecList.add */
     operator fun String.invoke(
         type: Type,
         vararg modifiers: KModifier,
         configuration: PropertySpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see PropertySpecCollection.add */
+    /** @see PropertySpecList.add */
     operator fun String.invoke(
         type: KClass<*>,
         vararg modifiers: KModifier,
         configuration: PropertySpecBuilder.() -> Unit
     ): Boolean = add(this, type, *modifiers, configuration = configuration)
 
-    /** @see PropertySpecCollection.add */
+    /** @see PropertySpecList.add */
     inline operator fun <reified T> String.invoke(
         vararg modifiers: KModifier,
         noinline configuration: PropertySpecBuilder.() -> Unit

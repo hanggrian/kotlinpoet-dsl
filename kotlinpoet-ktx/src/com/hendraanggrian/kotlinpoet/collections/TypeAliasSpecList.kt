@@ -9,8 +9,8 @@ import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-/** An [TypeAliasSpecCollection] is responsible for managing a set of type alias instances. */
-open class TypeAliasSpecCollection internal constructor(actualList: MutableList<TypeAliasSpec>) :
+/** An [TypeAliasSpecList] is responsible for managing a set of type alias instances. */
+open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAliasSpec>) :
     MutableList<TypeAliasSpec> by actualList {
 
     /** Add type alias from [TypeName]. */
@@ -62,22 +62,22 @@ open class TypeAliasSpecCollection internal constructor(actualList: MutableList<
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @SpecMarker
-class TypeAliasSpecCollectionScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
-    TypeAliasSpecCollection(actualList) {
+class TypeAliasSpecListScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
+    TypeAliasSpecList(actualList) {
 
-    /** @see TypeAliasSpecCollection.add */
+    /** @see TypeAliasSpecList.add */
     operator fun String.invoke(type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add(this, type, configuration)
 
-    /** @see TypeAliasSpecCollection.add */
+    /** @see TypeAliasSpecList.add */
     operator fun String.invoke(type: Type, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add(this, type, configuration)
 
-    /** @see TypeAliasSpecCollection.add */
+    /** @see TypeAliasSpecList.add */
     operator fun String.invoke(type: KClass<*>, configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add(this, type, configuration)
 
-    /** @see TypeAliasSpecCollection.add */
+    /** @see TypeAliasSpecList.add */
     inline operator fun <reified T> String.invoke(noinline configuration: TypeAliasSpecBuilder.() -> Unit): Boolean =
         add<T>(this, configuration)
 }

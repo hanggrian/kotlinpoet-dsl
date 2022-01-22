@@ -6,7 +6,7 @@ import com.hendraanggrian.kotlinpoet.typeVarBy
 import com.hendraanggrian.kotlinpoet.typeVarOf
 import kotlin.test.Test
 
-class TypeVariableNameListTest {
+class TypeVariableNameCollectionTest {
 
     private val list = TypeVariableNameCollection(mutableListOf())
 

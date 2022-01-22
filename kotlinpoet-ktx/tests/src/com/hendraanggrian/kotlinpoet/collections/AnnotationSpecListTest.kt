@@ -6,15 +6,14 @@ import com.hendraanggrian.kotlinpoet.internal.Annotation2
 import com.hendraanggrian.kotlinpoet.internal.Annotation3
 import com.hendraanggrian.kotlinpoet.internal.Annotation4
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class AnnotationSpecCollectionTest {
+class AnnotationSpecListTest {
 
-    private val list = AnnotationSpecCollection(mutableListOf())
-    private fun list(configuration: AnnotationSpecCollectionScope.() -> Unit) =
-        AnnotationSpecCollectionScope(list).configuration()
+    private val list = AnnotationSpecList(mutableListOf())
+    private fun list(configuration: AnnotationSpecListScope.() -> Unit) =
+        AnnotationSpecListScope(list).configuration()
 
     @Test
     fun add() {

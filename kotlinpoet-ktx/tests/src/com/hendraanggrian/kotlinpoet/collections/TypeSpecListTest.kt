@@ -5,9 +5,9 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 
-class TypeSpecCollectionTest {
+class TypeSpecListTest {
 
-    private val list = TypeSpecCollection(mutableListOf())
+    private val list = TypeSpecList(mutableListOf())
 
     private class Class2
     private class Expect2
@@ -27,8 +27,8 @@ class TypeSpecCollectionTest {
         list.addCompanionObject()
         list.addInterface("Interface1")
         list.addInterface(Interface2::class.asTypeName())
-        list.addEnum("Enum1") { addEnumConstant("A") }
-        list.addEnum(Enum2::class.asTypeName()) { addEnumConstant("B") }
+        list.addEnum("Enum1") { enumConstants.put("A") }
+        list.addEnum(Enum2::class.asTypeName()) { enumConstants.put("B") }
         list.addAnonymous()
         list.addAnnotation("Annotation1")
         list.addAnnotation(Annotation2::class.asTypeName())
