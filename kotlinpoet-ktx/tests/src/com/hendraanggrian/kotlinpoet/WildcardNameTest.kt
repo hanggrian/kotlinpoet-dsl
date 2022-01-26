@@ -1,27 +1,50 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.example.MyClass
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class WildcardNameTest {
-    private companion object {
-        const val EXPECTED_SUBTYPE = "out com.example.MyClass"
-        const val EXPECTED_SUPERTYPE = "in com.example.MyClass"
+
+    @Test
+    fun toUpperWildcardTypeName() {
+        assertEquals(
+            "out kotlin.CharSequence",
+            "${CharSequence::class.asTypeName().toUpperWildcardTypeName()}"
+        )
+        assertEquals(
+            "out java.lang.CharSequence",
+            "${CharSequence::class.java.toUpperWildcardTypeName()}"
+        )
+        assertEquals(
+            "out kotlin.CharSequence",
+            "${CharSequence::class.toUpperWildcardTypeName()}"
+        )
     }
 
     @Test
-    fun producer() {
-        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.asTypeName().wildcardProducerOf()}")
-        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.java.wildcardProducerOf()}")
-        assertEquals(EXPECTED_SUBTYPE, "${MyClass::class.wildcardProducerOf()}")
+    fun wildcardTypeNameUpperOf() {
+        assertEquals("out kotlin.CharSequence", "${wildcardTypeNameUpperOf<CharSequence>()}")
     }
 
     @Test
-    fun consumer() {
-        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.asTypeName().wildcardConsumerOf()}")
-        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.java.wildcardConsumerOf()}")
-        assertEquals(EXPECTED_SUPERTYPE, "${MyClass::class.wildcardConsumerOf()}")
+    fun toLowerWildcardTypeName() {
+        assertEquals(
+            "in kotlin.CharSequence",
+            "${CharSequence::class.asTypeName().toLowerWildcardTypeName()}"
+        )
+        assertEquals(
+            "in java.lang.CharSequence",
+            "${CharSequence::class.java.toLowerWildcardTypeName()}"
+        )
+        assertEquals(
+            "in kotlin.CharSequence",
+            "${CharSequence::class.toLowerWildcardTypeName()}"
+        )
+    }
+
+    @Test
+    fun wildcardTypeNameLowerOf() {
+        assertEquals("in kotlin.CharSequence", "${wildcardTypeNameLowerOf<CharSequence>()}")
     }
 }

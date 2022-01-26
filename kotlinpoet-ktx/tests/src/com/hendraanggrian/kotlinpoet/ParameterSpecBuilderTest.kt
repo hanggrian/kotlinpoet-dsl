@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.internal.Annotation1
-import com.hendraanggrian.kotlinpoet.internal.Property1
+import com.example.Annotation1
+import com.example.Property1
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec

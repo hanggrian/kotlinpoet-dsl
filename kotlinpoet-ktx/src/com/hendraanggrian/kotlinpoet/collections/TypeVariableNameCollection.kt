@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.typeVarBy
-import com.hendraanggrian.kotlinpoet.typeVarOf
+import com.hendraanggrian.kotlinpoet.genericsBy
+import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
@@ -15,16 +15,33 @@ class TypeVariableNameCollection internal constructor(actualCollection: MutableC
     MutableCollection<TypeVariableName> by actualCollection {
 
     /** Add a [TypeVariableName] without bounds. */
-    fun add(name: String): Boolean = add(name.typeVarOf())
+    fun add(name: String, variance: KModifier? = null): Boolean = add(name.genericsBy(variance))
 
     /** Returns a [TypeVariableName] with [TypeName] bounds. */
-    fun add(name: String, vararg bounds: TypeName): Boolean = add(name.typeVarBy(*bounds))
+    fun add(name: String, vararg bounds: TypeName, variance: KModifier? = null): Boolean =
+        add(name.genericsBy(*bounds, variance = variance))
 
     /** Returns a [TypeVariableName] with [Type] bounds. */
-    fun add(name: String, vararg bounds: Type): Boolean = add(name.typeVarBy(*bounds))
+    fun add(name: String, vararg bounds: Type, variance: KModifier? = null): Boolean =
+        add(name.genericsBy(*bounds, variance = variance))
 
     /** Returns a [TypeVariableName] with [KClass] bounds. */
-    fun add(name: String, vararg bounds: KClass<*>): Boolean = add(name.typeVarBy(*bounds))
+    fun add(name: String, vararg bounds: KClass<*>, variance: KModifier? = null): Boolean =
+        add(name.genericsBy(*bounds, variance = variance))
+
+    /** Returns a [TypeVariableName] with collection of [TypeName] bounds. */
+    fun add(name: String, bounds: List<TypeName>, variance: KModifier? = null): Boolean =
+        add(name.genericsBy(bounds, variance))
+
+    /** Returns a [TypeVariableName] with collection of [Type] bounds. */
+    @JvmName("addWithTypes")
+    fun add(name: String, bounds: Iterable<Type>, variance: KModifier? = null): Boolean =
+        add(name.genericsBy(bounds, variance))
+
+    /** Returns a [TypeVariableName] with collection of [KClass] bounds. */
+    @JvmName("addWithClasses")
+    fun add(name: String, bounds: Iterable<KClass<*>>, variance: KModifier? = null): Boolean =
+        add(name.genericsBy(bounds, variance))
 
     /** Convenient method to add type variable name with operator function. */
     inline operator fun plusAssign(name: String) {

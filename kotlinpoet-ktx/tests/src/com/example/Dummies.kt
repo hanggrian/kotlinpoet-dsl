@@ -1,6 +1,4 @@
-package com.hendraanggrian.kotlinpoet.internal
-
-import kotlin.test.assertEquals
+package com.example
 
 annotation class Annotation1
 annotation class Annotation2
@@ -21,6 +19,3 @@ class TypeAlias1
 class TypeAlias2
 class TypeAlias3
 class TypeAlias4
-
-fun <T> assertEqualsAll(expected: T, vararg actual: T, message: String? = null) =
-    actual.forEachIndexed { index, t -> assertEquals(expected, t, "$message [$index]") }

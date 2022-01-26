@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.internal.Annotation1
-import com.hendraanggrian.kotlinpoet.internal.Property1
-import com.hendraanggrian.kotlinpoet.internal.Property2
-import com.hendraanggrian.kotlinpoet.internal.Property3
-import com.hendraanggrian.kotlinpoet.internal.Property4
+import com.example.Annotation1
+import com.example.Property1
+import com.example.Property2
+import com.example.Property3
+import com.example.Property4
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeVariableName

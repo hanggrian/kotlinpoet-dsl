@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet
 
-import com.hendraanggrian.kotlinpoet.internal.Annotation1
+import com.example.Annotation1
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import kotlin.test.Test

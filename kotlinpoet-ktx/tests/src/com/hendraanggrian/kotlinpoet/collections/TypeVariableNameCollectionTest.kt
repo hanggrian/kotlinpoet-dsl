@@ -1,9 +1,8 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.google.common.truth.Truth
+import com.hendraanggrian.kotlinpoet.genericsBy
 import com.squareup.kotlinpoet.asTypeName
-import com.hendraanggrian.kotlinpoet.typeVarBy
-import com.hendraanggrian.kotlinpoet.typeVarOf
 import kotlin.test.Test
 
 class TypeVariableNameCollectionTest {
@@ -11,16 +10,24 @@ class TypeVariableNameCollectionTest {
     private val list = TypeVariableNameCollection(mutableListOf())
 
     @Test
-    fun test() {
-        list += "Q"
+    fun add() {
+        list.add("Q")
         list.add("R", String::class.asTypeName())
         list.add("S", String::class.java)
         list.add("T", String::class)
         Truth.assertThat(list).containsExactly(
-            "Q".typeVarOf(),
-            "R".typeVarBy(String::class.asTypeName()),
-            "S".typeVarBy(String::class.java),
-            "T".typeVarBy(String::class)
+            "Q".genericsBy(),
+            "R".genericsBy(String::class.asTypeName()),
+            "S".genericsBy(String::class.java),
+            "T".genericsBy(String::class)
+        )
+    }
+
+    @Test
+    fun plusAssign() {
+        list += "Q"
+        Truth.assertThat(list).containsExactly(
+            "Q".genericsBy(),
         )
     }
 }

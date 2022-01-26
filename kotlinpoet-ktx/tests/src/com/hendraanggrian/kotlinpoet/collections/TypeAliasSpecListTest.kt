@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
+import com.example.TypeAlias1
+import com.example.TypeAlias2
+import com.example.TypeAlias3
+import com.example.TypeAlias4
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.internal.TypeAlias1
-import com.hendraanggrian.kotlinpoet.internal.TypeAlias2
-import com.hendraanggrian.kotlinpoet.internal.TypeAlias3
-import com.hendraanggrian.kotlinpoet.internal.TypeAlias4
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test

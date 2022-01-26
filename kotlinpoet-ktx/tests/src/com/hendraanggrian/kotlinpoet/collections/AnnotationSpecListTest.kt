@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
+import com.example.Annotation1
+import com.example.Annotation2
+import com.example.Annotation3
+import com.example.Annotation4
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.internal.Annotation1
-import com.hendraanggrian.kotlinpoet.internal.Annotation2
-import com.hendraanggrian.kotlinpoet.internal.Annotation3
-import com.hendraanggrian.kotlinpoet.internal.Annotation4
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test

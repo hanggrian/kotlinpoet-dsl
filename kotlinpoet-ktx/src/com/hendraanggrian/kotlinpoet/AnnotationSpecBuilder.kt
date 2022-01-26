@@ -18,11 +18,11 @@ val ANNOTATION_SETPARAM: AnnotationSpec.UseSiteTarget = AnnotationSpec.UseSiteTa
 val ANNOTATION_DELEGATE: AnnotationSpec.UseSiteTarget = AnnotationSpec.UseSiteTarget.DELEGATE
 
 /** Converts [Annotation] to [AnnotationSpec]. */
-inline fun Annotation.toAnnotationSpec(includeDefaultValues: Boolean = false): AnnotationSpec =
+inline fun Annotation.asAnnotationSpec(includeDefaultValues: Boolean = false): AnnotationSpec =
     AnnotationSpec.get(this, includeDefaultValues)
 
 /** Converts [AnnotationMirror] to [AnnotationSpec]. */
-inline fun AnnotationMirror.toAnnotationSpec(): AnnotationSpec = AnnotationSpec.get(this)
+inline fun AnnotationMirror.asAnnotationSpec(): AnnotationSpec = AnnotationSpec.get(this)
 
 /**
  * Builds new [AnnotationSpec] from [ClassName],

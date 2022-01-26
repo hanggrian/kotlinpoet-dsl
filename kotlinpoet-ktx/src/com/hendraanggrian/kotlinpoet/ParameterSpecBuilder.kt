@@ -13,7 +13,7 @@ import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
-inline fun VariableElement.toParameterSpec(): ParameterSpec = ParameterSpec.get(this)
+inline fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(this)
 
 /**
  * Builds new [ParameterSpec] from [TypeName],

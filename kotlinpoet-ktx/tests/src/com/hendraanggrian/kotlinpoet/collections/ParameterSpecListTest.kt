@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
+import com.example.Parameter1
+import com.example.Parameter2
+import com.example.Parameter3
+import com.example.Parameter4
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.internal.Parameter1
-import com.hendraanggrian.kotlinpoet.internal.Parameter2
-import com.hendraanggrian.kotlinpoet.internal.Parameter3
-import com.hendraanggrian.kotlinpoet.internal.Parameter4
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test

@@ -1,10 +1,10 @@
 package com.hendraanggrian.kotlinpoet.collections
 
+import com.example.Property1
+import com.example.Property2
+import com.example.Property3
+import com.example.Property4
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.kotlinpoet.internal.Property1
-import com.hendraanggrian.kotlinpoet.internal.Property2
-import com.hendraanggrian.kotlinpoet.internal.Property3
-import com.hendraanggrian.kotlinpoet.internal.Property4
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.asTypeName
 import kotlin.test.Test
