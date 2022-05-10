@@ -15,33 +15,33 @@ class TypeVariableNameCollection internal constructor(actualCollection: MutableC
     MutableCollection<TypeVariableName> by actualCollection {
 
     /** Add a [TypeVariableName] without bounds. */
-    fun add(name: String, variance: KModifier? = null): Boolean = add(name.genericsBy(variance))
+    fun add(name: String, variance: KModifier? = null): TypeVariableName = name.genericsBy(variance).also(::add)
 
     /** Returns a [TypeVariableName] with [TypeName] bounds. */
-    fun add(name: String, vararg bounds: TypeName, variance: KModifier? = null): Boolean =
-        add(name.genericsBy(*bounds, variance = variance))
+    fun add(name: String, vararg bounds: TypeName, variance: KModifier? = null): TypeVariableName =
+        name.genericsBy(*bounds, variance = variance).also(::add)
 
     /** Returns a [TypeVariableName] with [Type] bounds. */
-    fun add(name: String, vararg bounds: Type, variance: KModifier? = null): Boolean =
-        add(name.genericsBy(*bounds, variance = variance))
+    fun add(name: String, vararg bounds: Type, variance: KModifier? = null): TypeVariableName =
+        name.genericsBy(*bounds, variance = variance).also(::add)
 
     /** Returns a [TypeVariableName] with [KClass] bounds. */
-    fun add(name: String, vararg bounds: KClass<*>, variance: KModifier? = null): Boolean =
-        add(name.genericsBy(*bounds, variance = variance))
+    fun add(name: String, vararg bounds: KClass<*>, variance: KModifier? = null): TypeVariableName =
+        name.genericsBy(*bounds, variance = variance).also(::add)
 
     /** Returns a [TypeVariableName] with collection of [TypeName] bounds. */
-    fun add(name: String, bounds: List<TypeName>, variance: KModifier? = null): Boolean =
-        add(name.genericsBy(bounds, variance))
+    fun add(name: String, bounds: List<TypeName>, variance: KModifier? = null): TypeVariableName =
+        name.genericsBy(bounds, variance).also(::add)
 
     /** Returns a [TypeVariableName] with collection of [Type] bounds. */
     @JvmName("addWithTypes")
-    fun add(name: String, bounds: Iterable<Type>, variance: KModifier? = null): Boolean =
-        add(name.genericsBy(bounds, variance))
+    fun add(name: String, bounds: Iterable<Type>, variance: KModifier? = null): TypeVariableName =
+        name.genericsBy(bounds, variance).also(::add)
 
     /** Returns a [TypeVariableName] with collection of [KClass] bounds. */
     @JvmName("addWithClasses")
-    fun add(name: String, bounds: Iterable<KClass<*>>, variance: KModifier? = null): Boolean =
-        add(name.genericsBy(bounds, variance))
+    fun add(name: String, bounds: Iterable<KClass<*>>, variance: KModifier? = null): TypeVariableName =
+        name.genericsBy(bounds, variance).also(::add)
 
     /** Convenient method to add type variable name with operator function. */
     inline operator fun plusAssign(name: String) {

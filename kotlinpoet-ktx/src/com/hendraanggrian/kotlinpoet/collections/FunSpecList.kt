@@ -12,28 +12,30 @@ import com.squareup.kotlinpoet.FunSpec
 open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
-    fun add(name: String): Boolean = add(FunSpec.builder(name).build())
+    fun add(name: String): FunSpec = FunSpec.builder(name).build().also(::add)
 
     /** Add function from name with custom initialization [configuration]. */
-    fun add(name: String, configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildFunSpec(name, configuration))
+    fun add(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec =
+        buildFunSpec(name, configuration).also(::add)
 
     /** Add constructor function. */
-    fun addConstructor(): Boolean = add(FunSpec.constructorBuilder().build())
+    fun addConstructor(): FunSpec = FunSpec.constructorBuilder().build().also(::add)
 
     /** Add constructor function with custom initialization [configuration]. */
-    fun addConstructor(configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildConstructorFunSpec(configuration))
+    fun addConstructor(configuration: FunSpecBuilder.() -> Unit): FunSpec =
+        buildConstructorFunSpec(configuration).also(::add)
 
     /** Add getter function. */
-    fun addGetter(): Boolean = add(FunSpec.getterBuilder().build())
+    fun addGetter(): FunSpec = FunSpec.getterBuilder().build().also(::add)
 
     /** Add getter function with custom initialization [configuration]. */
-    fun addGetter(configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildGetterFunSpec(configuration))
+    fun addGetter(configuration: FunSpecBuilder.() -> Unit): FunSpec = buildGetterFunSpec(configuration).also(::add)
 
     /** Add setter function. */
-    fun addSetter(): Boolean = add(FunSpec.setterBuilder().build())
+    fun addSetter(): FunSpec = FunSpec.setterBuilder().build().also(::add)
 
     /** Add setter function with custom initialization [configuration]. */
-    fun addSetter(configuration: FunSpecBuilder.() -> Unit): Boolean = add(buildSetterFunSpec(configuration))
+    fun addSetter(configuration: FunSpecBuilder.() -> Unit): FunSpec = buildSetterFunSpec(configuration).also(::add)
 
     /** Convenient method to add function with operator function. */
     inline operator fun plusAssign(name: String) {
@@ -46,5 +48,5 @@ open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) : 
 class FunSpecListScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
 
     /** @see FunSpecList.add */
-    operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): Boolean = add(this, configuration)
+    operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): FunSpec = add(this, configuration)
 }

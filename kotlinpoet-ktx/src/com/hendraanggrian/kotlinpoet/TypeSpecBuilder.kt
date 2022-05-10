@@ -16,6 +16,7 @@ import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeName
@@ -204,6 +205,7 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
         }
 
     /** Set superclass to [type]. */
+    @DelicateKotlinPoetApi(DELICATE_JAVA)
     fun superclass(type: Type) {
         nativeBuilder.superclass(type)
     }

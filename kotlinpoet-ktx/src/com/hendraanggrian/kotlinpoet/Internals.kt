@@ -6,6 +6,10 @@ import com.squareup.kotlinpoet.CodeBlock
 @PublishedApi
 internal val EMPTY_CODEBLOCK: CodeBlock = CodeBlock.builder().build()
 
+internal const val DELICATE_JAVA = "Java reflection APIs don't give complete information on Kotlin types."
+internal const val DELICATE_MIRROR = "Mirror APIs don't give complete information on Kotlin types."
+internal const val DELICATE_ELEMENT = "Element APIs don't give complete information on Kotlin types."
+
 /** Field deprecation message. */
 internal const val NO_GETTER: String = "Property does not have a getter"
 

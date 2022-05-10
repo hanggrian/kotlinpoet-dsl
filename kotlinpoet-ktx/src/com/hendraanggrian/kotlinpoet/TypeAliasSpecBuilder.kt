@@ -6,6 +6,7 @@ import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeName
@@ -16,6 +17,7 @@ import kotlin.reflect.KClass
 fun typeAliasSpecOf(name: String, type: TypeName): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /** Builds new [TypeAliasSpec] from name and [Type]. */
+@DelicateKotlinPoetApi(DELICATE_JAVA)
 fun typeAliasSpecOf(name: String, type: Type): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
 
 /** Builds new [TypeAliasSpec] from name and [KClass]. */
@@ -39,6 +41,7 @@ fun buildTypeAliasSpec(
  * Builds new [TypeAliasSpec] from name and [Type],
  * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
+@DelicateKotlinPoetApi(DELICATE_JAVA)
 fun buildTypeAliasSpec(
     name: String,
     type: Type,

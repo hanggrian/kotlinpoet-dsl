@@ -1,10 +1,12 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder
+import com.hendraanggrian.kotlinpoet.DELICATE_JAVA
 import com.hendraanggrian.kotlinpoet.SpecMarker
 import com.hendraanggrian.kotlinpoet.buildAnnotationSpec
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import kotlin.reflect.KClass
 
 /** An [AnnotationSpecList] is responsible for managing a set of annotation instances. */
@@ -12,32 +14,34 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
     MutableList<AnnotationSpec> by actualList {
 
     /** Add annotation from [ClassName]. */
-    fun add(type: ClassName): Boolean = add(AnnotationSpec.builder(type).build())
+    fun add(type: ClassName): AnnotationSpec = AnnotationSpec.builder(type).build().also(::add)
 
     /** Add annotation from [ClassName] with custom initialization [configuration]. */
-    fun add(type: ClassName, configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
-        add(buildAnnotationSpec(type, configuration))
+    fun add(type: ClassName, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+        buildAnnotationSpec(type, configuration).also(::add)
 
     /** Add annotation from [Class]. */
-    fun add(type: Class<out Annotation>): Boolean = add(AnnotationSpec.builder(type).build())
+    @DelicateKotlinPoetApi(DELICATE_JAVA)
+    fun add(type: Class<out Annotation>): AnnotationSpec = AnnotationSpec.builder(type).build().also(::add)
 
     /** Add annotation from [Class] with custom initialization [configuration]. */
-    fun add(type: Class<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
-        add(buildAnnotationSpec(type, configuration))
+    @DelicateKotlinPoetApi(DELICATE_JAVA)
+    fun add(type: Class<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+        buildAnnotationSpec(type, configuration).also(::add)
 
     /** Add annotation from [KClass]. */
-    fun add(type: KClass<out Annotation>): Boolean = add(AnnotationSpec.builder(type).build())
+    fun add(type: KClass<out Annotation>): AnnotationSpec = AnnotationSpec.builder(type).build().also(::add)
 
     /** Add annotation from [KClass] with custom initialization [configuration]. */
-    fun add(type: KClass<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
-        add(buildAnnotationSpec(type, configuration))
+    fun add(type: KClass<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+        buildAnnotationSpec(type, configuration).also(::add)
 
     /** Add annotation from [T]. */
-    inline fun <reified T : Annotation> add(): Boolean = add(AnnotationSpec.builder(T::class).build())
+    inline fun <reified T : Annotation> add(): AnnotationSpec = AnnotationSpec.builder(T::class).build().also(::add)
 
     /** Add annotation from [T] with custom initialization [configuration]. */
-    inline fun <reified T : Annotation> add(noinline configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
-        add(buildAnnotationSpec<T>(configuration))
+    inline fun <reified T : Annotation> add(noinline configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+        buildAnnotationSpec<T>(configuration).also(::add)
 
     /** Convenient method to add annotation with operator function. */
     inline operator fun plusAssign(type: ClassName) {
@@ -45,6 +49,7 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
     }
 
     /** Convenient method to add annotation with operator function. */
+    @DelicateKotlinPoetApi(DELICATE_JAVA)
     inline operator fun plusAssign(type: Class<out Annotation>) {
         add(type)
     }
@@ -61,13 +66,15 @@ class AnnotationSpecListScope internal constructor(actualList: MutableList<Annot
     AnnotationSpecList(actualList) {
 
     /** @see AnnotationSpecList.add */
-    operator fun ClassName.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean = add(this, configuration)
-
-    /** @see AnnotationSpecList.add */
-    operator fun Class<out Annotation>.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
+    operator fun ClassName.invoke(configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         add(this, configuration)
 
     /** @see AnnotationSpecList.add */
-    operator fun KClass<out Annotation>.invoke(configuration: AnnotationSpecBuilder.() -> Unit): Boolean =
+    @DelicateKotlinPoetApi(DELICATE_JAVA)
+    operator fun Class<out Annotation>.invoke(configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
+        add(this, configuration)
+
+    /** @see AnnotationSpecList.add */
+    operator fun KClass<out Annotation>.invoke(configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
         add(this, configuration)
 }

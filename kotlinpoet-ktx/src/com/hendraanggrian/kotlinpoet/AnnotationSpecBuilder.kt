@@ -3,6 +3,7 @@ package com.hendraanggrian.kotlinpoet
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.ParameterizedTypeName
 import javax.lang.model.element.AnnotationMirror
 import kotlin.reflect.KClass
@@ -18,10 +19,12 @@ val ANNOTATION_SETPARAM: AnnotationSpec.UseSiteTarget = AnnotationSpec.UseSiteTa
 val ANNOTATION_DELEGATE: AnnotationSpec.UseSiteTarget = AnnotationSpec.UseSiteTarget.DELEGATE
 
 /** Converts [Annotation] to [AnnotationSpec]. */
+@DelicateKotlinPoetApi(DELICATE_JAVA)
 inline fun Annotation.asAnnotationSpec(includeDefaultValues: Boolean = false): AnnotationSpec =
     AnnotationSpec.get(this, includeDefaultValues)
 
 /** Converts [AnnotationMirror] to [AnnotationSpec]. */
+@DelicateKotlinPoetApi(DELICATE_MIRROR)
 inline fun AnnotationMirror.asAnnotationSpec(): AnnotationSpec = AnnotationSpec.get(this)
 
 /**
@@ -42,6 +45,7 @@ fun buildAnnotationSpec(type: ParameterizedTypeName, configuration: AnnotationSp
  * Builds new [AnnotationSpec] from [Class],
  * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
  */
+@DelicateKotlinPoetApi(DELICATE_JAVA)
 fun buildAnnotationSpec(type: Class<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec =
     AnnotationSpecBuilder(AnnotationSpec.builder(type)).apply(configuration).build()
 

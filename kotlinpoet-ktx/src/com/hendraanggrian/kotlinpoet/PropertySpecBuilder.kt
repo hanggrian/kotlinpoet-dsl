@@ -6,6 +6,7 @@ import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.hendraanggrian.kotlinpoet.collections.TypeVariableNameCollection
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.PropertySpec
@@ -172,6 +173,7 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
         }
 
     /** Set receiver to [type]. */
+    @DelicateKotlinPoetApi(DELICATE_JAVA)
     fun receiver(type: Type) {
         nativeBuilder.receiver(type)
     }

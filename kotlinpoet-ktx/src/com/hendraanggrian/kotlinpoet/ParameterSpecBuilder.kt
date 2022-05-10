@@ -5,6 +5,7 @@ import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.KdocContainer
 import com.hendraanggrian.kotlinpoet.collections.KdocContainerScope
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
@@ -13,6 +14,7 @@ import javax.lang.model.element.VariableElement
 import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
+@DelicateKotlinPoetApi(DELICATE_ELEMENT)
 inline fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(this)
 
 /**
