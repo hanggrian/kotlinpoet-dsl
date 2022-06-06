@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
@@ -14,54 +16,65 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
+import javax.lang.model.element.Modifier
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /**
  * Builds new [FunSpec] with name,
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
+inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
+}
 
 /**
  * Builds new constructor [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-fun buildConstructorFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpecBuilder(FunSpec.constructorBuilder()).apply(configuration).build()
+inline fun buildConstructorFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FunSpecBuilder(FunSpec.constructorBuilder()).apply(configuration).build()
+}
 
 /**
  * Builds new getter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-fun buildGetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpecBuilder(FunSpec.getterBuilder()).apply(configuration).build()
+inline fun buildGetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FunSpecBuilder(FunSpec.getterBuilder()).apply(configuration).build()
+}
 
 /**
  * Builds new setter [FunSpec],
  * by populating newly created [FunSpecBuilder] using provided [configuration].
  */
-fun buildSetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec =
-    FunSpecBuilder(FunSpec.setterBuilder()).apply(configuration).build()
+inline fun buildSetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FunSpecBuilder(FunSpec.setterBuilder()).apply(configuration).build()
+}
 
-/** Modify existing [FunSpec.Builder] using provided [configuration]. */
-fun FunSpec.Builder.edit(configuration: FunSpecBuilder.() -> Unit): FunSpec.Builder =
-    FunSpecBuilder(this).apply(configuration).nativeBuilder
+/**
+ * Property delegate for building new [FunSpec],
+ * by populating newly created [FunSpecBuilder] using provided [configuration].
+ */
+fun buildingFunSpec(configuration: FunSpecBuilder.() -> Unit): SpecLoader<FunSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildFunSpec(it, configuration) }
+}
 
 /**
  * Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecMarker
-class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : CodeBlockContainer {
-
-    /** Modifiers of this function. */
+@SpecDslMarker
+class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockContainer {
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
-
-    /** Tags variables of this function. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-
-    /** Originating elements of this function. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** Kdoc of this function. */
@@ -76,25 +89,38 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     }
 
     /** Configures kdoc of this function. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        KdocContainerScope(kdoc).configuration()
+    }
 
     /** Annotations of this function. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
+    }
 
     /** Add function modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
+    /** Add function JVM modifiers. */
+    fun jvmModifiers(modifiers: Iterable<Modifier>) {
+        nativeBuilder.jvmModifiers(modifiers)
+    }
+
     /** Type variables of this function. */
     val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this function. */
-    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit = typeVariables.configuration()
+    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        typeVariables.configuration()
+    }
 
     /** Set receiver to [TypeName] without kdoc. */
     var receiver: TypeName
@@ -187,8 +213,10 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
     val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    fun parameters(configuration: ParameterSpecListScope.() -> Unit): Unit =
+    fun parameters(configuration: ParameterSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         ParameterSpecListScope(parameters).configuration()
+    }
 
     /** Call this constructor with list of [CodeBlock] arguments. */
     fun callThisConstructor(args: Iterable<CodeBlock>) {
@@ -248,8 +276,7 @@ class FunSpecBuilder internal constructor(val nativeBuilder: FunSpec.Builder) : 
         nativeBuilder.addStatement(format, *args)
     }
 
-    /** Clear current code. */
-    fun clear() {
+    override fun clear() {
         nativeBuilder.clearBody()
     }
 

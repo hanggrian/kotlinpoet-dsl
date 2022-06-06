@@ -1,7 +1,10 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecListScope
+import com.hendraanggrian.kotlinpoet.collections.CodeBlockContainer
 import com.hendraanggrian.kotlinpoet.collections.FunSpecList
 import com.hendraanggrian.kotlinpoet.collections.FunSpecListScope
 import com.hendraanggrian.kotlinpoet.collections.PropertySpecList
@@ -12,6 +15,7 @@ import com.hendraanggrian.kotlinpoet.collections.TypeSpecList
 import com.hendraanggrian.kotlinpoet.collections.TypeSpecListScope
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.Import
@@ -19,42 +23,35 @@ import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeAliasSpec
 import com.squareup.kotlinpoet.TypeSpec
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
-fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(packageName, type)
+inline fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(packageName, type)
 
 /**
  * Builds a new [FileSpec],
  * by populating newly created [FileSpecBuilder] using provided [configuration].
  */
-fun buildFileSpec(packageName: String, fileName: String, configuration: FileSpecBuilder.() -> Unit): FileSpec =
-    FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
-
-/** Modify existing [FileSpec.Builder] using provided [configuration]. */
-fun FileSpec.Builder.edit(configuration: FileSpecBuilder.() -> Unit): FileSpec.Builder =
-    FileSpecBuilder(this).apply(configuration).nativeBuilder
+inline fun buildFileSpec(packageName: String, fileName: String, configuration: FileSpecBuilder.() -> Unit): FileSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
+}
 
 /**
  * Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecMarker
-class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) {
-
-    /** Package name of this file. */
+@SpecDslMarker
+class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockContainer {
     val packageName: String get() = nativeBuilder.packageName
-
-    /** Name of this file. */
     val name: String get() = nativeBuilder.name
-
-    /** Tags variables of this file. */
+    val isScript: Boolean get() = nativeBuilder.isScript
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-
-    /** Imports of this file. */
+    val defaultImports: MutableSet<String> get() = nativeBuilder.defaultImports
     val imports: List<Import> get() = nativeBuilder.imports
-
-    /** Members of this file. */
     val members: MutableList<Any> get() = nativeBuilder.members
 
     /** Annotations of this file. */
@@ -67,16 +64,18 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures annotations for this file. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
+    }
 
-    /** Add file comment like [String.format]. */
-    fun addComment(format: String, vararg args: Any) {
-        nativeBuilder.addComment(format, *args)
+    /** Adds a file-site comment. This is prefixed to the start of the file and different from [addBodyComment]. */
+    fun addFileComment(format: String, vararg args: Any) {
+        nativeBuilder.addFileComment(format, *args)
     }
 
     /** Clear file comment. */
-    fun clearComment() {
+    fun clearFileComment() {
         nativeBuilder.clearComment()
     }
 
@@ -92,7 +91,10 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures types for this file. */
-    fun types(configuration: TypeSpecListScope.() -> Unit): Unit = TypeSpecListScope(types).configuration()
+    fun types(configuration: TypeSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        TypeSpecListScope(types).configuration()
+    }
 
     /**
      * Functions of this file.
@@ -106,7 +108,10 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures functions for this file. */
-    fun functions(configuration: FunSpecListScope.() -> Unit): Unit = FunSpecListScope(functions).configuration()
+    fun functions(configuration: FunSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        FunSpecListScope(functions).configuration()
+    }
 
     /**
      * Properties of this file.
@@ -120,8 +125,10 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures properties for this file. */
-    fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
+    fun properties(configuration: PropertySpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         PropertySpecListScope(properties).configuration()
+    }
 
     /**
      * Type aliases of this file.
@@ -135,8 +142,10 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
     }
 
     /** Configures type aliases for this file. */
-    fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit): Unit =
+    fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeAliasSpecListScope(typeAliases).configuration()
+    }
 
     /** Add import. */
     fun addImport(constant: Enum<*>) {
@@ -198,6 +207,11 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
         nativeBuilder.addAliasedImport(member, `as`)
     }
 
+    /** Adds Kotlin's standard default package imports. */
+    fun addKotlinDefaultImports(includeJvm: Boolean = true, includeJs: Boolean = true) {
+        nativeBuilder.addKotlinDefaultImports(includeJvm, includeJs)
+    }
+
     /** Set indent text. */
     var indent: String
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
@@ -211,6 +225,43 @@ class FileSpecBuilder internal constructor(val nativeBuilder: FileSpec.Builder) 
         set(value) {
             indent = buildString { repeat(value) { append(' ') } }
         }
+
+    override fun append(format: String, vararg args: Any) {
+        nativeBuilder.addCode(format, *args)
+    }
+
+    override fun appendNamed(format: String, args: Map<String, *>) {
+        nativeBuilder.addNamedCode(format, args)
+    }
+
+    override fun append(code: CodeBlock) {
+        nativeBuilder.addCode(code)
+    }
+
+    /** Adds a comment to the body of this script file in the order that it was added. */
+    fun addBodyComment(format: String, vararg args: Any) {
+        nativeBuilder.addBodyComment(format, *args)
+    }
+
+    override fun beginControlFlow(format: String, vararg args: Any) {
+        nativeBuilder.beginControlFlow(format, *args)
+    }
+
+    override fun nextControlFlow(format: String, vararg args: Any) {
+        nativeBuilder.nextControlFlow(format, *args)
+    }
+
+    override fun endControlFlow() {
+        nativeBuilder.endControlFlow()
+    }
+
+    override fun appendLine(format: String, vararg args: Any) {
+        nativeBuilder.addStatement(format, *args)
+    }
+
+    override fun clear() {
+        nativeBuilder.clearBody()
+    }
 
     /** Returns native spec. */
     fun build(): FileSpec = nativeBuilder.build()

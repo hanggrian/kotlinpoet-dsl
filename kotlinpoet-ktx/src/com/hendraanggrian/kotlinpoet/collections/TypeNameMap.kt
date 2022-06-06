@@ -10,22 +10,40 @@ import kotlin.reflect.KClass
 class TypeNameMap internal constructor(actualMap: MutableMap<TypeName, CodeBlock?>) :
     MutableMap<TypeName, CodeBlock?> by actualMap {
 
-    /** Add type name from [Class]. */
+    /** Add type name without code. */
+    fun put(key: TypeName): CodeBlock? = put(key, null)
+
+    /** Add type name from [Class] with optional code. */
     fun put(key: Type, value: CodeBlock? = null): CodeBlock? = put(key.asTypeName(), value)
 
-    /** Add type name from [KClass]. */
+    /** Add type name from [KClass] with optional code. */
     fun put(key: KClass<*>, value: CodeBlock? = null): CodeBlock? = put(key.asTypeName(), value)
 
-    /** Add type name from [T]. */
-    inline fun <reified T> put(value: CodeBlock? = null): CodeBlock? = put(T::class.asTypeName(), value)
+    /** Add type name from [T] with optional code. */
+    inline fun <reified T> put(value: CodeBlock? = null): CodeBlock? = put(T::class, value)
 
     /** Convenient method to add type name with operator function. */
     inline operator fun set(name: Type, value: CodeBlock?) {
         put(name, value)
     }
 
-    /** Convenient method to add type variable name with operator function. */
+    /** Convenient method to add type name with operator function. */
     inline operator fun set(name: KClass<*>, value: CodeBlock?) {
         put(name, value)
+    }
+
+    /** Convenient method to add type name with operator function. */
+    inline operator fun plusAssign(name: TypeName) {
+        put(name)
+    }
+
+    /** Convenient method to add type name with operator function. */
+    inline operator fun plusAssign(name: Type) {
+        put(name)
+    }
+
+    /** Convenient method to add type name with operator function. */
+    inline operator fun plusAssign(name: KClass<*>) {
+        put(name)
     }
 }

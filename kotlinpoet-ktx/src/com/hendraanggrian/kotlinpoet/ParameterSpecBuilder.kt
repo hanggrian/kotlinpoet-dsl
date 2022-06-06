@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
@@ -11,6 +13,9 @@ import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import javax.lang.model.element.VariableElement
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
@@ -21,34 +26,43 @@ inline fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(
  * Builds new [ParameterSpec] from [TypeName],
  * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
-fun buildParameterSpec(
+inline fun buildParameterSpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+): ParameterSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+}
 
 /**
  * Builds new [ParameterSpec] from [Type],
  * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
-fun buildParameterSpec(
+inline fun buildParameterSpec(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+): ParameterSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+}
 
 /**
  * Builds new [ParameterSpec] from [KClass],
  * by populating newly created [ParameterSpecBuilder] using provided [configuration].
  */
-fun buildParameterSpec(
+inline fun buildParameterSpec(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+): ParameterSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+}
 
 /**
  * Builds new [ParameterSpec] from [T],
@@ -57,27 +71,59 @@ fun buildParameterSpec(
 inline fun <reified T> buildParameterSpec(
     name: String,
     vararg modifiers: KModifier,
-    noinline configuration: ParameterSpecBuilder.() -> Unit
-): ParameterSpec = buildParameterSpec(name, T::class, *modifiers, configuration = configuration)
+    configuration: ParameterSpecBuilder.() -> Unit
+): ParameterSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers)).apply(configuration).build()
+}
 
-/** Modify existing [ParameterSpec.Builder] using provided [configuration]. */
-fun ParameterSpec.Builder.edit(configuration: ParameterSpecBuilder.() -> Unit): ParameterSpec.Builder =
-    ParameterSpecBuilder(this).apply(configuration).nativeBuilder
+/**
+ * Property delegate for building new [ParameterSpec] from [TypeName],
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ */
+fun buildingParameterSpec(
+    type: TypeName,
+    vararg modifiers: KModifier,
+    configuration: ParameterSpecBuilder.() -> Unit
+): SpecLoader<ParameterSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildParameterSpec(it, type, *modifiers, configuration = configuration) }
+}
+
+/**
+ * Property delegate for building new [ParameterSpec] from [Type],
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ */
+fun buildingParameterSpec(
+    type: Type,
+    vararg modifiers: KModifier,
+    configuration: ParameterSpecBuilder.() -> Unit
+): SpecLoader<ParameterSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildParameterSpec(it, type, *modifiers, configuration = configuration) }
+}
+
+/**
+ * Property delegate for building new [ParameterSpec] from [KClass],
+ * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ */
+fun buildingParameterSpec(
+    type: KClass<*>,
+    vararg modifiers: KModifier,
+    configuration: ParameterSpecBuilder.() -> Unit
+): SpecLoader<ParameterSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildParameterSpec(it, type, *modifiers, configuration = configuration) }
+}
 
 /**
  * Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecMarker
-class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec.Builder) {
-
-    /** Kdoc of this parameter. */
+@SpecDslMarker
+class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     val actualKdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
-
-    /** Modifiers of this parameter. */
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
-
-    /** Tags variables of this parameter. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
 
     /** Kdoc of this parameter. */
@@ -92,14 +138,19 @@ class ParameterSpecBuilder internal constructor(val nativeBuilder: ParameterSpec
     }
 
     /** Configures kdoc of this parameter. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        KdocContainerScope(kdoc).configuration()
+    }
 
     /** Annotations of this parameter. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
+    }
 
     /** Add parameter modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {

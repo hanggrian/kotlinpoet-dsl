@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
@@ -13,40 +15,52 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /**
  * Builds new [PropertySpec] from [TypeName] supplying its name and modifiers,
  * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
-fun buildPropertySpec(
+inline fun buildPropertySpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
     configuration: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+): PropertySpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+}
 
 /**
  * Builds new [PropertySpec] from [Type] supplying its name and modifiers,
  * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
-fun buildPropertySpec(
+inline fun buildPropertySpec(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
     configuration: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+): PropertySpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+}
 
 /**
  * Builds new [PropertySpec] from [KClass] supplying its name and modifiers,
  * by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
-fun buildPropertySpec(
+inline fun buildPropertySpec(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
     configuration: PropertySpecBuilder.() -> Unit
-): PropertySpec = PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+): PropertySpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+}
 
 /**
  * Builds new [PropertySpec] from [T] supplying its name and modifiers,
@@ -55,27 +69,59 @@ fun buildPropertySpec(
 inline fun <reified T> buildPropertySpec(
     name: String,
     vararg modifiers: KModifier,
-    noinline configuration: PropertySpecBuilder.() -> Unit
-): PropertySpec = buildPropertySpec(name, T::class, *modifiers, configuration = configuration)
+    configuration: PropertySpecBuilder.() -> Unit
+): PropertySpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return PropertySpecBuilder(PropertySpec.builder(name, T::class, *modifiers)).apply(configuration).build()
+}
 
-/** Modify existing [PropertySpec.Builder] using provided [configuration]. */
-fun PropertySpec.Builder.edit(configuration: PropertySpecBuilder.() -> Unit): PropertySpec.Builder =
-    PropertySpecBuilder(this).apply(configuration).nativeBuilder
+/**
+ * Property delegate for building new [PropertySpec] from [TypeName] supplying its name and modifiers,
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ */
+fun buildingPropertySpec(
+    type: TypeName,
+    vararg modifiers: KModifier,
+    configuration: PropertySpecBuilder.() -> Unit
+): SpecLoader<PropertySpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildPropertySpec(it, type, *modifiers, configuration = configuration) }
+}
+
+/**
+ * Property delegate for building new [PropertySpec] from [Type] supplying its name and modifiers,
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ */
+fun buildingPropertySpec(
+    type: Type,
+    vararg modifiers: KModifier,
+    configuration: PropertySpecBuilder.() -> Unit
+): SpecLoader<PropertySpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildPropertySpec(it, type, *modifiers, configuration = configuration) }
+}
+
+/**
+ * Property delegate for building new [PropertySpec] from [KClass] supplying its name and modifiers,
+ * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ */
+fun buildingPropertySpec(
+    type: KClass<*>,
+    vararg modifiers: KModifier,
+    configuration: PropertySpecBuilder.() -> Unit
+): SpecLoader<PropertySpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildPropertySpec(it, type, *modifiers, configuration = configuration) }
+}
 
 /**
  * Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecMarker
-class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.Builder) {
-
-    /** Modifiers of this property. */
+@SpecDslMarker
+class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
-
-    /** Tags variables of this property. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-
-    /** Originating elements of this property. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     /** True to create a `var` instead of a `val`. */
@@ -97,14 +143,19 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
     }
 
     /** Configures kdoc of this property. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        KdocContainerScope(kdoc).configuration()
+    }
 
     /** Annotations of this property. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this property. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
+    }
 
     /** Add property modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -115,7 +166,10 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
     val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this property. */
-    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit = typeVariables.configuration()
+    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        typeVariables.configuration()
+    }
 
     /** Initialize field value like [String.format]. */
     fun initializer(format: String, vararg args: Any) {
@@ -150,6 +204,7 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
 
     /** Set getter function with custom initialization [configuration]. */
     fun getter(configuration: FunSpecBuilder.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         getter = buildGetterFunSpec(configuration)
     }
 
@@ -162,6 +217,7 @@ class PropertySpecBuilder internal constructor(val nativeBuilder: PropertySpec.B
 
     /** Set setter function with custom initialization [configuration]. */
     fun setter(configuration: FunSpecBuilder.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         setter = buildSetterFunSpec(configuration)
     }
 

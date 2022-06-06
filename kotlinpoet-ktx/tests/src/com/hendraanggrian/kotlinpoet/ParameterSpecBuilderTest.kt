@@ -3,7 +3,6 @@ package com.hendraanggrian.kotlinpoet
 import com.example.Annotation1
 import com.example.Property1
 import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -29,10 +28,8 @@ class ParameterSpecBuilderTest {
     @Test
     fun addModifiers() {
         assertEquals(
-            buildParameterSpec<Property1>("parameter1") { addModifiers(PUBLIC, FINAL, CONST) },
-            ParameterSpec.builder("parameter1", Property1::class)
-                .addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST)
-                .build()
+            buildParameterSpec<Property1>("parameter1") { addModifiers(VARARG) },
+            ParameterSpec.builder("parameter1", Property1::class).addModifiers(VARARG).build()
         )
     }
 

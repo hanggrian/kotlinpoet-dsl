@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.SpecMarker
+import com.hendraanggrian.kotlinpoet.SpecDslMarker
 import com.squareup.kotlinpoet.CodeBlock
 
 interface CodeBlockAppendable {
@@ -56,6 +56,9 @@ interface CodeBlockContainer : CodeBlockAppendable {
      * @see CodeBlock.Builder.endControlFlow
      */
     fun endControlFlow()
+
+    /** Remove all code lines in this container. */
+    fun clear()
 }
 
 /** A [KdocContainer] is responsible for managing a set of code instances. */
@@ -90,5 +93,5 @@ interface KdocContainer : CodeBlockAppendable {
 }
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
-@SpecMarker
+@SpecDslMarker
 class KdocContainerScope internal constructor(container: KdocContainer) : KdocContainer by container

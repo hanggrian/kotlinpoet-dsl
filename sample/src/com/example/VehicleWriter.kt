@@ -23,15 +23,6 @@ class VehicleWriter {
     }
 
     fun prepare() {
-        buildFileSpec(PACKAGE_NAME, "Asd") {
-            types.addClass("Asd") {
-                properties.add<String>("hoho") {
-                    getter {
-                        appendLine("return %S", "hehe")
-                    }
-                }
-            }
-        }.writeTo(Paths.get("example/src"))
         buildFileSpec(PACKAGE_NAME, "Vehicle") {
             types.addInterface("Vehicle") {
                 functions {
@@ -51,7 +42,7 @@ class VehicleWriter {
     fun write(name: String, wheelCount: Int) {
         buildFileSpec(PACKAGE_NAME, name) {
             types.addClass(name) {
-                superinterfaces[VEHICLE_NAME] = null
+                superinterfaces.put(VEHICLE_NAME)
                 functions {
                     "getName" {
                         addModifiers(KModifier.OVERRIDE)

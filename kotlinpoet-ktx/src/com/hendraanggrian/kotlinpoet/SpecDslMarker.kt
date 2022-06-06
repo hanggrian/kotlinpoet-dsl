@@ -6,4 +6,4 @@ package com.hendraanggrian.kotlinpoet
  */
 @DslMarker
 @Target(AnnotationTarget.CLASS)
-annotation class SpecMarker
+annotation class SpecDslMarker

@@ -7,19 +7,19 @@ import kotlin.test.assertEquals
 class FileSpecTest {
 
     @Test
-    fun comments() {
+    fun fileComments() {
         assertEquals(
             FileSpec.builder("com.example", "MyClass")
-                .addComment("A ")
-                .addComment("very ")
-                .addComment("long ")
-                .addComment("comment")
+                .addFileComment("A ")
+                .addFileComment("very ")
+                .addFileComment("long ")
+                .addFileComment("comment")
                 .build(),
             buildFileSpec("com.example", "MyClass") {
-                addComment("A ")
-                addComment("very ")
-                addComment("long ")
-                addComment("comment")
+                addFileComment("A ")
+                addFileComment("very ")
+                addFileComment("long ")
+                addFileComment("comment")
             }
         )
     }

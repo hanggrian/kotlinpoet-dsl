@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.AnnotationSpecList
@@ -23,134 +25,214 @@ import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import java.lang.reflect.Type
 import javax.lang.model.element.Element
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /**
  * Builds new class [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildClassTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(configuration).build()
+inline fun buildClassTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new class [TypeSpec] from [ClassName],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildClassTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(configuration).build()
+inline fun buildClassTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.classBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new expect class [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildExpectClassTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(configuration).build()
+inline fun buildExpectClassTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new expect class [TypeSpec] from [ClassName],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildExpectClassTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(configuration).build()
+inline fun buildExpectClassTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.expectClassBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new object [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildObjectTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(configuration).build()
+inline fun buildObjectTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new object [TypeSpec] from [ClassName],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildObjectTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(configuration).build()
+inline fun buildObjectTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.objectBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new object [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildCompanionObjectTypeSpec(type: String? = null, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.companionObjectBuilder(type)).apply(configuration).build()
+inline fun buildCompanionObjectTypeSpec(type: String? = null, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.companionObjectBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new interface [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildInterfaceTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(configuration).build()
+inline fun buildInterfaceTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new interface [TypeSpec] from [ClassName],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildInterfaceTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(configuration).build()
+inline fun buildInterfaceTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.interfaceBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new enum [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildEnumTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(configuration).build()
+inline fun buildEnumTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new enum [TypeSpec] from [ClassName],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildEnumTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(configuration).build()
+inline fun buildEnumTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.enumBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new anonymous [TypeSpec],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildAnonymousTypeSpec(configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.anonymousClassBuilder()).apply(configuration).build()
+inline fun buildAnonymousTypeSpec(configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.anonymousClassBuilder()).apply(configuration).build()
+}
 
 /**
  * Builds new annotation [TypeSpec] from name,
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildAnnotationTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(configuration).build()
+inline fun buildAnnotationTypeSpec(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(configuration).build()
+}
 
 /**
  * Builds new annotation [TypeSpec] from [ClassName],
  * by populating newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildAnnotationTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-    TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(configuration).build()
+inline fun buildAnnotationTypeSpec(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return TypeSpecBuilder(TypeSpec.annotationBuilder(type)).apply(configuration).build()
+}
 
-/** Modify existing [TypeSpec.Builder] using provided [configuration]. */
-fun TypeSpec.Builder.edit(configuration: TypeSpecBuilder.() -> Unit): TypeSpec.Builder =
-    TypeSpecBuilder(this).apply(configuration).nativeBuilder
+/**
+ * Property delegate for building new class [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingClassTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildClassTypeSpec(it, configuration) }
+}
+
+/**
+ * Property delegate for building new expect class [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingExpectClassTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildExpectClassTypeSpec(it, configuration) }
+}
+
+/**
+ * Property delegate for building new object [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingObjectTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildObjectTypeSpec(it, configuration) }
+}
+
+/**
+ * Property delegate for building new companion object [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingCompanionObjectTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildCompanionObjectTypeSpec(it, configuration) }
+}
+
+/**
+ * Property delegate for building new interface [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingInterfaceTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildInterfaceTypeSpec(it, configuration) }
+}
+
+/**
+ * Property delegate for building new enum [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingEnumTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildEnumTypeSpec(it, configuration) }
+}
+
+/**
+ * Property delegate for building new annotation [TypeSpec] from [ClassName],
+ * by populating newly created [TypeSpecBuilder] using provided [configuration].
+ */
+fun buildingAnnotationTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return createSpecLoader { buildAnnotationTypeSpec(it, configuration) }
+}
 
 /**
  * Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecMarker
-class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) {
-
-    /** Initializer index of this type. */
+@SpecDslMarker
+class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     var initializerIndex: Int
         get() = nativeBuilder.initializerIndex
         set(value) {
             nativeBuilder.initializerIndex = value
         }
-
-    /** Tags variables of this type. */
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-
-    /** Originating elements of this type. */
     val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
-
-    /** Modifiers of this type. */
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
-
-    /** Super class constructor parameters of this type. */
     val superclassConstructorParameters: MutableList<CodeBlock> get() = nativeBuilder.superclassConstructorParameters
 
     /** Kdoc of this type. */
@@ -165,14 +247,19 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     }
 
     /** Configures kdoc of this type. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit): Unit = KdocContainerScope(kdoc).configuration()
+    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        KdocContainerScope(kdoc).configuration()
+    }
 
     /** Annotations of this type. */
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotationSpecs)
 
     /** Configures annotations of this type. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit): Unit =
+    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
+    }
 
     /** Add type modifiers. */
     fun addModifiers(vararg modifiers: KModifier) {
@@ -183,7 +270,10 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this type. */
-    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit): Unit = typeVariables.configuration()
+    fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        typeVariables.configuration()
+    }
 
     /** Set primary constructor to type. */
     var primaryConstructor: FunSpec?
@@ -194,6 +284,7 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
 
     /** Set primary constructor to type with [configuration]. */
     fun primaryConstructor(configuration: FunSpecBuilder.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         primaryConstructor = buildConstructorFunSpec(configuration)
     }
 
@@ -232,21 +323,28 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     val superinterfaces: TypeNameMap = TypeNameMap(nativeBuilder.superinterfaces)
 
     /** Configures super interfaces of this type. */
-    fun superinterfaces(configuration: TypeNameMap.() -> Unit): Unit = superinterfaces.configuration()
+    fun superinterfaces(configuration: TypeNameMap.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        superinterfaces.configuration()
+    }
 
     /** Enum constants of this type. */
     val enumConstants: EnumConstantMap = EnumConstantMap(nativeBuilder.enumConstants)
 
     /** Configures enum constants of this type. */
-    fun enumConstants(configuration: EnumConstantMapScope.() -> Unit): Unit =
+    fun enumConstants(configuration: EnumConstantMapScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         EnumConstantMapScope(enumConstants).configuration()
+    }
 
     /** Properties of this type. */
     val properties: PropertySpecList = PropertySpecList(nativeBuilder.propertySpecs)
 
     /** Configures properties of this type. */
-    fun properties(configuration: PropertySpecListScope.() -> Unit): Unit =
+    fun properties(configuration: PropertySpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         PropertySpecListScope(properties).configuration()
+    }
 
     /** Add initializer block from [CodeBlock]. */
     fun addInitializerBlock(code: CodeBlock) {
@@ -262,13 +360,19 @@ class TypeSpecBuilder internal constructor(val nativeBuilder: TypeSpec.Builder) 
     val functions: FunSpecList = FunSpecList(nativeBuilder.funSpecs)
 
     /** Configures functions of this type. */
-    fun functions(configuration: FunSpecListScope.() -> Unit): Unit = FunSpecListScope(functions).configuration()
+    fun functions(configuration: FunSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        FunSpecListScope(functions).configuration()
+    }
 
     /** Types of this type. */
     val types: TypeSpecList = TypeSpecList(nativeBuilder.typeSpecs)
 
     /** Configures types of this type. */
-    fun types(configuration: TypeSpecListScope.() -> Unit): Unit = TypeSpecListScope(types).configuration()
+    fun types(configuration: TypeSpecListScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        TypeSpecListScope(types).configuration()
+    }
 
     /** Returns native spec. */
     fun build(): TypeSpec = nativeBuilder.build()

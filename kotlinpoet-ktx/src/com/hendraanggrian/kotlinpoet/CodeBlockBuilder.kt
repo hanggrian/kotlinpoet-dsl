@@ -1,7 +1,12 @@
+@file:OptIn(ExperimentalContracts::class)
+
 package com.hendraanggrian.kotlinpoet
 
 import com.hendraanggrian.kotlinpoet.collections.CodeBlockContainer
 import com.squareup.kotlinpoet.CodeBlock
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
 
 /**
  * Converts string to [CodeBlock] using formatted [args].
@@ -13,19 +18,17 @@ inline fun codeBlockOf(format: String, vararg args: Any?): CodeBlock = CodeBlock
  * Builds new [CodeBlock],
  * by populating newly created [CodeBlockBuilder] using provided [configuration].
  */
-fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock =
-    CodeBlockBuilder(CodeBlock.builder()).apply(configuration).build()
-
-/** Modify existing [CodeBlock.Builder] using provided [configuration]. */
-fun CodeBlock.Builder.edit(configuration: CodeBlockBuilder.() -> Unit): CodeBlock.Builder =
-    CodeBlockBuilder(this).apply(configuration).nativeBuilder
+inline fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return CodeBlockBuilder(CodeBlock.builder()).apply(configuration).build()
+}
 
 /**
  * Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecMarker
-class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer {
+@SpecDslMarker
+class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer {
 
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()
@@ -85,8 +88,7 @@ class CodeBlockBuilder internal constructor(val nativeBuilder: CodeBlock.Builder
         repeat(level) { unindent() }
     }
 
-    /** Clear current code. */
-    fun clear() {
+    override fun clear() {
         nativeBuilder.clear()
     }
 
