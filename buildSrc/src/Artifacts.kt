@@ -17,5 +17,5 @@ fun Dependencies.squareup(module: String, version: String) = "com.squareup:$modu
 val Dependencies.minimal get() = "com.hendraanggrian.pages:minimal:0.1"
 val Plugins.minimal get() = id("com.hendraanggrian.pages.minimal")
 
-val Dependencies.`git-publish` get() = "org.ajoberstar.git-publish:gradle-git-publish:4.1.0"
+val Dependencies.`git-publish` get() = "org.ajoberstar.git-publish:gradle-git-publish:3.0.1"
 val Plugins.`git-publish` get() = id("org.ajoberstar.git-publish")

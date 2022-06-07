@@ -50,7 +50,7 @@ fun Project.ktlint(vararg rulesets: Any) {
             classpath = ktlint.get()
             mainClass.set("com.pinterest.ktlint.Main")
             args("-F", "src/**/*.kt")
-            jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
+            // jvmArgs("--add-opens", "java.base/java.lang=ALL-UNNAMED")
         }
     }
 }

@@ -1,9 +1,10 @@
-[![version](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-ktx)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-ktx)
-[![build](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-ktx)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-ktx)
-[![analysis](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081)](https://ktlint.github.io)
+[![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl)
+[![Travis CI](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl)
+[![OpenJDK](https://img.shields.io/badge/JDK-1.8+-orange)](https://openjdk.java.net/projects/jdk8)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-ff4081)](https://ktlint.github.io)
 
-KotlinPoet KTX
-==============
+KotlinPoet DSL Primer
+=====================
 
 Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet),
 providing Kotlin DSL functionality and other convenient solutions.
@@ -36,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    implementation "com.hendraanggrian:kotlinpoet-ktx:$version"
+    implementation "com.hendraanggrian:kotlinpoet-dsl:$version"
 }
 ```
 

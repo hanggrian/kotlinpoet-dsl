@@ -7,9 +7,9 @@ application {
     mainClass.set("com.example.VehicleWriter")
 }
 
-sourceSets {
-    main {
-        java.srcDir("src")
+kotlin {
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(8))
     }
 }
 
