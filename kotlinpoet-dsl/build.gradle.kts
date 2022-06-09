@@ -1,22 +1,17 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-group = RELEASE_GROUP
-version = RELEASE_VERSION
-
 plugins {
     kotlin("jvm")
     dokka
-    `maven-publish`
-    signing
+    spotless
+    `gradle-maven-publish`
 }
 
-kotlin {
-    jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(8))
-    }
+mavenPublishing {
+    configure(
+        com.vanniktech.maven.publish.JavaLibrary(
+            com.vanniktech.maven.publish.JavadocJar.Dokka("dokkaJavadoc")
+        )
+    )
 }
-
-ktlint()
 
 dependencies {
     api(kotlin("stdlib", VERSION_KOTLIN))
@@ -26,12 +21,7 @@ dependencies {
 }
 
 tasks {
-    withType<KotlinCompile> {
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
-    dokkaHtml {
-        outputDirectory.set(buildDir.resolve("dokka/dokka"))
-    }
 }
-
-mavenPublishJvm()
