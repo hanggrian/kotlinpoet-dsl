@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.ParameterSpecBuilder
 import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.ParameterSpecBuilder
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.buildParameterSpec
 import com.hendraanggrian.kotlinpoet.createSpecLoader
