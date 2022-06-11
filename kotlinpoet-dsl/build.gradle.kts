@@ -1,27 +1,21 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+
 plugins {
     kotlin("jvm")
-    dokka
-    spotless
-    `gradle-maven-publish`
+    id("org.jetbrains.dokka")
+    id("com.diffplug.spotless")
+    id("com.vanniktech.maven.publish.base")
 }
 
-mavenPublishing {
-    configure(
-        com.vanniktech.maven.publish.JavaLibrary(
-            com.vanniktech.maven.publish.JavadocJar.Dokka("dokkaJavadoc")
-        )
-    )
-}
+mavenPublishing.configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
 
 dependencies {
-    api(kotlin("stdlib", VERSION_KOTLIN))
-    api(squareup("kotlinpoet", VERSION_KOTLINPOET))
-    testImplementation(kotlin("test-junit", VERSION_KOTLIN))
-    testImplementation(google("truth", version = VERSION_TRUTH))
+    api(libs.kotlinpoet)
+    testImplementation(testLibs.kotlin.junit)
+    testImplementation(testLibs.truth)
 }
 
-tasks {
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
-    }
+tasks.compileKotlin {
+    kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
 }

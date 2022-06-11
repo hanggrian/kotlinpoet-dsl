@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.SpecDslMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.TypeSpecBuilder
 import com.hendraanggrian.kotlinpoet.buildAnonymousTypeSpec
@@ -101,7 +101,7 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
 }
 
 /** Receiver for the `enumConstants` block providing an extended set of operators for the configuration. */
-@SpecDslMarker
+@KotlinpoetSpecMarker
 class EnumConstantMapScope internal constructor(actualMap: MutableMap<String, TypeSpec>) : EnumConstantMap(actualMap) {
 
     /** @see EnumConstantMap.put */

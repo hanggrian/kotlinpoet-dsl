@@ -118,7 +118,7 @@ fun buildingPropertySpec(
  * Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecDslMarker
+@KotlinpoetSpecMarker
 class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags

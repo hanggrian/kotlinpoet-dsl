@@ -120,7 +120,7 @@ fun buildingParameterSpec(
  * Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecDslMarker
+@KotlinpoetSpecMarker
 class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     val actualKdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers

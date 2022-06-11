@@ -1,6 +1,6 @@
 plugins {
-    pages
-    `git-publish`
+    id("com.hendraanggrian.pages")
+    id("org.ajoberstar.git-publish")
 }
 
 pages {

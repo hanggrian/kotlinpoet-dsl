@@ -115,7 +115,7 @@ fun buildingTypeAliasSpec(type: KClass<*>, configuration: TypeAliasSpecBuilder.(
  * Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@SpecDslMarker
+@KotlinpoetSpecMarker
 class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
