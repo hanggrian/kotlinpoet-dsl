@@ -1,10 +1,8 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl)
 [![Travis CI](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl)
-[![OpenJDK](https://img.shields.io/badge/JDK-1.8+-orange)](https://openjdk.java.net/projects/jdk8)
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-ff4081)](https://ktlint.github.io)
+[![OpenJDK](https://img.shields.io/badge/JDK-1.8+-informational)](https://openjdk.java.net/projects/jdk8)
 
-KotlinPoet DSL Primer
-=====================
+# KotlinPoet DSL Primer
 
 Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet),
 providing Kotlin DSL functionality and other convenient solutions.
@@ -29,14 +27,12 @@ buildFileSpec("com.example.helloworld", "HelloWorld") {
 }.writeTo(System.out)
 ```
 
-Download
---------
+## Download
 
 ```gradle
 repositories {
     mavenCentral()
 }
-
 dependencies {
     implementation "com.hendraanggrian:kotlinpoet-dsl:$version"
 }
@@ -44,8 +40,7 @@ dependencies {
 
 Snapshots of the development version are available in [Sonatype's snapshots repository](https://s01.oss.sonatype.org/content/repositories/snapshots).
 
-Usage
------
+## Usage
 
 ### Use `T::class` as parameters
 
