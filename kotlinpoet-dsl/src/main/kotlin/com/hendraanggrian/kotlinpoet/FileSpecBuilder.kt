@@ -44,7 +44,7 @@ inline fun buildFileSpec(packageName: String, fileName: String, configuration: F
  * Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockContainer {
     val packageName: String get() = nativeBuilder.packageName
     val name: String get() = nativeBuilder.name

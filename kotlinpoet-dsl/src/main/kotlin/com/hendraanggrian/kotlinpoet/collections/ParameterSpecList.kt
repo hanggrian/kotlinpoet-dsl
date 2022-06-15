@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.hendraanggrian.kotlinpoet.ParameterSpecBuilder
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.buildParameterSpec
@@ -137,7 +137,7 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
 }
 
 /** Receiver for the `parameters` block providing an extended set of operators for the configuration. */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class ParameterSpecListScope internal constructor(actualList: MutableList<ParameterSpec>) :
     ParameterSpecList(actualList) {
 

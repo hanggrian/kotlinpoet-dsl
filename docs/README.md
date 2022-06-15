@@ -1,5 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl)
 [![Travis CI](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl)
+[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/kotlinpoet-dsl)](https://app.codecov.io/gh/hendraanggrian/kotlinpoet-dsl/)
 [![OpenJDK](https://img.shields.io/badge/JDK-1.8+-informational)](https://openjdk.java.net/projects/jdk8)
 
 # KotlinPoet DSL Primer

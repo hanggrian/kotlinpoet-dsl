@@ -27,7 +27,7 @@ inline fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock
  * Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer {
 
     /** Returns true if this builder contains no code. */

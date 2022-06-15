@@ -223,7 +223,7 @@ fun buildingAnnotationTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecL
  * Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     var initializerIndex: Int
         get() = nativeBuilder.initializerIndex

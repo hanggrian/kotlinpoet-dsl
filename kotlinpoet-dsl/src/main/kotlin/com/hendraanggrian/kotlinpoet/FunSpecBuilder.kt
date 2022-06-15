@@ -71,7 +71,7 @@ fun buildingFunSpec(configuration: FunSpecBuilder.() -> Unit): SpecLoader<FunSpe
  * Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockContainer {
     val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
     val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags

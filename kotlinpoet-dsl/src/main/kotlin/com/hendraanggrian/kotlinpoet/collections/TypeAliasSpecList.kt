@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.DELICATE_JAVA
-import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.TypeAliasSpecBuilder
 import com.hendraanggrian.kotlinpoet.buildTypeAliasSpec
@@ -105,7 +105,7 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
 }
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class TypeAliasSpecListScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
     TypeAliasSpecList(actualList) {
 

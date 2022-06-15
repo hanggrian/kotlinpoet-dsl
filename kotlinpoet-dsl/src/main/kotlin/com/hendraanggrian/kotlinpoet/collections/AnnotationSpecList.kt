@@ -2,7 +2,7 @@ package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.AnnotationSpecBuilder
 import com.hendraanggrian.kotlinpoet.DELICATE_JAVA
-import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.hendraanggrian.kotlinpoet.buildAnnotationSpec
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
@@ -73,6 +73,6 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
 }
 
 /** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class AnnotationSpecListScope internal constructor(actualList: MutableList<AnnotationSpec>) :
     AnnotationSpecList(actualList)

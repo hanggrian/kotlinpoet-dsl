@@ -1,7 +1,7 @@
 package com.hendraanggrian.kotlinpoet.collections
 
 import com.hendraanggrian.kotlinpoet.FunSpecBuilder
-import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.buildConstructorFunSpec
 import com.hendraanggrian.kotlinpoet.buildFunSpec
@@ -69,7 +69,7 @@ open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) : 
 }
 
 /** Receiver for the `functions` block providing an extended set of operators for the configuration. */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class FunSpecListScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
 
     /** @see FunSpecList.add */

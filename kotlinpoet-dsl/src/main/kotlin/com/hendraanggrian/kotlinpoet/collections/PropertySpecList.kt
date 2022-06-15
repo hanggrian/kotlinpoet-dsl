@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.hendraanggrian.kotlinpoet.PropertySpecBuilder
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.buildPropertySpec
@@ -137,7 +137,7 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
 }
 
 /** Receiver for the `properties` block providing an extended set of operators for the configuration. */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class PropertySpecListScope internal constructor(actualList: MutableList<PropertySpec>) : PropertySpecList(actualList) {
 
     /** @see PropertySpecList.add */

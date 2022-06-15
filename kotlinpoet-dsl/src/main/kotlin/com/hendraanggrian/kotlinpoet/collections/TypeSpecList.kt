@@ -1,6 +1,6 @@
 package com.hendraanggrian.kotlinpoet.collections
 
-import com.hendraanggrian.kotlinpoet.KotlinpoetSpecMarker
+import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.hendraanggrian.kotlinpoet.SpecLoader
 import com.hendraanggrian.kotlinpoet.TypeSpecBuilder
 import com.hendraanggrian.kotlinpoet.buildAnnotationTypeSpec
@@ -213,5 +213,5 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
 }
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class TypeSpecListScope internal constructor(actualList: MutableList<TypeSpec>) : TypeSpecList(actualList)

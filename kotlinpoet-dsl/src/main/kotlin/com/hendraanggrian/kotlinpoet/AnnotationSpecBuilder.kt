@@ -96,7 +96,7 @@ inline fun <reified T : Annotation> buildAnnotationSpec(
  * Wrapper of [AnnotationSpec.Builder], providing DSL support as a replacement to Java builder.
  * @param nativeBuilder source builder.
  */
-@KotlinpoetSpecMarker
+@KotlinpoetSpecDsl
 class AnnotationSpecBuilder(private val nativeBuilder: AnnotationSpec.Builder) {
     val members: MutableList<CodeBlock> get() = nativeBuilder.members
     val tags: MutableMap<KClass<*>, Any> get() = nativeBuilder.tags
