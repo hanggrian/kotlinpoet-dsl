@@ -1,13 +1,18 @@
-<html>
+<!doctype html>
+<html lang="en-us">
     <head>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <meta content="chrome=1" http-equiv="X-UA-Compatible">
-        <title>kotlinpoet-dsl by Hendra Anggrian</title>
-        <link href="styles/main.css" rel="stylesheet">
-        <link href="styles/pygment_trac.css" rel="stylesheet">
+        <title>kotlinpoet-dsl</title>
         <meta content="width=device-width" name="viewport">
-        <script src="scripts/theme.js"></script>
+        <meta content="chrome=1" http-equiv="X-UA-Compatible">
+        <link href="styles/main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+        <link href="styles/prism-tomorrow.min.css" rel="stylesheet">
+        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
+        <!--Primary meta tags-->
+        <meta content="kotlinpoet-dsl" name="title">
+        <meta content="KotlinPoet Kotlin extension" name="description">
     </head>
     <body>
         <div class="wrapper">
@@ -15,7 +20,7 @@
                 <h1>kotlinpoet-dsl</h1>
                 <p>KotlinPoet Kotlin extension</p>
                 <p class="view">
-                    <a href="https://github.com/hendraanggrian/kotlinpoet-dsl">View the Project on GitHub <small>hendraanggrian/kotlinpoet-dsl</small></a>
+                    <a href="https://github.com/hendraanggrian/kotlinpoet-dsl/">View the Project on GitHub <small>hendraanggrian/kotlinpoet-ds</small></a>
                 </p>
                 <ul>
                     <li>
@@ -25,31 +30,33 @@
             </header>
             <section>
                 <p>
-                    <a href="https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl"></a>
-<a href="https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl"></a>
+                    <a href="https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl"></a>
 <a href="https://app.codecov.io/gh/hendraanggrian/kotlinpoet-dsl/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/kotlinpoet-dsl"></a>
-<a href="https://openjdk.java.net/projects/jdk8"><img alt="OpenJDK" src="https://img.shields.io/badge/JDK-1.8+-informational"></a>
+<a href="https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl"></a>
+<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/kotlinpoet-dsl/"><img alt="Nexus Snapshot" src="https://img.shields.io/nexus/s/com.hendraanggrian/kotlinpoet-dsl?server=https%3A%2F%2Fs01.oss.sonatype.org"></a>
+<a href="https://openjdk.java.net/projects/jdk8/"><img alt="OpenJDK" src="https://img.shields.io/badge/jdk-1.8%2B-informational"></a>
                 </p>
-                
+
                 <h1>KotlinPoet DSL Primer</h1>
-                
+
                 <p>
                     Lightweight Kotlin extension of <a href="https://github.com/square/kotlinpoet">KotlinPoet</a>,
 providing Kotlin DSL functionality and other convenient solutions.
                 </p>
-                
+
                 <ul>
-                    
+
                     <li>Full of convenient methods to achieve minimum code writing possible.</li>
-                    
+
                     <li>
-                        Options to invoke DSL. For example, <code>methods.add("main") { ... }</code> is as good as <code>methods { "main" { ... } }</code>. Scroll down for more information.
+                        Options to invoke DSL. For example, <code>methods.add("main") { ... }</code> is as good as <code>methods { "main" { ... } }</code>.
+Scroll down for more information.
                     </li>
-                    
+
                     <li>Smooth transition, existing KotlinPoet native specs can still be configured with DSL.</li>
-                    
+
                 </ul>
-                
+
                 <pre><code class="language-kotlin">buildFileSpec("com.example.helloworld", "HelloWorld") {
     addClass("HelloWorld") {
         addModifiers(KModifier.PUBLIC, KModifier.FINAL)
@@ -64,31 +71,28 @@ providing Kotlin DSL functionality and other convenient solutions.
     }
 }.writeTo(System.out)
 </code></pre>
-                
+
                 <h2>Download</h2>
-                
-                <pre><code class="language-gradle">repositories {
+
+                <pre><code class="language-groovy">repositories {
     mavenCentral()
 }
 dependencies {
     implementation "com.hendraanggrian:kotlinpoet-dsl:$version"
 }
 </code></pre>
-                
-                <p>
-                    Snapshots of the development version are available in <a href="https://s01.oss.sonatype.org/content/repositories/snapshots">Sonatype's snapshots repository</a>.
-                </p>
-                
+
                 <h2>Usage</h2>
-                
+
                 <h3>
                     Use <code>T::class</code> as parameters
                 </h3>
-                
+
                 <p>
-                    <code>KClass&lt;*&gt;</code> can now be used as format arguments. There is also inline reified type function whenever possible.
+                    <code>KClass&lt;*&gt;</code> can now be used as format arguments.
+There is also inline reified type function whenever possible.
                 </p>
-                
+
                 <pre><code class="language-kotlin">buildMethodSpec("sortList") {
     returns = int
     parameters.add(classNameOf("java.util", "List").parameterizedBy(hoverboard), "list")
@@ -100,13 +104,14 @@ buildFieldSpec&lt;Int&gt;("count") {
     initializer("%L", 0)
 }
 </code></pre>
-                
+
                 <h3>Optional DSL</h3>
-                
-                <p>Some elements (field, method, parameter, etc.) are wrapped in container class. These containers have ability to add components with/without invoking DSL.</p>
-                
+
+                <p>Some elements (field, method, parameter, etc.) are wrapped in container class.
+These containers have ability to add components with/without invoking DSL.</p>
+
                 <p>For example, 2 examples below will produce the same result.</p>
-                
+
                 <pre><code class="language-kotlin">types.addClass("Car") {
     methods {
         "getWheels" {
@@ -137,13 +142,14 @@ types.addClass("Car") {
     }
 }
 </code></pre>
-                
+
                 <h3>Property delegation</h3>
-                
+
                 <p>
-                    In spirit of <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties">Gradle Kotlin DSL</a>, creating a spec can be done by delegating to a property.
+                    In spirit of <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties">Gradle Kotlin DSL</a>,
+creating a spec can be done by delegating to a property.
                 </p>
-                
+
                 <pre><code class="language-kotlin">val title by buildingParameterSpec(String::class) {
     annotations.add&lt;NotNull&gt;
 }
@@ -152,13 +158,13 @@ val message by parameters.adding(String::class) {
     annotations.add&lt;Nullable&gt;
 }
 </code></pre>
-                
+
                 <h3>Fluent TypeName API</h3>
-                
+
                 <p>
                     Write <code>TypeName</code> and all its subtypes fluently.
                 </p>
-                
+
                 <pre><code class="language-kotlin">val myClass: ClassName = classOf("com.example", "MyClass")
 val listener: LambdaTypeName = null.lambdaBy(returnType = "kotlin".classOf("Unit"))
 val memberOfString: MemberTypeName = myClass.memberOf("myField")
@@ -166,24 +172,24 @@ val pairOfInteger: ParameterizedTypeName = "kotlin".classOf("Pair").parameterize
 val tVariable: TypeVariableName = "T".typeVarOf()
 val producerOfCharSequence: WildcardTypeName = "kotlin".classOf("CharSequence").producerOf()
 </code></pre>
-                
+
                 <p>If you have access to those types, they can also be strongly-typed.</p>
-                
+
                 <pre><code class="language-kotlin">val myClass = com.example.MyClass.asClassName()
 val listener = null.lambdaBy(returnType = Unit::class)
 val pairOfInteger = parameterizedTypeNameOf&lt;android.util.Pair&gt;(Int::class, Int::class)
 val subtypeOfCharSequence = wildcardTypeNameProducerOf&lt;kotlin.CharSequence&gt;()
 </code></pre>
-                
+
             </section>
             <footer>
                 <p>
-                    <button onclick="toggleDarkMode()" title="Toggle dark mode"><span id="theme-toggle"></span></button>
+                    <button class="material-symbols-sharp" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></button>
                 </p>
                 <p>
-                    This project is maintained by <a href="https://github.com/hendraanggrian">Hendra Anggrian</a>
+                    This project is maintained by <a href="https://github.com/hendraanggrian/">Hendra Anggrian</a>
                 </p>
-                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/hendraanggrian/minimal-theme">minimal</a></small>
+                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist/">orderedlist</a></small>
             </footer>
         </div>
         <script src="scripts/scale.fix.js"></script>
