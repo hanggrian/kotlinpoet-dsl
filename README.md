@@ -1,7 +1,8 @@
 [![Travis CI](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl/)
 [![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/kotlinpoet-dsl)](https://app.codecov.io/gh/hendraanggrian/kotlinpoet-dsl/)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl/)
-[![OpenJDK](https://img.shields.io/badge/JDK-1.8+-informational)](https://openjdk.java.net/projects/jdk8/)
+[![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian/kotlinpoet-dsl?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/kotlinpoet-dsl/)
+[![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)
 
 # KotlinPoet DSL Primer
 
@@ -9,7 +10,8 @@ Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoe
 providing Kotlin DSL functionality and other convenient solutions.
 
 - Full of convenient methods to achieve minimum code writing possible.
-- Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`. Scroll down for more information.
+- Options to invoke DSL. For example, `methods.add("main") { ... }` is as good as `methods { "main" { ... } }`.
+  Scroll down for more information.
 - Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
 
 ```kotlin
@@ -39,13 +41,12 @@ dependencies {
 }
 ```
 
-Snapshots of the development version are available in [Sonatype's snapshots repository](https://s01.oss.sonatype.org/content/repositories/snapshots).
-
 ## Usage
 
 ### Use `T::class` as parameters
 
-`KClass<*>` can now be used as format arguments. There is also inline reified type function whenever possible.
+`KClass<*>` can now be used as format arguments.
+There is also inline reified type function whenever possible.
 
 ```kotlin
 buildMethodSpec("sortList") {
@@ -62,7 +63,8 @@ buildFieldSpec<Int>("count") {
 
 ### Optional DSL
 
-Some elements (field, method, parameter, etc.) are wrapped in container class. These containers have ability to add components with/without invoking DSL.
+Some elements (field, method, parameter, etc.) are wrapped in container class.
+These containers have ability to add components with/without invoking DSL.
 
 For example, 2 examples below will produce the same result.
 
@@ -100,7 +102,8 @@ types.addClass("Car") {
 
 ### Property delegation
 
-In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties), creating a spec can be done by delegating to a property.
+In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties),
+creating a spec can be done by delegating to a property.
 
 ```kotlin
 val title by buildingParameterSpec(String::class) {

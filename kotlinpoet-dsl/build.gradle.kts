@@ -1,21 +1,23 @@
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
-import com.vanniktech.maven.publish.SonatypeHost.*
+import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
-    kotlin("jvm")
-    id("kover")
-    id("org.jetbrains.dokka")
-    id("com.diffplug.spotless")
-    id("com.vanniktech.maven.publish.base")
+    alias(plugs.plugins.kotlin.jvm)
+    alias(plugs.plugins.kotlinx.kover)
+    alias(plugs.plugins.dokka)
+    alias(plugs.plugins.spotless)
+    alias(plugs.plugins.maven.publish)
 }
 
 kover.generateReportOnCheck = false
 
-spotless.kotlin { ktlint() }
+spotless.kotlin {
+    ktlint()
+}
 
 mavenPublishing {
-    publishToMavenCentral(S01)
+    publishToMavenCentral(SonatypeHost.S01)
     signAllPublications()
     pom {
         name.set(project.name)

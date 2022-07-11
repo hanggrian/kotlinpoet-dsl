@@ -1,33 +1,27 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 
 buildscript {
     repositories {
         gradlePluginPortal()
         mavenCentral()
     }
-    dependencies {
-        classpath(plugs.kotlin)
-        classpath(plugs.kotlin.kover)
-        classpath(plugs.dokka)
-        classpath(plugs.spotless)
-        classpath(plugs.maven.publish)
-        classpath(plugs.pages) { features("pages-minimal") }
-        classpath(plugs.git.publish)
-    }
+}
+
+plugins {
+    alias(plugs.plugins.kotlin.jvm) apply false
 }
 
 allprojects {
     group = RELEASE_GROUP
     version = RELEASE_VERSION
-    repositories {
-        mavenCentral()
-    }
+    repositories.mavenCentral()
 }
 
 subprojects {
-    afterEvaluate {
-        extensions.find<KotlinProjectExtension>()?.jvmToolchain {
-            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(sdk.versions.jdk.get()))
+    withPluginEagerly<KotlinPluginWrapper> {
+        kotlinExtension.jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(sdk.versions.jdk.get()))
         }
     }
 }
