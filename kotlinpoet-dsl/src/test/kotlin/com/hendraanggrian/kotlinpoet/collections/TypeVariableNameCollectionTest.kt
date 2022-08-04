@@ -53,7 +53,7 @@ class TypeVariableNameCollectionTest {
     fun plusAssign() {
         list += "A"
         assertThat(list).containsExactly(
-            "A".genericsBy(),
+            "A".genericsBy()
         )
     }
 }

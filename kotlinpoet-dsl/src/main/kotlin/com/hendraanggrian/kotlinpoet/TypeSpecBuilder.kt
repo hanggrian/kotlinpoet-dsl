@@ -277,7 +277,8 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
 
     /** Set primary constructor to type. */
     var primaryConstructor: FunSpec?
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.primaryConstructor(value)
         }
@@ -290,7 +291,8 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
 
     /** Set superclass to type. */
     var superclass: TypeName
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.superclass(value)
         }

@@ -1,5 +1,5 @@
 [![Travis CI](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl/)
-[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/kotlinpoet-dsl)](https://app.codecov.io/gh/hendraanggrian/kotlinpoet-dsl/)
+[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/kotlinpoet-dsl)](https://codecov.io/gh/hendraanggrian/kotlinpoet-dsl/)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl)](https://search.maven.org/artifact/com.hendraanggrian/kotlinpoet-dsl/)
 [![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian/kotlinpoet-dsl?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/kotlinpoet-dsl/)
 [![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)

@@ -124,7 +124,8 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
 
     /** Set receiver to [TypeName] without kdoc. */
     var receiver: TypeName
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.receiver(value)
         }
@@ -168,7 +169,8 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
 
     /** Set return to [TypeName] without kdoc. */
     var returns: TypeName
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.returns(value)
         }

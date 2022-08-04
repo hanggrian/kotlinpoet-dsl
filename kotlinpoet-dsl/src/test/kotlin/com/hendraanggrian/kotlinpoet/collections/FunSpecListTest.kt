@@ -46,7 +46,7 @@ class FunSpecListTest {
         val method2 by list.adding { kdoc.append("text2") }
         assertThat(list).containsExactly(
             FunSpec.builder("method1").build(),
-            FunSpec.builder("method2").addKdoc("text2").build(),
+            FunSpec.builder("method2").addKdoc("text2").build()
         )
     }
 

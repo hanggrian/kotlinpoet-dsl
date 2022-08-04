@@ -113,7 +113,8 @@ class AnnotationSpecBuilder(private val nativeBuilder: AnnotationSpec.Builder) {
 
     /** Sets [AnnotationSpec.UseSiteTarget]. */
     var useSiteTarget: AnnotationSpec.UseSiteTarget?
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.useSiteTarget(value)
         }

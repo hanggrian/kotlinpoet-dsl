@@ -214,14 +214,16 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
 
     /** Set indent text. */
     var indent: String
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.indent(value)
         }
 
     /** Convenient method to set [indent] with space the length of [indentSize]. */
     var indentSize: Int
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             indent = buildString { repeat(value) { append(' ') } }
         }

@@ -10,7 +10,7 @@ class ParameterizedTypeNameTest {
     fun plusParameter() {
         assertEquals(
             "kotlin.collections.List<kotlin.String>",
-            "${List::class.asClassName().plusParameter<String>()}",
+            "${List::class.asClassName().plusParameter<String>()}"
         )
         assertEquals(
             "java.util.List<java.lang.String>",

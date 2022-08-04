@@ -126,7 +126,8 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** True to create a `var` instead of a `val`. */
     var isMutable: Boolean
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.mutable(value)
         }
@@ -178,7 +179,8 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** Initialize field value with simple string. */
     var initializer: CodeBlock
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.initializer(value)
         }
@@ -190,14 +192,16 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** Delegate field value with simple string. */
     var delegate: CodeBlock
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.delegate(value)
         }
 
     /** Set getter function from [FunSpec]. */
     var getter: FunSpec
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.getter(value)
         }
@@ -210,7 +214,8 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** Set setter function from [FunSpec]. */
     var setter: FunSpec
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.setter(value)
         }
@@ -223,7 +228,8 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
 
     /** Set receiver to type. */
     var receiver: TypeName
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.receiver(value)
         }

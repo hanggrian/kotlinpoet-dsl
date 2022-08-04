@@ -13,7 +13,7 @@ plugins {
 kover.generateReportOnCheck = false
 
 spotless.kotlin {
-    ktlint()
+    ktlint().editorConfigOverride(mapOf("disabled_rules" to "filename"))
 }
 
 mavenPublishing {

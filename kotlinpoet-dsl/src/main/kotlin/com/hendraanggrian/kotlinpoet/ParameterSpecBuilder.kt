@@ -164,7 +164,8 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
 
     /** Set default value to simple string. */
     var defaultValue: CodeBlock
-        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR) get() = noGetter()
+        @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
+        get() = noGetter()
         set(value) {
             nativeBuilder.defaultValue(value)
         }

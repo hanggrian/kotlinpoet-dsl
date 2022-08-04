@@ -35,8 +35,10 @@ class EnumConstantMapTest {
         map["FIELD1"] = "value1"
         map["FIELD2"] = codeBlockOf("value2")
         assertThat(map).containsExactly(
-            "FIELD1", TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value1").build(),
-            "FIELD2", TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value2").build()
+            "FIELD1",
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value1").build(),
+            "FIELD2",
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value2").build()
         )
     }
 

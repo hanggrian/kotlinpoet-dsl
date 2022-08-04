@@ -67,7 +67,7 @@ class PropertySpecListTest {
             PropertySpec.builder("property3", Property3::class.java).build(),
             PropertySpec.builder("property4", Property4::class.java).initializer("value4").build(),
             PropertySpec.builder("property5", Property5::class.java).build(),
-            PropertySpec.builder("property6", Property6::class.java).initializer("value6").build(),
+            PropertySpec.builder("property6", Property6::class.java).initializer("value6").build()
         )
     }
 
@@ -81,7 +81,7 @@ class PropertySpecListTest {
         assertThat(list).containsExactly(
             PropertySpec.builder("property1", Property1::class.java).initializer("value1").build(),
             PropertySpec.builder("property2", Property2::class.java).initializer("value2").build(),
-            PropertySpec.builder("property3", Property3::class.java).initializer("value3").build(),
+            PropertySpec.builder("property3", Property3::class.java).initializer("value3").build()
         )
     }
 }

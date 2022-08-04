@@ -685,7 +685,8 @@ class GitHubTest {
             buildFunSpec("sortByLength") {
                 parameters.add("strings", List::class.parameterizedBy(String::class))
                 appendLine(
-                    "%N.sortedWith(%L)", "strings",
+                    "%N.sortedWith(%L)",
+                    "strings",
                     buildAnonymousTypeSpec {
                         superinterfaces += Comparator::class.parameterizedBy(String::class)
                         functions.add("compare") {
