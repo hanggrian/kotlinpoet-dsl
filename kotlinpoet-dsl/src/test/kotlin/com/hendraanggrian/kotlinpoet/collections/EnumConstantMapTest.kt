@@ -7,7 +7,8 @@ import kotlin.test.Test
 
 class EnumConstantMapTest {
     private val map = EnumConstantMap(mutableMapOf())
-    private fun map(configuration: EnumConstantMapScope.() -> Unit) = EnumConstantMapScope(map).configuration()
+    private fun map(configuration: EnumConstantMapScope.() -> Unit) =
+        EnumConstantMapScope(map).configuration()
 
     @Test
     fun add() {
@@ -22,11 +23,15 @@ class EnumConstantMapTest {
             "FIELD2",
             TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value2").build(),
             "FIELD3",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value3").addKdoc("text3").build(),
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value3")
+                .addKdoc("text3")
+                .build(),
             "FIELD4",
             TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value4").build(),
             "FIELD5",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value5").addKdoc("text5").build()
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value5")
+                .addKdoc("text5")
+                .build()
         )
     }
 
@@ -56,11 +61,15 @@ class EnumConstantMapTest {
             "FIELD2",
             TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value2").build(),
             "FIELD3",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value3").addKdoc("text3").build(),
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value3")
+                .addKdoc("text3")
+                .build(),
             "FIELD4",
             TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value4").build(),
             "FIELD5",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value5").addKdoc("text5").build()
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value5")
+                .addKdoc("text5")
+                .build()
         )
     }
 
@@ -72,9 +81,13 @@ class EnumConstantMapTest {
         }
         assertThat(map).containsExactly(
             "FIELD1",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value1").addKdoc("text1").build(),
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value1")
+                .addKdoc("text1")
+                .build(),
             "FIELD2",
-            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value2").addKdoc("text2").build()
+            TypeSpec.anonymousClassBuilder().addSuperclassConstructorParameter("value2")
+                .addKdoc("text2")
+                .build()
         )
     }
 }

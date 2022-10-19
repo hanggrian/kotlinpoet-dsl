@@ -28,20 +28,28 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
 
     /** Add annotation from [Class]. */
     @DelicateKotlinPoetApi(DELICATE_JAVA)
-    fun add(type: Class<out Annotation>): AnnotationSpec = AnnotationSpec.builder(type).build().also(::add)
+    fun add(type: Class<out Annotation>): AnnotationSpec =
+        AnnotationSpec.builder(type).build().also(::add)
 
     /** Add annotation from [Class] with custom initialization [configuration]. */
     @DelicateKotlinPoetApi(DELICATE_JAVA)
-    fun add(type: Class<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec {
+    fun add(
+        type: Class<out Annotation>,
+        configuration: AnnotationSpecBuilder.() -> Unit
+    ): AnnotationSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return buildAnnotationSpec(type, configuration).also(::add)
     }
 
     /** Add annotation from [KClass]. */
-    fun add(type: KClass<out Annotation>): AnnotationSpec = AnnotationSpec.builder(type).build().also(::add)
+    fun add(type: KClass<out Annotation>): AnnotationSpec =
+        AnnotationSpec.builder(type).build().also(::add)
 
     /** Add annotation from [KClass] with custom initialization [configuration]. */
-    fun add(type: KClass<out Annotation>, configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec {
+    fun add(
+        type: KClass<out Annotation>,
+        configuration: AnnotationSpecBuilder.() -> Unit
+    ): AnnotationSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return buildAnnotationSpec(type, configuration).also(::add)
     }
@@ -50,7 +58,9 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
     inline fun <reified T : Annotation> add(): AnnotationSpec = add(T::class)
 
     /** Add annotation from [T] with custom initialization [configuration]. */
-    inline fun <reified T : Annotation> add(noinline configuration: AnnotationSpecBuilder.() -> Unit): AnnotationSpec {
+    inline fun <reified T : Annotation> add(
+        noinline configuration: AnnotationSpecBuilder.() -> Unit
+    ): AnnotationSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return add(T::class, configuration)
     }
@@ -72,7 +82,10 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
     }
 }
 
-/** Receiver for the `annotations` block providing an extended set of operators for the configuration. */
+/**
+ * Receiver for the `annotations` block providing an extended set of operators for the
+ * configuration.
+ */
 @KotlinpoetSpecDsl
 class AnnotationSpecListScope internal constructor(actualList: MutableList<AnnotationSpec>) :
     AnnotationSpecList(actualList)

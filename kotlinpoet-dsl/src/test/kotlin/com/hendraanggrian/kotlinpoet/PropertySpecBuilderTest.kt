@@ -37,7 +37,8 @@ class PropertySpecBuilderTest {
     fun annotations() {
         assertEquals(
             buildPropertySpec<Property1>("property1") { annotations { add<Annotation1>() } },
-            PropertySpec.builder("property1", Property1::class).addAnnotation(Annotation1::class).build()
+            PropertySpec.builder("property1", Property1::class).addAnnotation(Annotation1::class)
+                .build()
         )
     }
 
@@ -54,7 +55,9 @@ class PropertySpecBuilderTest {
     @Test
     fun typeVariables() {
         assertEquals(
-            buildPropertySpec<Property1>("property1") { typeVariables.add("typeVar1", Annotation1::class) },
+            buildPropertySpec<Property1>("property1") {
+                typeVariables.add("typeVar1", Annotation1::class)
+            },
             PropertySpec.builder("property1", Property1::class)
                 .addTypeVariable(TypeVariableName("typeVar1", Annotation1::class))
                 .build()
@@ -69,7 +72,8 @@ class PropertySpecBuilderTest {
         )
         assertEquals(
             buildPropertySpec<Property2>("property2") { initializer = codeBlockOf("value2") },
-            PropertySpec.builder("property2", Property2::class).initializer(CodeBlock.of("value2")).build()
+            PropertySpec.builder("property2", Property2::class).initializer(CodeBlock.of("value2"))
+                .build()
         )
     }
 
@@ -81,7 +85,8 @@ class PropertySpecBuilderTest {
         )
         assertEquals(
             buildPropertySpec<Property2>("property2") { delegate = codeBlockOf("value2") },
-            PropertySpec.builder("property2", Property2::class).delegate(CodeBlock.of("value2")).build()
+            PropertySpec.builder("property2", Property2::class).delegate(CodeBlock.of("value2"))
+                .build()
         )
     }
 
@@ -120,11 +125,13 @@ class PropertySpecBuilderTest {
     fun receiver() {
         assertEquals(
             buildPropertySpec<Property1>("property1") { receiver = Property1::class.asClassName() },
-            PropertySpec.builder("property1", Property1::class).receiver(Property1::class.asClassName()).build()
+            PropertySpec.builder("property1", Property1::class)
+                .receiver(Property1::class.asClassName()).build()
         )
         assertEquals(
             buildPropertySpec<Property2>("property2") { receiver(Property2::class.java) },
-            PropertySpec.builder("property2", Property2::class).receiver(Property2::class.java).build()
+            PropertySpec.builder("property2", Property2::class).receiver(Property2::class.java)
+                .build()
         )
         assertEquals(
             buildPropertySpec<Property3>("property3") { receiver(Property3::class) },

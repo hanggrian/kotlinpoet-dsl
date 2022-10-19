@@ -23,8 +23,8 @@ import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /**
- * Builds new [FunSpec] with name,
- * by populating newly created [FunSpecBuilder] using provided [configuration].
+ * Builds new [FunSpec] with name, by populating newly created [FunSpecBuilder] using
+ * provided [configuration].
  */
 inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -32,8 +32,8 @@ inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit):
 }
 
 /**
- * Builds new constructor [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [configuration].
+ * Builds new constructor [FunSpec], by populating newly created [FunSpecBuilder] using
+ * provided [configuration].
  */
 inline fun buildConstructorFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -41,8 +41,8 @@ inline fun buildConstructorFunSpec(configuration: FunSpecBuilder.() -> Unit): Fu
 }
 
 /**
- * Builds new getter [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [configuration].
+ * Builds new getter [FunSpec], by populating newly created [FunSpecBuilder] using
+ * provided [configuration].
  */
 inline fun buildGetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -50,8 +50,8 @@ inline fun buildGetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec
 }
 
 /**
- * Builds new setter [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [configuration].
+ * Builds new setter [FunSpec], by populating newly created [FunSpecBuilder] using
+ * provided [configuration].
  */
 inline fun buildSetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -59,8 +59,8 @@ inline fun buildSetterFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec
 }
 
 /**
- * Property delegate for building new [FunSpec],
- * by populating newly created [FunSpecBuilder] using provided [configuration].
+ * Property delegate for building new [FunSpec], by populating newly created [FunSpecBuilder] using
+ * provided [configuration].
  */
 fun buildingFunSpec(configuration: FunSpecBuilder.() -> Unit): SpecLoader<FunSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -114,7 +114,8 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Type variables of this function. */
-    val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameCollection =
+        TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this function. */
     fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit) {
@@ -161,7 +162,8 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Set receiver to [T] with [CodeBlock] as kdoc. */
-    inline fun <reified T> receiver(kdocCode: CodeBlock = EMPTY_CODEBLOCK): Unit = receiver(T::class, kdocCode)
+    inline fun <reified T> receiver(kdocCode: CodeBlock = EMPTY_CODEBLOCK): Unit =
+        receiver(T::class, kdocCode)
 
     /** Set receiver to [T] with String formatting as kdoc. */
     inline fun <reified T> receiver(kdocFormat: String, vararg kdocArgs: Any): Unit =
@@ -206,10 +208,12 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Set return to [T] with [CodeBlock] as kdoc. */
-    inline fun <reified T> returns(kdocCode: CodeBlock = EMPTY_CODEBLOCK): Unit = returns(T::class, kdocCode)
+    inline fun <reified T> returns(kdocCode: CodeBlock = EMPTY_CODEBLOCK): Unit =
+        returns(T::class, kdocCode)
 
     /** Set return to [T] with String formatting as kdoc. */
-    inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any) = returns(T::class, kdocFormat, *kdocArgs)
+    inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any) =
+        returns(T::class, kdocFormat, *kdocArgs)
 
     /** Parameters of this function. */
     val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)

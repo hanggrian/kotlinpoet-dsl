@@ -23,8 +23,8 @@ import kotlin.reflect.KClass
 inline fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(this)
 
 /**
- * Builds new [ParameterSpec] from [TypeName],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Builds new [ParameterSpec] from [TypeName], by populating newly created [ParameterSpecBuilder]
+ * using provided [configuration].
  */
 inline fun buildParameterSpec(
     name: String,
@@ -33,12 +33,13 @@ inline fun buildParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): ParameterSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration)
+        .build()
 }
 
 /**
- * Builds new [ParameterSpec] from [Type],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Builds new [ParameterSpec] from [Type], by populating newly created [ParameterSpecBuilder] using
+ * provided [configuration].
  */
 inline fun buildParameterSpec(
     name: String,
@@ -47,12 +48,13 @@ inline fun buildParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): ParameterSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration)
+        .build()
 }
 
 /**
- * Builds new [ParameterSpec] from [KClass],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Builds new [ParameterSpec] from [KClass], by populating newly created [ParameterSpecBuilder]
+ * using provided [configuration].
  */
 inline fun buildParameterSpec(
     name: String,
@@ -61,12 +63,13 @@ inline fun buildParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): ParameterSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration).build()
+    return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers)).apply(configuration)
+        .build()
 }
 
 /**
- * Builds new [ParameterSpec] from [T],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Builds new [ParameterSpec] from [T], by populating newly created [ParameterSpecBuilder] using
+ * provided [configuration].
  */
 inline fun <reified T> buildParameterSpec(
     name: String,
@@ -74,12 +77,14 @@ inline fun <reified T> buildParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): ParameterSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers)).apply(configuration).build()
+    return ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers))
+        .apply(configuration)
+        .build()
 }
 
 /**
- * Property delegate for building new [ParameterSpec] from [TypeName],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Property delegate for building new [ParameterSpec] from [TypeName], by populating newly
+ * created [ParameterSpecBuilder] using provided [configuration].
  */
 fun buildingParameterSpec(
     type: TypeName,
@@ -87,12 +92,14 @@ fun buildingParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): SpecLoader<ParameterSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return createSpecLoader { buildParameterSpec(it, type, *modifiers, configuration = configuration) }
+    return createSpecLoader {
+        buildParameterSpec(it, type, *modifiers, configuration = configuration)
+    }
 }
 
 /**
- * Property delegate for building new [ParameterSpec] from [Type],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Property delegate for building new [ParameterSpec] from [Type], by populating newly
+ * created [ParameterSpecBuilder] using provided [configuration].
  */
 fun buildingParameterSpec(
     type: Type,
@@ -100,12 +107,14 @@ fun buildingParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): SpecLoader<ParameterSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return createSpecLoader { buildParameterSpec(it, type, *modifiers, configuration = configuration) }
+    return createSpecLoader {
+        buildParameterSpec(it, type, *modifiers, configuration = configuration)
+    }
 }
 
 /**
- * Property delegate for building new [ParameterSpec] from [KClass],
- * by populating newly created [ParameterSpecBuilder] using provided [configuration].
+ * Property delegate for building new [ParameterSpec] from [KClass], by populating newly
+ * created [ParameterSpecBuilder] using provided [configuration].
  */
 fun buildingParameterSpec(
     type: KClass<*>,
@@ -113,7 +122,9 @@ fun buildingParameterSpec(
     configuration: ParameterSpecBuilder.() -> Unit
 ): SpecLoader<ParameterSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return createSpecLoader { buildParameterSpec(it, type, *modifiers, configuration = configuration) }
+    return createSpecLoader {
+        buildParameterSpec(it, type, *modifiers, configuration = configuration)
+    }
 }
 
 /**

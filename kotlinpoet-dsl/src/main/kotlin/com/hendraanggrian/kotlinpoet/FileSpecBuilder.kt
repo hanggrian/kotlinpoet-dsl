@@ -29,13 +29,18 @@ import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /** Converts type to [FileSpec]. */
-inline fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec = FileSpec.get(packageName, type)
+inline fun fileSpecOf(type: TypeSpec, packageName: String): FileSpec =
+    FileSpec.get(packageName, type)
 
 /**
- * Builds a new [FileSpec],
- * by populating newly created [FileSpecBuilder] using provided [configuration].
+ * Builds a new [FileSpec], by populating newly created [FileSpecBuilder] using
+ * provided [configuration].
  */
-inline fun buildFileSpec(packageName: String, fileName: String, configuration: FileSpecBuilder.() -> Unit): FileSpec {
+inline fun buildFileSpec(
+    packageName: String,
+    fileName: String,
+    configuration: FileSpecBuilder.() -> Unit
+): FileSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
 }
@@ -69,7 +74,10 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
         AnnotationSpecListScope(annotations).configuration()
     }
 
-    /** Adds a file-site comment. This is prefixed to the start of the file and different from [addBodyComment]. */
+    /**
+     * Adds a file-site comment. This is prefixed to the start of the file and different
+     * from [addBodyComment].
+     */
     fun addFileComment(format: String, vararg args: Any) {
         nativeBuilder.addFileComment(format, *args)
     }
@@ -79,10 +87,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
         nativeBuilder.clearComment()
     }
 
-    /**
-     * Types of this file.
-     * Returns a fake list where the only supported operation is `add`.
-     */
+    /** Types of this file. Returns a fake list where the only supported operation is `add`. */
     val types: TypeSpecList = object : TypeSpecList(FakeList()) {
         override fun add(element: TypeSpec): Boolean {
             nativeBuilder.addType(element)
@@ -96,10 +101,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
         TypeSpecListScope(types).configuration()
     }
 
-    /**
-     * Functions of this file.
-     * Returns a fake list where the only supported operation is `add`.
-     */
+    /** Functions of this file. Returns a fake list where the only supported operation is `add`. */
     val functions: FunSpecList = object : FunSpecList(FakeList()) {
         override fun add(element: FunSpec): Boolean {
             nativeBuilder.addFunction(element)
@@ -113,10 +115,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
         FunSpecListScope(functions).configuration()
     }
 
-    /**
-     * Properties of this file.
-     * Returns a fake list where the only supported operation is `add`.
-     */
+    /** Properties of this file. Returns a fake list where the only supported operation is `add`. */
     val properties: PropertySpecList = object : PropertySpecList(FakeList()) {
         override fun add(element: PropertySpec): Boolean {
             nativeBuilder.addProperty(element)
@@ -131,8 +130,8 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
     }
 
     /**
-     * Type aliases of this file.
-     * Returns a fake list where the only supported operation is `add`.
+     * Type aliases of this file. Returns a fake list where the only supported operation
+     * is `add`.
      */
     val typeAliases: TypeAliasSpecList = object : TypeAliasSpecList(FakeList()) {
         override fun add(element: TypeAliasSpec): Boolean {

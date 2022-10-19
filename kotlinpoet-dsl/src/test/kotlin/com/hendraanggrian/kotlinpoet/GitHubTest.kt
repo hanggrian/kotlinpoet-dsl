@@ -224,7 +224,8 @@ class GitHubTest {
                 functions.add("beyond") {
                     val hoverboard = classNameOf("com.mattel", "Hoverboard")
                     val arrayList = classNameOf("kotlin", "ArrayList").parameterizedBy(hoverboard)
-                    val listOfHoverboards = classNameOf("kotlin", "List").parameterizedBy(hoverboard)
+                    val listOfHoverboards = classNameOf("kotlin", "List")
+                        .parameterizedBy(hoverboard)
                     returns = listOfHoverboards
                     appendLine("val result = %T()", arrayList)
                     appendLine("result += %T()", hoverboard)
@@ -769,9 +770,13 @@ class GitHubTest {
                     add<String>("Word")
                     add(
                         "FileTable",
-                        Map::class.asClassName().parameterizedBy(k, Set::class.parameterizedBy(File::class))
+                        Map::class.asClassName()
+                            .parameterizedBy(k, Set::class.parameterizedBy(File::class))
                     ) { typeVariables.add(k) }
-                    add("Predicate", Boolean::class.asClassName().lambdaBy(t)) { typeVariables.add(t) }
+                    add(
+                        "Predicate",
+                        Boolean::class.asClassName().lambdaBy(t)
+                    ) { typeVariables.add(t) }
                 }
             }.toString()
         )
@@ -792,7 +797,10 @@ class GitHubTest {
                 val helloClass = ClassName("com.example.hello", "Hello")
                 appendLine("val hello = %L", helloClass.constructorReference())
                 appendLine("val world = %L", helloClass.member("world").reference())
-                appendLine("val bye = %L", helloClass.nestedClass("World").member("bye").reference())
+                appendLine(
+                    "val bye = %L",
+                    helloClass.nestedClass("World").member("bye").reference()
+                )
             }.toString()
         )
     }

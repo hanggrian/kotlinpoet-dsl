@@ -21,8 +21,8 @@ import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /**
- * Builds new [PropertySpec] from [TypeName] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ * Builds new [PropertySpec] from [TypeName] supplying its name and modifiers, by populating newly
+ * created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun buildPropertySpec(
     name: String,
@@ -31,12 +31,13 @@ inline fun buildPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): PropertySpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration)
+        .build()
 }
 
 /**
- * Builds new [PropertySpec] from [Type] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ * Builds new [PropertySpec] from [Type] supplying its name and modifiers, by populating newly
+ * created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun buildPropertySpec(
     name: String,
@@ -45,12 +46,13 @@ inline fun buildPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): PropertySpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration)
+        .build()
 }
 
 /**
- * Builds new [PropertySpec] from [KClass] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ * Builds new [PropertySpec] from [KClass] supplying its name and modifiers, by populating newly
+ * created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun buildPropertySpec(
     name: String,
@@ -59,12 +61,13 @@ inline fun buildPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): PropertySpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration).build()
+    return PropertySpecBuilder(PropertySpec.builder(name, type, *modifiers)).apply(configuration)
+        .build()
 }
 
 /**
- * Builds new [PropertySpec] from [T] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ * Builds new [PropertySpec] from [T] supplying its name and modifiers, by populating newly
+ * created [PropertySpecBuilder] using provided [configuration].
  */
 inline fun <reified T> buildPropertySpec(
     name: String,
@@ -72,12 +75,14 @@ inline fun <reified T> buildPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): PropertySpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return PropertySpecBuilder(PropertySpec.builder(name, T::class, *modifiers)).apply(configuration).build()
+    return PropertySpecBuilder(PropertySpec.builder(name, T::class, *modifiers))
+        .apply(configuration)
+        .build()
 }
 
 /**
- * Property delegate for building new [PropertySpec] from [TypeName] supplying its name and modifiers,
- * by populating newly created [PropertySpecBuilder] using provided [configuration].
+ * Property delegate for building new [PropertySpec] from [TypeName] supplying its name and
+ * modifiers, by populating newly created [PropertySpecBuilder] using provided [configuration].
  */
 fun buildingPropertySpec(
     type: TypeName,
@@ -85,7 +90,9 @@ fun buildingPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): SpecLoader<PropertySpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return createSpecLoader { buildPropertySpec(it, type, *modifiers, configuration = configuration) }
+    return createSpecLoader {
+        buildPropertySpec(it, type, *modifiers, configuration = configuration)
+    }
 }
 
 /**
@@ -98,7 +105,9 @@ fun buildingPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): SpecLoader<PropertySpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return createSpecLoader { buildPropertySpec(it, type, *modifiers, configuration = configuration) }
+    return createSpecLoader {
+        buildPropertySpec(it, type, *modifiers, configuration = configuration)
+    }
 }
 
 /**
@@ -111,7 +120,9 @@ fun buildingPropertySpec(
     configuration: PropertySpecBuilder.() -> Unit
 ): SpecLoader<PropertySpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return createSpecLoader { buildPropertySpec(it, type, *modifiers, configuration = configuration) }
+    return createSpecLoader {
+        buildPropertySpec(it, type, *modifiers, configuration = configuration)
+    }
 }
 
 /**
@@ -164,7 +175,8 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     }
 
     /** Type variables of this property. */
-    val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameCollection =
+        TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this property. */
     fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit) {

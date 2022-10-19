@@ -26,7 +26,9 @@ class AnnotationSpecBuilderTest {
     fun useSiteTarget() {
         assertEquals(
             buildAnnotationSpec<Annotation1> { useSiteTarget = ANNOTATION_FILE },
-            AnnotationSpec.builder(Annotation1::class).useSiteTarget(AnnotationSpec.UseSiteTarget.FILE).build()
+            AnnotationSpec.builder(Annotation1::class)
+                .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
+                .build()
         )
     }
 }

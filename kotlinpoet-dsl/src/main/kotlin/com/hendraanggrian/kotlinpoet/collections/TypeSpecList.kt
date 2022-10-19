@@ -20,7 +20,8 @@ import kotlin.contracts.contract
 
 /** A [TypeSpecList] is responsible for managing a set of type instances. */
 @OptIn(ExperimentalContracts::class)
-open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) : MutableList<TypeSpec> by actualList {
+open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) :
+    MutableList<TypeSpec> by actualList {
 
     /** Add class type from name. */
     fun addClass(type: String): TypeSpec = TypeSpec.classBuilder(type).build().also(::add)
@@ -41,7 +42,8 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     }
 
     /** Add expect class type from name. */
-    fun addExpectClass(type: String): TypeSpec = TypeSpec.expectClassBuilder(type).build().also(::add)
+    fun addExpectClass(type: String): TypeSpec =
+        TypeSpec.expectClassBuilder(type).build().also(::add)
 
     /** Add expect class type from name with custom initialization [configuration]. */
     fun addExpectClass(type: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
@@ -50,7 +52,8 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     }
 
     /** Add expect class type from [ClassName]. */
-    fun addExpectClass(type: ClassName): TypeSpec = TypeSpec.expectClassBuilder(type).build().also(::add)
+    fun addExpectClass(type: ClassName): TypeSpec =
+        TypeSpec.expectClassBuilder(type).build().also(::add)
 
     /** Add expect class type from [ClassName] with custom initialization [configuration]. */
     fun addExpectClass(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
@@ -77,10 +80,14 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     }
 
     /** Add object type from name. */
-    fun addCompanionObject(type: String? = null): TypeSpec = TypeSpec.companionObjectBuilder(type).build().also(::add)
+    fun addCompanionObject(type: String? = null): TypeSpec =
+        TypeSpec.companionObjectBuilder(type).build().also(::add)
 
     /** Add object type from name with custom initialization [configuration]. */
-    fun addCompanionObject(type: String? = null, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+    fun addCompanionObject(
+        type: String? = null,
+        configuration: TypeSpecBuilder.() -> Unit
+    ): TypeSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return buildCompanionObjectTypeSpec(type, configuration).also(::add)
     }
@@ -95,7 +102,8 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     }
 
     /** Add interface type from [ClassName]. */
-    fun addInterface(type: ClassName): TypeSpec = TypeSpec.interfaceBuilder(type).build().also(::add)
+    fun addInterface(type: ClassName): TypeSpec =
+        TypeSpec.interfaceBuilder(type).build().also(::add)
 
     /** Add interface type from [ClassName] with custom initialization [configuration]. */
     fun addInterface(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
@@ -140,7 +148,8 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     }
 
     /** Add annotation type from [ClassName]. */
-    fun addAnnotation(type: ClassName): TypeSpec = TypeSpec.annotationBuilder(type).build().also(::add)
+    fun addAnnotation(type: ClassName): TypeSpec =
+        TypeSpec.annotationBuilder(type).build().also(::add)
 
     /** Add annotation type from [ClassName] with custom initialization [configuration]. */
     inline fun addAnnotation(type: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
@@ -160,7 +169,10 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     /** Property delegate for adding expect class type from name. */
     val addingExpectClass: SpecLoader<TypeSpec> get() = createSpecLoader(::addExpectClass)
 
-    /** Property delegate for adding expect class type from name with initialization [configuration]. */
+    /**
+     * Property delegate for adding expect class type from name with
+     * initialization [configuration].
+     */
     fun addingExpectClass(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { addExpectClass(it, configuration) }
@@ -178,7 +190,10 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     /** Property delegate for adding companion object type from name. */
     val addingCompanionObject: SpecLoader<TypeSpec> get() = createSpecLoader(::addCompanionObject)
 
-    /** Property delegate for adding companion object type from name with initialization [configuration]. */
+    /**
+     * Property delegate for adding companion object type from name with
+     * initialization [configuration].
+     */
     fun addingCompanionObject(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { addCompanionObject(it, configuration) }
@@ -187,15 +202,18 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     /** Property delegate for adding interface type from name. */
     val addingInterface: SpecLoader<TypeSpec> get() = createSpecLoader(::addInterface)
 
-    /** Property delegate for adding interface type from name with initialization [configuration]. */
+    /**
+     * Property delegate for adding interface type from name with
+     * initialization [configuration].
+     */
     fun addingInterface(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { addInterface(it, configuration) }
     }
 
     /**
-     * Property delegate for adding enum type from name with initialization [configuration].
-     * When creating an enum class, [TypeSpec.enumConstants] has to be configured.
+     * Property delegate for adding enum type from name with initialization [configuration]. When
+     * creating an enum class, [TypeSpec.enumConstants] has to be configured.
      */
     fun addingEnum(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -205,7 +223,10 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
     /** Property delegate for adding annotation type from name. */
     val addingAnnotation: SpecLoader<TypeSpec> get() = createSpecLoader(::addAnnotation)
 
-    /** Property delegate for adding annotation type from name with initialization [configuration]. */
+    /**
+     * Property delegate for adding annotation type from name with
+     * initialization [configuration].
+     */
     fun addingAnnotation(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { addAnnotation(it, configuration) }
@@ -214,4 +235,5 @@ open class TypeSpecList internal constructor(actualList: MutableList<TypeSpec>) 
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @KotlinpoetSpecDsl
-class TypeSpecListScope internal constructor(actualList: MutableList<TypeSpec>) : TypeSpecList(actualList)
+class TypeSpecListScope internal constructor(actualList: MutableList<TypeSpec>) :
+    TypeSpecList(actualList)

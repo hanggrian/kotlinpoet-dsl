@@ -97,7 +97,10 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
     fun adding(type: TypeName, vararg modifiers: KModifier): SpecLoader<PropertySpec> =
         createSpecLoader { add(it, type, *modifiers) }
 
-    /** Property delegate for adding property from [TypeName] with initialization [configuration]. */
+    /**
+     * Property delegate for adding property from [TypeName] with
+     * initialization [configuration].
+     */
     fun adding(
         type: TypeName,
         vararg modifiers: KModifier,
@@ -136,9 +139,13 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
     }
 }
 
-/** Receiver for the `properties` block providing an extended set of operators for the configuration. */
+/**
+ * Receiver for the `properties` block providing an extended set of operators for the
+ * configuration.
+ */
 @KotlinpoetSpecDsl
-class PropertySpecListScope internal constructor(actualList: MutableList<PropertySpec>) : PropertySpecList(actualList) {
+class PropertySpecListScope internal constructor(actualList: MutableList<PropertySpec>) :
+    PropertySpecList(actualList) {
 
     /** @see PropertySpecList.add */
     inline operator fun String.invoke(

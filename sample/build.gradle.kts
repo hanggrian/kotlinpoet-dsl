@@ -1,6 +1,6 @@
 plugins {
     application
-    alias(plugs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.jvm)
 }
 
 application.mainClass.set("com.example.VehicleWriter")

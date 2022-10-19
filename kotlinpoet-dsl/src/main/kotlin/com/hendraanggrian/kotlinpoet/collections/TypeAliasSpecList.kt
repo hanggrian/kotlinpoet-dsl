@@ -25,7 +25,11 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     fun add(name: String, type: TypeName): TypeAliasSpec = typeAliasSpecOf(name, type).also(::add)
 
     /** Add type alias from [TypeName] with custom initialization [configuration]. */
-    fun add(name: String, type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec {
+    fun add(
+        name: String,
+        type: TypeName,
+        configuration: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return buildTypeAliasSpec(name, type, configuration).also(::add)
     }
@@ -36,7 +40,11 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
 
     /** Add type alias from [Type] with custom initialization [configuration]. */
     @DelicateKotlinPoetApi(DELICATE_JAVA)
-    fun add(name: String, type: Type, configuration: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec {
+    fun add(
+        name: String,
+        type: Type,
+        configuration: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return buildTypeAliasSpec(name, type, configuration).also(::add)
     }
@@ -45,7 +53,11 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     fun add(name: String, type: KClass<*>): TypeAliasSpec = typeAliasSpecOf(name, type).also(::add)
 
     /** Add type alias from [KClass] with custom initialization [configuration]. */
-    fun add(name: String, type: KClass<*>, configuration: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec {
+    fun add(
+        name: String,
+        type: KClass<*>,
+        configuration: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return buildTypeAliasSpec(name, type, configuration).also(::add)
     }
@@ -54,7 +66,10 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     inline fun <reified T> add(name: String): TypeAliasSpec = add(name, T::class)
 
     /** Add type alias from [T] with custom initialization [configuration]. */
-    inline fun <reified T> add(name: String, noinline configuration: TypeAliasSpecBuilder.() -> Unit): TypeAliasSpec {
+    inline fun <reified T> add(
+        name: String,
+        noinline configuration: TypeAliasSpecBuilder.() -> Unit
+    ): TypeAliasSpec {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return add(name, T::class, configuration)
     }
@@ -77,8 +92,14 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     /** Property delegate for adding type alias from [TypeName]. */
     fun adding(type: TypeName): SpecLoader<TypeAliasSpec> = createSpecLoader { add(it, type) }
 
-    /** Property delegate for adding type alias from [TypeName] with custom initialization [configuration]. */
-    fun adding(type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): SpecLoader<TypeAliasSpec> {
+    /**
+     * Property delegate for adding type alias from [TypeName] with custom
+     * initialization [configuration].
+     */
+    fun adding(
+        type: TypeName,
+        configuration: TypeAliasSpecBuilder.() -> Unit
+    ): SpecLoader<TypeAliasSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { add(it, type, configuration) }
     }
@@ -87,9 +108,15 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     @DelicateKotlinPoetApi(DELICATE_JAVA)
     fun adding(type: Type): SpecLoader<TypeAliasSpec> = createSpecLoader { add(it, type) }
 
-    /** Property delegate for adding type alias from [Type] with custom initialization [configuration]. */
+    /**
+     * Property delegate for adding type alias from [Type] with custom
+     * initialization [configuration].
+     */
     @DelicateKotlinPoetApi(DELICATE_JAVA)
-    fun adding(type: Type, configuration: TypeAliasSpecBuilder.() -> Unit): SpecLoader<TypeAliasSpec> {
+    fun adding(
+        type: Type,
+        configuration: TypeAliasSpecBuilder.() -> Unit
+    ): SpecLoader<TypeAliasSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { add(it, type, configuration) }
     }
@@ -97,8 +124,14 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
     /** Property delegate for adding type alias from [KClass]. */
     fun adding(type: KClass<*>): SpecLoader<TypeAliasSpec> = createSpecLoader { add(it, type) }
 
-    /** Property delegate for adding type alias from [KClass] with custom initialization [configuration]. */
-    fun adding(type: KClass<*>, configuration: TypeAliasSpecBuilder.() -> Unit): SpecLoader<TypeAliasSpec> {
+    /**
+     * Property delegate for adding type alias from [KClass] with custom
+     * initialization [configuration].
+     */
+    fun adding(
+        type: KClass<*>,
+        configuration: TypeAliasSpecBuilder.() -> Unit
+    ): SpecLoader<TypeAliasSpec> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { add(it, type, configuration) }
     }

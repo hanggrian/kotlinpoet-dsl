@@ -21,7 +21,8 @@ class ParameterSpecBuilderTest {
     fun annotations() {
         assertEquals(
             buildParameterSpec<Property1>("parameter1") { annotations { add<Annotation1>() } },
-            ParameterSpec.builder("parameter1", Property1::class).addAnnotation(Annotation1::class).build()
+            ParameterSpec.builder("parameter1", Property1::class).addAnnotation(Annotation1::class)
+                .build()
         )
     }
 
@@ -41,7 +42,9 @@ class ParameterSpecBuilderTest {
         )
         assertEquals(
             buildParameterSpec<Property1>("parameter2") { defaultValue = codeBlockOf("value2") },
-            ParameterSpec.builder("parameter2", Property1::class).defaultValue(CodeBlock.of("value2")).build()
+            ParameterSpec.builder("parameter2", Property1::class)
+                .defaultValue(CodeBlock.of("value2"))
+                .build()
         )
     }
 }

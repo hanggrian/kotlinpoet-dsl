@@ -34,7 +34,8 @@ class FunSpecBuilderTest {
     fun addModifiers() {
         assertEquals(
             buildFunSpec("fun1") { addModifiers(PUBLIC, FINAL, CONST) },
-            FunSpec.builder("fun1").addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST).build()
+            FunSpec.builder("fun1").addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST)
+                .build()
         )
     }
 
@@ -42,7 +43,9 @@ class FunSpecBuilderTest {
     fun typeVariables() {
         assertEquals(
             buildFunSpec("fun1") { typeVariables.add("typeVar1", Annotation1::class) },
-            FunSpec.builder("fun1").addTypeVariable(TypeVariableName("typeVar1", Annotation1::class.java)).build()
+            FunSpec.builder("fun1")
+                .addTypeVariable(TypeVariableName("typeVar1", Annotation1::class.java))
+                .build()
         )
     }
 
@@ -97,24 +100,35 @@ class FunSpecBuilderTest {
     @Test
     fun callThisConstructor() {
         assertEquals(
-            buildConstructorFunSpec { callThisConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2"))) },
-            FunSpec.constructorBuilder().callThisConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2"))).build()
+            buildConstructorFunSpec {
+                callThisConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2")))
+            },
+            FunSpec.constructorBuilder()
+                .callThisConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2")))
+                .build()
         )
         assertEquals(
             buildConstructorFunSpec { callThisConstructor("code1", "code2") },
             FunSpec.constructorBuilder().callThisConstructor("code1", "code2").build()
         )
         assertEquals(
-            buildConstructorFunSpec { callThisConstructor(codeBlockOf("code1"), codeBlockOf("code2")) },
-            FunSpec.constructorBuilder().callThisConstructor(codeBlockOf("code1"), codeBlockOf("code2")).build()
+            buildConstructorFunSpec {
+                callThisConstructor(codeBlockOf("code1"), codeBlockOf("code2"))
+            },
+            FunSpec.constructorBuilder()
+                .callThisConstructor(codeBlockOf("code1"), codeBlockOf("code2"))
+                .build()
         )
     }
 
     @Test
     fun callSuperConstructor() {
         assertEquals(
-            buildConstructorFunSpec { callSuperConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2"))) },
-            FunSpec.constructorBuilder().callSuperConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2")))
+            buildConstructorFunSpec {
+                callSuperConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2")))
+            },
+            FunSpec.constructorBuilder()
+                .callSuperConstructor(listOf(codeBlockOf("code1"), codeBlockOf("code2")))
                 .build()
         )
         assertEquals(
@@ -122,8 +136,12 @@ class FunSpecBuilderTest {
             FunSpec.constructorBuilder().callSuperConstructor("code1", "code2").build()
         )
         assertEquals(
-            buildConstructorFunSpec { callSuperConstructor(codeBlockOf("code1"), codeBlockOf("code2")) },
-            FunSpec.constructorBuilder().callSuperConstructor(codeBlockOf("code1"), codeBlockOf("code2")).build()
+            buildConstructorFunSpec {
+                callSuperConstructor(codeBlockOf("code1"), codeBlockOf("code2"))
+            },
+            FunSpec.constructorBuilder()
+                .callSuperConstructor(codeBlockOf("code1"), codeBlockOf("code2"))
+                .build()
         )
     }
 

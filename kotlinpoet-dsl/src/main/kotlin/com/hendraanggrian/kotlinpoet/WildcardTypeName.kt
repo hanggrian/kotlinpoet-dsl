@@ -17,7 +17,8 @@ inline fun Type.toUpperWildcardTypeName(): WildcardTypeName = WildcardTypeName.p
 inline fun KClass<*>.toUpperWildcardTypeName(): WildcardTypeName = WildcardTypeName.producerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that produces [T]. */
-inline fun <reified T> wildcardTypeNameUpperOf(): WildcardTypeName = WildcardTypeName.producerOf(T::class)
+inline fun <reified T> wildcardTypeNameUpperOf(): WildcardTypeName =
+    WildcardTypeName.producerOf(T::class)
 
 /** Returns a [WildcardTypeName] that represents an unknown supertype of [TypeName]. */
 inline fun TypeName.toLowerWildcardTypeName(): WildcardTypeName = WildcardTypeName.consumerOf(this)
@@ -30,4 +31,5 @@ inline fun Type.toLowerWildcardTypeName(): WildcardTypeName = WildcardTypeName.c
 inline fun KClass<*>.toLowerWildcardTypeName(): WildcardTypeName = WildcardTypeName.consumerOf(this)
 
 /** Returns a [WildcardTypeName] that represents an unknown type that consumes [T]. */
-inline fun <reified T> wildcardTypeNameLowerOf(): WildcardTypeName = WildcardTypeName.consumerOf(T::class)
+inline fun <reified T> wildcardTypeNameLowerOf(): WildcardTypeName =
+    WildcardTypeName.consumerOf(T::class)

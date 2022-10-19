@@ -44,7 +44,13 @@ class LambdaTypeNameTest {
         )
         assertEquals(
             "kotlin.Double.(kotlin.Int, java.lang.String) -> kotlin.Unit",
-            "${Unit::class.java.lambdaBy(Int::class.java, String::class.java, receiver = Double::class.java)}"
+            "${
+            Unit::class.java.lambdaBy(
+                Int::class.java,
+                String::class.java,
+                receiver = Double::class.java
+            )
+            }"
         )
         assertEquals(
             "kotlin.Double.(kotlin.Int, kotlin.String) -> kotlin.Unit",

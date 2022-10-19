@@ -15,8 +15,8 @@ import kotlin.contracts.contract
 inline fun codeBlockOf(format: String, vararg args: Any?): CodeBlock = CodeBlock.of(format, *args)
 
 /**
- * Builds new [CodeBlock],
- * by populating newly created [CodeBlockBuilder] using provided [configuration].
+ * Builds new [CodeBlock], by populating newly created [CodeBlockBuilder] using
+ * provided [configuration].
  */
 inline fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }

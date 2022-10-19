@@ -15,7 +15,8 @@ import kotlin.contracts.contract
 
 /** A [FunSpecList] is responsible for managing a set of function instances. */
 @OptIn(ExperimentalContracts::class)
-open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) : MutableList<FunSpec> by actualList {
+open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) :
+    MutableList<FunSpec> by actualList {
 
     /** Add function from name. */
     fun add(name: String): FunSpec = FunSpec.builder(name).build().also(::add)
@@ -68,9 +69,13 @@ open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) : 
     }
 }
 
-/** Receiver for the `functions` block providing an extended set of operators for the configuration. */
+/**
+ * Receiver for the `functions` block providing an extended set of operators for the
+ * configuration.
+ */
 @KotlinpoetSpecDsl
-class FunSpecListScope internal constructor(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
+class FunSpecListScope internal constructor(actualList: MutableList<FunSpec>) :
+    FunSpecList(actualList) {
 
     /** @see FunSpecList.add */
     inline operator fun String.invoke(noinline configuration: FunSpecBuilder.() -> Unit): FunSpec =

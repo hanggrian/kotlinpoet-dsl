@@ -33,7 +33,9 @@ class TypeSpecBuilderTest {
     fun addModifiers() {
         assertEquals(
             buildClassTypeSpec("class1") { addModifiers(PUBLIC, FINAL, CONST) },
-            TypeSpec.classBuilder("class1").addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST).build()
+            TypeSpec.classBuilder("class1")
+                .addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST)
+                .build()
         )
     }
 
@@ -41,7 +43,9 @@ class TypeSpecBuilderTest {
     fun typeVariables() {
         assertEquals(
             buildClassTypeSpec("class1") { typeVariables.add("typeVar1", Annotation1::class) },
-            TypeSpec.classBuilder("class1").addTypeVariable(TypeVariableName("typeVar1", Annotation1::class)).build()
+            TypeSpec.classBuilder("class1")
+                .addTypeVariable(TypeVariableName("typeVar1", Annotation1::class))
+                .build()
         )
     }
 

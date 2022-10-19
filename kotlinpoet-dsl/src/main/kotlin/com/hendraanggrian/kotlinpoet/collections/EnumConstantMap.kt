@@ -20,7 +20,11 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
     fun put(name: String): TypeSpec? = put(name, TypeSpec.anonymousClassBuilder().build())
 
     /** Add enum constant from formatted string. */
-    fun put(name: String, constructorParameterFormat: String, vararg constructorParameterArgs: Any): TypeSpec? = put(
+    fun put(
+        name: String,
+        constructorParameterFormat: String,
+        vararg constructorParameterArgs: Any
+    ): TypeSpec? = put(
         name,
         buildAnonymousTypeSpec {
             addSuperclassConstructorParameter(constructorParameterFormat, *constructorParameterArgs)
@@ -38,7 +42,10 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
         return put(
             name,
             buildAnonymousTypeSpec {
-                addSuperclassConstructorParameter(constructorParameterFormat, *constructorParameterArgs)
+                addSuperclassConstructorParameter(
+                    constructorParameterFormat,
+                    *constructorParameterArgs
+                )
                 configuration()
             }
         )
@@ -46,10 +53,17 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
 
     /** Add enum constant from [CodeBlock]. */
     fun put(name: String, constructorParameterCode: CodeBlock): TypeSpec? =
-        put(name, buildAnonymousTypeSpec { addSuperclassConstructorParameter(constructorParameterCode) })
+        put(
+            name,
+            buildAnonymousTypeSpec { addSuperclassConstructorParameter(constructorParameterCode) }
+        )
 
     /** Add enum constant from [CodeBlock] with custom initialization [configuration]. */
-    fun put(name: String, constructorParameterCode: CodeBlock, configuration: TypeSpecBuilder.() -> Unit): TypeSpec? {
+    fun put(
+        name: String,
+        constructorParameterCode: CodeBlock,
+        configuration: TypeSpecBuilder.() -> Unit
+    ): TypeSpec? {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return put(
             name,
@@ -74,10 +88,16 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
     val putting: SpecLoader<TypeSpec?> get() = createSpecLoader(::put)
 
     /** Property delegate for adding enum constant from formatted string. */
-    fun putting(constructorParameterFormat: String, vararg constructorParameterArgs: Any): SpecLoader<TypeSpec?> =
+    fun putting(
+        constructorParameterFormat: String,
+        vararg constructorParameterArgs: Any
+    ): SpecLoader<TypeSpec?> =
         createSpecLoader { put(it, constructorParameterFormat, *constructorParameterArgs) }
 
-    /** Property delegate for adding enum constant from formatted string with custom initialization [configuration]. */
+    /**
+     * Property delegate for adding enum constant from formatted string with custom
+     * initialization [configuration].
+     */
     fun putting(
         constructorParameterFormat: String,
         vararg constructorParameterArgs: Any,
@@ -85,7 +105,12 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
     ): SpecLoader<TypeSpec?> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader {
-            put(it, constructorParameterFormat, *constructorParameterArgs, configuration = configuration)
+            put(
+                it,
+                constructorParameterFormat,
+                *constructorParameterArgs,
+                configuration = configuration
+            )
         }
     }
 
@@ -94,15 +119,22 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
         createSpecLoader { put(it, constructorParameterCode) }
 
     /** Property delegate for adding enum constant from [CodeBlock] with custom initialization [configuration]. */
-    fun putting(constructorParameterCode: CodeBlock, configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec?> {
+    fun putting(
+        constructorParameterCode: CodeBlock,
+        configuration: TypeSpecBuilder.() -> Unit
+    ): SpecLoader<TypeSpec?> {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         return createSpecLoader { put(it, constructorParameterCode, configuration) }
     }
 }
 
-/** Receiver for the `enumConstants` block providing an extended set of operators for the configuration. */
+/**
+ * Receiver for the `enumConstants` block providing an extended set of operators for the
+ * configuration.
+ */
 @KotlinpoetSpecDsl
-class EnumConstantMapScope internal constructor(actualMap: MutableMap<String, TypeSpec>) : EnumConstantMap(actualMap) {
+class EnumConstantMapScope internal constructor(actualMap: MutableMap<String, TypeSpec>) :
+    EnumConstantMap(actualMap) {
 
     /** @see EnumConstantMap.put */
     inline operator fun String.invoke(

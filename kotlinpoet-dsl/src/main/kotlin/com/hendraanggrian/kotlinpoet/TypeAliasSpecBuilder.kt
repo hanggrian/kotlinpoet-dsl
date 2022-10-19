@@ -19,21 +19,25 @@ import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
 /** Builds new [TypeAliasSpec] from name and [TypeName]. */
-inline fun typeAliasSpecOf(name: String, type: TypeName): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+inline fun typeAliasSpecOf(name: String, type: TypeName): TypeAliasSpec =
+    TypeAliasSpec.builder(name, type).build()
 
 /** Builds new [TypeAliasSpec] from name and [Type]. */
 @DelicateKotlinPoetApi(DELICATE_JAVA)
-inline fun typeAliasSpecOf(name: String, type: Type): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+inline fun typeAliasSpecOf(name: String, type: Type): TypeAliasSpec =
+    TypeAliasSpec.builder(name, type).build()
 
 /** Builds new [TypeAliasSpec] from name and [KClass]. */
-inline fun typeAliasSpecOf(name: String, type: KClass<*>): TypeAliasSpec = TypeAliasSpec.builder(name, type).build()
+inline fun typeAliasSpecOf(name: String, type: KClass<*>): TypeAliasSpec =
+    TypeAliasSpec.builder(name, type).build()
 
 /** Builds new [TypeAliasSpec] from name and [T]. */
-inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec = TypeAliasSpec.builder(name, T::class).build()
+inline fun <reified T> typeAliasSpecOf(name: String): TypeAliasSpec =
+    TypeAliasSpec.builder(name, T::class).build()
 
 /**
- * Builds new [TypeAliasSpec] from name and [TypeName],
- * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
+ * Builds new [TypeAliasSpec] from name and [TypeName], by populating newly
+ * created [TypeAliasSpecBuilder] using provided [configuration].
  */
 inline fun buildTypeAliasSpec(
     name: String,
@@ -45,8 +49,8 @@ inline fun buildTypeAliasSpec(
 }
 
 /**
- * Builds new [TypeAliasSpec] from name and [Type],
- * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
+ * Builds new [TypeAliasSpec] from name and [Type], by populating newly
+ * created [TypeAliasSpecBuilder] using provided [configuration].
  */
 @DelicateKotlinPoetApi(DELICATE_JAVA)
 inline fun buildTypeAliasSpec(
@@ -59,8 +63,8 @@ inline fun buildTypeAliasSpec(
 }
 
 /**
- * Builds new [TypeAliasSpec] from name and [KClass],
- * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
+ * Builds new [TypeAliasSpec] from name and [KClass], by populating newly
+ * created [TypeAliasSpecBuilder] using provided [configuration].
  */
 inline fun buildTypeAliasSpec(
     name: String,
@@ -72,8 +76,8 @@ inline fun buildTypeAliasSpec(
 }
 
 /**
- * Builds new [TypeAliasSpec] from name and [T],
- * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
+ * Builds new [TypeAliasSpec] from name and [T], by populating newly created [TypeAliasSpecBuilder]
+ * using provided [configuration].
  */
 inline fun <reified T> buildTypeAliasSpec(
     name: String,
@@ -84,10 +88,13 @@ inline fun <reified T> buildTypeAliasSpec(
 }
 
 /**
- * Property delegate for building new [TypeAliasSpec] from [TypeName] supplying its name and modifiers,
- * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
+ * Property delegate for building new [TypeAliasSpec] from [TypeName] supplying its name and
+ * modifiers, by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
-fun buildingTypeAliasSpec(type: TypeName, configuration: TypeAliasSpecBuilder.() -> Unit): SpecLoader<TypeAliasSpec> {
+fun buildingTypeAliasSpec(
+    type: TypeName,
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): SpecLoader<TypeAliasSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return createSpecLoader { buildTypeAliasSpec(it, type, configuration) }
 }
@@ -97,16 +104,22 @@ fun buildingTypeAliasSpec(type: TypeName, configuration: TypeAliasSpecBuilder.()
  * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
 @DelicateKotlinPoetApi(DELICATE_JAVA)
-fun buildingTypeAliasSpec(type: Type, configuration: TypeAliasSpecBuilder.() -> Unit): SpecLoader<TypeAliasSpec> {
+fun buildingTypeAliasSpec(
+    type: Type,
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): SpecLoader<TypeAliasSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return createSpecLoader { buildTypeAliasSpec(it, type, configuration) }
 }
 
 /**
- * Property delegate for building new [TypeAliasSpec] from [KClass] supplying its name and modifiers,
- * by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
+ * Property delegate for building new [TypeAliasSpec] from [KClass] supplying its name and
+ * modifiers, by populating newly created [TypeAliasSpecBuilder] using provided [configuration].
  */
-fun buildingTypeAliasSpec(type: KClass<*>, configuration: TypeAliasSpecBuilder.() -> Unit): SpecLoader<TypeAliasSpec> {
+fun buildingTypeAliasSpec(
+    type: KClass<*>,
+    configuration: TypeAliasSpecBuilder.() -> Unit
+): SpecLoader<TypeAliasSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return createSpecLoader { buildTypeAliasSpec(it, type, configuration) }
 }
@@ -126,7 +139,8 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     }
 
     /** Type variables of this type alias. */
-    val typeVariables: TypeVariableNameCollection = TypeVariableNameCollection(nativeBuilder.typeVariables)
+    val typeVariables: TypeVariableNameCollection =
+        TypeVariableNameCollection(nativeBuilder.typeVariables)
 
     /** Configures type variables of this type alias. */
     fun typeVariables(configuration: TypeVariableNameCollection.() -> Unit) {
