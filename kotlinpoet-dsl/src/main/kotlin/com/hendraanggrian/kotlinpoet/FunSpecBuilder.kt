@@ -69,6 +69,7 @@ fun buildingFunSpec(configuration: FunSpecBuilder.() -> Unit): SpecLoader<FunSpe
 
 /**
  * Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder.
+ *
  * @param nativeBuilder source builder.
  */
 @KotlinpoetSpecDsl
@@ -212,7 +213,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
         returns(T::class, kdocCode)
 
     /** Set return to [T] with String formatting as kdoc. */
-    inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any) =
+    inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any): Unit =
         returns(T::class, kdocFormat, *kdocArgs)
 
     /** Parameters of this function. */

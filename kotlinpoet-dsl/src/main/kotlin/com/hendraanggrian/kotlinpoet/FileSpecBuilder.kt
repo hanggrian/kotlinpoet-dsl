@@ -47,6 +47,7 @@ inline fun buildFileSpec(
 
 /**
  * Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder.
+ *
  * @param nativeBuilder source builder.
  */
 @KotlinpoetSpecDsl
@@ -271,7 +272,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
      * @see kotlin.collections.EmptyList
      */
     private class FakeList<T> : MutableList<T> {
-        companion object {
+        private companion object {
             const val ERROR_MESSAGE = "FileSpec doesn't have real access to the requested specs. " +
                 "The only supported behavior is `add`."
         }

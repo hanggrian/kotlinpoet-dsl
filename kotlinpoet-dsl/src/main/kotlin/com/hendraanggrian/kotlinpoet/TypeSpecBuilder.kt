@@ -214,7 +214,9 @@ fun buildingObjectTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoade
  * Property delegate for building new companion object [TypeSpec] from [ClassName], by populating
  * newly created [TypeSpecBuilder] using provided [configuration].
  */
-fun buildingCompanionObjectTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecLoader<TypeSpec> {
+fun buildingCompanionObjectTypeSpec(
+    configuration: TypeSpecBuilder.() -> Unit
+): SpecLoader<TypeSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return createSpecLoader { buildCompanionObjectTypeSpec(it, configuration) }
 }
@@ -248,6 +250,7 @@ fun buildingAnnotationTypeSpec(configuration: TypeSpecBuilder.() -> Unit): SpecL
 
 /**
  * Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder.
+ *
  * @param nativeBuilder source builder.
  */
 @KotlinpoetSpecDsl

@@ -10,6 +10,7 @@ import kotlin.contracts.contract
 
 /**
  * Converts string to [CodeBlock] using formatted [args].
+ *
  * @see kotlin.text.format
  */
 inline fun codeBlockOf(format: String, vararg args: Any?): CodeBlock = CodeBlock.of(format, *args)
@@ -25,6 +26,7 @@ inline fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock
 
 /**
  * Wrapper of [CodeBlock.Builder], providing DSL support as a replacement to Java builder.
+ *
  * @param nativeBuilder source builder.
  */
 @KotlinpoetSpecDsl

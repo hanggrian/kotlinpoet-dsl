@@ -35,11 +35,11 @@ class GitHubTest {
                     println(${'"'}${'"'}${'"'}Hello, ${'$'}name${'"'}${'"'}${'"'})
                   }
                 }
-                
+
                 public fun main(vararg args: String): Unit {
                   Greeter(args[0]).greet()
                 }
-                
+
             """.trimIndent(),
             buildFileSpec("com.example.helloworld", "") {
                 val Greeter by types.addingClass {
@@ -72,7 +72,7 @@ class GitHubTest {
                     total += i
                   }
                 }
-            
+
             """.trimIndent(),
             buildFunSpec("main") {
                 returns = UNIT
@@ -110,9 +110,9 @@ class GitHubTest {
             """
                 public class HelloWorld {
                   public fun slimShady(): kotlin.String = "slimShady"
-                
+
                   public fun eminem(): kotlin.String = "eminem"
-                
+
                   public fun marshallMathers(): kotlin.String = "marshallMathers"
                 }
 
@@ -141,7 +141,7 @@ class GitHubTest {
         assertEquals(
             """
                 public fun printTotal(): kotlin.String = ${'"'}${'"'}${'"'}Your total is ${'$'}amount${'"'}${'"'}${'"'}
-                
+
             """.trimIndent(),
             buildFunSpec("printTotal") {
                 returns = STRING
@@ -155,11 +155,11 @@ class GitHubTest {
                 import kotlin.IntArray
                 import kotlin.Unit
                 import kotlin.collections.contentToString
-                
+
                 public fun print(digits: IntArray): Unit {
                   println(${'"'}${'"'}${'"'}These are the digits: ${'$'}{digits.contentToString()}${'"'}${'"'}${'"'})
                 }
-                
+
             """.trimIndent(),
             buildFileSpec("com.example", "Digits") {
                 functions.add("print") {
@@ -239,7 +239,7 @@ class GitHubTest {
             """
                 public class HelloWorld {
                   private var java: kotlin.String? = null
-                
+
                   private val kotlin: kotlin.String
                 }
 
@@ -265,12 +265,12 @@ class GitHubTest {
                 import com.squareup.tacos.createTaco
                 import com.squareup.tacos.isVegan
                 import kotlin.Unit
-    
+
                 public fun main(): Unit {
                   val taco = createTaco()
                   println(taco.isVegan)
                 }
-                
+
             """.trimIndent(),
             buildFileSpec("com.squareup.example", "TacoTest") {
                 val createTaco = MemberName("com.squareup.tacos", "createTaco")
@@ -297,7 +297,7 @@ class GitHubTest {
                   println(taco.isTacoVegan)
                   println(cake.isCakeVegan)
                 }
-                
+
             """.trimIndent(),
             buildFileSpec("com.squareup.example", "Test") {
                 val createTaco = MemberName("com.squareup.tacos", "createTaco")
@@ -330,7 +330,7 @@ class GitHubTest {
                   }
                   return taco
                 }
-                
+
             """.trimIndent(),
             buildFileSpec("com.example", "Test") {
                 val taco = ClassName("com.squareup.tacos", "Taco")
@@ -429,7 +429,7 @@ class GitHubTest {
                 public abstract class HelloWorld {
                   protected abstract fun flux(): kotlin.Unit
                 }
-                
+
             """.trimIndent(),
             buildClassTypeSpec("HelloWorld") {
                 addModifiers(ABSTRACT)
@@ -444,7 +444,7 @@ class GitHubTest {
                   val s = this * this
                   return s
                 }
-                
+
             """.trimIndent(),
             buildFunSpec("square") {
                 receiver<Int>()
@@ -456,7 +456,7 @@ class GitHubTest {
         assertEquals(
             """
                 public fun abs(x: kotlin.Int): kotlin.Int = if (x < 0) -x else x
-                
+
             """.trimIndent(),
             buildFunSpec("abs") {
                 returns<Int>()
@@ -469,7 +469,7 @@ class GitHubTest {
                 public fun add(a: kotlin.Int, b: kotlin.Int = 0): kotlin.Unit {
                   print("a + b = ${'$'}{a + b}")
                 }
-                
+
             """.trimIndent(),
             buildFunSpec("add") {
                 parameters {
@@ -482,10 +482,14 @@ class GitHubTest {
         assertEquals(
             """
                 public fun foo() = (100..10000).map { number -> number * number }.map { number -> number.toString() }.also { string -> println(string) }
-                
+
             """.trimIndent(),
             buildFunSpec("foo") {
-                appendLine("return (100..10000).map·{ number -> number * number }.map·{ number -> number.toString() }.also·{ string -> println(string) }")
+                appendLine(
+                    """
+                        return (100..10000).map·{ number -> number * number }.map·{ number -> number.toString() }.also·{ string -> println(string) }
+                    """.trimIndent()
+                )
             }.toString()
         )
     }
@@ -496,12 +500,12 @@ class GitHubTest {
             """
                 public class HelloWorld {
                   private val greeting: kotlin.String
-                
+
                   public constructor(greeting: kotlin.String) {
                     this.greeting = greeting
                   }
                 }
-                
+
             """.trimIndent(),
             buildClassTypeSpec("HelloWorld") {
                 properties.add<String>("greeting", PRIVATE)
@@ -520,7 +524,7 @@ class GitHubTest {
                     this.greeting = greeting
                   }
                 }
-                
+
             """.trimIndent(),
             buildClassTypeSpec("HelloWorld") {
                 properties.add<String>("greeting", PRIVATE) {
@@ -557,10 +561,10 @@ class GitHubTest {
             """
                 public class HelloWorld {
                   private val android: kotlin.String
-                
+
                   private val robot: kotlin.String
                 }
-                
+
             """.trimIndent(),
             buildClassTypeSpec("HelloWorld") {
                 properties {
@@ -572,7 +576,7 @@ class GitHubTest {
         assertEquals(
             """
                 private val android: kotlin.String = "Oreo v." + 8.1
-                
+
             """.trimIndent(),
             buildPropertySpec<String>("android", PRIVATE) {
                 initializer("%S + %L", "Oreo v.", 8.1)
@@ -584,7 +588,7 @@ class GitHubTest {
                   inline get() = "foo"
                   set(`value`) {
                   }
-                
+
             """.trimIndent(),
             buildPropertySpec<String>("android") {
                 isMutable = true
@@ -605,10 +609,10 @@ class GitHubTest {
             """
                 public interface HelloWorld {
                   public val buzz: kotlin.String
-                
+
                   public fun beep(): kotlin.Unit
                 }
-                
+
             """.trimIndent(),
             buildInterfaceTypeSpec("HelloWorld") {
                 properties.add<String>("buzz")
@@ -626,7 +630,7 @@ class GitHubTest {
                   SCISSORS,
                   PAPER,
                 }
-                
+
             """.trimIndent(),
             buildEnumTypeSpec("Roshambo") {
                 enumConstants {
@@ -648,7 +652,7 @@ class GitHubTest {
                   PAPER("flat"),
                   ;
                 }
-                
+
             """.trimIndent(),
             buildEnumTypeSpec("Roshambo") {
                 primaryConstructor {
@@ -681,7 +685,7 @@ class GitHubTest {
                     public override fun compare(a: kotlin.String, b: kotlin.String): kotlin.Int = a.length - b.length
                   })
                 }
-                
+
             """.trimIndent(),
             buildFunSpec("sortByLength") {
                 parameters.add("strings", List::class.parameterizedBy(String::class))
@@ -716,7 +720,7 @@ class GitHubTest {
                 public fun `test string equality`(): kotlin.Unit {
                   assertThat("foo").isEqualTo("foo")
                 }
-                
+
             """.trimIndent(),
             buildFunSpec("test string equality") {
                 annotations.add<Test>()
@@ -730,7 +734,7 @@ class GitHubTest {
                   userAgent = "Square Cash",
                 )
                 public abstract fun recordEvent(logRecord: com.example.LogRecord): com.example.LogReceipt
-                
+
             """.trimIndent(),
             buildFunSpec("recordEvent") {
                 addModifiers(ABSTRACT)
@@ -761,7 +765,7 @@ class GitHubTest {
                 public typealias FileTable<K> = Map<K, Set<File>>
 
                 public typealias Predicate<T> = (T) -> Boolean
-                
+
             """.trimIndent(),
             buildFileSpec("com.example", "HelloWorld") {
                 val k = "K".genericsBy()
@@ -791,7 +795,7 @@ class GitHubTest {
                   val world = com.example.hello.Hello::world
                   val bye = com.example.hello.Hello.World::bye
                 }
-                
+
             """.trimIndent(),
             buildFunSpec("factories") {
                 val helloClass = ClassName("com.example.hello", "Hello")

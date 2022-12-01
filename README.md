@@ -4,7 +4,7 @@
 [![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian/kotlinpoet-dsl?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/kotlinpoet-dsl/)
 [![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)
 
-# KotlinPoet DSL Primer
+# KotlinPoet DSL
 
 Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet), providing Kotlin
 DSL functionality and other convenient solutions.
@@ -102,8 +102,7 @@ types.addClass("Car") {
 
 ### Property delegation
 
-In spirit
-of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties)
+In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties)
 , creating a spec can be done by delegating to a property.
 
 ```kotlin

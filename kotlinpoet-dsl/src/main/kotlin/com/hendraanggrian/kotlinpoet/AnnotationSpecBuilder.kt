@@ -94,6 +94,7 @@ inline fun <reified T : Annotation> buildAnnotationSpec(
 
 /**
  * Wrapper of [AnnotationSpec.Builder], providing DSL support as a replacement to Java builder.
+ *
  * @param nativeBuilder source builder.
  */
 @KotlinpoetSpecDsl

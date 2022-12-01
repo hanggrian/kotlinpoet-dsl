@@ -52,7 +52,9 @@ class TypeSpecBuilderTest {
     @Test
     fun primaryConstructor() {
         assertEquals(
-            buildClassTypeSpec("class1") { primaryConstructor { parameters.add<Parameter1>("parameter1") } },
+            buildClassTypeSpec("class1") {
+                primaryConstructor { parameters.add<Parameter1>("parameter1") }
+            },
             TypeSpec.classBuilder("class1")
                 .primaryConstructor(
                     FunSpec.constructorBuilder()
