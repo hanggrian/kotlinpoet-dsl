@@ -12,13 +12,13 @@
         <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
         <!--Primary meta tags-->
         <meta content="kotlinpoet-dsl" name="title">
-        <meta content="KotlinPoet Kotlin extension" name="description">
+        <meta content="Replace KotlinPoet builders with Kotlin DSL" name="description">
     </head>
     <body>
         <div class="wrapper">
             <header>
                 <h1>kotlinpoet-dsl</h1>
-                <p>KotlinPoet Kotlin extension</p>
+                <p>Replace KotlinPoet builders with Kotlin DSL</p>
                 <p class="view">
                     <a href="https://github.com/hendraanggrian/kotlinpoet-dsl/">View the Project on GitHub <small>hendraanggrian/kotlinpoet-dsl</small></a>
                 </p>
@@ -37,10 +37,10 @@
 <a href="https://openjdk.java.net/projects/jdk8/"><img alt="OpenJDK" src="https://img.shields.io/badge/jdk-1.8%2B-informational"></a>
                 </p>
 
-                <h1>KotlinPoet DSL Primer</h1>
+                <h1>KotlinPoet DSL</h1>
 
                 <p>
-                    Lightweight Kotlin extension of <a href="https://github.com/square/kotlinpoet">KotlinPoet</a>,
+                    Lightweight Kotlin extension of <a href="https://github.com/square/kotlinpoet/">KotlinPoet</a>,
 providing Kotlin DSL functionality and other convenient solutions.
                 </p>
 
@@ -49,11 +49,12 @@ providing Kotlin DSL functionality and other convenient solutions.
                     <li>Full of convenient methods to achieve minimum code writing possible.</li>
 
                     <li>
-                        Options to invoke DSL. For example, <code>methods.add("main") { ... }</code> is as good as <code>methods { "main" { ... } }</code>.
-Scroll down for more information.
+                        Options to invoke DSL. For example, <code>methods.add("main") { ... }</code> is as good
+as <code>methods { "main" { ... } }</code>. Scroll down for more information.
                     </li>
 
-                    <li>Smooth transition, existing KotlinPoet native specs can still be configured with DSL.</li>
+                    <li>Smooth transition, existing KotlinPoet native specs can still be configured
+with DSL.</li>
 
                 </ul>
 
@@ -89,8 +90,8 @@ dependencies {
                 </h3>
 
                 <p>
-                    <code>KClass&lt;*&gt;</code> can now be used as format arguments.
-There is also inline reified type function whenever possible.
+                    <code>KClass&lt;*&gt;</code> can now be used as format arguments. There is also inline reified
+type function whenever possible.
                 </p>
 
                 <pre><code class="language-kotlin">buildMethodSpec("sortList") {
