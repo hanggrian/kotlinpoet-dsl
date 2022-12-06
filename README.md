@@ -6,13 +6,14 @@
 
 # KotlinPoet DSL
 
-Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet), providing Kotlin
-DSL functionality and other convenient solutions.
+Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoet/),
+providing Kotlin DSL functionality and other convenient solutions.
 
 - Full of convenient methods to achieve minimum code writing possible.
 - Options to invoke DSL. For example, `methods.add("main") { ... }` is as good
   as `methods { "main" { ... } }`. Scroll down for more information.
-- Smooth transition, existing KotlinPoet native specs can still be configured with DSL.
+- Smooth transition, existing KotlinPoet native specs can still be configured
+  with DSL.
 
 ```kotlin
 buildFileSpec("com.example.helloworld", "HelloWorld") {
@@ -45,8 +46,8 @@ dependencies {
 
 ### Use `T::class` as parameters
 
-`KClass<*>` can now be used as format arguments. There is also inline reified type function whenever
-possible.
+`KClass<*>` can now be used as format arguments. There is also inline reified
+type function whenever possible.
 
 ```kotlin
 buildMethodSpec("sortList") {
@@ -63,8 +64,8 @@ buildFieldSpec<Int>("count") {
 
 ### Optional DSL
 
-Some elements (field, method, parameter, etc.) are wrapped in container class. These containers have
-ability to add components with/without invoking DSL.
+Some elements (field, method, parameter, etc.) are wrapped in container class.
+These containers have ability to add components with/without invoking DSL.
 
 For example, 2 examples below will produce the same result.
 
@@ -102,8 +103,8 @@ types.addClass("Car") {
 
 ### Property delegation
 
-In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties)
-, creating a spec can be done by delegating to a property.
+In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties),
+creating a spec can be done by delegating to a property.
 
 ```kotlin
 val title by buildingParameterSpec(String::class) {
