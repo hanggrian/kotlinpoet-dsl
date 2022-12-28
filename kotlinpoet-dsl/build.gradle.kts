@@ -12,12 +12,12 @@ plugins {
 mavenPublishing {
     publishToMavenCentral(SonatypeHost.S01)
     signAllPublications()
-    pom(::pomConfig)
+    pom(::configurePom)
     configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
 }
 
 dependencies {
-    ktlint(libs.ktlint, ::ktlintConfig)
+    ktlint(libs.ktlint, ::configureKtlint)
     ktlint(libs.rulebook.ktlint)
     api(libs.kotlinpoet)
     testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))

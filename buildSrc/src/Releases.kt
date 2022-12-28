@@ -11,7 +11,7 @@ const val RELEASE_VERSION = "0.1"
 const val RELEASE_DESCRIPTION = "Replace KotlinPoet builders with Kotlin DSL"
 const val RELEASE_URL = "https://github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT/"
 
-fun Project.pomConfig(pom: MavenPom) {
+fun Project.configurePom(pom: MavenPom) {
     pom.name.set(name)
     pom.description.set(RELEASE_DESCRIPTION)
     pom.url.set(RELEASE_URL)
