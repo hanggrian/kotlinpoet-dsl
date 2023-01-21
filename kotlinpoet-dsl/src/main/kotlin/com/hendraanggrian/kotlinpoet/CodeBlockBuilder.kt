@@ -31,7 +31,6 @@ inline fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock
  */
 @KotlinpoetSpecDsl
 class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) : CodeBlockContainer {
-
     /** Returns true if this builder contains no code. */
     fun isEmpty(): Boolean = nativeBuilder.isEmpty()
 

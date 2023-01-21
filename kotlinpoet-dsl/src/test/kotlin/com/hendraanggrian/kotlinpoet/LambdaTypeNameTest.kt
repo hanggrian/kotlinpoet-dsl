@@ -9,7 +9,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class LambdaTypeNameTest {
-
     @Test
     fun parameterSpecListParameters() {
         val int = ParameterSpec.builder("int", Int::class).build()
@@ -45,11 +44,11 @@ class LambdaTypeNameTest {
         assertEquals(
             "kotlin.Double.(kotlin.Int, java.lang.String) -> kotlin.Unit",
             "${
-            Unit::class.java.lambdaBy(
-                Int::class.java,
-                String::class.java,
-                receiver = Double::class.java
-            )
+                Unit::class.java.lambdaBy(
+                    Int::class.java,
+                    String::class.java,
+                    receiver = Double::class.java
+                )
             }"
         )
         assertEquals(

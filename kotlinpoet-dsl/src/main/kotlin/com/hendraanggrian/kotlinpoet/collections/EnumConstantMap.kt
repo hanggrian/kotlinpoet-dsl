@@ -118,7 +118,10 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
     fun putting(constructorParameterCode: CodeBlock): SpecLoader<TypeSpec?> =
         createSpecLoader { put(it, constructorParameterCode) }
 
-    /** Property delegate for adding enum constant from [CodeBlock] with custom initialization [configuration]. */
+    /**
+     * Property delegate for adding enum constant from [CodeBlock] with custom
+     * initialization [configuration].
+     */
     fun putting(
         constructorParameterCode: CodeBlock,
         configuration: TypeSpecBuilder.() -> Unit
@@ -133,9 +136,7 @@ open class EnumConstantMap internal constructor(actualMap: MutableMap<String, Ty
  * configuration.
  */
 @KotlinpoetSpecDsl
-class EnumConstantMapScope internal constructor(actualMap: MutableMap<String, TypeSpec>) :
-    EnumConstantMap(actualMap) {
-
+class EnumConstantMapScope(actualMap: MutableMap<String, TypeSpec>) : EnumConstantMap(actualMap) {
     /** @see EnumConstantMap.put */
     inline operator fun String.invoke(
         anonymousTypeCode: CodeBlock,

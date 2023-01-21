@@ -74,9 +74,7 @@ open class FunSpecList internal constructor(actualList: MutableList<FunSpec>) :
  * configuration.
  */
 @KotlinpoetSpecDsl
-class FunSpecListScope internal constructor(actualList: MutableList<FunSpec>) :
-    FunSpecList(actualList) {
-
+class FunSpecListScope(actualList: MutableList<FunSpec>) : FunSpecList(actualList) {
     /** @see FunSpecList.add */
     inline operator fun String.invoke(noinline configuration: FunSpecBuilder.() -> Unit): FunSpec =
         add(this, configuration)

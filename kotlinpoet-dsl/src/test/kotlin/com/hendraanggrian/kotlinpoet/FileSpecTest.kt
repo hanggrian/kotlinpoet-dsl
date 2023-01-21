@@ -5,7 +5,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class FileSpecTest {
-
     @Test
     fun fileComments() {
         assertEquals(

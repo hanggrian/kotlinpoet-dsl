@@ -144,9 +144,7 @@ open class PropertySpecList internal constructor(actualList: MutableList<Propert
  * configuration.
  */
 @KotlinpoetSpecDsl
-class PropertySpecListScope internal constructor(actualList: MutableList<PropertySpec>) :
-    PropertySpecList(actualList) {
-
+class PropertySpecListScope(actualList: MutableList<PropertySpec>) : PropertySpecList(actualList) {
     /** @see PropertySpecList.add */
     inline operator fun String.invoke(
         type: TypeName,

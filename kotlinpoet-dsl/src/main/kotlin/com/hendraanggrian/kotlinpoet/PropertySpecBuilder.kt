@@ -156,7 +156,7 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     }
 
     /** Configures kdoc of this property. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         KdocContainerScope(kdoc).configuration()
     }
@@ -165,7 +165,7 @@ class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this property. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
     }

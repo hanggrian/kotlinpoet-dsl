@@ -16,7 +16,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class PropertySpecBuilderTest {
-
     @Test
     fun isMutable() {
         assertEquals(

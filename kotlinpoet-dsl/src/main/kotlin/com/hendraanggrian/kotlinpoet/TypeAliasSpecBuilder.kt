@@ -153,7 +153,7 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this type alias. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
     }
@@ -170,7 +170,7 @@ class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     }
 
     /** Configures kdoc of this type alias. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         KdocContainerScope(kdoc).configuration()
     }

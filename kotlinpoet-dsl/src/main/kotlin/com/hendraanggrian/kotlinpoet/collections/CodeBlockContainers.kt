@@ -4,7 +4,6 @@ import com.hendraanggrian.kotlinpoet.KotlinpoetSpecDsl
 import com.squareup.kotlinpoet.CodeBlock
 
 interface CodeBlockAppendable {
-
     /** Add code with arguments to this container. */
     fun append(format: String, vararg args: Any)
 
@@ -26,7 +25,6 @@ interface CodeBlockAppendable {
 }
 
 interface CodeBlockContainer : CodeBlockAppendable {
-
     /** Add named code to this container. */
     fun appendNamed(format: String, args: Map<String, *>)
 
@@ -66,7 +64,6 @@ interface CodeBlockContainer : CodeBlockAppendable {
 
 /** A [KdocContainer] is responsible for managing a set of code instances. */
 interface KdocContainer : CodeBlockAppendable {
-
     override fun appendLine(): Unit = append(SystemProperties.LINE_SEPARATOR)
 
     override fun appendLine(format: String, vararg args: Any) {
@@ -97,4 +94,4 @@ interface KdocContainer : CodeBlockAppendable {
 
 /** Receiver for the `kdoc` block providing an extended set of operators for the configuration. */
 @KotlinpoetSpecDsl
-class KdocContainerScope internal constructor(container: KdocContainer) : KdocContainer by container
+class KdocContainerScope(container: KdocContainer) : KdocContainer by container

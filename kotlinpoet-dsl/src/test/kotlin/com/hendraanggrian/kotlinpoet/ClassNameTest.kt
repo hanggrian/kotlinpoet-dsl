@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ClassNameTest {
-
     @Test
     fun classNameOf() {
         assertEquals("java.lang.String", "${classNameOf("java.lang.String")}")

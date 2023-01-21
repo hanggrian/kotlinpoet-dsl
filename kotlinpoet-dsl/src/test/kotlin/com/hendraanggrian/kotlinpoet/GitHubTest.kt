@@ -18,7 +18,6 @@ import kotlin.test.assertEquals
 
 /** From `https://square.github.io/kotlinpoet/`. */
 class GitHubTest {
-
     @Test
     fun `Example`() {
         assertEquals(

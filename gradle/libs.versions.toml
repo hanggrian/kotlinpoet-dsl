@@ -5,14 +5,14 @@ kotlin = "1.7.20"
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
 kotlinx-kover = "org.jetbrains.kotlinx.kover:0.6.1"
-maven-publish = "com.vanniktech.maven.publish.base:0.22.0"
-git-publish = "org.ajoberstar.git-publish:3.0.1"
+maven-publish = "com.vanniktech.maven.publish.base:0.22.0" # max for JDK 8
+git-publish = "org.ajoberstar.git-publish:3.0.1" # max for JDK 8
 pages = "com.hendraanggrian.pages:0.1"
 
 [libraries]
 # lint
-ktlint = "com.pinterest:ktlint:0.47.1"
-rulebook-ktlint = "com.hendraanggrian.rulebook:rulebook-ktlint:0.1"
+ktlint = "com.pinterest:ktlint:0.48.1"
+rulebook-ktlint = "com.hendraanggrian.rulebook:rulebook-ktlint:0.2-SNAPSHOT"
 # main
 kotlinx-coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 kotlinpoet = "com.squareup:kotlinpoet:1.11.0"

@@ -87,5 +87,5 @@ open class AnnotationSpecList internal constructor(actualList: MutableList<Annot
  * configuration.
  */
 @KotlinpoetSpecDsl
-class AnnotationSpecListScope internal constructor(actualList: MutableList<AnnotationSpec>) :
+class AnnotationSpecListScope(actualList: MutableList<AnnotationSpec>) :
     AnnotationSpecList(actualList)

@@ -70,7 +70,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
     }
 
     /** Configures annotations for this file. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
     }
@@ -97,7 +97,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
     }
 
     /** Configures types for this file. */
-    fun types(configuration: TypeSpecListScope.() -> Unit) {
+    inline fun types(configuration: TypeSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeSpecListScope(types).configuration()
     }
@@ -111,7 +111,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
     }
 
     /** Configures functions for this file. */
-    fun functions(configuration: FunSpecListScope.() -> Unit) {
+    inline fun functions(configuration: FunSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         FunSpecListScope(functions).configuration()
     }
@@ -125,7 +125,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
     }
 
     /** Configures properties for this file. */
-    fun properties(configuration: PropertySpecListScope.() -> Unit) {
+    inline fun properties(configuration: PropertySpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         PropertySpecListScope(properties).configuration()
     }
@@ -142,7 +142,7 @@ class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) : CodeBlockCo
     }
 
     /** Configures type aliases for this file. */
-    fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit) {
+    inline fun typeAliases(configuration: TypeAliasSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeAliasSpecListScope(typeAliases).configuration()
     }

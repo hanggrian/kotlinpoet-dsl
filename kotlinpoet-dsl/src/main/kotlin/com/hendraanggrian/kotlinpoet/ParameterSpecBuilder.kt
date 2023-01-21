@@ -20,7 +20,7 @@ import kotlin.reflect.KClass
 
 /** Converts element to [ParameterSpec]. */
 @DelicateKotlinPoetApi(DELICATE_ELEMENT)
-inline fun VariableElement.asParameterSpec(): ParameterSpec = ParameterSpec.get(this)
+inline fun VariableElement.toParameterSpec(): ParameterSpec = ParameterSpec.get(this)
 
 /**
  * Builds new [ParameterSpec] from [TypeName], by populating newly created [ParameterSpecBuilder]
@@ -150,7 +150,7 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     }
 
     /** Configures kdoc of this parameter. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         KdocContainerScope(kdoc).configuration()
     }
@@ -159,7 +159,7 @@ class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this parameter. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
     }

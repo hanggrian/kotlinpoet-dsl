@@ -8,7 +8,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ParameterSpecBuilderTest {
-
     @Test
     fun kdoc() {
         assertEquals(

@@ -150,7 +150,7 @@ open class ParameterSpecList internal constructor(actualList: MutableList<Parame
  * configuration.
  */
 @KotlinpoetSpecDsl
-class ParameterSpecListScope internal constructor(actualList: MutableList<ParameterSpec>) :
+class ParameterSpecListScope(actualList: MutableList<ParameterSpec>) :
     ParameterSpecList(actualList) {
 
     /** @see ParameterSpecList.add */

@@ -5,7 +5,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class WildcardNameTest {
-
     @Test
     fun toUpperWildcardTypeName() {
         assertEquals(

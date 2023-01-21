@@ -90,7 +90,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     }
 
     /** Configures kdoc of this function. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         KdocContainerScope(kdoc).configuration()
     }
@@ -99,7 +99,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotations)
 
     /** Configures annotations of this function. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
     }
@@ -220,7 +220,7 @@ class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) : CodeBlockCont
     val parameters: ParameterSpecList = ParameterSpecList(nativeBuilder.parameters)
 
     /** Configures parameters of this function. */
-    fun parameters(configuration: ParameterSpecListScope.() -> Unit) {
+    inline fun parameters(configuration: ParameterSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         ParameterSpecListScope(parameters).configuration()
     }

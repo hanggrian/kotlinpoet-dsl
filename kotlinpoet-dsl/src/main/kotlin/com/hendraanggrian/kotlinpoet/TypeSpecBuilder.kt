@@ -278,7 +278,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Configures kdoc of this type. */
-    fun kdoc(configuration: KdocContainerScope.() -> Unit) {
+    inline fun kdoc(configuration: KdocContainerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         KdocContainerScope(kdoc).configuration()
     }
@@ -287,7 +287,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val annotations: AnnotationSpecList = AnnotationSpecList(nativeBuilder.annotationSpecs)
 
     /** Configures annotations of this type. */
-    fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
+    inline fun annotations(configuration: AnnotationSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecListScope(annotations).configuration()
     }
@@ -366,7 +366,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val enumConstants: EnumConstantMap = EnumConstantMap(nativeBuilder.enumConstants)
 
     /** Configures enum constants of this type. */
-    fun enumConstants(configuration: EnumConstantMapScope.() -> Unit) {
+    inline fun enumConstants(configuration: EnumConstantMapScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         EnumConstantMapScope(enumConstants).configuration()
     }
@@ -375,7 +375,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val properties: PropertySpecList = PropertySpecList(nativeBuilder.propertySpecs)
 
     /** Configures properties of this type. */
-    fun properties(configuration: PropertySpecListScope.() -> Unit) {
+    inline fun properties(configuration: PropertySpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         PropertySpecListScope(properties).configuration()
     }
@@ -394,7 +394,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val functions: FunSpecList = FunSpecList(nativeBuilder.funSpecs)
 
     /** Configures functions of this type. */
-    fun functions(configuration: FunSpecListScope.() -> Unit) {
+    inline fun functions(configuration: FunSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         FunSpecListScope(functions).configuration()
     }
@@ -403,7 +403,7 @@ class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     val types: TypeSpecList = TypeSpecList(nativeBuilder.typeSpecs)
 
     /** Configures types of this type. */
-    fun types(configuration: TypeSpecListScope.() -> Unit) {
+    inline fun types(configuration: TypeSpecListScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeSpecListScope(types).configuration()
     }

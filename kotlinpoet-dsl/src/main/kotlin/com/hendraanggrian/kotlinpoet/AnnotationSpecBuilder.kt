@@ -25,16 +25,32 @@ val ANNOTATION_DELEGATE: AnnotationSpec.UseSiteTarget = AnnotationSpec.UseSiteTa
 
 /** Converts [Annotation] to [AnnotationSpec]. */
 @DelicateKotlinPoetApi(DELICATE_JAVA)
-inline fun Annotation.asAnnotationSpec(includeDefaultValues: Boolean = false): AnnotationSpec =
+inline fun Annotation.toAnnotationSpec(includeDefaultValues: Boolean = false): AnnotationSpec =
     AnnotationSpec.get(this, includeDefaultValues)
 
 /** Converts [AnnotationMirror] to [AnnotationSpec]. */
 @DelicateKotlinPoetApi(DELICATE_MIRROR)
-inline fun AnnotationMirror.asAnnotationSpec(): AnnotationSpec = AnnotationSpec.get(this)
+inline fun AnnotationMirror.toAnnotationSpec(): AnnotationSpec = AnnotationSpec.get(this)
+
+/** Converts [ClassName] to [AnnotationSpec]. */
+inline fun ClassName.toAnnotationSpec(): AnnotationSpec = AnnotationSpec.builder(this).build()
+
+/** Converts [ParameterizedTypeName] to [AnnotationSpec]. */
+inline fun ParameterizedTypeName.toAnnotationSpec(): AnnotationSpec =
+    AnnotationSpec.builder(this).build()
+
+/** Converts [Class] to [AnnotationSpec]. */
+@DelicateKotlinPoetApi(DELICATE_JAVA)
+inline fun Class<out Annotation>.toAnnotationSpec(): AnnotationSpec =
+    AnnotationSpec.builder(this).build()
+
+/** Converts [KClass] to [AnnotationSpec]. */
+inline fun KClass<out Annotation>.toAnnotationSpec(): AnnotationSpec =
+    AnnotationSpec.builder(this).build()
 
 /**
- * Builds new [AnnotationSpec] from [ClassName],
- * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
+ * Builds new [AnnotationSpec] from [ClassName], by populating newly created [AnnotationSpecBuilder]
+ * using provided [configuration].
  */
 inline fun buildAnnotationSpec(
     type: ClassName,
@@ -45,8 +61,8 @@ inline fun buildAnnotationSpec(
 }
 
 /**
- * Builds new [AnnotationSpec] from [ParameterizedTypeName],
- * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
+ * Builds new [AnnotationSpec] from [ParameterizedTypeName], by populating newly
+ * created [AnnotationSpecBuilder] using provided [configuration].
  */
 inline fun buildAnnotationSpec(
     type: ParameterizedTypeName,
@@ -57,8 +73,8 @@ inline fun buildAnnotationSpec(
 }
 
 /**
- * Builds new [AnnotationSpec] from [Class],
- * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
+ * Builds new [AnnotationSpec] from [Class], by populating newly created [AnnotationSpecBuilder]
+ * using provided [configuration].
  */
 @DelicateKotlinPoetApi(DELICATE_JAVA)
 inline fun buildAnnotationSpec(
@@ -70,8 +86,8 @@ inline fun buildAnnotationSpec(
 }
 
 /**
- * Builds new [AnnotationSpec] from [KClass],
- * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
+ * Builds new [AnnotationSpec] from [KClass], by populating newly created [AnnotationSpecBuilder]
+ * using provided [configuration].
  */
 inline fun buildAnnotationSpec(
     type: KClass<out Annotation>,
@@ -82,8 +98,8 @@ inline fun buildAnnotationSpec(
 }
 
 /**
- * Builds new [AnnotationSpec] from [T],
- * by populating newly created [AnnotationSpecBuilder] using provided [configuration].
+ * Builds new [AnnotationSpec] from [T], by populating newly created [AnnotationSpecBuilder] using
+ * provided [configuration].
  */
 inline fun <reified T : Annotation> buildAnnotationSpec(
     configuration: AnnotationSpecBuilder.() -> Unit

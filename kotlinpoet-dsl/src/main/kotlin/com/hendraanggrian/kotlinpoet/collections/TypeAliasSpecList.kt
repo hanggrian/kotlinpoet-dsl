@@ -139,7 +139,7 @@ open class TypeAliasSpecList internal constructor(actualList: MutableList<TypeAl
 
 /** Receiver for the `typeAliases` block providing an extended set of operators for the configuration. */
 @KotlinpoetSpecDsl
-class TypeAliasSpecListScope internal constructor(actualList: MutableList<TypeAliasSpec>) :
+class TypeAliasSpecListScope(actualList: MutableList<TypeAliasSpec>) :
     TypeAliasSpecList(actualList) {
 
     /** @see TypeAliasSpecList.add */
