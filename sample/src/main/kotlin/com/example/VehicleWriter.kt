@@ -2,16 +2,18 @@ package com.example
 
 import com.hendraanggrian.kotlinpoet.ABSTRACT
 import com.hendraanggrian.kotlinpoet.buildFileSpec
+import com.hendraanggrian.kotlinpoet.classType
+import com.hendraanggrian.kotlinpoet.functions
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import java.nio.file.Paths
 
 class VehicleWriter {
-
     companion object {
         private const val PACKAGE_NAME = "com.example.output"
         private val VEHICLE_NAME = ClassName(PACKAGE_NAME, "Vehicle")
+        private const val SOURCE_PATH = "sample/src/main/kotlin"
 
         @JvmStatic
         fun main(args: Array<String>) {
@@ -24,38 +26,38 @@ class VehicleWriter {
 
     fun prepare() {
         buildFileSpec(PACKAGE_NAME, "Vehicle") {
-            types.addInterface("Vehicle") {
+            classType("Vehicle") {
                 functions {
                     "getName" {
-                        addModifiers(ABSTRACT)
+                        modifiers(ABSTRACT)
                         returns<String>()
                     }
                     "getWheelCount" {
-                        addModifiers(ABSTRACT)
+                        modifiers(ABSTRACT)
                         returns = INT
                     }
                 }
             }
-        }.writeTo(Paths.get("sample/src"))
+        }.writeTo(Paths.get(SOURCE_PATH))
     }
 
     fun write(name: String, wheelCount: Int) {
         buildFileSpec(PACKAGE_NAME, name) {
-            types.addClass(name) {
-                superinterfaces.put(VEHICLE_NAME)
+            classType(name) {
+                superinterface(VEHICLE_NAME)
                 functions {
                     "getName" {
-                        addModifiers(KModifier.OVERRIDE)
+                        modifiers(KModifier.OVERRIDE)
                         returns<String>()
                         appendLine("return %S", name)
                     }
                     "getWheelCount" {
-                        addModifiers(KModifier.OVERRIDE)
+                        modifiers(KModifier.OVERRIDE)
                         returns = INT
                         appendLine("return %L", wheelCount)
                     }
                 }
             }
-        }.writeTo(Paths.get("sample/src"))
+        }.writeTo(Paths.get(SOURCE_PATH))
     }
 }

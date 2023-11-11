@@ -1,28 +1,28 @@
 package com.hendraanggrian.kotlinpoet
 
+import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CodeBlock
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
 class CodeBlockBuilderTest {
-    private val expected = CodeBlock.builder()
-        .addStatement("int total = 0")
-        .beginControlFlow("for (int i = 0; i < 10; i++)")
-        .addStatement("total += i")
-        .endControlFlow()
-        .build()
-
     @Test
     fun simple() {
-        assertEquals(
-            expected,
+        assertThat(
             buildCodeBlock {
                 appendLine("int total = 0")
-                appendControlFlow("for (int i = 0; i < 10; i++)") {
-                    appendLine("total += i")
-                }
-            }
+                beginControlFlow("for (int i = 0; i < 10; i++)")
+                appendLine("total += i")
+                endControlFlow()
+            },
+        ).isEqualTo(
+            CodeBlock.builder()
+                .addStatement("int total = 0")
+                .beginControlFlow("for (int i = 0; i < 10; i++)")
+                .addStatement("total += i")
+                .endControlFlow()
+                .build(),
         )
     }
 

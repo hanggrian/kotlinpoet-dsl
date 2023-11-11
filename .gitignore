@@ -10,3 +10,6 @@ local.properties
 *.iml
 .idea/
 out/
+
+# VSCode
+bin/
