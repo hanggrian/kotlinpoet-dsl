@@ -18,6 +18,9 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
+inline fun TypeName.asPropertySpec(name: String, vararg modifiers: KModifier): PropertySpec =
+    PropertySpec.builder(name, this, *modifiers).build()
+
 /**
  * Creates new [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
@@ -129,59 +132,60 @@ fun PropertySpecHandler.propertying(
 inline fun <reified T> PropertySpecHandler.property(
     name: String,
     vararg modifiers: KModifier,
-): PropertySpec =
-    PropertySpecBuilder(PropertySpec.builder(name, T::class, *modifiers))
-        .build()
-        .also(::property)
+): PropertySpec = T::class.name.asPropertySpec(name, *modifiers).also(::property)
 
 /** Invokes DSL to configure [PropertySpec] collection. */
 fun PropertySpecHandler.properties(configuration: PropertySpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    PropertySpecHandlerScope(this).configuration()
+    PropertySpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [PropertySpec] instances. */
-sealed interface PropertySpecHandler {
+interface PropertySpecHandler {
     fun property(property: PropertySpec)
 
     fun property(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
-        PropertySpec.builder(name, type, *modifiers).build().also(::property)
+        type.asPropertySpec(name, *modifiers).also(::property)
 
-    fun property(name: String, type: Type, vararg modifiers: KModifier): PropertySpec =
-        PropertySpec.builder(name, type, *modifiers).build().also(::property)
+    @OptIn(DelicateKotlinPoetApi::class)
+    fun property(name: String, type: Class<*>, vararg modifiers: KModifier): PropertySpec =
+        type.name2.asPropertySpec(name, *modifiers).also(::property)
 
     fun property(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
-        PropertySpec.builder(name, type, *modifiers).build().also(::property)
+        type.name.asPropertySpec(name, *modifiers).also(::property)
 
     fun propertying(
         type: TypeName,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<PropertySpec> =
-        SpecDelegateProvider {
-            PropertySpec.builder(it, type, *modifiers).build().also(::property)
-        }
+        SpecDelegateProvider { type.asPropertySpec(it, *modifiers).also(::property) }
 
-    fun propertying(type: Type, vararg modifiers: KModifier): SpecDelegateProvider<PropertySpec> =
-        SpecDelegateProvider {
-            PropertySpec.builder(it, type, *modifiers).build().also(::property)
-        }
+    @OptIn(DelicateKotlinPoetApi::class)
+    fun propertying(
+        type: Class<*>,
+        vararg modifiers: KModifier,
+    ): SpecDelegateProvider<PropertySpec> =
+        SpecDelegateProvider { type.name2.asPropertySpec(it, *modifiers).also(::property) }
 
     fun propertying(
         type: KClass<*>,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<PropertySpec> =
-        SpecDelegateProvider {
-            PropertySpec.builder(it, type, *modifiers).build().also(::property)
-        }
+        SpecDelegateProvider { type.name.asPropertySpec(it, *modifiers).also(::property) }
 }
 
 /**
  * Receiver for the `properties` block providing an extended set of operators for the configuration.
  */
 @KotlinpoetDsl
-class PropertySpecHandlerScope internal constructor(
+open class PropertySpecHandlerScope private constructor(
     handler: PropertySpecHandler,
 ) : PropertySpecHandler by handler {
+    companion object {
+        fun of(handler: PropertySpecHandler): PropertySpecHandlerScope =
+            PropertySpecHandlerScope(handler)
+    }
+
     /** @see property */
     operator fun String.invoke(
         type: TypeName,

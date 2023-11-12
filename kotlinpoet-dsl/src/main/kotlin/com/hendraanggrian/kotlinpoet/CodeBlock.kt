@@ -56,6 +56,11 @@ class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) {
         nativeBuilder.addStatement(format, *args)
     }
 
+    // com.squareup.javapoet.CodeBlock.addStatement
+    fun appendLine(code: CodeBlock) {
+        appendLine("%L", code)
+    }
+
     fun append(code: CodeBlock) {
         nativeBuilder.add(code)
     }

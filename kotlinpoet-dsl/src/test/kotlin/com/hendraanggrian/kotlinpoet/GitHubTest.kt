@@ -241,7 +241,7 @@ class GitHubTest {
 
             """.trimIndent(),
             buildClassTypeSpec("HelloWorld") {
-                property("java", STRING.nullable, PRIVATE) {
+                property("java", STRING.nullable(), PRIVATE) {
                     isMutable = true
                     initializer("null")
                 }

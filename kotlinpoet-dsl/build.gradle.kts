@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    ktlint(libs.rulebook.ktlint)
+    ktlintRuleset(libs.rulebook.ktlint)
 
     api(libs.kotlinpoet)
 

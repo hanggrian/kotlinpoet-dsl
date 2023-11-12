@@ -10,20 +10,20 @@ Lightweight Kotlin extension of [KotlinPoet](https://github.com/square/kotlinpoe
 providing Kotlin DSL functionality and other convenient solutions.
 
 - Full of convenient methods to achieve minimum code writing possible.
-- Options to invoke DSL. For example, `methods.add("main") { ... }` is as good
+- Options to invoke DSL. For example, `method("main") { ... }` is as good
   as `methods { "main" { ... } }`. Scroll down for more information.
 - Smooth transition, existing KotlinPoet native specs can still be configured
   with DSL.
 
 ```kotlin
 buildFileSpec("com.example.helloworld", "HelloWorld") {
-    addClass("HelloWorld") {
-        addModifiers(KModifier.PUBLIC, KModifier.FINAL)
+    classType("HelloWorld") {
+        modifiers(PUBLIC, FINAL)
         methods {
             "main" {
-                addModifiers(KModifier.PUBLIC, KModifier.STATIC)
+                modifiers(PUBLIC, STATIC)
                 returns = UNIT
-                parameters.add<Array<String>>("args")
+                parameter("args", STRING.array)
                 appendLine("%T.out.println(%S)", System::class, "Hello, KotlinPoet!")
             }
         }
@@ -52,12 +52,12 @@ type function whenever possible.
 ```kotlin
 buildMethodSpec("sortList") {
     returns = int
-    parameters.add(classNameOf("java.util", "List").parameterizedBy(hoverboard), "list")
+    parameters.add(classNamed("java.util", "List").parameterizedBy(hoverboard), "list")
     appendLine("%T.sort(list)", Collections::class)
     appendLine("return list")
 }
 
-buildFieldSpec<Int>("count") {
+buildFieldSpec("count", INT) {
     initializer("%L", 0)
 }
 ```
@@ -73,30 +73,24 @@ For example, 2 examples below will produce the same result.
 types.addClass("Car") {
     methods {
         "getWheels" {
-            returns = int
-            statements {
-                add("return wheels")
-            }
+            returns = INT
+            appendLine("return wheels")
         }
         "setWheels" {
-            parameters {
-                add(int, "wheels")
-            }
-            statements {
-                add("this.wheels = wheels")
-            }
+            parameter("wheels", INT)
+            appendLine("this.wheels = wheels")
         }
     }
 }
 
 types.addClass("Car") {
-    methods.add("getWheels") {
-        returns = int
-        statements.add("return wheels")
+    method("getWheels") {
+        returns = INT
+        appendLine("return wheels")
     }
-    methods.add("setWheels") {
-        parameters["wheels"] = int
-        statements.add("this.wheels = wheels")
+    method("setWheels") {
+        paraneter("wheels", INT)
+        appendLine("this.wheels = wheels")
     }
 }
 ```
@@ -107,12 +101,12 @@ In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotli
 creating a spec can be done by delegating to a property.
 
 ```kotlin
-val title by buildingParameterSpec(String::class) {
-    annotations.add<NotNull>
+val title by parametering(String::class) {
+    annotation<NotNull>
 }
 
-val message by parameters.adding(String::class) {
-    annotations.add<Nullable>
+val message by parametering(String::class) {
+    annotation<Nullable>
 }
 ```
 

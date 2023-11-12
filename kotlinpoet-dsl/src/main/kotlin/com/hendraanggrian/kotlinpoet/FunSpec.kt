@@ -7,6 +7,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.ExperimentalKotlinPoetApi
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
@@ -18,6 +19,8 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
+inline fun MemberName.asFunSpec(): FunSpec = FunSpec.builder(this).build()
+
 /**
  * Creates new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
@@ -28,11 +31,32 @@ inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit):
 }
 
 /**
+ * Creates new [FunSpec] by populating newly created [FunSpecBuilder] using provided
+ * [configuration].
+ */
+inline fun buildFunSpec(name: MemberName, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
+}
+
+/**
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
 inline fun FunSpecHandler.function(
     name: String,
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return buildFunSpec(name, configuration).also(::function)
+}
+
+/**
+ * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
+ * [configuration].
+ */
+inline fun FunSpecHandler.function(
+    name: MemberName,
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -103,14 +127,16 @@ fun FunSpecHandler.functioning(
 /** Invokes DSL to configure [FunSpec] collection. */
 fun FunSpecHandler.functions(configuration: FunSpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    FunSpecHandlerScope(this).configuration()
+    FunSpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [FunSpec] instances. */
-sealed interface FunSpecHandler {
+interface FunSpecHandler {
     fun function(function: FunSpec)
 
     fun function(name: String): FunSpec = FunSpec.builder(name).build().also(::function)
+
+    fun function(name: MemberName): FunSpec = name.asFunSpec().also(::function)
 
     fun functioning(): SpecDelegateProvider<FunSpec> =
         SpecDelegateProvider { FunSpec.builder(it).build().also(::function) }
@@ -123,9 +149,13 @@ sealed interface FunSpecHandler {
  * configuration.
  */
 @KotlinpoetDsl
-class FunSpecHandlerScope internal constructor(
+open class FunSpecHandlerScope private constructor(
     handler: FunSpecHandler,
 ) : FunSpecHandler by handler {
+    companion object {
+        fun of(handler: FunSpecHandler): FunSpecHandlerScope = FunSpecHandlerScope(handler)
+    }
+
     /** @see function */
     operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): FunSpec =
         buildFunSpec(this, configuration).also(::function)
@@ -304,6 +334,11 @@ class FunSpecBuilder(
 
     fun appendLine(format: String, vararg args: Any) {
         nativeBuilder.addStatement(format, *args)
+    }
+
+    // com.squareup.javapoet.CodeBlock.addStatement
+    fun appendLine(code: CodeBlock) {
+        appendLine("%L", code)
     }
 
     fun clear() {

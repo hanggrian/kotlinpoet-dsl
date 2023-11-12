@@ -276,11 +276,11 @@ fun TypeSpecHandler.annotationTyping(
 /** Invokes DSL to configure [TypeSpec] collection. */
 fun TypeSpecHandler.types(configuration: TypeSpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    TypeSpecHandlerScope(this).configuration()
+    TypeSpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [TypeSpec] instances. */
-sealed interface TypeSpecHandler {
+interface TypeSpecHandler {
     fun type(type: TypeSpec)
 
     fun classType(name: String): TypeSpec = TypeSpec.classBuilder(name).build().also(::type)
@@ -342,9 +342,13 @@ sealed interface TypeSpecHandler {
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
 @KotlinpoetDsl
-class TypeSpecHandlerScope internal constructor(
+open class TypeSpecHandlerScope private constructor(
     handler: TypeSpecHandler,
 ) : TypeSpecHandler by handler {
+    companion object {
+        fun of(handler: TypeSpecHandler): TypeSpecHandlerScope = TypeSpecHandlerScope(handler)
+    }
+
     /** @see classType */
     operator fun String.invoke(configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
         buildClassTypeSpec(this, configuration).also(::type)

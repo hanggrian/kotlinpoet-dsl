@@ -4,14 +4,17 @@ package com.hendraanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
-import java.lang.reflect.Type
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
+
+inline fun TypeName.asParameterSpec(name: String, vararg modifiers: KModifier): ParameterSpec =
+    ParameterSpec.builder(name, this, *modifiers).build()
 
 /**
  * Creates new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
@@ -126,53 +129,46 @@ fun ParameterSpecHandler.parametering(
 inline fun <reified T> ParameterSpecHandler.parameter(
     name: String,
     vararg modifiers: KModifier,
-): ParameterSpec =
-    ParameterSpecBuilder(ParameterSpec.builder(name, T::class, *modifiers))
-        .build()
-        .also(::parameter)
+): ParameterSpec = T::class.name.asParameterSpec(name, *modifiers).also(::parameter)
 
 /** Invokes DSL to configure [ParameterSpec] collection. */
 fun ParameterSpecHandler.parameters(configuration: ParameterSpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    ParameterSpecHandlerScope(this).configuration()
+    ParameterSpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [ParameterSpec] instances. */
-sealed interface ParameterSpecHandler {
+interface ParameterSpecHandler {
     fun parameter(parameter: ParameterSpec)
 
     fun parameter(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
-        ParameterSpec.builder(name, type, *modifiers).build().also(::parameter)
+        type.asParameterSpec(name, *modifiers).also(::parameter)
 
-    fun parameter(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
-        ParameterSpec.builder(name, type, *modifiers).build().also(::parameter)
+    @OptIn(DelicateKotlinPoetApi::class)
+    fun parameter(name: String, type: Class<*>, vararg modifiers: KModifier): ParameterSpec =
+        type.name2.asParameterSpec(name, *modifiers).also(::parameter)
 
     fun parameter(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
-        ParameterSpec.builder(name, type, *modifiers).build().also(::parameter)
+        type.name.asParameterSpec(name, *modifiers).also(::parameter)
 
     fun parametering(
         type: TypeName,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<ParameterSpec> =
-        SpecDelegateProvider {
-            ParameterSpec.builder(it, type, *modifiers).build().also(::parameter)
-        }
+        SpecDelegateProvider { type.asParameterSpec(it, *modifiers).also(::parameter) }
 
+    @OptIn(DelicateKotlinPoetApi::class)
     fun parametering(
-        type: Type,
+        type: Class<*>,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<ParameterSpec> =
-        SpecDelegateProvider {
-            ParameterSpec.builder(it, type, *modifiers).build().also(::parameter)
-        }
+        SpecDelegateProvider { type.name2.asParameterSpec(it, *modifiers).also(::parameter) }
 
     fun parametering(
         type: KClass<*>,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<ParameterSpec> =
-        SpecDelegateProvider {
-            ParameterSpec.builder(it, type, *modifiers).build().also(::parameter)
-        }
+        SpecDelegateProvider { type.name.asParameterSpec(it, *modifiers).also(::parameter) }
 }
 
 /**
@@ -180,9 +176,14 @@ sealed interface ParameterSpecHandler {
  * configuration.
  */
 @KotlinpoetDsl
-class ParameterSpecHandlerScope internal constructor(
+open class ParameterSpecHandlerScope private constructor(
     handler: ParameterSpecHandler,
 ) : ParameterSpecHandler by handler {
+    companion object {
+        fun of(handler: ParameterSpecHandler): ParameterSpecHandlerScope =
+            ParameterSpecHandlerScope(handler)
+    }
+
     /** @see parameter */
     operator fun String.invoke(
         type: TypeName,
