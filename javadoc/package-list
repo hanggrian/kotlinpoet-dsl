@@ -1,0 +1,10 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.hendraanggrian.kotlinpoet/AnnotationSpecHandlerScope.Companion///PointingToDeclaration/com/hendraanggrian/kotlinpoet/AnnotationSpecHandlerScope.Companion.html
+$dokka.location:com.hendraanggrian.kotlinpoet/FunSpecHandlerScope.Companion///PointingToDeclaration/com/hendraanggrian/kotlinpoet/FunSpecHandlerScope.Companion.html
+$dokka.location:com.hendraanggrian.kotlinpoet/ParameterSpecHandlerScope.Companion///PointingToDeclaration/com/hendraanggrian/kotlinpoet/ParameterSpecHandlerScope.Companion.html
+$dokka.location:com.hendraanggrian.kotlinpoet/PropertySpecHandlerScope.Companion///PointingToDeclaration/com/hendraanggrian/kotlinpoet/PropertySpecHandlerScope.Companion.html
+$dokka.location:com.hendraanggrian.kotlinpoet/TypeAliasSpecHandlerScope.Companion///PointingToDeclaration/com/hendraanggrian/kotlinpoet/TypeAliasSpecHandlerScope.Companion.html
+$dokka.location:com.hendraanggrian.kotlinpoet/TypeSpecHandlerScope.Companion///PointingToDeclaration/com/hendraanggrian/kotlinpoet/TypeSpecHandlerScope.Companion.html
+com.hendraanggrian.kotlinpoet
+
