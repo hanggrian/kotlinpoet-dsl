@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
+kotlin.explicitApi()
+
 dependencies {
     ktlintRuleset(libs.rulebook.ktlint)
 

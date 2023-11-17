@@ -10,29 +10,32 @@ import com.squareup.kotlinpoet.TypeVariableName
 import java.lang.reflect.Type
 import kotlin.reflect.KClass
 
-inline fun TypeVariableName.nullable(tags: Map<KClass<*>, Any> = emptyMap()): TypeVariableName =
-    copy(nullable = true, tags = tags)
+public inline fun TypeVariableName.nullable(
+    tags: Map<KClass<*>, Any> = emptyMap(),
+): TypeVariableName = copy(nullable = true, tags = tags)
 
-fun TypeVariableName.annotate(
+public fun TypeVariableName.annotate(
     vararg annotations: AnnotationSpec,
     tags: Map<KClass<*>, Any> = emptyMap(),
 ): TypeVariableName = copy(annotations = annotations.toList(), tags = tags)
 
 /** Returns type variable named name without bounds. */
-inline val String.generics: TypeVariableName get() = TypeVariableName(this)
+public inline val String.generics: TypeVariableName get() = TypeVariableName(this)
 
 /** Returns type variable named name with variance and bounds. */
-inline fun String.genericsBy(
+public inline fun String.genericsBy(
     vararg bounds: TypeName,
     variance: KModifier? = null,
 ): TypeVariableName = TypeVariableName(this, *bounds, variance = variance)
 
 /** Returns type variable named name with variance and bounds. */
-inline fun String.genericsBy(vararg bounds: Type, variance: KModifier? = null): TypeVariableName =
-    TypeVariableName(this, *bounds, variance = variance)
+public inline fun String.genericsBy(
+    vararg bounds: Type,
+    variance: KModifier? = null,
+): TypeVariableName = TypeVariableName(this, *bounds, variance = variance)
 
 /** Returns type variable named name with variance and bounds. */
-inline fun String.genericsBy(
+public inline fun String.genericsBy(
     vararg bounds: KClass<*>,
     variance: KModifier? = null,
 ): TypeVariableName = TypeVariableName(this, *bounds, variance = variance)

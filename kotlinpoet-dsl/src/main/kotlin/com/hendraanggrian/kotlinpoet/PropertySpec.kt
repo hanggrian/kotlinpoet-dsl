@@ -18,14 +18,14 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
-inline fun TypeName.asPropertySpec(name: String, vararg modifiers: KModifier): PropertySpec =
+public inline fun TypeName.asPropertySpec(name: String, vararg modifiers: KModifier): PropertySpec =
     PropertySpec.builder(name, this, *modifiers).build()
 
 /**
  * Creates new [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-inline fun buildPropertySpec(
+public inline fun buildPropertySpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -40,7 +40,7 @@ inline fun buildPropertySpec(
  * Inserts new [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-inline fun PropertySpecHandler.property(
+public inline fun PropertySpecHandler.property(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -55,7 +55,7 @@ inline fun PropertySpecHandler.property(
  * Inserts [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-inline fun PropertySpecHandler.property(
+public inline fun PropertySpecHandler.property(
     name: String,
     type: Class<*>,
     vararg modifiers: KModifier,
@@ -70,7 +70,7 @@ inline fun PropertySpecHandler.property(
  * Inserts [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-inline fun PropertySpecHandler.property(
+public inline fun PropertySpecHandler.property(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -85,7 +85,7 @@ inline fun PropertySpecHandler.property(
  * Property delegate for inserting new [PropertySpec] by populating newly created
  * [PropertySpecBuilder] using provided [configuration].
  */
-fun PropertySpecHandler.propertying(
+public fun PropertySpecHandler.propertying(
     type: TypeName,
     vararg modifiers: KModifier,
     configuration: PropertySpecBuilder.() -> Unit,
@@ -100,7 +100,7 @@ fun PropertySpecHandler.propertying(
  * Property delegate for inserting new [PropertySpec] by populating newly created
  * [PropertySpecBuilder] using provided [configuration].
  */
-fun PropertySpecHandler.propertying(
+public fun PropertySpecHandler.propertying(
     type: Class<*>,
     vararg modifiers: KModifier,
     configuration: PropertySpecBuilder.() -> Unit,
@@ -116,7 +116,7 @@ fun PropertySpecHandler.propertying(
  * Property delegate for inserting new [PropertySpec] by populating newly created
  * [PropertySpecBuilder] using provided [configuration].
  */
-fun PropertySpecHandler.propertying(
+public fun PropertySpecHandler.propertying(
     type: KClass<*>,
     vararg modifiers: KModifier,
     configuration: PropertySpecBuilder.() -> Unit,
@@ -129,45 +129,45 @@ fun PropertySpecHandler.propertying(
 }
 
 /** Convenient method to insert [PropertySpec] using reified type. */
-inline fun <reified T> PropertySpecHandler.property(
+public inline fun <reified T> PropertySpecHandler.property(
     name: String,
     vararg modifiers: KModifier,
 ): PropertySpec = T::class.name.asPropertySpec(name, *modifiers).also(::property)
 
 /** Invokes DSL to configure [PropertySpec] collection. */
-fun PropertySpecHandler.properties(configuration: PropertySpecHandlerScope.() -> Unit) {
+public fun PropertySpecHandler.properties(configuration: PropertySpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     PropertySpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [PropertySpec] instances. */
-interface PropertySpecHandler {
-    fun property(property: PropertySpec)
+public interface PropertySpecHandler {
+    public fun property(property: PropertySpec)
 
-    fun property(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
+    public fun property(name: String, type: TypeName, vararg modifiers: KModifier): PropertySpec =
         type.asPropertySpec(name, *modifiers).also(::property)
 
     @OptIn(DelicateKotlinPoetApi::class)
-    fun property(name: String, type: Class<*>, vararg modifiers: KModifier): PropertySpec =
+    public fun property(name: String, type: Class<*>, vararg modifiers: KModifier): PropertySpec =
         type.name2.asPropertySpec(name, *modifiers).also(::property)
 
-    fun property(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
+    public fun property(name: String, type: KClass<*>, vararg modifiers: KModifier): PropertySpec =
         type.name.asPropertySpec(name, *modifiers).also(::property)
 
-    fun propertying(
+    public fun propertying(
         type: TypeName,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<PropertySpec> =
         SpecDelegateProvider { type.asPropertySpec(it, *modifiers).also(::property) }
 
     @OptIn(DelicateKotlinPoetApi::class)
-    fun propertying(
+    public fun propertying(
         type: Class<*>,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<PropertySpec> =
         SpecDelegateProvider { type.name2.asPropertySpec(it, *modifiers).also(::property) }
 
-    fun propertying(
+    public fun propertying(
         type: KClass<*>,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<PropertySpec> =
@@ -178,16 +178,16 @@ interface PropertySpecHandler {
  * Receiver for the `properties` block providing an extended set of operators for the configuration.
  */
 @KotlinpoetDsl
-open class PropertySpecHandlerScope private constructor(
+public open class PropertySpecHandlerScope private constructor(
     handler: PropertySpecHandler,
 ) : PropertySpecHandler by handler {
-    companion object {
-        fun of(handler: PropertySpecHandler): PropertySpecHandlerScope =
+    public companion object {
+        public fun of(handler: PropertySpecHandler): PropertySpecHandlerScope =
             PropertySpecHandlerScope(handler)
     }
 
     /** @see property */
-    operator fun String.invoke(
+    public operator fun String.invoke(
         type: TypeName,
         vararg modifiers: KModifier,
         configuration: PropertySpecBuilder.() -> Unit,
@@ -195,7 +195,7 @@ open class PropertySpecHandlerScope private constructor(
         buildPropertySpec(this, type, *modifiers, configuration = configuration).also(::property)
 
     /** @see property */
-    operator fun String.invoke(
+    public operator fun String.invoke(
         type: Class<*>,
         vararg modifiers: KModifier,
         configuration: PropertySpecBuilder.() -> Unit,
@@ -204,7 +204,7 @@ open class PropertySpecHandlerScope private constructor(
             .also(::property)
 
     /** @see property */
-    operator fun String.invoke(
+    public operator fun String.invoke(
         type: KClass<*>,
         vararg modifiers: KModifier,
         configuration: PropertySpecBuilder.() -> Unit,
@@ -215,79 +215,80 @@ open class PropertySpecHandlerScope private constructor(
 
 /** Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDsl
-class PropertySpecBuilder(
+public class PropertySpecBuilder(
     private val nativeBuilder: PropertySpec.Builder,
 ) : AnnotationSpecHandler {
-    val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
-    val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
-    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-    val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
-    val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
-    val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+    public val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
+    public val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
+    public val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
+    public val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
+    public val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
+    public val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
     @OptIn(ExperimentalKotlinPoetApi::class)
-    val contextReceiverTypes: MutableList<TypeName> get() = nativeBuilder.contextReceiverTypes
+    public val contextReceiverTypes: MutableList<TypeName>
+        get() = nativeBuilder.contextReceiverTypes
 
-    var isMutable: Boolean
+    public var isMutable: Boolean
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.mutable(value)
         }
 
-    fun modifiers(vararg modifiers: KModifier) {
+    public fun modifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    fun modifiers(modifiers: Iterable<KModifier>) {
+    public fun modifiers(modifiers: Iterable<KModifier>) {
         nativeBuilder.addModifiers(modifiers)
     }
 
-    fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
+    public fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
         nativeBuilder.addTypeVariables(typeVariables)
     }
 
-    fun typeVariable(typeVariable: TypeVariableName) {
+    public fun typeVariable(typeVariable: TypeVariableName) {
         nativeBuilder.addTypeVariable(typeVariable)
     }
 
-    fun initializer(format: String, vararg args: Any) {
+    public fun initializer(format: String, vararg args: Any) {
         nativeBuilder.initializer(format, *args)
     }
 
-    var initializer: CodeBlock
+    public var initializer: CodeBlock
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.initializer(value)
         }
 
-    fun delegate(format: String, vararg args: Any) {
+    public fun delegate(format: String, vararg args: Any) {
         nativeBuilder.delegate(format, *args)
     }
 
-    var delegate: CodeBlock
+    public var delegate: CodeBlock
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.delegate(value)
         }
 
-    var getter: FunSpec
+    public var getter: FunSpec
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.getter(value)
         }
 
-    var setter: FunSpec
+    public var setter: FunSpec
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.setter(value)
         }
 
-    var receiver: TypeName
+    public var receiver: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
@@ -295,27 +296,27 @@ class PropertySpecBuilder(
         }
 
     @DelicateKotlinPoetApi(DELICATE_API)
-    fun receiver(type: Type) {
+    public fun receiver(type: Type) {
         nativeBuilder.receiver(type)
     }
 
-    fun receiver(type: KClass<*>) {
+    public fun receiver(type: KClass<*>) {
         nativeBuilder.receiver(type)
     }
 
-    inline fun <reified T> receiver(): Unit = receiver(T::class)
+    public inline fun <reified T> receiver(): Unit = receiver(T::class)
 
-    override fun annotation(annotation: AnnotationSpec) {
+    public override fun annotation(annotation: AnnotationSpec) {
         nativeBuilder.addAnnotation(annotation)
     }
 
-    fun kdoc(format: String, vararg args: Any) {
+    public fun kdoc(format: String, vararg args: Any) {
         nativeBuilder.addKdoc(format, *args)
     }
 
-    fun kdoc(block: CodeBlock) {
+    public fun kdoc(block: CodeBlock) {
         nativeBuilder.addKdoc(block)
     }
 
-    fun build(): PropertySpec = nativeBuilder.build()
+    public fun build(): PropertySpec = nativeBuilder.build()
 }

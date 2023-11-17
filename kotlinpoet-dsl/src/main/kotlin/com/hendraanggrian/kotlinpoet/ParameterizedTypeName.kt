@@ -9,15 +9,15 @@ import com.squareup.kotlinpoet.ParameterizedTypeName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import kotlin.reflect.KClass
 
-inline fun ParameterizedTypeName.nullable(
+public inline fun ParameterizedTypeName.nullable(
     tags: Map<KClass<*>, Any> = emptyMap(),
 ): ParameterizedTypeName = copy(nullable = true, tags = tags)
 
-fun ParameterizedTypeName.annotate(
+public fun ParameterizedTypeName.annotate(
     vararg annotations: AnnotationSpec,
     tags: Map<KClass<*>, Any> = emptyMap(),
 ): ParameterizedTypeName = copy(annotations = annotations.toList(), tags = tags)
 
 /** Returns a parameterized type, applying typeArguments to rawType. */
-inline fun <reified T> ClassName.parameterizedBy(): ParameterizedTypeName =
+public inline fun <reified T> ClassName.parameterizedBy(): ParameterizedTypeName =
     parameterizedBy(T::class.name)

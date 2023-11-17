@@ -2,43 +2,43 @@ package com.hendraanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.KModifier
 
-val PUBLIC: KModifier = KModifier.PUBLIC
-val PROTECTED: KModifier = KModifier.PROTECTED
-val PRIVATE: KModifier = KModifier.PRIVATE
-val INTERNAL: KModifier = KModifier.INTERNAL
+public val PUBLIC: KModifier = KModifier.PUBLIC
+public val PROTECTED: KModifier = KModifier.PROTECTED
+public val PRIVATE: KModifier = KModifier.PRIVATE
+public val INTERNAL: KModifier = KModifier.INTERNAL
 
-val EXPECT: KModifier = KModifier.EXPECT
-val ACTUAL: KModifier = KModifier.ACTUAL
+public val EXPECT: KModifier = KModifier.EXPECT
+public val ACTUAL: KModifier = KModifier.ACTUAL
 
-val FINAL: KModifier = KModifier.FINAL
-val OPEN: KModifier = KModifier.OPEN
-val ABSTRACT: KModifier = KModifier.ABSTRACT
-val SEALED: KModifier = KModifier.SEALED
-val CONST: KModifier = KModifier.CONST
+public val FINAL: KModifier = KModifier.FINAL
+public val OPEN: KModifier = KModifier.OPEN
+public val ABSTRACT: KModifier = KModifier.ABSTRACT
+public val SEALED: KModifier = KModifier.SEALED
+public val CONST: KModifier = KModifier.CONST
 
-val EXTERNAL: KModifier = KModifier.EXTERNAL
-val OVERRIDE: KModifier = KModifier.OVERRIDE
-val LATEINIT: KModifier = KModifier.LATEINIT
-val TAILREC: KModifier = KModifier.TAILREC
-val VARARG: KModifier = KModifier.VARARG
-val SUSPEND: KModifier = KModifier.SUSPEND
-val INNER: KModifier = KModifier.INNER
+public val EXTERNAL: KModifier = KModifier.EXTERNAL
+public val OVERRIDE: KModifier = KModifier.OVERRIDE
+public val LATEINIT: KModifier = KModifier.LATEINIT
+public val TAILREC: KModifier = KModifier.TAILREC
+public val VARARG: KModifier = KModifier.VARARG
+public val SUSPEND: KModifier = KModifier.SUSPEND
+public val INNER: KModifier = KModifier.INNER
 
-val ENUM: KModifier = KModifier.ENUM
-val ANNOTATION: KModifier = KModifier.ANNOTATION
-val FUN: KModifier = KModifier.FUN
+public val ENUM: KModifier = KModifier.ENUM
+public val ANNOTATION: KModifier = KModifier.ANNOTATION
+public val FUN: KModifier = KModifier.FUN
 
-val COMPANION: KModifier = KModifier.COMPANION
+public val COMPANION: KModifier = KModifier.COMPANION
 
-val INLINE: KModifier = KModifier.INLINE
-val NOINLINE: KModifier = KModifier.NOINLINE
-val CROSSINLINE: KModifier = KModifier.CROSSINLINE
-val REIFIED: KModifier = KModifier.REIFIED
+public val INLINE: KModifier = KModifier.INLINE
+public val NOINLINE: KModifier = KModifier.NOINLINE
+public val CROSSINLINE: KModifier = KModifier.CROSSINLINE
+public val REIFIED: KModifier = KModifier.REIFIED
 
-val INFIX: KModifier = KModifier.INFIX
-val OPERATOR: KModifier = KModifier.OPERATOR
+public val INFIX: KModifier = KModifier.INFIX
+public val OPERATOR: KModifier = KModifier.OPERATOR
 
-val DATA: KModifier = KModifier.DATA
+public val DATA: KModifier = KModifier.DATA
 
-val IN: KModifier = KModifier.IN
-val OUT: KModifier = KModifier.OUT
+public val IN: KModifier = KModifier.IN
+public val OUT: KModifier = KModifier.OUT

@@ -14,14 +14,14 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
-inline fun TypeName.asTypeAliasSpec(name: String): TypeAliasSpec =
+public inline fun TypeName.asTypeAliasSpec(name: String): TypeAliasSpec =
     TypeAliasSpec.builder(name, this).build()
 
 /**
  * Creates new [TypeAliasSpec] by populating newly created [TypeAliasSpecBuilder] using provided
  * [configuration].
  */
-inline fun buildTypeAliasSpec(
+public inline fun buildTypeAliasSpec(
     name: String,
     type: TypeName,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -34,7 +34,7 @@ inline fun buildTypeAliasSpec(
  * Inserts new [TypeAliasSpec] by populating newly created [TypeAliasSpecBuilder] using provided
  * [configuration].
  */
-inline fun TypeAliasSpecHandler.typeAlias(
+public inline fun TypeAliasSpecHandler.typeAlias(
     name: String,
     type: TypeName,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -47,7 +47,7 @@ inline fun TypeAliasSpecHandler.typeAlias(
  * Inserts new [TypeAliasSpec] by populating newly created [TypeAliasSpecBuilder] using provided
  * [configuration].
  */
-inline fun TypeAliasSpecHandler.typeAlias(
+public inline fun TypeAliasSpecHandler.typeAlias(
     name: String,
     type: Class<*>,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -60,7 +60,7 @@ inline fun TypeAliasSpecHandler.typeAlias(
  * Inserts new [TypeAliasSpec] by populating newly created [TypeAliasSpecBuilder] using provided
  * [configuration].
  */
-inline fun TypeAliasSpecHandler.typeAlias(
+public inline fun TypeAliasSpecHandler.typeAlias(
     name: String,
     type: KClass<*>,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -73,7 +73,7 @@ inline fun TypeAliasSpecHandler.typeAlias(
  * Property delegate for inserting new [TypeAliasSpec] by populating newly created
  * [TypeAliasSpecBuilder] using provided [configuration].
  */
-fun TypeAliasSpecHandler.typeAliasing(
+public fun TypeAliasSpecHandler.typeAliasing(
     type: TypeName,
     configuration: TypeAliasSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeAliasSpec> {
@@ -87,7 +87,7 @@ fun TypeAliasSpecHandler.typeAliasing(
  * Property delegate for inserting new [TypeAliasSpec] by populating newly created
  * [TypeAliasSpecBuilder] using provided [configuration].
  */
-fun TypeAliasSpecHandler.typeAliasing(
+public fun TypeAliasSpecHandler.typeAliasing(
     type: Class<*>,
     configuration: TypeAliasSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeAliasSpec> {
@@ -101,7 +101,7 @@ fun TypeAliasSpecHandler.typeAliasing(
  * Property delegate for inserting new [TypeAliasSpec] by populating newly created
  * [TypeAliasSpecBuilder] using provided [configuration].
  */
-fun TypeAliasSpecHandler.typeAliasing(
+public fun TypeAliasSpecHandler.typeAliasing(
     type: KClass<*>,
     configuration: TypeAliasSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeAliasSpec> {
@@ -112,37 +112,41 @@ fun TypeAliasSpecHandler.typeAliasing(
 }
 
 /** Convenient method to insert [TypeAliasSpec] using reified type. */
-inline fun <reified T> TypeAliasSpecHandler.typeAlias(name: String): TypeAliasSpec =
+public inline fun <reified T> TypeAliasSpecHandler.typeAlias(name: String): TypeAliasSpec =
     TypeAliasSpecBuilder(TypeAliasSpec.builder(name, T::class)).build().also(::typeAlias)
 
 /** Invokes DSL to configure [TypeAliasSpec] collection. */
-fun TypeAliasSpecHandler.typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit) {
+public fun TypeAliasSpecHandler.typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     TypeAliasSpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [TypeAliasSpec] instances. */
-interface TypeAliasSpecHandler {
-    fun typeAlias(typeAlias: TypeAliasSpec)
+public interface TypeAliasSpecHandler {
+    public fun typeAlias(typeAlias: TypeAliasSpec)
 
-    fun typeAlias(name: String, type: TypeName): TypeAliasSpec =
+    public fun typeAlias(name: String, type: TypeName): TypeAliasSpec =
         type.asTypeAliasSpec(name).also(::typeAlias)
 
     @DelicateKotlinPoetApi(DELICATE_API)
-    fun typeAlias(name: String, type: Class<*>): TypeAliasSpec =
+    public fun typeAlias(name: String, type: Class<*>): TypeAliasSpec =
         type.name2.asTypeAliasSpec(name).also(::typeAlias)
 
-    fun typeAlias(name: String, type: KClass<*>): TypeAliasSpec =
+    public fun typeAlias(name: String, type: KClass<*>): TypeAliasSpec =
         type.name.asTypeAliasSpec(name).also(::typeAlias)
 
-    fun typeAliasing(type: TypeName): SpecDelegateProvider<TypeAliasSpec> =
+    public fun typeAliasing(type: TypeName): SpecDelegateProvider<TypeAliasSpec> =
         SpecDelegateProvider { type.asTypeAliasSpec(it).also(::typeAlias) }
 
     @DelicateKotlinPoetApi(DELICATE_API)
-    fun TypeAliasSpecHandler.typeAliasing(type: Class<*>): SpecDelegateProvider<TypeAliasSpec> =
+    public fun TypeAliasSpecHandler.typeAliasing(
+        type: Class<*>,
+    ): SpecDelegateProvider<TypeAliasSpec> =
         SpecDelegateProvider { type.name2.asTypeAliasSpec(it).also(::typeAlias) }
 
-    fun TypeAliasSpecHandler.typeAliasing(type: KClass<*>): SpecDelegateProvider<TypeAliasSpec> =
+    public fun TypeAliasSpecHandler.typeAliasing(
+        type: KClass<*>,
+    ): SpecDelegateProvider<TypeAliasSpec> =
         SpecDelegateProvider { type.name.asTypeAliasSpec(it).also(::typeAlias) }
 }
 
@@ -151,28 +155,28 @@ interface TypeAliasSpecHandler {
  * configuration.
  */
 @KotlinpoetDsl
-open class TypeAliasSpecHandlerScope private constructor(
+public open class TypeAliasSpecHandlerScope private constructor(
     handler: TypeAliasSpecHandler,
 ) : TypeAliasSpecHandler by handler {
-    companion object {
-        fun of(handler: TypeAliasSpecHandler): TypeAliasSpecHandlerScope =
+    public companion object {
+        public fun of(handler: TypeAliasSpecHandler): TypeAliasSpecHandlerScope =
             TypeAliasSpecHandlerScope(handler)
     }
 
     /** @see typeAlias */
-    operator fun String.invoke(
+    public operator fun String.invoke(
         type: TypeName,
         configuration: TypeAliasSpecBuilder.() -> Unit,
     ): TypeAliasSpec = buildTypeAliasSpec(this, type, configuration).also(::typeAlias)
 
     /** @see typeAlias */
-    operator fun String.invoke(
+    public operator fun String.invoke(
         type: Class<*>,
         configuration: TypeAliasSpecBuilder.() -> Unit,
     ): TypeAliasSpec = buildTypeAliasSpec(this, type.name2, configuration).also(::typeAlias)
 
     /** @see typeAlias */
-    operator fun String.invoke(
+    public operator fun String.invoke(
         type: KClass<*>,
         configuration: TypeAliasSpecBuilder.() -> Unit,
     ): TypeAliasSpec = buildTypeAliasSpec(this, type.name, configuration).also(::typeAlias)
@@ -180,42 +184,42 @@ open class TypeAliasSpecHandlerScope private constructor(
 
 /** Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDsl
-class TypeAliasSpecBuilder(
+public class TypeAliasSpecBuilder(
     private val nativeBuilder: TypeAliasSpec.Builder,
 ) : AnnotationSpecHandler {
-    val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
-    val typeVariables: MutableSet<TypeVariableName> get() = nativeBuilder.typeVariables
-    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-    val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
-    val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+    public val modifiers: MutableSet<KModifier> get() = nativeBuilder.modifiers
+    public val typeVariables: MutableSet<TypeVariableName> get() = nativeBuilder.typeVariables
+    public val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
+    public val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
+    public val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
-    fun modifiers(vararg modifiers: KModifier) {
+    public fun modifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    fun modifiers(modifiers: Iterable<KModifier>) {
+    public fun modifiers(modifiers: Iterable<KModifier>) {
         nativeBuilder.addModifiers(modifiers)
     }
 
-    fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
+    public fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
         nativeBuilder.addTypeVariables(typeVariables)
     }
 
-    fun typeVariable(typeVariable: TypeVariableName) {
+    public fun typeVariable(typeVariable: TypeVariableName) {
         nativeBuilder.addTypeVariable(typeVariable)
     }
 
-    override fun annotation(annotation: AnnotationSpec) {
+    public override fun annotation(annotation: AnnotationSpec) {
         nativeBuilder.addAnnotation(annotation)
     }
 
-    fun kdoc(format: String, vararg args: Any) {
+    public fun kdoc(format: String, vararg args: Any) {
         nativeBuilder.addKdoc(format, *args)
     }
 
-    fun kdoc(block: CodeBlock) {
+    public fun kdoc(block: CodeBlock) {
         nativeBuilder.addKdoc(block)
     }
 
-    fun build(): TypeAliasSpec = nativeBuilder.build()
+    public fun build(): TypeAliasSpec = nativeBuilder.build()
 }

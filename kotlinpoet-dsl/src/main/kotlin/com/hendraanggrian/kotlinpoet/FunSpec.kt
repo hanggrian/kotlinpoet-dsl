@@ -19,13 +19,13 @@ import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 import kotlin.reflect.KClass
 
-inline fun MemberName.asFunSpec(): FunSpec = FunSpec.builder(this).build()
+public inline fun MemberName.asFunSpec(): FunSpec = FunSpec.builder(this).build()
 
 /**
  * Creates new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
 }
@@ -34,7 +34,10 @@ inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit):
  * Creates new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun buildFunSpec(name: MemberName, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun buildFunSpec(
+    name: MemberName,
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.builder(name)).apply(configuration).build()
 }
@@ -43,7 +46,7 @@ inline fun buildFunSpec(name: MemberName, configuration: FunSpecBuilder.() -> Un
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun FunSpecHandler.function(
+public inline fun FunSpecHandler.function(
     name: String,
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
@@ -55,7 +58,7 @@ inline fun FunSpecHandler.function(
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun FunSpecHandler.function(
+public inline fun FunSpecHandler.function(
     name: MemberName,
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
@@ -67,7 +70,9 @@ inline fun FunSpecHandler.function(
  * Inserts new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun FunSpecHandler.constructorFunction(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun FunSpecHandler.constructorFunction(
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.constructorBuilder())
         .apply(configuration)
@@ -79,7 +84,7 @@ inline fun FunSpecHandler.constructorFunction(configuration: FunSpecBuilder.() -
  * Applies new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun TypeSpecBuilder.primaryConstructorFunction(
+public inline fun TypeSpecBuilder.primaryConstructorFunction(
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -93,7 +98,9 @@ inline fun TypeSpecBuilder.primaryConstructorFunction(
  * Applies new getter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun PropertySpecBuilder.getterFunction(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun PropertySpecBuilder.getterFunction(
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.getterBuilder())
         .apply(configuration)
@@ -105,7 +112,9 @@ inline fun PropertySpecBuilder.getterFunction(configuration: FunSpecBuilder.() -
  * Applies new setter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-inline fun PropertySpecBuilder.setterFunction(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun PropertySpecBuilder.setterFunction(
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.setterBuilder())
         .apply(configuration)
@@ -117,7 +126,7 @@ inline fun PropertySpecBuilder.setterFunction(configuration: FunSpecBuilder.() -
  * Property delegate for inserting new [FunSpec] by populating newly created [FunSpecBuilder]
  * using provided [configuration].
  */
-fun FunSpecHandler.functioning(
+public fun FunSpecHandler.functioning(
     configuration: FunSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<FunSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -125,23 +134,24 @@ fun FunSpecHandler.functioning(
 }
 
 /** Invokes DSL to configure [FunSpec] collection. */
-fun FunSpecHandler.functions(configuration: FunSpecHandlerScope.() -> Unit) {
+public fun FunSpecHandler.functions(configuration: FunSpecHandlerScope.() -> Unit) {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     FunSpecHandlerScope.of(this).configuration()
 }
 
 /** Responsible for managing a set of [FunSpec] instances. */
-interface FunSpecHandler {
-    fun function(function: FunSpec)
+public interface FunSpecHandler {
+    public fun function(function: FunSpec)
 
-    fun function(name: String): FunSpec = FunSpec.builder(name).build().also(::function)
+    public fun function(name: String): FunSpec = FunSpec.builder(name).build().also(::function)
 
-    fun function(name: MemberName): FunSpec = name.asFunSpec().also(::function)
+    public fun function(name: MemberName): FunSpec = name.asFunSpec().also(::function)
 
-    fun functioning(): SpecDelegateProvider<FunSpec> =
+    public fun functioning(): SpecDelegateProvider<FunSpec> =
         SpecDelegateProvider { FunSpec.builder(it).build().also(::function) }
 
-    fun constructorFunction(): FunSpec = FunSpec.constructorBuilder().build().also(::function)
+    public fun constructorFunction(): FunSpec =
+        FunSpec.constructorBuilder().build().also(::function)
 }
 
 /**
@@ -149,213 +159,215 @@ interface FunSpecHandler {
  * configuration.
  */
 @KotlinpoetDsl
-open class FunSpecHandlerScope private constructor(
+public open class FunSpecHandlerScope private constructor(
     handler: FunSpecHandler,
 ) : FunSpecHandler by handler {
-    companion object {
-        fun of(handler: FunSpecHandler): FunSpecHandlerScope = FunSpecHandlerScope(handler)
+    public companion object {
+        public fun of(handler: FunSpecHandler): FunSpecHandlerScope = FunSpecHandlerScope(handler)
     }
 
     /** @see function */
-    operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): FunSpec =
+    public operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): FunSpec =
         buildFunSpec(this, configuration).also(::function)
 }
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDsl
-class FunSpecBuilder(
+public class FunSpecBuilder(
     private val nativeBuilder: FunSpec.Builder,
 ) : AnnotationSpecHandler, ParameterSpecHandler {
-    val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
-    val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
-    val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
-    val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
-    val parameters: MutableList<ParameterSpec> get() = nativeBuilder.parameters
-    val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-    val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
+    public val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
+    public val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+    public val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
+    public val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
+    public val parameters: MutableList<ParameterSpec> get() = nativeBuilder.parameters
+    public val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
+    public val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
     @OptIn(ExperimentalKotlinPoetApi::class)
-    val contextReceiverTypes: MutableList<TypeName> get() = nativeBuilder.contextReceiverTypes
+    public val contextReceiverTypes: MutableList<TypeName>
+        get() = nativeBuilder.contextReceiverTypes
 
-    fun modifiers(vararg modifiers: KModifier) {
+    public fun modifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    fun modifiers(modifiers: Iterable<KModifier>) {
+    public fun modifiers(modifiers: Iterable<KModifier>) {
         nativeBuilder.addModifiers(modifiers)
     }
 
-    fun javaModifiers(modifiers: Iterable<Modifier>) {
+    public fun javaModifiers(modifiers: Iterable<Modifier>) {
         nativeBuilder.jvmModifiers(modifiers)
     }
 
-    fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
+    public fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
         nativeBuilder.addTypeVariables(typeVariables)
     }
 
-    fun typeVariable(typeVariable: TypeVariableName) {
+    public fun typeVariable(typeVariable: TypeVariableName) {
         nativeBuilder.addTypeVariable(typeVariable)
     }
 
     @OptIn(ExperimentalKotlinPoetApi::class)
-    fun contextReceivers(receiverTypes: Iterable<TypeName>) {
+    public fun contextReceivers(receiverTypes: Iterable<TypeName>) {
         nativeBuilder.contextReceivers(receiverTypes)
     }
 
-    var receiver: TypeName
+    public var receiver: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.receiver(value)
         }
 
-    fun receiver(type: TypeName, kdocCode: CodeBlock) {
+    public fun receiver(type: TypeName, kdocCode: CodeBlock) {
         nativeBuilder.receiver(type, kdocCode)
     }
 
-    fun receiver(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun receiver(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.receiver(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    fun receiver(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun receiver(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.receiver(type, kdocCode)
     }
 
-    fun receiver(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun receiver(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.receiver(type, kdocFormat, *kdocArgs)
     }
 
-    fun receiver(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun receiver(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.receiver(type, kdocCode)
     }
 
-    fun receiver(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun receiver(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.receiver(type, kdocFormat, *kdocArgs)
     }
 
-    inline fun <reified T> receiver(kdocCode: CodeBlock = CodeBlock.builder().build()): Unit =
-        receiver(T::class, kdocCode)
+    public inline fun <reified T> receiver(
+        kdocCode: CodeBlock = CodeBlock.builder().build(),
+    ): Unit = receiver(T::class, kdocCode)
 
-    inline fun <reified T> receiver(kdocFormat: String, vararg kdocArgs: Any): Unit =
+    public inline fun <reified T> receiver(kdocFormat: String, vararg kdocArgs: Any): Unit =
         receiver(T::class, kdocFormat, *kdocArgs)
 
-    var returns: TypeName
+    public var returns: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
         get() = noGetter()
         set(value) {
             nativeBuilder.returns(value)
         }
 
-    fun returns(type: TypeName, kdocCode: CodeBlock) {
+    public fun returns(type: TypeName, kdocCode: CodeBlock) {
         nativeBuilder.returns(type, kdocCode)
     }
 
-    fun returns(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun returns(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    fun returns(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun returns(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.returns(type, kdocCode)
     }
 
-    fun returns(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun returns(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    fun returns(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun returns(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.returns(type, kdocCode)
     }
 
-    fun returns(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun returns(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    inline fun <reified T> returns(kdocCode: CodeBlock = CodeBlock.builder().build()): Unit =
+    public inline fun <reified T> returns(kdocCode: CodeBlock = CodeBlock.builder().build()): Unit =
         returns(T::class, kdocCode)
 
-    inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any): Unit =
+    public inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any): Unit =
         returns(T::class, kdocFormat, *kdocArgs)
 
-    override fun parameter(parameter: ParameterSpec) {
+    public override fun parameter(parameter: ParameterSpec) {
         nativeBuilder.addParameter(parameter)
     }
 
-    fun callThisConstructor(args: Iterable<CodeBlock>) {
+    public fun callThisConstructor(args: Iterable<CodeBlock>) {
         nativeBuilder.callThisConstructor(args)
     }
 
-    fun callThisConstructor(vararg args: String) {
+    public fun callThisConstructor(vararg args: String) {
         nativeBuilder.callThisConstructor(*args)
     }
 
-    fun callThisConstructor(vararg args: CodeBlock) {
+    public fun callThisConstructor(vararg args: CodeBlock) {
         nativeBuilder.callThisConstructor(*args)
     }
 
-    fun callSuperConstructor(args: Iterable<CodeBlock>) {
+    public fun callSuperConstructor(args: Iterable<CodeBlock>) {
         nativeBuilder.callSuperConstructor(args)
     }
 
-    fun callSuperConstructor(vararg args: String) {
+    public fun callSuperConstructor(vararg args: String) {
         nativeBuilder.callSuperConstructor(*args)
     }
 
-    fun callSuperConstructor(vararg args: CodeBlock) {
+    public fun callSuperConstructor(vararg args: CodeBlock) {
         nativeBuilder.callSuperConstructor(*args)
     }
 
-    fun append(format: String, vararg args: Any) {
+    public fun append(format: String, vararg args: Any) {
         nativeBuilder.addCode(format, *args)
     }
 
-    fun appendNamed(format: String, args: Map<String, *>) {
+    public fun appendNamed(format: String, args: Map<String, *>) {
         nativeBuilder.addNamedCode(format, args)
     }
 
-    fun append(code: CodeBlock) {
+    public fun append(code: CodeBlock) {
         nativeBuilder.addCode(code)
     }
 
-    fun comment(format: String, vararg args: Any) {
+    public fun comment(format: String, vararg args: Any) {
         nativeBuilder.addComment(format, *args)
     }
 
-    fun beginControlFlow(format: String, vararg args: Any) {
+    public fun beginControlFlow(format: String, vararg args: Any) {
         nativeBuilder.beginControlFlow(format, *args)
     }
 
-    fun nextControlFlow(format: String, vararg args: Any) {
+    public fun nextControlFlow(format: String, vararg args: Any) {
         nativeBuilder.nextControlFlow(format, *args)
     }
 
-    fun endControlFlow() {
+    public fun endControlFlow() {
         nativeBuilder.endControlFlow()
     }
 
-    fun appendLine(format: String, vararg args: Any) {
+    public fun appendLine(format: String, vararg args: Any) {
         nativeBuilder.addStatement(format, *args)
     }
 
-    // com.squareup.javapoet.CodeBlock.addStatement
-    fun appendLine(code: CodeBlock) {
+    // Taken from com.squareup.javapoet.CodeBlock.addStatement.
+    public fun appendLine(code: CodeBlock) {
         appendLine("%L", code)
     }
 
-    fun clear() {
+    public fun clear() {
         nativeBuilder.clearBody()
     }
 
-    override fun annotation(annotation: AnnotationSpec) {
+    public override fun annotation(annotation: AnnotationSpec) {
         nativeBuilder.addAnnotation(annotation)
     }
 
-    fun kdoc(format: String, vararg args: Any) {
+    public fun kdoc(format: String, vararg args: Any) {
         nativeBuilder.addKdoc(format, *args)
     }
 
-    fun kdoc(block: CodeBlock) {
+    public fun kdoc(block: CodeBlock) {
         nativeBuilder.addKdoc(block)
     }
 
-    fun build(): FunSpec = nativeBuilder.build()
+    public fun build(): FunSpec = nativeBuilder.build()
 }
