@@ -25,7 +25,8 @@ subprojects {
     }
     plugins.withType<org.jlleitschuh.gradle.ktlint.KtlintPlugin>().configureEach {
         the<org.jlleitschuh.gradle.ktlint.KtlintExtension>()
-            .version.set(libs.versions.ktlint.get())
+            .version
+            .set(libs.versions.ktlint.get())
     }
     plugins.withType<com.vanniktech.maven.publish.MavenPublishBasePlugin> {
         configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
@@ -34,12 +35,13 @@ subprojects {
                     com.vanniktech.maven.publish.JavadocJar.Dokka("dokkaJavadoc")
                 )
             )
-            publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
+            publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
             signAllPublications()
             pom {
                 name.set(project.name)
                 description.set(releaseDescription)
                 url.set(releaseUrl)
+                inceptionYear.set("2024")
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")

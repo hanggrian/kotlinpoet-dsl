@@ -1,9 +1,9 @@
 package com.example
 
-import com.hendraanggrian.kotlinpoet.ABSTRACT
-import com.hendraanggrian.kotlinpoet.buildFileSpec
-import com.hendraanggrian.kotlinpoet.classType
-import com.hendraanggrian.kotlinpoet.functions
+import com.hanggrian.kotlinpoet.ABSTRACT
+import com.hanggrian.kotlinpoet.buildFileSpec
+import com.hanggrian.kotlinpoet.classType
+import com.hanggrian.kotlinpoet.functions
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier

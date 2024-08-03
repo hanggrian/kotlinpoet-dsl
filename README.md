@@ -1,8 +1,7 @@
-[![Travis CI](https://img.shields.io/travis/com/hendraanggrian/kotlinpoet-dsl)](https://travis-ci.com/github/hendraanggrian/kotlinpoet-dsl/)
-[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/kotlinpoet-dsl)](https://codecov.io/gh/hendraanggrian/kotlinpoet-dsl/)
-[![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/kotlinpoet-dsl)](https://repo1.maven.org/maven2/com/hendraanggrian/kotlinpoet-dsl/)
-[![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian/kotlinpoet-dsl?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/kotlinpoet-dsl/)
-[![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)
+[![CircleCI](https://img.shields.io/circleci/build/gh/hanggrian/kotlinpoet-dsl)](https://app.circleci.com/pipelines/github/hanggrian/kotlinpoet-dsl/)
+[![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/kotlinpoet-dsl)](https://app.codecov.io/gh/hanggrian/kotlinpoet-dsl/)
+[![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian/kotlinpoet-dsl)](https://repo1.maven.org/maven2/com/hanggrian/kotlinpoet-dsl/)
+[![OpenJDK](https://img.shields.io/badge/jdk-11%2B-informational)](https://openjdk.org/projects/jdk/11/)
 
 # KotlinPoet DSL
 
@@ -15,7 +14,7 @@ providing Kotlin DSL functionality and other convenient solutions.
 - Smooth transition, existing KotlinPoet native specs can still be configured
   with DSL.
 
-```kotlin
+```kt
 buildFileSpec("com.example.helloworld", "HelloWorld") {
     classType("HelloWorld") {
         modifiers(PUBLIC, FINAL)
@@ -49,7 +48,7 @@ dependencies {
 `KClass<*>` can now be used as format arguments. There is also inline reified
 type function whenever possible.
 
-```kotlin
+```kt
 buildMethodSpec("sortList") {
     returns = int
     parameters.add(classNamed("java.util", "List").parameterizedBy(hoverboard), "list")
@@ -69,7 +68,7 @@ These containers have ability to add components with/without invoking DSL.
 
 For example, 2 examples below will produce the same result.
 
-```kotlin
+```kt
 types.addClass("Car") {
     methods {
         "getWheels" {
@@ -100,7 +99,7 @@ types.addClass("Car") {
 In spirit of [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html#using_kotlin_delegated_properties),
 creating a spec can be done by delegating to a property.
 
-```kotlin
+```kt
 val title by parametering(String::class) {
     annotation<NotNull>
 }
@@ -114,7 +113,7 @@ val message by parametering(String::class) {
 
 Write `TypeName` and all its subtypes fluently.
 
-```kotlin
+```kt
 val myClass: ClassName =
     classNamed("com.example", "MyClass")
 
