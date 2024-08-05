@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>FunSpecBuilder</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            kotlinpoet-dsl
+                    </a>
+            </div>
+            <div class="library-version">
+0.1            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":kotlinpoet-dsl:dokkaHtml/main">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="kotlinpoet-dsl::com.hanggrian.kotlinpoet/FunSpecBuilder///PointingToDeclaration//494478214">
+  <div class="breadcrumbs"><a href="../../../index.html">kotlinpoet-dsl</a><span class="delimiter">/</span><a href="../index.html">com.hanggrian.kotlinpoet</a><span class="delimiter">/</span><span class="current">FunSpecBuilder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Fun</span><wbr></wbr><span>Spec</span><wbr></wbr><span><span>Builder</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">FunSpecBuilder</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">nativeBuilder<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/FunSpec.Builder///PointingToDeclaration/">FunSpec.Builder</span></span></span><span class="token punctuation">)</span> : <a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a>, <a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a></div><p class="paragraph">Wrapper of <span data-unresolved-link="com.squareup.kotlinpoet/FunSpec.Builder///PointingToDeclaration/">FunSpec.Builder</span>, providing DSL support as a replacement to Java builder.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-2116776859%2FConstructors%2F494478214" anchor-label="FunSpecBuilder" id="-2116776859%2FConstructors%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-fun-spec-builder.html"><span>Fun</span><wbr></wbr><span>Spec</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2116776859%2FConstructors%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">nativeBuilder<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/FunSpec.Builder///PointingToDeclaration/">FunSpec.Builder</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-842630839%2FProperties%2F494478214" anchor-label="annotations" id="-842630839%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="annotations.html"><span><span>annotations</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-842630839%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="annotations.html">annotations</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1904286610%2FProperties%2F494478214" anchor-label="contextReceiverTypes" id="1904286610%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="context-receiver-types.html"><span>context</span><wbr></wbr><span>Receiver</span><wbr></wbr><span><span>Types</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1904286610%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="context-receiver-types.html">contextReceiverTypes</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1444215488%2FProperties%2F494478214" anchor-label="kdoc" id="-1444215488%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kdoc.html"><span><span>kdoc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1444215488%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="kdoc.html">kdoc</a><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock.Builder///PointingToDeclaration/">CodeBlock.Builder</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1393747215%2FProperties%2F494478214" anchor-label="modifiers" id="-1393747215%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="modifiers.html"><span><span>modifiers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1393747215%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="modifiers.html">modifiers</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1259051923%2FProperties%2F494478214" anchor-label="originatingElements" id="-1259051923%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="originating-elements.html"><span>originating</span><wbr></wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1259051923%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="originating-elements.html">originatingElements</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html">Element</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1385428707%2FProperties%2F494478214" anchor-label="parameters" id="1385428707%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parameters.html"><span><span>parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1385428707%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="parameters.html">parameters</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="670016126%2FProperties%2F494478214" anchor-label="receiver" id="670016126%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="receiver.html"><span><span>receiver</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="670016126%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">var </span><a href="receiver.html">receiver</a><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1425732618%2FProperties%2F494478214" anchor-label="returns" id="1425732618%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="returns.html"><span><span>returns</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1425732618%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">var </span><a href="returns.html">returns</a><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1638685804%2FProperties%2F494478214" anchor-label="tags" id="-1638685804%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="tags.html"><span><span>tags</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1638685804%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="tags.html">tags</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token operator">*</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="727784240%2FProperties%2F494478214" anchor-label="typeVariables" id="727784240%2FProperties%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="type-variables.html"><span>type</span><wbr></wbr><span><span>Variables</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="727784240%2FProperties%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="type-variables.html">typeVariables</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/TypeVariableName///PointingToDeclaration/">TypeVariableName</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="575291256%2FFunctions%2F494478214" anchor-label="annotation" id="575291256%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-annotation-spec-handler/annotation.html"><span><span>annotation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="575291256%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-annotation-spec-handler/annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-annotation-spec-handler/annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterizedTypeName///PointingToDeclaration/">ParameterizedTypeName</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.kotlinpoet/DelicateKotlinPoetApi///PointingToDeclaration/"><span class="token annotation builtin">DelicateKotlinPoetApi</span></span><span class="token punctuation">(</span><span>message<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Java reflection APIs don't give complete information on Kotlin types&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-annotation-spec-handler/annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-annotation-spec-handler/annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">annotation<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-485394272%2FFunctions%2F494478214" anchor-label="annotation" id="-485394272%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../annotation.html"><span><span>annotation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-485394272%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../annotation.html">T</a><span class="token operator">&gt; </span><a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a><span class="token punctuation">.</span><a href="../annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="brief "><p class="paragraph">Convenient method to insert <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span> using reified type.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a><span class="token punctuation">.</span><a href="../annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ClassName///PointingToDeclaration/">ClassName</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-annotation-spec-builder/index.html">AnnotationSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a><span class="token punctuation">.</span><a href="../annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterizedTypeName///PointingToDeclaration/">ParameterizedTypeName</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-annotation-spec-builder/index.html">AnnotationSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.kotlinpoet/DelicateKotlinPoetApi///PointingToDeclaration/"><span class="token annotation builtin">DelicateKotlinPoetApi</span></span><span class="token punctuation">(</span><span>message<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;Java reflection APIs don't give complete information on Kotlin types&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">fun </span><a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a><span class="token punctuation">.</span><a href="../annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-annotation-spec-builder/index.html">AnnotationSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a><span class="token punctuation">.</span><a href="../annotation.html"><span class="token function">annotation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-annotation/index.html">Annotation</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-annotation-spec-builder/index.html">AnnotationSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span></div><div class="brief "><p class="paragraph">Inserts new <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span> by populating newly created <a href="../-annotation-spec-builder/index.html">AnnotationSpecBuilder</a> using provided <a href="../annotation.html">configuration</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1527462369%2FFunctions%2F494478214" anchor-label="annotations" id="-1527462369%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../annotations.html"><span><span>annotations</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1527462369%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-annotation-spec-handler/index.html">AnnotationSpecHandler</a><span class="token punctuation">.</span><a href="../annotations.html"><span class="token function">annotations</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configuration<span class="token operator">: </span><a href="../-annotation-spec-handler-scope/index.html">AnnotationSpecHandlerScope</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Invokes DSL to configure <span data-unresolved-link="com.squareup.kotlinpoet/AnnotationSpec///PointingToDeclaration/">AnnotationSpec</span> collection.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1459312730%2FFunctions%2F494478214" anchor-label="append" id="-1459312730%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="append.html"><span><span>append</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1459312730%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="append.html"><span class="token function">append</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="append.html"><span class="token function">append</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="497724414%2FFunctions%2F494478214" anchor-label="appendLine" id="497724414%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="append-line.html"><span>append</span><wbr></wbr><span><span>Line</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="497724414%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="append-line.html"><span class="token function">appendLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="append-line.html"><span class="token function">appendLine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1332144531%2FFunctions%2F494478214" anchor-label="appendNamed" id="1332144531%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="append-named.html"><span>append</span><wbr></wbr><span><span>Named</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1332144531%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="append-named.html"><span class="token function">appendNamed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="110766135%2FFunctions%2F494478214" anchor-label="beginControlFlow" id="110766135%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="begin-control-flow.html"><span>begin</span><wbr></wbr><span>Control</span><wbr></wbr><span><span>Flow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="110766135%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="begin-control-flow.html"><span class="token function">beginControlFlow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-331056833%2FFunctions%2F494478214" anchor-label="build" id="-331056833%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-331056833%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/FunSpec///PointingToDeclaration/">FunSpec</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-60973282%2FFunctions%2F494478214" anchor-label="callSuperConstructor" id="-60973282%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="call-super-constructor.html"><span>call</span><wbr></wbr><span>Super</span><wbr></wbr><span><span>Constructor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60973282%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="call-super-constructor.html"><span class="token function">callSuperConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="call-super-constructor.html"><span class="token function">callSuperConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="call-super-constructor.html"><span class="token function">callSuperConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="737782125%2FFunctions%2F494478214" anchor-label="callThisConstructor" id="737782125%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="call-this-constructor.html"><span>call</span><wbr></wbr><span>This</span><wbr></wbr><span><span>Constructor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="737782125%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="call-this-constructor.html"><span class="token function">callThisConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="call-this-constructor.html"><span class="token function">callThisConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="call-this-constructor.html"><span class="token function">callThisConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1497682496%2FFunctions%2F494478214" anchor-label="clear" id="1497682496%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear.html"><span><span>clear</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1497682496%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="clear.html"><span class="token function">clear</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1923888038%2FFunctions%2F494478214" anchor-label="comment" id="-1923888038%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="comment.html"><span><span>comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1923888038%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="comment.html"><span class="token function">comment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-119655619%2FFunctions%2F494478214" anchor-label="endControlFlow" id="-119655619%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="end-control-flow.html"><span>end</span><wbr></wbr><span>Control</span><wbr></wbr><span><span>Flow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-119655619%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="end-control-flow.html"><span class="token function">endControlFlow</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="433249865%2FFunctions%2F494478214" anchor-label="javaModifiers" id="433249865%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-modifiers.html"><span>java</span><wbr></wbr><span><span>Modifiers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="433249865%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="java-modifiers.html"><span class="token function">javaModifiers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">modifiers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Modifier.html">Modifier</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="37604352%2FFunctions%2F494478214" anchor-label="kdoc" id="37604352%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="kdoc.html"><span><span>kdoc</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="37604352%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="kdoc.html"><span class="token function">kdoc</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="kdoc.html"><span class="token function">kdoc</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1740530479%2FFunctions%2F494478214" anchor-label="modifiers" id="-1740530479%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="modifiers.html"><span><span>modifiers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1740530479%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="modifiers.html"><span class="token function">modifiers</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1164666783%2FFunctions%2F494478214" anchor-label="nextControlFlow" id="-1164666783%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="next-control-flow.html"><span>next</span><wbr></wbr><span>Control</span><wbr></wbr><span><span>Flow</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1164666783%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="next-control-flow.html"><span class="token function">nextControlFlow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>args<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="534358459%2FFunctions%2F494478214" anchor-label="parameter" id="534358459%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="parameter.html"><span><span>parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="534358459%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parameter<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-parameter-spec-handler/parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-parameter-spec-handler/parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-parameter-spec-handler/parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1652964243%2FFunctions%2F494478214" anchor-label="parameter" id="1652964243%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../parameter.html"><span><span>parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1652964243%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="../parameter.html">T</a><span class="token operator">&gt; </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div><div class="brief "><p class="paragraph">Convenient method to insert <span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span> using reified type.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parameter.html"><span class="token function">parameter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span></div><div class="brief "><p class="paragraph">Inserts new <span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span> by populating newly created <a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a> using provided <a href="../parameter.html">configuration</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1155890536%2FFunctions%2F494478214" anchor-label="parametering" id="1155890536%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-parameter-spec-handler/parametering.html"><span><span>parametering</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1155890536%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-parameter-spec-handler/parametering.html"><span class="token function">parametering</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-spec-delegate-provider/index.html">SpecDelegateProvider</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-parameter-spec-handler/parametering.html"><span class="token function">parametering</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-spec-delegate-provider/index.html">SpecDelegateProvider</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../-parameter-spec-handler/parametering.html"><span class="token function">parametering</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-spec-delegate-provider/index.html">SpecDelegateProvider</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="659319773%2FFunctions%2F494478214" anchor-label="parametering" id="659319773%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../parametering.html"><span><span>parametering</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="659319773%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parametering.html"><span class="token function">parametering</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-spec-delegate-provider/index.html">SpecDelegateProvider</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parametering.html"><span class="token function">parametering</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-spec-delegate-provider/index.html">SpecDelegateProvider</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parametering.html"><span class="token function">parametering</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>modifiers<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/KModifier///PointingToDeclaration/">KModifier</span><span class="token punctuation">, </span></span><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-spec-delegate-provider/index.html">SpecDelegateProvider</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Property delegate for inserting new <span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span> by populating newly created <a href="../-parameter-spec-builder/index.html">ParameterSpecBuilder</a> using provided <a href="../parametering.html">configuration</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1953668699%2FFunctions%2F494478214" anchor-label="parameters" id="-1953668699%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../parameters.html"><span><span>parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1953668699%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="../-parameter-spec-handler/index.html">ParameterSpecHandler</a><span class="token punctuation">.</span><a href="../parameters.html"><span class="token function">parameters</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configuration<span class="token operator">: </span><a href="../-parameter-spec-handler-scope/index.html">ParameterSpecHandlerScope</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Invokes DSL to configure <span data-unresolved-link="com.squareup.kotlinpoet/ParameterSpec///PointingToDeclaration/">ParameterSpec</span> collection.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-137587736%2FFunctions%2F494478214" anchor-label="receiver" id="-137587736%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="receiver.html"><span><span>receiver</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-137587736%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="receiver.html">T</a><span class="token operator">&gt; </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator"> = </span>CodeBlock.builder().build()</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html">Type</a><span class="token punctuation">, </span></span><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator"> = </span>CodeBlock.builder().build()</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="receiver.html">T</a><span class="token operator">&gt; </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator"> = </span>CodeBlock.builder().build()</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html">Type</a><span class="token punctuation">, </span></span><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="receiver.html"><span class="token function">receiver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="193765724%2FFunctions%2F494478214" anchor-label="returns" id="193765724%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="returns.html"><span><span>returns</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="193765724%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="returns.html">T</a><span class="token operator">&gt; </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator"> = </span>CodeBlock.builder().build()</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html">Type</a><span class="token punctuation">, </span></span><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator"> = </span>CodeBlock.builder().build()</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="returns.html">T</a><span class="token operator">&gt; </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">kdocCode<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/CodeBlock///PointingToDeclaration/">CodeBlock</span><span class="token operator"> = </span>CodeBlock.builder().build()</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span></span><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html">Type</a><span class="token punctuation">, </span></span><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="returns.html"><span class="token function">returns</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">type<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">kdocFormat<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>kdocArgs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1632897408%2FFunctions%2F494478214" anchor-label="typeVariable" id="-1632897408%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="type-variable.html"><span>type</span><wbr></wbr><span><span>Variable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1632897408%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="type-variable.html"><span class="token function">typeVariable</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeVariable<span class="token operator">: </span><span data-unresolved-link="com.squareup.kotlinpoet/TypeVariableName///PointingToDeclaration/">TypeVariableName</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1167337007%2FFunctions%2F494478214" anchor-label="typeVariables" id="1167337007%2FFunctions%2F494478214" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":kotlinpoet-dsl:dokkaHtml/main" data-filterable-set=":kotlinpoet-dsl:dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="type-variables.html"><span>type</span><wbr></wbr><span><span>Variables</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1167337007%2FFunctions%2F494478214"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":kotlinpoet-dsl:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="type-variables.html"><span class="token function">typeVariables</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeVariables<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.squareup.kotlinpoet/TypeVariableName///PointingToDeclaration/">TypeVariableName</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
