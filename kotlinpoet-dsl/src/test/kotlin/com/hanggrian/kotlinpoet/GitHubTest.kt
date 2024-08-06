@@ -581,11 +581,11 @@ class GitHubTest {
             """.trimIndent(),
             buildPropertySpec("android", STRING) {
                 isMutable = true
-                getterFunction {
+                getter {
                     modifiers.add(INLINE)
                     appendLine("return %S", "foo")
                 }
-                setterFunction {
+                setter {
                     parameter("value", STRING)
                 }
             }.toString(),

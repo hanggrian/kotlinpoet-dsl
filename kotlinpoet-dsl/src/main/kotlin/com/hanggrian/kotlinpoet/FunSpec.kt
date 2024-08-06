@@ -119,7 +119,7 @@ public fun TypeSpecBuilder.primaryConstructorFunction(
  * Applies new getter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecBuilder.getterFunction(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public fun PropertySpecBuilder.getter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.getterBuilder())
         .apply(configuration)
@@ -131,7 +131,7 @@ public fun PropertySpecBuilder.getterFunction(configuration: FunSpecBuilder.() -
  * Applies new setter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecBuilder.setterFunction(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public fun PropertySpecBuilder.setter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.setterBuilder())
         .apply(configuration)
@@ -217,10 +217,6 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    public fun modifiers(modifiers: Iterable<KModifier>) {
-        nativeBuilder.addModifiers(modifiers)
-    }
-
     public fun javaModifiers(modifiers: Iterable<Modifier>) {
         nativeBuilder.jvmModifiers(modifiers)
     }
@@ -231,11 +227,6 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
 
     public fun typeVariable(typeVariable: TypeVariableName) {
         nativeBuilder.addTypeVariable(typeVariable)
-    }
-
-    @OptIn(ExperimentalKotlinPoetApi::class)
-    public fun contextReceivers(receiverTypes: Iterable<TypeName>) {
-        nativeBuilder.contextReceivers(receiverTypes)
     }
 
     public var receiver: TypeName

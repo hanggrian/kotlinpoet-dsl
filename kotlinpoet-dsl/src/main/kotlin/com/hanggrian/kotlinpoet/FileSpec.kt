@@ -27,7 +27,24 @@ public fun buildFileSpec(
     configuration: FileSpecBuilder.() -> Unit,
 ): FileSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    return FileSpecBuilder(FileSpec.builder(packageName, fileName)).apply(configuration).build()
+    return FileSpecBuilder(FileSpec.builder(packageName, fileName))
+        .apply(configuration)
+        .build()
+}
+
+/**
+ * Builds new [FileSpec] by populating newly created [FileSpecBuilder] using provided
+ * [configuration].
+ */
+public fun buildScriptFileSpec(
+    packageName: String,
+    fileName: String,
+    configuration: FileSpecBuilder.() -> Unit,
+): FileSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FileSpecBuilder(FileSpec.scriptBuilder(packageName, fileName))
+        .apply(configuration)
+        .build()
 }
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
@@ -171,6 +188,14 @@ public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) :
 
     public fun appendLine(format: String, vararg args: Any) {
         nativeBuilder.addStatement(format, *args)
+    }
+
+    public fun appendLine() {
+        nativeBuilder.addStatement("")
+    }
+
+    public fun appendLine(code: CodeBlock) {
+        nativeBuilder.addStatement("%L", code)
     }
 
     public fun clear() {

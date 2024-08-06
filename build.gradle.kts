@@ -32,7 +32,7 @@ subprojects {
         configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
             configure(
                 com.vanniktech.maven.publish.KotlinJvm(
-                    com.vanniktech.maven.publish.JavadocJar.Dokka("dokkaJavadoc")
+                    com.vanniktech.maven.publish.JavadocJar.Dokka("dokkaJavadoc"),
                 )
             )
             publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)

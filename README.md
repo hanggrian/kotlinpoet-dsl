@@ -37,7 +37,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation "com.hendraanggrian:kotlinpoet-dsl:$version"
+    implementation "com.hanggrian:kotlinpoet-dsl:$version"
 }
 ```
 

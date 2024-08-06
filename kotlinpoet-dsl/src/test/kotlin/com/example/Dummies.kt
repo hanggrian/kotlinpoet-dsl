@@ -1,43 +1,67 @@
 package com.example
 
-public annotation class Annotation1
+class Class1
 
-public annotation class Annotation2
+class Class2
 
-public annotation class Annotation3
+class Class3
 
-public annotation class Annotation4
+class Class4
 
-public annotation class Annotation5
+class Class5
 
-public annotation class Annotation6
+class Class6
 
-public annotation class Annotation7
+class Class7
 
-public class Property1
+class Class8
 
-public class Property2
+class Class9
 
-public class Property3
+class Class10
 
-public class Property4
+annotation class Annotation1
 
-public class Property5
+annotation class Annotation2
 
-public class Property6
+annotation class Annotation3
 
-public class Property7
+annotation class Annotation4
 
-public class Parameter1
+annotation class Annotation5
 
-public class Parameter2
+annotation class Annotation6
 
-public class Parameter3
+annotation class Annotation7
 
-public class Parameter4
+annotation class Annotation8
 
-public class Parameter5
+annotation class Annotation9
 
-public class Parameter6
+class Property1
 
-public class Parameter7
+class Property2
+
+class Property3
+
+class Property4
+
+class Property5
+
+class Property6
+
+class Property7
+
+class Parameter1
+
+class Parameter2
+
+class Parameter3
+
+class Parameter4
+
+class Parameter5
+
+class Parameter6
+
+class Parameter7

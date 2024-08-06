@@ -55,6 +55,7 @@ public inline fun TypeAliasSpecHandler.typeAlias(
  * Inserts new [TypeAliasSpec] by populating newly created [TypeAliasSpecBuilder] using provided
  * [configuration].
  */
+@OptIn(DelicateKotlinPoetApi::class)
 public inline fun TypeAliasSpecHandler.typeAlias(
     name: String,
     type: Class<*>,
@@ -229,10 +230,6 @@ public class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Build
 
     public fun modifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
-    }
-
-    public fun modifiers(modifiers: Iterable<KModifier>) {
-        nativeBuilder.addModifiers(modifiers)
     }
 
     public fun typeVariables(typeVariables: Iterable<TypeVariableName>) {

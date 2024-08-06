@@ -3,17 +3,23 @@ package com.hanggrian.kotlinpoet
 import com.example.Annotation1
 import com.example.Annotation2
 import com.example.Annotation3
-import com.example.Annotation4
+import com.example.Class1
+import com.example.Class2
+import com.example.Class3
 import com.example.Parameter1
 import com.example.Property1
 import com.google.common.truth.Truth.assertThat
+import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @Suppress("ktlint:standard:property-naming")
 class TypeSpecHandlerTest {
@@ -118,6 +124,21 @@ class TypeSpecHandlerTest {
 
 class TypeSpecBuilderTest {
     @Test
+    fun initializerIndex() {
+        assertThat(
+            buildClassTypeSpec("class1") {
+                initializerIndex = 10
+                assertEquals(10, initializerIndex)
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder("class1")
+                .apply { initializerIndex = 10 }
+                .build(),
+        )
+    }
+
+    @Test
     fun kdoc() {
         assertThat(
             buildClassTypeSpec("class1") {
@@ -138,31 +159,29 @@ class TypeSpecBuilderTest {
     fun annotations() {
         assertThat(
             buildClassTypeSpec("class1") {
-                annotation(Annotation1::class.name)
-                annotation(Annotation2::class.java)
-                annotation(Annotation3::class)
-                annotation<Annotation4>()
+                annotation(annotationSpecOf(Annotation1::class.name))
                 assertFalse(annotations.isEmpty())
             },
         ).isEqualTo(
             TypeSpec
                 .classBuilder("class1")
                 .addAnnotation(Annotation1::class)
-                .addAnnotation(Annotation2::class)
-                .addAnnotation(Annotation3::class)
-                .addAnnotation(Annotation4::class)
                 .build(),
         )
     }
 
     @Test
-    fun addModifiers() {
+    fun modifiers() {
         assertThat(
-            buildClassTypeSpec("class1") { modifiers(PUBLIC, FINAL, CONST) },
+            buildClassTypeSpec("class1") {
+                modifiers(PUBLIC)
+                modifiers += listOf(FINAL, CONST)
+            },
         ).isEqualTo(
             TypeSpec
                 .classBuilder("class1")
-                .addModifiers(KModifier.PUBLIC, KModifier.FINAL, KModifier.CONST)
+                .addModifiers(KModifier.PUBLIC)
+                .addModifiers(listOf(KModifier.FINAL, KModifier.CONST))
                 .build(),
         )
     }
@@ -237,56 +256,99 @@ class TypeSpecBuilderTest {
 
     @Test
     fun superclassConstructorParameter() {
+        assertThat(buildClassTypeSpec("class1") { superclassConstructorParameter("format", "arg") })
+            .isEqualTo(
+                TypeSpec
+                    .classBuilder("class1")
+                    .addSuperclassConstructorParameter("format", "arg")
+                    .build(),
+            )
         assertThat(
-            buildClassTypeSpec("class1") { superclassConstructorParameter("some code") },
-        ).isEqualTo(
-            TypeSpec.classBuilder("class1").addSuperclassConstructorParameter("some code").build(),
-        )
-    }
-
-    @Test
-    fun superinterfaces() {
-        assertThat(
-            buildClassTypeSpec("class1") { superinterface<Property1>() },
+            buildClassTypeSpec("class2") {
+                superclassConstructorParameter(codeBlockOf("some code"))
+            },
         ).isEqualTo(
             TypeSpec
-                .classBuilder("class1")
-                .addSuperinterface(Property1::class)
+                .classBuilder("class2")
+                .addSuperclassConstructorParameter(CodeBlock.of("some code"))
                 .build(),
         )
     }
 
     @Test
-    fun enumConstants() {
-        assertThat(
-            buildEnumTypeSpec("class1") { enumConstant("VALUE") },
-        ).isEqualTo(
-            TypeSpec.enumBuilder("class1").addEnumConstant("VALUE").build(),
-        )
+    fun superinterfaces() {
+        assertThat(buildClassTypeSpec("class1") { superinterface<Class1>() })
+            .isEqualTo(
+                TypeSpec
+                    .classBuilder("class1")
+                    .addSuperinterface(Class1::class)
+                    .build(),
+            )
+        assertThat(buildClassTypeSpec("class2") { superinterface(Class2::class.name) })
+            .isEqualTo(
+                TypeSpec
+                    .classBuilder("class2")
+                    .addSuperinterface(Class2::class)
+                    .build(),
+            )
+        assertThat(buildClassTypeSpec("class3") { superinterface(Class3::class) })
+            .isEqualTo(
+                TypeSpec
+                    .classBuilder("class3")
+                    .addSuperinterface(Class3::class)
+                    .build(),
+            )
     }
 
     @Test
-    fun property() {
+    fun enumConstants() {
+        assertThat(buildEnumTypeSpec("class1") { enumConstant("VALUE") })
+            .isEqualTo(
+                TypeSpec
+                    .enumBuilder("class1")
+                    .addEnumConstant("VALUE")
+                    .build(),
+            )
+    }
+
+    @Test
+    fun properties() {
         assertThat(
-            buildClassTypeSpec("class1") { property<Property1>("property1") },
+            buildClassTypeSpec("class1") {
+                property(propertySpecOf("property1", Property1::class.name))
+                assertFalse(properties.isEmpty())
+            },
         ).isEqualTo(
-            TypeSpec.classBuilder("class1").addProperty("property1", Property1::class).build(),
+            TypeSpec
+                .classBuilder("class1")
+                .addProperty(PropertySpec.builder("property1", Property1::class).build())
+                .build(),
         )
     }
 
     @Test
     fun initializerBlock() {
         assertThat(
-            buildClassTypeSpec("class1") { initializerBlock(codeBlockOf("some code")) },
+            buildClassTypeSpec("class1") {
+                initializerBlock(codeBlockOf("some code"))
+                initializerBlock("format", "arg")
+            },
         ).isEqualTo(
-            TypeSpec.classBuilder("class1").addInitializerBlock(codeBlockOf("some code")).build(),
+            TypeSpec
+                .classBuilder("class1")
+                .addInitializerBlock(codeBlockOf("some code"))
+                .addInitializerBlock(codeBlockOf("format", "arg"))
+                .build(),
         )
     }
 
     @Test
     fun functions() {
         assertThat(
-            buildClassTypeSpec("class1") { function("function1") },
+            buildClassTypeSpec("class1") {
+                function("function1")
+                assertFalse(functions.isEmpty())
+            },
         ).isEqualTo(
             TypeSpec
                 .classBuilder("class1")
@@ -298,7 +360,10 @@ class TypeSpecBuilderTest {
     @Test
     fun types() {
         assertThat(
-            buildClassTypeSpec("class1") { classType("class2") },
+            buildClassTypeSpec("class1") {
+                classType("class2")
+                assertFalse(types.isEmpty())
+            },
         ).isEqualTo(
             TypeSpec
                 .classBuilder("class1")
@@ -307,13 +372,13 @@ class TypeSpecBuilderTest {
         )
     }
 
-    private class Class2
-
-    private object Object2
-
-    private interface Interface2
-
-    private enum class Enum2
-
-    private annotation class Annotation2
+    @Test
+    fun `Rest of properties`() {
+        buildClassTypeSpec("class1") {
+            assertTrue(tags.isEmpty())
+            assertTrue(originatingElements.isEmpty())
+            assertTrue(superinterfaces.isEmpty())
+            assertTrue(superclassConstructorParameters.isEmpty())
+        }
+    }
 }

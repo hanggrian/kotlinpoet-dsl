@@ -243,17 +243,13 @@ public open class ParameterSpecHandlerScope private constructor(handler: Paramet
 @KotlinpoetDsl
 public class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) :
     AnnotationSpecHandler {
-    public val modifiers: List<KModifier> get() = nativeBuilder.modifiers
+    public val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
     public val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
     public val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
     public val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
     public fun modifiers(vararg modifiers: KModifier) {
         nativeBuilder.addModifiers(*modifiers)
-    }
-
-    public fun modifiers(modifiers: Iterable<KModifier>) {
-        nativeBuilder.addModifiers(modifiers)
     }
 
     public fun defaultValue(format: String, vararg args: Any) {

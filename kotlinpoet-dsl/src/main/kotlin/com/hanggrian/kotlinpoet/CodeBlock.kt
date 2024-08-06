@@ -62,6 +62,10 @@ public class CodeBlockBuilder(private val nativeBuilder: CodeBlock.Builder) {
         appendLine("%L", code)
     }
 
+    public fun appendLine() {
+        nativeBuilder.addStatement("")
+    }
+
     public fun append(code: CodeBlock) {
         nativeBuilder.add(code)
     }

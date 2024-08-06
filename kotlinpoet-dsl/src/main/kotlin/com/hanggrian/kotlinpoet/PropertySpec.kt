@@ -267,10 +267,6 @@ public class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder
         nativeBuilder.addModifiers(*modifiers)
     }
 
-    public fun modifiers(modifiers: Iterable<KModifier>) {
-        nativeBuilder.addModifiers(modifiers)
-    }
-
     public fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
         nativeBuilder.addTypeVariables(typeVariables)
     }

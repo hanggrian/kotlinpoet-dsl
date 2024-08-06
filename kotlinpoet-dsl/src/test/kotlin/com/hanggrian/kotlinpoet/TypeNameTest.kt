@@ -8,7 +8,7 @@ import kotlin.test.assertEquals
 class TypeNameTest {
     @Test
     fun nullable() {
-        assertEquals("kotlin.Int?", "${Int::class.asTypeName().nullable()}")
+        assertEquals("kotlin.Int?", "${Int::class.name.nullable()}")
     }
 
     @Test
