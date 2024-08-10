@@ -2,7 +2,6 @@ package com.hanggrian.kotlinpoet
 
 import com.example.Annotation1
 import com.example.Annotation2
-import com.example.Annotation3
 import com.example.Class1
 import com.example.Class10
 import com.example.Class2
@@ -13,9 +12,6 @@ import com.example.Class6
 import com.example.Class7
 import com.example.Class8
 import com.example.Class9
-import com.example.Property1
-import com.example.Property2
-import com.example.Property3
 import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.ExperimentalKotlinPoetApi
@@ -31,15 +27,17 @@ import kotlin.test.assertTrue
 
 class FunSpecHandlerTest {
     @Test
-    fun function() {
+    fun add() {
         assertThat(
             buildClassTypeSpec("test") {
-                function("fun1")
-                function(Class2::class.name.member("fun2"))
-                constructorFunction()
-                function("fun4") { kdoc("text4") }
-                function(Class5::class.name.member("fun5")) { kdoc("text5") }
-                constructorFunction { kdoc("text6") }
+                functions.add("fun1")
+                functions.add(Class2::class.name.member("fun2"))
+                functions.addConstructor()
+                functions {
+                    add("fun4") { addKdoc("text4") }
+                    add(Class5::class.name.member("fun5")) { addKdoc("text5") }
+                    addConstructor { addKdoc("text6") }
+                }
             }.funSpecs,
         ).containsExactly(
             FunSpec.builder("fun1").build(),
@@ -52,11 +50,11 @@ class FunSpecHandlerTest {
     }
 
     @Test
-    fun functioning() {
+    fun adding() {
         assertThat(
             buildClassTypeSpec("test") {
-                val fun1 by functioning()
-                val fun2 by functioning { kdoc("text2") }
+                val fun1 by functions.adding()
+                val fun2 by functions.adding { addKdoc("text2") }
             }.funSpecs,
         ).containsExactly(
             FunSpec.builder("fun1").build(),
@@ -69,7 +67,7 @@ class FunSpecHandlerTest {
         assertThat(
             buildClassTypeSpec("test") {
                 functions {
-                    "fun1" { kdoc("text1") }
+                    "fun1" { addKdoc("text1") }
                 }
             }.funSpecs,
         ).containsExactly(
@@ -81,7 +79,7 @@ class FunSpecHandlerTest {
 class FunSpecBuilderTest {
     @Test
     @ExperimentalKotlinPoetApi
-    fun contextReceiverTypes() {
+    fun contextSetReceiverTypes() {
         assertThat(
             buildFunSpec("fun1") {
                 contextReceiverTypes += Class1::class.name
@@ -95,10 +93,10 @@ class FunSpecBuilderTest {
     }
 
     @Test
-    fun modifiers() {
+    fun addModifiers() {
         assertThat(
             buildFunSpec("fun1") {
-                modifiers(PUBLIC)
+                addModifiers(PUBLIC)
                 modifiers += listOf(FINAL, CONST)
                 assertFalse(modifiers.isEmpty())
             },
@@ -112,10 +110,10 @@ class FunSpecBuilderTest {
     }
 
     @Test
-    fun jvmModifiers() {
+    fun addJvmModifiers() {
         assertThat(
             buildFunSpec("fun1") {
-                javaModifiers(listOf(Modifier.PUBLIC, Modifier.FINAL))
+                addJvmModifiers(Modifier.PUBLIC, Modifier.FINAL)
             },
         ).isEqualTo(
             FunSpec
@@ -126,11 +124,11 @@ class FunSpecBuilderTest {
     }
 
     @Test
-    fun kdoc() {
+    fun addKdoc() {
         assertThat(
             buildFunSpec("fun1") {
-                kdoc("kdoc1")
-                kdoc(codeBlockOf("kdoc2"))
+                addKdoc("kdoc1")
+                addKdoc(codeBlockOf("kdoc2"))
                 assertFalse(kdoc.isEmpty())
             },
         ).isEqualTo(
@@ -143,31 +141,13 @@ class FunSpecBuilderTest {
     }
 
     @Test
-    fun annotation() {
+    fun addTypeVariable() {
         assertThat(
             buildFunSpec("fun1") {
-                annotation(annotationSpecOf(Annotation1::class.name))
-                assertFalse(annotations.isEmpty())
-            },
-        ).isEqualTo(
-            FunSpec
-                .builder("fun1")
-                .addAnnotation(Annotation1::class)
-                .build(),
-        )
-    }
-
-    @Test
-    fun typeVariable() {
-        assertThat(
-            buildFunSpec("fun1") {
-                typeVariables(
-                    listOf(
-                        "typeVar1".genericsBy(Annotation1::class),
-                        "typeVar2".genericsBy(Annotation2::class),
-                    ),
+                addTypeVariables(
+                    "typeVar1".genericsBy(Annotation1::class),
+                    "typeVar2".genericsBy(Annotation2::class),
                 )
-                typeVariable("typeVar3".genericsBy(Annotation3::class))
                 assertFalse(typeVariables.isEmpty())
             },
         ).isEqualTo(
@@ -178,8 +158,7 @@ class FunSpecBuilderTest {
                         TypeVariableName("typeVar1", Annotation1::class.java),
                         TypeVariableName("typeVar2", Annotation2::class.java),
                     ),
-                ).addTypeVariable(TypeVariableName("typeVar3", Annotation3::class.java))
-                .build(),
+                ).build(),
         )
     }
 
@@ -192,63 +171,65 @@ class FunSpecBuilderTest {
                     .receiver(Class1::class.asClassName())
                     .build(),
             )
-        assertThat(buildFunSpec("fun2") { receiver(Class2::class.name, codeBlockOf("some code")) })
-            .isEqualTo(
-                FunSpec
-                    .builder("fun2")
-                    .receiver(Class2::class, CodeBlock.of("some code"))
-                    .build(),
-            )
-        assertThat(buildFunSpec("fun3") { receiver(Class3::class.name, "format", "arg") })
+        assertThat(
+            buildFunSpec("fun2") { setReceiver(Class2::class.name, codeBlockOf("some code")) },
+        ).isEqualTo(
+            FunSpec
+                .builder("fun2")
+                .receiver(Class2::class, CodeBlock.of("some code"))
+                .build(),
+        )
+        assertThat(buildFunSpec("fun3") { setReceiver(Class3::class.name, "format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun3")
                     .receiver(Class3::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun4") { receiver(Class4::class.java, codeBlockOf("some code")) })
-            .isEqualTo(
-                FunSpec
-                    .builder("fun4")
-                    .receiver(Class4::class, CodeBlock.of("some code"))
-                    .build(),
-            )
-        assertThat(buildFunSpec("fun5") { receiver(Class5::class.java, "format", "arg") })
+        assertThat(
+            buildFunSpec("fun4") { setReceiver(Class4::class.java, codeBlockOf("some code")) },
+        ).isEqualTo(
+            FunSpec
+                .builder("fun4")
+                .receiver(Class4::class, CodeBlock.of("some code"))
+                .build(),
+        )
+        assertThat(buildFunSpec("fun5") { setReceiver(Class5::class.java, "format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun5")
                     .receiver(Class5::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun6") { receiver(Class6::class, codeBlockOf("some code")) })
+        assertThat(buildFunSpec("fun6") { setReceiver(Class6::class, codeBlockOf("some code")) })
             .isEqualTo(
                 FunSpec
                     .builder("fun6")
                     .receiver(Class6::class, CodeBlock.of("some code"))
                     .build(),
             )
-        assertThat(buildFunSpec("fun7") { receiver(Class7::class, "format", "arg") })
+        assertThat(buildFunSpec("fun7") { setReceiver(Class7::class, "format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun7")
                     .receiver(Class7::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun8") { receiver(Class8::class, codeBlockOf("some code")) })
+        assertThat(buildFunSpec("fun8") { setReceiver(Class8::class, codeBlockOf("some code")) })
             .isEqualTo(
                 FunSpec
                     .builder("fun8")
                     .receiver(Class8::class, CodeBlock.of("some code"))
                     .build(),
             )
-        assertThat(buildFunSpec("fun9") { receiver<Class9>("format", "arg") })
+        assertThat(buildFunSpec("fun9") { setReceiver<Class9>("format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun9")
                     .receiver(Class9::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun10") { receiver<Class10>(codeBlockOf("some code")) })
+        assertThat(buildFunSpec("fun10") { setReceiver<Class10>(codeBlockOf("some code")) })
             .isEqualTo(
                 FunSpec
                     .builder("fun10")
@@ -266,81 +247,64 @@ class FunSpecBuilderTest {
                     .returns(Class1::class.asClassName())
                     .build(),
             )
-        assertThat(buildFunSpec("fun2") { returns(Class2::class.name, "format", "arg") })
+        assertThat(buildFunSpec("fun2") { setReturns(Class2::class.name, "format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun2")
                     .returns(Class2::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun2") { returns(Class2::class.name, codeBlockOf("some code")) })
-            .isEqualTo(
-                FunSpec
-                    .builder("fun2")
-                    .returns(Class2::class, CodeBlock.of("some code"))
-                    .build(),
-            )
-        assertThat(buildFunSpec("fun3") { returns(Class3::class.java, "format", "arg") })
+        assertThat(
+            buildFunSpec("fun2") { setReturns(Class2::class.name, codeBlockOf("some code")) },
+        ).isEqualTo(
+            FunSpec
+                .builder("fun2")
+                .returns(Class2::class, CodeBlock.of("some code"))
+                .build(),
+        )
+        assertThat(buildFunSpec("fun3") { setReturns(Class3::class.java, "format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun3")
                     .returns(Class3::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun4") { returns(Class4::class.java, codeBlockOf("some code")) })
-            .isEqualTo(
-                FunSpec
-                    .builder("fun4")
-                    .returns(Class4::class, CodeBlock.of("some code"))
-                    .build(),
-            )
-        assertThat(buildFunSpec("fun5") { returns(Class5::class, "format", "arg") })
+        assertThat(
+            buildFunSpec("fun4") { setReturns(Class4::class.java, codeBlockOf("some code")) },
+        ).isEqualTo(
+            FunSpec
+                .builder("fun4")
+                .returns(Class4::class, CodeBlock.of("some code"))
+                .build(),
+        )
+        assertThat(buildFunSpec("fun5") { setReturns(Class5::class, "format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun5")
                     .returns(Class5::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun6") { returns(Class6::class, codeBlockOf("some code")) })
+        assertThat(buildFunSpec("fun6") { setReturns(Class6::class, codeBlockOf("some code")) })
             .isEqualTo(
                 FunSpec
                     .builder("fun6")
                     .returns(Class6::class, CodeBlock.of("some code"))
                     .build(),
             )
-        assertThat(buildFunSpec("fun7") { returns<Class7>("format", "arg") })
+        assertThat(buildFunSpec("fun7") { setReturns<Class7>("format", "arg") })
             .isEqualTo(
                 FunSpec
                     .builder("fun7")
                     .returns(Class7::class, "format", "arg")
                     .build(),
             )
-        assertThat(buildFunSpec("fun8") { returns<Class8>(codeBlockOf("some code")) })
+        assertThat(buildFunSpec("fun8") { setReturns<Class8>(codeBlockOf("some code")) })
             .isEqualTo(
                 FunSpec
                     .builder("fun8")
                     .returns(Class8::class, CodeBlock.of("some code"))
                     .build(),
             )
-    }
-
-    @Test
-    fun parameter() {
-        assertThat(
-            buildFunSpec("fun1") {
-                parameter("parameter1", Property1::class.name)
-                parameter("parameter2", Property2::class)
-                parameter<Property3>("parameter3")
-                assertFalse(parameters.isEmpty())
-            },
-        ).isEqualTo(
-            FunSpec
-                .builder("fun1")
-                .addParameter("parameter1", Property1::class)
-                .addParameter("parameter2", Property2::class)
-                .addParameter("parameter3", Property3::class)
-                .build(),
-        )
     }
 
     @Test
@@ -412,9 +376,9 @@ class FunSpecBuilderTest {
     }
 
     @Test
-    fun comment() {
+    fun addComment() {
         assertThat(
-            buildFunSpec("fun1") { comment("some comment") },
+            buildFunSpec("fun1") { addComment("some comment") },
         ).isEqualTo(
             FunSpec.builder("fun1").addComment("some comment").build(),
         )

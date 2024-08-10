@@ -2,8 +2,7 @@ package com.example
 
 import com.hanggrian.kotlinpoet.ABSTRACT
 import com.hanggrian.kotlinpoet.buildFileSpec
-import com.hanggrian.kotlinpoet.classType
-import com.hanggrian.kotlinpoet.functions
+import com.hanggrian.kotlinpoet.addClass
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
@@ -26,14 +25,14 @@ class VehicleWriter {
 
     fun prepare() {
         buildFileSpec(PACKAGE_NAME, "Vehicle") {
-            classType("Vehicle") {
+            types.addClass("Vehicle") {
                 functions {
                     "getName" {
-                        modifiers(ABSTRACT)
-                        returns<String>()
+                        addModifiers(ABSTRACT)
+                        setReturns<String>()
                     }
                     "getWheelCount" {
-                        modifiers(ABSTRACT)
+                        addModifiers(ABSTRACT)
                         returns = INT
                     }
                 }
@@ -43,16 +42,16 @@ class VehicleWriter {
 
     fun write(name: String, wheelCount: Int) {
         buildFileSpec(PACKAGE_NAME, name) {
-            classType(name) {
-                superinterface(VEHICLE_NAME)
+            types.addClass(name) {
+                addSuperinterface(VEHICLE_NAME)
                 functions {
                     "getName" {
-                        modifiers(KModifier.OVERRIDE)
-                        returns<String>()
+                        addModifiers(KModifier.OVERRIDE)
+                        setReturns<String>()
                         appendLine("return %S", name)
                     }
                     "getWheelCount" {
-                        modifiers(KModifier.OVERRIDE)
+                        addModifiers(KModifier.OVERRIDE)
                         returns = INT
                         appendLine("return %L", wheelCount)
                     }

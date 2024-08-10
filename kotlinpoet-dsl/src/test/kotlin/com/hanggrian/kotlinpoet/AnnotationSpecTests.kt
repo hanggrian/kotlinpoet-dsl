@@ -13,7 +13,6 @@ import com.example.Parameter2
 import com.example.Parameter7
 import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STRING
 import kotlin.test.Test
@@ -22,20 +21,22 @@ import kotlin.test.assertTrue
 
 class AnnotationSpecHandlerTest {
     @Test
-    fun annotation() {
+    fun add() {
         assertThat(
             buildPropertySpec("test", STRING) {
-                annotation(Annotation1::class.name)
-                annotation(Annotation2::class.name.parameterizedBy(Parameter2::class.name))
-                annotation(Annotation3::class.java)
-                annotation(Annotation4::class)
-                annotation<Annotation5>()
-                annotation(Annotation6::class.name) { member("name6", "value6") }
-                annotation(Annotation7::class.name.parameterizedBy(Parameter7::class.name)) {
-                    member("name7", "value7")
+                annotations.add(Annotation1::class.name)
+                annotations.add(Annotation2::class.name.parameterizedBy(Parameter2::class.name))
+                annotations.add(Annotation3::class.java)
+                annotations.add(Annotation4::class)
+                annotations.add<Annotation5>()
+                annotations {
+                    add(Annotation6::class.name) { addMember("name6", "value6") }
+                    add(Annotation7::class.name.parameterizedBy(Parameter7::class.name)) {
+                        addMember("name7", "value7")
+                    }
+                    add(Annotation8::class.java) { addMember("name8", "value8") }
+                    add(Annotation9::class) { addMember("name9", "value9") }
                 }
-                annotation(Annotation8::class.java) { member("name8", "value8") }
-                annotation(Annotation9::class) { member("name9", "value9") }
             }.annotations,
         ).containsExactly(
             AnnotationSpec.builder(Annotation1::class).build(),
@@ -60,12 +61,12 @@ class AnnotationSpecHandlerTest {
         assertThat(
             buildParameterSpec("test", STRING) {
                 annotations {
-                    Annotation1::class.name { member("name1", "value1") }
+                    Annotation1::class.name { addMember("name1", "value1") }
                     (Annotation2::class.name.parameterizedBy(Parameter2::class.name)) {
-                        member("name2", "value2")
+                        addMember("name2", "value2")
                     }
-                    Annotation3::class.java { member("name3", "value3") }
-                    Annotation4::class { member("name4", "value4") }
+                    Annotation3::class.java { addMember("name3", "value3") }
+                    Annotation4::class { addMember("name4", "value4") }
                 }
             }.annotations,
         ).containsExactly(
@@ -82,18 +83,16 @@ class AnnotationSpecHandlerTest {
 
 class AnnotationSpecBuilderTest {
     @Test
-    fun member() {
+    fun addMember() {
         assertThat(
             buildAnnotationSpec(Annotation1::class.name) {
-                member("member1", "value1")
-                member(codeBlockOf("value2"))
+                addMember("member1", "value1")
                 assertFalse(members.isEmpty())
             },
         ).isEqualTo(
             AnnotationSpec
                 .builder(Annotation1::class)
                 .addMember("member1", "value1")
-                .addMember(CodeBlock.of("value2"))
                 .build(),
         )
     }

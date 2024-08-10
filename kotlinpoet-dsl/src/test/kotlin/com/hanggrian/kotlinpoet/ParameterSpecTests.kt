@@ -1,6 +1,5 @@
 package com.hanggrian.kotlinpoet
 
-import com.example.Annotation1
 import com.example.Parameter1
 import com.example.Parameter2
 import com.example.Parameter3
@@ -19,16 +18,18 @@ import kotlin.test.assertTrue
 
 class ParameterSpecHandlerTest {
     @Test
-    fun parameter() {
+    fun add() {
         assertThat(
             buildFunSpec("test") {
-                parameter("parameter1", Parameter1::class.name)
-                parameter("parameter2", Parameter2::class.java)
-                parameter("parameter3", Parameter3::class)
-                parameter<Parameter4>("parameter4")
-                parameter("parameter5", Parameter5::class.name) { kdoc("text5") }
-                parameter("parameter6", Parameter6::class.java) { kdoc("text6") }
-                parameter("parameter7", Parameter7::class) { kdoc("text7") }
+                parameters.add("parameter1", Parameter1::class.name)
+                parameters.add("parameter2", Parameter2::class.java)
+                parameters.add("parameter3", Parameter3::class)
+                parameters.add<Parameter4>("parameter4")
+                parameters {
+                    add("parameter5", Parameter5::class.name) { addKdoc("text5") }
+                    add("parameter6", Parameter6::class.java) { addKdoc("text6") }
+                    add("parameter7", Parameter7::class) { addKdoc("text7") }
+                }
             }.parameters,
         ).containsExactly(
             ParameterSpec.builder("parameter1", Parameter1::class).build(),
@@ -45,12 +46,12 @@ class ParameterSpecHandlerTest {
     fun parametering() {
         assertThat(
             buildFunSpec("test") {
-                val parameter1 by parametering(Parameter1::class.name)
-                val parameter2 by parametering(Parameter2::class.java)
-                val parameter3 by parametering(Parameter3::class)
-                val parameter4 by parametering(Parameter4::class.name) { kdoc("text4") }
-                val parameter5 by parametering(Parameter5::class.java) { kdoc("text5") }
-                val parameter6 by parametering(Parameter6::class) { kdoc("text6") }
+                val parameter1 by parameters.adding(Parameter1::class.name)
+                val parameter2 by parameters.adding(Parameter2::class.java)
+                val parameter3 by parameters.adding(Parameter3::class)
+                val parameter4 by parameters.adding(Parameter4::class.name) { addKdoc("text4") }
+                val parameter5 by parameters.adding(Parameter5::class.java) { addKdoc("text5") }
+                val parameter6 by parameters.adding(Parameter6::class) { addKdoc("text6") }
             }.parameters,
         ).containsExactly(
             ParameterSpec.builder("parameter1", Parameter1::class).build(),
@@ -67,9 +68,9 @@ class ParameterSpecHandlerTest {
         assertThat(
             buildFunSpec("test") {
                 parameters {
-                    "parameter1"(Parameter1::class.name) { kdoc("text1") }
-                    "parameter2"(Parameter2::class.java) { kdoc("text2") }
-                    "parameter3"(Parameter3::class) { kdoc("text3") }
+                    "parameter1"(Parameter1::class.name) { addKdoc("text1") }
+                    "parameter2"(Parameter2::class.java) { addKdoc("text2") }
+                    "parameter3"(Parameter3::class) { addKdoc("text3") }
                 }
             }.parameters,
         ).containsExactly(
@@ -82,25 +83,10 @@ class ParameterSpecHandlerTest {
 
 class ParameterSpecBuilderTest {
     @Test
-    fun annotation() {
+    fun addModifiers() {
         assertThat(
             buildParameterSpec("parameter1", Property1::class.name) {
-                annotation(annotationSpecOf(Annotation1::class.name))
-                assertFalse(annotations.isEmpty())
-            },
-        ).isEqualTo(
-            ParameterSpec
-                .builder("parameter1", Property1::class)
-                .addAnnotation(Annotation1::class)
-                .build(),
-        )
-    }
-
-    @Test
-    fun modifiers() {
-        assertThat(
-            buildParameterSpec("parameter1", Property1::class.name) {
-                modifiers(VARARG)
+                addModifiers(VARARG)
                 modifiers += listOf(NOINLINE)
                 assertFalse(modifiers.isEmpty())
             },
@@ -116,7 +102,7 @@ class ParameterSpecBuilderTest {
     @Test
     fun defaultValue() {
         assertThat(
-            buildParameterSpec("parameter1", Property1::class.name) { defaultValue("value1") },
+            buildParameterSpec("parameter1", Property1::class.name) { setDefaultValue("value1") },
         ).isEqualTo(
             ParameterSpec.builder("parameter1", Property1::class).defaultValue("value1").build(),
         )
@@ -133,11 +119,11 @@ class ParameterSpecBuilderTest {
     }
 
     @Test
-    fun kdoc() {
+    fun addKdoc() {
         assertThat(
             buildParameterSpec("parameter1", Parameter1::class.name) {
-                kdoc("kdoc1")
-                kdoc(codeBlockOf("kdoc2"))
+                addKdoc("kdoc1")
+                addKdoc(codeBlockOf("kdoc2"))
                 assertFalse(kdoc.isEmpty())
             },
         ).isEqualTo(

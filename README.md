@@ -17,12 +17,12 @@ providing Kotlin DSL functionality and other convenient solutions.
 ```kt
 buildFileSpec("com.example.helloworld", "HelloWorld") {
     classType("HelloWorld") {
-        modifiers(PUBLIC, FINAL)
+        addModifiers(PUBLIC, FINAL)
         methods {
             "main" {
-                modifiers(PUBLIC, STATIC)
+                addModifiers(PUBLIC, STATIC)
                 returns = UNIT
-                parameter("args", STRING.array)
+                parameters.add("args", STRING.array)
                 appendLine("%T.out.println(%S)", System::class, "Hello, KotlinPoet!")
             }
         }
@@ -76,7 +76,9 @@ types.addClass("Car") {
             appendLine("return wheels")
         }
         "setWheels" {
-            parameter("wheels", INT)
+            parameters {
+                add("wheels", INT)
+            }
             appendLine("this.wheels = wheels")
         }
     }
@@ -88,7 +90,7 @@ types.addClass("Car") {
         appendLine("return wheels")
     }
     method("setWheels") {
-        paraneter("wheels", INT)
+        paraneters.add("wheels", INT)
         appendLine("this.wheels = wheels")
     }
 }

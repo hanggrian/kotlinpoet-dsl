@@ -7,11 +7,7 @@ import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
-/**
- * Converts string to [CodeBlock] using formatted [args].
- *
- * @see kotlin.text.format
- */
+/** Converts string to [CodeBlock] using formatted [args]. */
 public inline fun codeBlockOf(format: String, vararg args: Any?): CodeBlock =
     CodeBlock.of(format, *args)
 

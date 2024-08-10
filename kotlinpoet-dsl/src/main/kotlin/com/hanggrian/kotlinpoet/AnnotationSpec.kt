@@ -66,7 +66,7 @@ public fun buildAnnotationSpec(
  * Inserts new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun AnnotationSpecHandler.annotation(
+public fun AnnotationSpecHandler.add(
     type: ClassName,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -74,14 +74,14 @@ public fun AnnotationSpecHandler.annotation(
     return AnnotationSpecBuilder(AnnotationSpec.builder(type))
         .apply(configuration)
         .build()
-        .also(::annotation)
+        .also(::add)
 }
 
 /**
  * Inserts new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun AnnotationSpecHandler.annotation(
+public fun AnnotationSpecHandler.add(
     type: ParameterizedTypeName,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -89,7 +89,7 @@ public fun AnnotationSpecHandler.annotation(
     return AnnotationSpecBuilder(AnnotationSpec.builder(type))
         .apply(configuration)
         .build()
-        .also(::annotation)
+        .also(::add)
 }
 
 /**
@@ -97,7 +97,7 @@ public fun AnnotationSpecHandler.annotation(
  * [configuration].
  */
 @DelicateKotlinPoetApi(DELICATE_API)
-public fun AnnotationSpecHandler.annotation(
+public fun AnnotationSpecHandler.add(
     type: Class<out Annotation>,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -105,14 +105,14 @@ public fun AnnotationSpecHandler.annotation(
     return AnnotationSpecBuilder(AnnotationSpec.builder(type))
         .apply(configuration)
         .build()
-        .also(::annotation)
+        .also(::add)
 }
 
 /**
  * Inserts new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun AnnotationSpecHandler.annotation(
+public fun AnnotationSpecHandler.add(
     type: KClass<out Annotation>,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -120,40 +120,30 @@ public fun AnnotationSpecHandler.annotation(
     return AnnotationSpecBuilder(AnnotationSpec.builder(type))
         .apply(configuration)
         .build()
-        .also(::annotation)
+        .also(::add)
 }
 
 /** Convenient method to insert [AnnotationSpec] using reified type. */
-public inline fun <reified T> AnnotationSpecHandler.annotation(): AnnotationSpec =
+public inline fun <reified T> AnnotationSpecHandler.add(): AnnotationSpec =
     AnnotationSpec
         .builder(T::class.name)
         .build()
-        .also(::annotation)
-
-/** Invokes DSL to configure [AnnotationSpec] collection. */
-public fun AnnotationSpecHandler.annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
-    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    AnnotationSpecHandlerScope
-        .of(this)
-        .configuration()
-}
+        .also(::add)
 
 /** Responsible for managing a set of [AnnotationSpec] instances. */
 public interface AnnotationSpecHandler {
-    public fun annotation(annotation: AnnotationSpec)
+    public fun add(annotation: AnnotationSpec)
 
-    public fun annotation(type: ClassName): AnnotationSpec =
-        annotationSpecOf(type).also(::annotation)
+    public fun add(type: ClassName): AnnotationSpec = annotationSpecOf(type).also(::add)
 
-    public fun annotation(type: ParameterizedTypeName): AnnotationSpec =
-        annotationSpecOf(type).also(::annotation)
+    public fun add(type: ParameterizedTypeName): AnnotationSpec = annotationSpecOf(type).also(::add)
 
     @DelicateKotlinPoetApi(DELICATE_API)
-    public fun annotation(type: Class<out Annotation>): AnnotationSpec =
-        annotationSpecOf(type.name2).also(::annotation)
+    public fun add(type: Class<out Annotation>): AnnotationSpec =
+        annotationSpecOf(type.name2).also(::add)
 
-    public fun annotation(type: KClass<out Annotation>): AnnotationSpec =
-        annotationSpecOf(type.name).also(::annotation)
+    public fun add(type: KClass<out Annotation>): AnnotationSpec =
+        annotationSpecOf(type.name).also(::add)
 }
 
 /**
@@ -163,34 +153,22 @@ public interface AnnotationSpecHandler {
 @KotlinpoetDsl
 public open class AnnotationSpecHandlerScope private constructor(handler: AnnotationSpecHandler) :
     AnnotationSpecHandler by handler {
-        /**
-         * @see annotation
-         */
         public operator fun ClassName.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
-        ): AnnotationSpec = annotation(this, configuration)
+        ): AnnotationSpec = add(this, configuration)
 
-        /**
-         * @see annotation
-         */
         public operator fun ParameterizedTypeName.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
-        ): AnnotationSpec = annotation(this, configuration)
+        ): AnnotationSpec = add(this, configuration)
 
-        /**
-         * @see annotation
-         */
         @OptIn(DelicateKotlinPoetApi::class)
         public operator fun Class<out Annotation>.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
-        ): AnnotationSpec = annotation(this, configuration)
+        ): AnnotationSpec = add(this, configuration)
 
-        /**
-         * @see annotation
-         */
         public operator fun KClass<out Annotation>.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
-        ): AnnotationSpec = annotation(this, configuration)
+        ): AnnotationSpec = add(this, configuration)
 
         public companion object {
             public fun of(handler: AnnotationSpecHandler): AnnotationSpecHandlerScope =
@@ -204,12 +182,8 @@ public class AnnotationSpecBuilder(private val nativeBuilder: AnnotationSpec.Bui
     public val members: MutableList<CodeBlock> get() = nativeBuilder.members
     public val tags: MutableMap<KClass<*>, Any> get() = nativeBuilder.tags
 
-    public fun member(format: String, vararg args: Any) {
+    public fun addMember(format: String, vararg args: Any) {
         nativeBuilder.addMember(format, *args)
-    }
-
-    public fun member(code: CodeBlock) {
-        nativeBuilder.addMember(code)
     }
 
     public var useSiteTarget: AnnotationSpec.UseSiteTarget?

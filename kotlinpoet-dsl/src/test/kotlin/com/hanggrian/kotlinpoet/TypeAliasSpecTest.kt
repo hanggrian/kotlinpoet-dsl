@@ -1,7 +1,6 @@
 package com.hanggrian.kotlinpoet
 
 import com.example.Annotation1
-import com.example.Annotation2
 import com.example.Class1
 import com.example.Class2
 import com.example.Class3
@@ -22,16 +21,18 @@ import kotlin.test.assertTrue
 @Suppress("ktlint:standard:property-naming")
 class TypeAliasSpecTest {
     @Test
-    fun typeAlias() {
+    fun add() {
         assertThat(
             buildFileSpec("com.example", "test") {
-                typeAlias("Class1", Class1::class.name)
-                typeAlias("Class2", Class2::class.java)
-                typeAlias("Class3", Class3::class)
-                typeAlias<Class4>("Class4")
-                typeAlias("Class5", Class5::class.name) { modifiers(PUBLIC) }
-                typeAlias("Class6", Class6::class.java) { modifiers(PUBLIC) }
-                typeAlias("Class7", Class7::class) { modifiers(PUBLIC) }
+                typeAliases.add("Class1", Class1::class.name)
+                typeAliases.add("Class2", Class2::class.java)
+                typeAliases.add("Class3", Class3::class)
+                typeAliases.add<Class4>("Class4")
+                typeAliases {
+                    add("Class5", Class5::class.name) { addModifiers(PUBLIC) }
+                    add("Class6", Class6::class.java) { addModifiers(PUBLIC) }
+                    add("Class7", Class7::class) { addModifiers(PUBLIC) }
+                }
             },
         ).isEqualTo(
             FileSpec
@@ -60,15 +61,15 @@ class TypeAliasSpecTest {
     }
 
     @Test
-    fun typeAliasing() {
+    fun adding() {
         assertThat(
             buildFileSpec("com.example", "test") {
-                val Class1 by typeAliasing(Class1::class.name)
-                val Class2 by typeAliasing(Class2::class.java)
-                val Class3 by typeAliasing(Class3::class)
-                val Class4 by typeAliasing(Class4::class.name) { modifiers(PUBLIC) }
-                val Class5 by typeAliasing(Class5::class.java) { modifiers(PUBLIC) }
-                val Class6 by typeAliasing(Class6::class) { modifiers(PUBLIC) }
+                val Class1 by typeAliases.adding(Class1::class.name)
+                val Class2 by typeAliases.adding(Class2::class.java)
+                val Class3 by typeAliases.adding(Class3::class)
+                val Class4 by typeAliases.adding(Class4::class.name) { addModifiers(PUBLIC) }
+                val Class5 by typeAliases.adding(Class5::class.java) { addModifiers(PUBLIC) }
+                val Class6 by typeAliases.adding(Class6::class) { addModifiers(PUBLIC) }
             },
         ).isEqualTo(
             FileSpec
@@ -100,9 +101,9 @@ class TypeAliasSpecTest {
         assertThat(
             buildFileSpec("com.example", "HelloWorld") {
                 typeAliases {
-                    "Class1"(Class1::class.name) { modifiers(PUBLIC) }
-                    "Class2"(Class2::class.java) { modifiers(PUBLIC) }
-                    "Class3"(Class3::class) { modifiers(PUBLIC) }
+                    "Class1"(Class1::class.name) { addModifiers(PUBLIC) }
+                    "Class2"(Class2::class.java) { addModifiers(PUBLIC) }
+                    "Class3"(Class3::class) { addModifiers(PUBLIC) }
                 }
             },
         ).isEqualTo(
@@ -130,10 +131,10 @@ class TypeAliasSpecTest {
 
 class TypeAliasSpecBuilderTest {
     @Test
-    fun modifiers() {
+    fun addModifiers() {
         assertThat(
             buildTypeAliasSpec("Annotation1", Annotation1::class.name) {
-                modifiers(PUBLIC)
+                addModifiers(PUBLIC)
                 assertFalse(modifiers.isEmpty())
             },
         ).isEqualTo(
@@ -145,10 +146,10 @@ class TypeAliasSpecBuilderTest {
     }
 
     @Test
-    fun typeVariables() {
+    fun addTypeVariables() {
         assertThat(
             buildTypeAliasSpec("Annotation1", Annotation1::class.name) {
-                typeVariables(listOf("A".generics))
+                addTypeVariables("A".generics)
                 assertFalse(typeVariables.isEmpty())
             },
         ).isEqualTo(
@@ -160,41 +161,11 @@ class TypeAliasSpecBuilderTest {
     }
 
     @Test
-    fun typeVariable() {
+    fun addKdoc() {
         assertThat(
             buildTypeAliasSpec("Annotation1", Annotation1::class.name) {
-                typeVariable("A".generics)
-                assertFalse(typeVariables.isEmpty())
-            },
-        ).isEqualTo(
-            TypeAliasSpec
-                .builder("Annotation1", Annotation1::class.name)
-                .addTypeVariable(TypeVariableName("A"))
-                .build(),
-        )
-    }
-
-    @Test
-    fun annotation() {
-        assertThat(
-            buildTypeAliasSpec("Annotation1", Annotation1::class.name) {
-                annotation(Annotation2::class)
-                assertFalse(annotations.isEmpty())
-            },
-        ).isEqualTo(
-            TypeAliasSpec
-                .builder("Annotation1", Annotation1::class.name)
-                .addAnnotation(Annotation2::class)
-                .build(),
-        )
-    }
-
-    @Test
-    fun kdoc() {
-        assertThat(
-            buildTypeAliasSpec("Annotation1", Annotation1::class.name) {
-                kdoc("text1")
-                kdoc(codeBlockOf("text2"))
+                addKdoc("text1")
+                addKdoc(codeBlockOf("text2"))
                 assertFalse(kdoc.isEmpty())
             },
         ).isEqualTo(

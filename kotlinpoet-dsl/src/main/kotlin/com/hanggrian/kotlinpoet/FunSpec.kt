@@ -63,22 +63,19 @@ public fun buildFunSpec(name: MemberName, configuration: FunSpecBuilder.() -> Un
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun FunSpecHandler.function(
-    name: String,
-    configuration: FunSpecBuilder.() -> Unit,
-): FunSpec {
+public fun FunSpecHandler.add(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.builder(name))
         .apply(configuration)
         .build()
-        .also(::function)
+        .also(::add)
 }
 
 /**
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun FunSpecHandler.function(
+public fun FunSpecHandler.add(
     name: MemberName,
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
@@ -86,26 +83,26 @@ public fun FunSpecHandler.function(
     return FunSpecBuilder(FunSpec.builder(name))
         .apply(configuration)
         .build()
-        .also(::function)
+        .also(::add)
 }
 
 /**
  * Inserts new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun FunSpecHandler.constructorFunction(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public fun FunSpecHandler.addConstructor(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.constructorBuilder())
         .apply(configuration)
         .build()
-        .also(::function)
+        .also(::add)
 }
 
 /**
  * Applies new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecBuilder.primaryConstructorFunction(
+public fun TypeSpecBuilder.setPrimaryConstructor(
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -119,7 +116,7 @@ public fun TypeSpecBuilder.primaryConstructorFunction(
  * Applies new getter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecBuilder.getter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public fun PropertySpecBuilder.setGetter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.getterBuilder())
         .apply(configuration)
@@ -131,7 +128,7 @@ public fun PropertySpecBuilder.getter(configuration: FunSpecBuilder.() -> Unit):
  * Applies new setter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecBuilder.setter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public fun PropertySpecBuilder.setSetter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.setterBuilder())
         .apply(configuration)
@@ -143,7 +140,7 @@ public fun PropertySpecBuilder.setter(configuration: FunSpecBuilder.() -> Unit):
  * Property delegate for inserting new [FunSpec] by populating newly created [FunSpecBuilder]
  * using provided [configuration].
  */
-public fun FunSpecHandler.functioning(
+public fun FunSpecHandler.adding(
     configuration: FunSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<FunSpec> {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -151,30 +148,22 @@ public fun FunSpecHandler.functioning(
         FunSpecBuilder(FunSpec.builder(it))
             .apply(configuration)
             .build()
-            .also(::function)
+            .also(::add)
     }
-}
-
-/** Invokes DSL to configure [FunSpec] collection. */
-public fun FunSpecHandler.functions(configuration: FunSpecHandlerScope.() -> Unit) {
-    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    FunSpecHandlerScope
-        .of(this)
-        .configuration()
 }
 
 /** Responsible for managing a set of [FunSpec] instances. */
 public interface FunSpecHandler {
-    public fun function(function: FunSpec)
+    public fun add(function: FunSpec)
 
-    public fun function(name: String): FunSpec = funSpecOf(name).also(::function)
+    public fun add(name: String): FunSpec = funSpecOf(name).also(::add)
 
-    public fun function(name: MemberName): FunSpec = funSpecOf(name).also(::function)
+    public fun add(name: MemberName): FunSpec = funSpecOf(name).also(::add)
 
-    public fun functioning(): SpecDelegateProvider<FunSpec> =
-        SpecDelegateProvider { funSpecOf(it).also(::function) }
+    public fun adding(): SpecDelegateProvider<FunSpec> =
+        SpecDelegateProvider { funSpecOf(it).also(::add) }
 
-    public fun constructorFunction(): FunSpec = emptyConstructorFunSpec().also(::function)
+    public fun addConstructor(): FunSpec = emptyConstructorFunSpec().also(::add)
 }
 
 /**
@@ -184,11 +173,8 @@ public interface FunSpecHandler {
 @KotlinpoetDsl
 public open class FunSpecHandlerScope private constructor(handler: FunSpecHandler) :
     FunSpecHandler by handler {
-        /**
-         * @see function
-         */
         public operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): FunSpec =
-            function(this, configuration)
+            add(this, configuration)
 
         public companion object {
             public fun of(handler: FunSpecHandler): FunSpecHandlerScope =
@@ -198,14 +184,42 @@ public open class FunSpecHandlerScope private constructor(handler: FunSpecHandle
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDsl
-public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
-    AnnotationSpecHandler,
-    ParameterSpecHandler {
+public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) {
+    public val annotations: AnnotationSpecHandler =
+        object : AnnotationSpecHandler {
+            override fun add(annotation: AnnotationSpec) {
+                annotationSpecs += annotation
+            }
+        }
+
+    public val parameters: ParameterSpecHandler =
+        object : ParameterSpecHandler {
+            override fun add(parameter: ParameterSpec) {
+                parameterSpecs += parameter
+            }
+        }
+
+    /** Invokes DSL to configure [AnnotationSpec] collection. */
+    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        AnnotationSpecHandlerScope
+            .of(annotations)
+            .configuration()
+    }
+
+    /** Invokes DSL to configure [ParameterSpec] collection. */
+    public fun parameters(configuration: ParameterSpecHandlerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        ParameterSpecHandlerScope
+            .of(parameters)
+            .configuration()
+    }
+
     public val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
-    public val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+    public val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
     public val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
     public val typeVariables: MutableList<TypeVariableName> get() = nativeBuilder.typeVariables
-    public val parameters: MutableList<ParameterSpec> get() = nativeBuilder.parameters
+    public val parameterSpecs: MutableList<ParameterSpec> get() = nativeBuilder.parameters
     public val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
     public val originatingElements: MutableList<Element> get() = nativeBuilder.originatingElements
 
@@ -213,20 +227,16 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
     public val contextReceiverTypes: MutableList<TypeName>
         get() = nativeBuilder.contextReceiverTypes
 
-    public fun modifiers(vararg modifiers: KModifier) {
-        nativeBuilder.addModifiers(*modifiers)
+    public fun addModifiers(vararg modifiers: KModifier) {
+        this.modifiers += modifiers
     }
 
-    public fun javaModifiers(modifiers: Iterable<Modifier>) {
-        nativeBuilder.jvmModifiers(modifiers)
+    public fun addJvmModifiers(vararg modifiers: Modifier) {
+        nativeBuilder.jvmModifiers(modifiers.toList())
     }
 
-    public fun typeVariables(typeVariables: Iterable<TypeVariableName>) {
-        nativeBuilder.addTypeVariables(typeVariables)
-    }
-
-    public fun typeVariable(typeVariable: TypeVariableName) {
-        nativeBuilder.addTypeVariable(typeVariable)
+    public fun addTypeVariables(vararg typeVariables: TypeVariableName) {
+        this.typeVariables += typeVariables
     }
 
     public var receiver: TypeName
@@ -236,36 +246,36 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
             nativeBuilder.receiver(value)
         }
 
-    public fun receiver(type: TypeName, kdocCode: CodeBlock) {
+    public fun setReceiver(type: TypeName, kdocCode: CodeBlock) {
         nativeBuilder.receiver(type, kdocCode)
     }
 
-    public fun receiver(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun setReceiver(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.receiver(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    public fun receiver(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun setReceiver(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.receiver(type, kdocCode)
     }
 
-    public fun receiver(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun setReceiver(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.receiver(type, kdocFormat, *kdocArgs)
     }
 
-    public fun receiver(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun setReceiver(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.receiver(type, kdocCode)
     }
 
-    public fun receiver(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun setReceiver(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.receiver(type, kdocFormat, *kdocArgs)
     }
 
-    public inline fun <reified T> receiver(
+    public inline fun <reified T> setReceiver(
         kdocCode: CodeBlock = CodeBlock.builder().build(),
-    ): Unit = receiver(T::class, kdocCode)
+    ): Unit = setReceiver(T::class, kdocCode)
 
-    public inline fun <reified T> receiver(kdocFormat: String, vararg kdocArgs: Any): Unit =
-        receiver(T::class, kdocFormat, *kdocArgs)
+    public inline fun <reified T> setReceiver(kdocFormat: String, vararg kdocArgs: Any): Unit =
+        setReceiver(T::class, kdocFormat, *kdocArgs)
 
     public var returns: TypeName
         @Deprecated(NO_GETTER, level = DeprecationLevel.ERROR)
@@ -274,39 +284,36 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
             nativeBuilder.returns(value)
         }
 
-    public fun returns(type: TypeName, kdocCode: CodeBlock) {
+    public fun setReturns(type: TypeName, kdocCode: CodeBlock) {
         nativeBuilder.returns(type, kdocCode)
     }
 
-    public fun returns(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun setReturns(type: TypeName, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    public fun returns(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun setReturns(type: Type, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.returns(type, kdocCode)
     }
 
-    public fun returns(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun setReturns(type: Type, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    public fun returns(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
+    public fun setReturns(type: KClass<*>, kdocCode: CodeBlock = CodeBlock.builder().build()) {
         nativeBuilder.returns(type, kdocCode)
     }
 
-    public fun returns(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
+    public fun setReturns(type: KClass<*>, kdocFormat: String, vararg kdocArgs: Any) {
         nativeBuilder.returns(type, codeBlockOf(kdocFormat, kdocArgs))
     }
 
-    public inline fun <reified T> returns(kdocCode: CodeBlock = CodeBlock.builder().build()): Unit =
-        returns(T::class, kdocCode)
+    public inline fun <reified T> setReturns(
+        kdocCode: CodeBlock = CodeBlock.builder().build(),
+    ): Unit = setReturns(T::class, kdocCode)
 
-    public inline fun <reified T> returns(kdocFormat: String, vararg kdocArgs: Any): Unit =
-        returns(T::class, kdocFormat, *kdocArgs)
-
-    public override fun parameter(parameter: ParameterSpec) {
-        nativeBuilder.addParameter(parameter)
-    }
+    public inline fun <reified T> setReturns(kdocFormat: String, vararg kdocArgs: Any): Unit =
+        setReturns(T::class, kdocFormat, *kdocArgs)
 
     public fun callThisConstructor(args: Iterable<CodeBlock>) {
         nativeBuilder.callThisConstructor(args)
@@ -344,7 +351,7 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
         nativeBuilder.addCode(code)
     }
 
-    public fun comment(format: String, vararg args: Any) {
+    public fun addComment(format: String, vararg args: Any) {
         nativeBuilder.addComment(format, *args)
     }
 
@@ -373,15 +380,11 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) :
         nativeBuilder.clearBody()
     }
 
-    public override fun annotation(annotation: AnnotationSpec) {
-        nativeBuilder.addAnnotation(annotation)
-    }
-
-    public fun kdoc(format: String, vararg args: Any) {
+    public fun addKdoc(format: String, vararg args: Any) {
         nativeBuilder.addKdoc(format, *args)
     }
 
-    public fun kdoc(block: CodeBlock) {
+    public fun addKdoc(block: CodeBlock) {
         nativeBuilder.addKdoc(block)
     }
 

@@ -4,10 +4,10 @@ package com.hanggrian.kotlinpoet
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
-import com.squareup.kotlinpoet.DelicateKotlinPoetApi
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
+import java.lang.reflect.Type
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
@@ -43,7 +43,7 @@ public fun buildParameterSpec(
  * Inserts new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun ParameterSpecHandler.parameter(
+public fun ParameterSpecHandler.add(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -53,16 +53,16 @@ public fun ParameterSpecHandler.parameter(
     return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers))
         .apply(configuration)
         .build()
-        .also(::parameter)
+        .also(::add)
 }
 
 /**
  * Inserts new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun ParameterSpecHandler.parameter(
+public fun ParameterSpecHandler.add(
     name: String,
-    type: Class<*>,
+    type: Type,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit,
 ): ParameterSpec {
@@ -70,14 +70,14 @@ public fun ParameterSpecHandler.parameter(
     return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers))
         .apply(configuration)
         .build()
-        .also(::parameter)
+        .also(::add)
 }
 
 /**
  * Inserts new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun ParameterSpecHandler.parameter(
+public fun ParameterSpecHandler.add(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -87,14 +87,14 @@ public fun ParameterSpecHandler.parameter(
     return ParameterSpecBuilder(ParameterSpec.builder(name, type, *modifiers))
         .apply(configuration)
         .build()
-        .also(::parameter)
+        .also(::add)
 }
 
 /**
  * Property delegate for inserting new [ParameterSpec] by populating newly created
  * [ParameterSpecBuilder] using provided [configuration].
  */
-public fun ParameterSpecHandler.parametering(
+public fun ParameterSpecHandler.adding(
     type: TypeName,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit,
@@ -104,7 +104,7 @@ public fun ParameterSpecHandler.parametering(
         ParameterSpecBuilder(ParameterSpec.builder(it, type, *modifiers))
             .apply(configuration)
             .build()
-            .also(::parameter)
+            .also(::add)
     }
 }
 
@@ -112,8 +112,8 @@ public fun ParameterSpecHandler.parametering(
  * Property delegate for inserting new [ParameterSpec] by populating newly created
  * [ParameterSpecBuilder] using provided [configuration].
  */
-public fun ParameterSpecHandler.parametering(
-    type: Class<*>,
+public fun ParameterSpecHandler.adding(
+    type: Type,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<ParameterSpec> {
@@ -122,7 +122,7 @@ public fun ParameterSpecHandler.parametering(
         ParameterSpecBuilder(ParameterSpec.builder(it, type, *modifiers))
             .apply(configuration)
             .build()
-            .also(::parameter)
+            .also(::add)
     }
 }
 
@@ -130,7 +130,7 @@ public fun ParameterSpecHandler.parametering(
  * Property delegate for inserting new [ParameterSpec] by populating newly created
  * [ParameterSpecBuilder] using provided [configuration].
  */
-public fun ParameterSpecHandler.parametering(
+public fun ParameterSpecHandler.adding(
     type: KClass<*>,
     vararg modifiers: KModifier,
     configuration: ParameterSpecBuilder.() -> Unit,
@@ -140,63 +140,50 @@ public fun ParameterSpecHandler.parametering(
         ParameterSpecBuilder(ParameterSpec.builder(it, type, *modifiers))
             .apply(configuration)
             .build()
-            .also(::parameter)
+            .also(::add)
     }
 }
 
 /** Convenient method to insert [ParameterSpec] using reified type. */
-public inline fun <reified T> ParameterSpecHandler.parameter(
+public inline fun <reified T> ParameterSpecHandler.add(
     name: String,
     vararg modifiers: KModifier,
 ): ParameterSpec =
     ParameterSpec
         .builder(name, T::class, *modifiers)
         .build()
-        .also(::parameter)
-
-/** Invokes DSL to configure [ParameterSpec] collection. */
-public fun ParameterSpecHandler.parameters(configuration: ParameterSpecHandlerScope.() -> Unit) {
-    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
-    ParameterSpecHandlerScope
-        .of(this)
-        .configuration()
-}
+        .also(::add)
 
 /** Responsible for managing a set of [ParameterSpec] instances. */
 public interface ParameterSpecHandler {
-    public fun parameter(parameter: ParameterSpec)
+    public fun add(parameter: ParameterSpec)
 
-    public fun parameter(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
-        parameterSpecOf(name, type, *modifiers).also(::parameter)
+    public fun add(name: String, type: TypeName, vararg modifiers: KModifier): ParameterSpec =
+        parameterSpecOf(name, type, *modifiers).also(::add)
 
-    @OptIn(DelicateKotlinPoetApi::class)
-    public fun parameter(name: String, type: Class<*>, vararg modifiers: KModifier): ParameterSpec =
-        parameterSpecOf(name, type.name2, *modifiers).also(::parameter)
+    public fun add(name: String, type: Type, vararg modifiers: KModifier): ParameterSpec =
+        parameterSpecOf(name, type.name, *modifiers).also(::add)
 
-    public fun parameter(
-        name: String,
-        type: KClass<*>,
-        vararg modifiers: KModifier,
-    ): ParameterSpec = parameterSpecOf(name, type.name, *modifiers).also(::parameter)
+    public fun add(name: String, type: KClass<*>, vararg modifiers: KModifier): ParameterSpec =
+        parameterSpecOf(name, type.name, *modifiers).also(::add)
 
-    public fun parametering(
+    public fun adding(
         type: TypeName,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<ParameterSpec> =
-        SpecDelegateProvider { parameterSpecOf(it, type, *modifiers).also(::parameter) }
+        SpecDelegateProvider { parameterSpecOf(it, type, *modifiers).also(::add) }
 
-    @OptIn(DelicateKotlinPoetApi::class)
-    public fun parametering(
-        type: Class<*>,
+    public fun adding(
+        type: Type,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<ParameterSpec> =
-        SpecDelegateProvider { parameterSpecOf(it, type.name2, *modifiers).also(::parameter) }
+        SpecDelegateProvider { parameterSpecOf(it, type.name, *modifiers).also(::add) }
 
-    public fun parametering(
+    public fun adding(
         type: KClass<*>,
         vararg modifiers: KModifier,
     ): SpecDelegateProvider<ParameterSpec> =
-        SpecDelegateProvider { parameterSpecOf(it, type.name, *modifiers).also(::parameter) }
+        SpecDelegateProvider { parameterSpecOf(it, type.name, *modifiers).also(::add) }
 }
 
 /**
@@ -206,32 +193,23 @@ public interface ParameterSpecHandler {
 @KotlinpoetDsl
 public open class ParameterSpecHandlerScope private constructor(handler: ParameterSpecHandler) :
     ParameterSpecHandler by handler {
-        /**
-         * @see parameter
-         */
         public operator fun String.invoke(
             type: TypeName,
             vararg modifiers: KModifier,
             configuration: ParameterSpecBuilder.() -> Unit,
-        ): ParameterSpec = parameter(this, type, *modifiers, configuration = configuration)
+        ): ParameterSpec = add(this, type, *modifiers, configuration = configuration)
 
-        /**
-         * @see parameter
-         */
         public operator fun String.invoke(
-            type: Class<*>,
+            type: Type,
             vararg modifiers: KModifier,
             configuration: ParameterSpecBuilder.() -> Unit,
-        ): ParameterSpec = parameter(this, type, *modifiers, configuration = configuration)
+        ): ParameterSpec = add(this, type, *modifiers, configuration = configuration)
 
-        /**
-         * @see parameter
-         */
         public operator fun String.invoke(
             type: KClass<*>,
             vararg modifiers: KModifier,
             configuration: ParameterSpecBuilder.() -> Unit,
-        ): ParameterSpec = parameter(this, type, *modifiers, configuration = configuration)
+        ): ParameterSpec = add(this, type, *modifiers, configuration = configuration)
 
         public companion object {
             public fun of(handler: ParameterSpecHandler): ParameterSpecHandlerScope =
@@ -241,19 +219,29 @@ public open class ParameterSpecHandlerScope private constructor(handler: Paramet
 
 /** Wrapper of [ParameterSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinpoetDsl
-public class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) :
-    AnnotationSpecHandler {
+public class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Builder) {
+    public val annotations: AnnotationSpecHandler =
+        object : AnnotationSpecHandler {
+            override fun add(annotation: AnnotationSpec) {
+                annotationSpecs += annotation
+            }
+        }
+
+    /** Invokes DSL to configure [AnnotationSpec] collection. */
+    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+        contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+        AnnotationSpecHandlerScope
+            .of(annotations)
+            .configuration()
+    }
+
     public val modifiers: MutableList<KModifier> get() = nativeBuilder.modifiers
     public val kdoc: CodeBlock.Builder get() = nativeBuilder.kdoc
     public val tags: MutableMap<KClass<*>, *> get() = nativeBuilder.tags
-    public val annotations: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
+    public val annotationSpecs: MutableList<AnnotationSpec> get() = nativeBuilder.annotations
 
-    public fun modifiers(vararg modifiers: KModifier) {
-        nativeBuilder.addModifiers(*modifiers)
-    }
-
-    public fun defaultValue(format: String, vararg args: Any) {
-        nativeBuilder.defaultValue(format, *args)
+    public fun addModifiers(vararg modifiers: KModifier) {
+        this.modifiers += modifiers
     }
 
     public var defaultValue: CodeBlock
@@ -263,15 +251,15 @@ public class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Build
             nativeBuilder.defaultValue(value)
         }
 
-    public override fun annotation(annotation: AnnotationSpec) {
-        nativeBuilder.addAnnotation(annotation)
+    public fun setDefaultValue(format: String, vararg args: Any) {
+        defaultValue = codeBlockOf(format, *args)
     }
 
-    public fun kdoc(format: String, vararg args: Any) {
+    public fun addKdoc(format: String, vararg args: Any) {
         nativeBuilder.addKdoc(format, *args)
     }
 
-    public fun kdoc(block: CodeBlock) {
+    public fun addKdoc(block: CodeBlock) {
         nativeBuilder.addKdoc(block)
     }
 

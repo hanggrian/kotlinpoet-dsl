@@ -1,5 +1,6 @@
 package com.hanggrian.kotlinpoet
 
+import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CHAR
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
@@ -20,7 +21,26 @@ import kotlin.test.assertEquals
 class GitHubTest {
     @Test
     fun `Example`() {
-        assertEquals(
+        assertThat(
+            buildFileSpec("com.example.helloworld", "") {
+                val Greeter by types.addingClass {
+                    setPrimaryConstructor {
+                        parameters.add<String>("name")
+                    }
+                    properties.add("name", STRING) {
+                        setInitializer("name")
+                    }
+                    functions.add("greet") {
+                        appendLine("println(%P)", "Hello, \$name")
+                    }
+                }
+                functions.add("main") {
+                    parameters.add<String>("args", VARARG)
+                    // FIXME appendLine("%T(args[0]).greet()", Greeter)
+                    appendLine("Greeter(args[0]).greet()")
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             package com.example.helloworld
 
@@ -39,30 +59,20 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFileSpec("com.example.helloworld", "") {
-                val Greeter by classTyping {
-                    primaryConstructorFunction {
-                        parameter<String>("name")
-                    }
-                    property("name", STRING) {
-                        initializer("name")
-                    }
-                    function("greet") {
-                        appendLine("println(%P)", "Hello, \$name")
-                    }
-                }
-                function("main") {
-                    parameter<String>("args", VARARG)
-                    // FIXME appendLine("%T(args[0]).greet()", Greeter)
-                    appendLine("Greeter(args[0]).greet()")
-                }
-            }.toString(),
         )
     }
 
     @Test
     fun `Code & Control Flow`() {
-        assertEquals(
+        assertThat(
+            buildFunSpec("main") {
+                returns = UNIT
+                appendLine("var total = 0")
+                beginControlFlow("for (i in 0 until 10)")
+                appendLine("total += i")
+                endControlFlow()
+            }.toString(),
+        ).isEqualTo(
             """
             public fun main() {
               var total = 0
@@ -72,15 +82,17 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFunSpec("main") {
-                returns = UNIT
-                appendLine("var total = 0")
-                beginControlFlow("for (i in 0 until 10)")
-                appendLine("total += i")
-                endControlFlow()
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildFunSpec("multiply10to20") {
+                returns = INT
+                appendLine("var result = 1")
+                beginControlFlow("for (i in 10 until 20)")
+                appendLine("result = result * i")
+                endControlFlow()
+                appendLine("return result")
+            }.toString(),
+        ).isEqualTo(
             """
             public fun multiply10to20(): kotlin.Int {
               var result = 1
@@ -91,20 +103,29 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFunSpec("multiply10to20") {
-                returns = INT
-                appendLine("var result = 1")
-                beginControlFlow("for (i in 10 until 20)")
-                appendLine("result = result * i")
-                endControlFlow()
-                appendLine("return result")
-            }.toString(),
         )
     }
 
     @Test
     fun `$S for Strings`() {
-        assertEquals(
+        assertThat(
+            buildClassTypeSpec("HelloWorld") {
+                functions {
+                    "slimShady" {
+                        setReturns<String>()
+                        appendLine("return %S", "slimShady")
+                    }
+                    "eminem" {
+                        setReturns<String>()
+                        appendLine("return %S", "eminem")
+                    }
+                    "marshallMathers" {
+                        setReturns<String>()
+                        appendLine("return %S", "marshallMathers")
+                    }
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public class HelloWorld {
               public fun slimShady(): kotlin.String = "slimShady"
@@ -115,38 +136,36 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildClassTypeSpec("HelloWorld") {
-                functions {
-                    "slimShady" {
-                        returns<String>()
-                        appendLine("return %S", "slimShady")
-                    }
-                    "eminem" {
-                        returns<String>()
-                        appendLine("return %S", "eminem")
-                    }
-                    "marshallMathers" {
-                        returns<String>()
-                        appendLine("return %S", "marshallMathers")
-                    }
-                }
-            }.toString(),
         )
     }
 
     @Test
     fun `%P for String Templates`() {
-        assertEquals(
-            """
-            public fun printTotal(): kotlin.String = ${'"'}${'"'}${'"'}Your total is ${'$'}amount${'"'}${'"'}${'"'}
-
-            """.trimIndent(),
+        assertThat(
             buildFunSpec("printTotal") {
                 returns = STRING
                 appendLine("return %P", "Your total is ${'$'}amount")
             }.toString(),
+        ).isEqualTo(
+            """
+            public fun printTotal(): kotlin.String = ${'"'}${'"'}${'"'}Your total is ${'$'}amount${'"'}${'"'}${'"'}
+
+            """.trimIndent(),
         )
-        assertEquals(
+        assertThat(
+            buildFileSpec("com.example", "Digits") {
+                functions.add("print") {
+                    parameters.add<IntArray>("digits")
+                    val contentToString = MemberName("kotlin.collections", "contentToString")
+                    appendLine(
+                        "println(%P)",
+                        buildCodeBlock {
+                            append("These are the digits: \${digits.%M()}", contentToString)
+                        },
+                    )
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             package com.example
 
@@ -158,53 +177,57 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFileSpec("com.example", "Digits") {
-                function("print") {
-                    parameter<IntArray>("digits")
-                    val contentToString = MemberName("kotlin.collections", "contentToString")
-                    appendLine(
-                        "println(%P)",
-                        buildCodeBlock {
-                            append("These are the digits: \${digits.%M()}", contentToString)
-                        },
-                    )
-                }
-            }.toString(),
         )
     }
 
     @Test
     fun `$T for Types`() {
-        assertEquals(
+        assertThat(
+            buildClassTypeSpec("HelloWorld") {
+                functions.add("today") {
+                    setReturns<Date>()
+                    appendLine("return %T()", Date::class)
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public class HelloWorld {
               public fun today(): java.util.Date = java.util.Date()
             }
 
             """.trimIndent(),
+        )
+        assertThat(
             buildClassTypeSpec("HelloWorld") {
-                function("today") {
-                    returns<Date>()
-                    appendLine("return %T()", Date::class)
+                functions.add("tomorrow") {
+                    val hoverboard = classNamed("com.mattel", "Hoverboard")
+                    returns = hoverboard
+                    appendLine("return %T()", hoverboard)
                 }
             }.toString(),
-        )
-        assertEquals(
+        ).isEqualTo(
             """
             public class HelloWorld {
               public fun tomorrow(): com.mattel.Hoverboard = com.mattel.Hoverboard()
             }
 
             """.trimIndent(),
+        )
+        assertThat(
             buildClassTypeSpec("HelloWorld") {
-                function("tomorrow") {
+                functions.add("beyond") {
                     val hoverboard = classNamed("com.mattel", "Hoverboard")
-                    returns = hoverboard
-                    appendLine("return %T()", hoverboard)
+                    val arrayList = classNamed("kotlin", "ArrayList").parameterizedBy(hoverboard)
+                    val listOfHoverboards = classNamed("kotlin", "List").parameterizedBy(hoverboard)
+                    returns = listOfHoverboards
+                    appendLine("val result = %T()", arrayList)
+                    appendLine("result += %T()", hoverboard)
+                    appendLine("result += %T()", hoverboard)
+                    appendLine("result += %T()", hoverboard)
+                    appendLine("return result")
                 }
             }.toString(),
-        )
-        assertEquals(
+        ).isEqualTo(
             """
             public class HelloWorld {
               public fun beyond(): kotlin.List<com.mattel.Hoverboard> {
@@ -217,21 +240,18 @@ class GitHubTest {
             }
 
             """.trimIndent(),
+        )
+        assertThat(
             buildClassTypeSpec("HelloWorld") {
-                function("beyond") {
-                    val hoverboard = classNamed("com.mattel", "Hoverboard")
-                    val arrayList = classNamed("kotlin", "ArrayList").parameterizedBy(hoverboard)
-                    val listOfHoverboards = classNamed("kotlin", "List").parameterizedBy(hoverboard)
-                    returns = listOfHoverboards
-                    appendLine("val result = %T()", arrayList)
-                    appendLine("result += %T()", hoverboard)
-                    appendLine("result += %T()", hoverboard)
-                    appendLine("result += %T()", hoverboard)
-                    appendLine("return result")
+                properties {
+                    add("java", STRING.nullable(), PRIVATE) {
+                        isMutable = true
+                        setInitializer("null")
+                    }
+                    add<String>("kotlin", PRIVATE)
                 }
             }.toString(),
-        )
-        assertEquals(
+        ).isEqualTo(
             """
             public class HelloWorld {
               private var java: kotlin.String? = null
@@ -240,19 +260,21 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildClassTypeSpec("HelloWorld") {
-                property("java", STRING.nullable(), PRIVATE) {
-                    isMutable = true
-                    initializer("null")
-                }
-                property<String>("kotlin", PRIVATE)
-            }.toString(),
         )
     }
 
     @Test
     fun `%M for Members`() {
-        assertEquals(
+        assertThat(
+            buildFileSpec("com.squareup.example", "TacoTest") {
+                val createTaco = MemberName("com.squareup.tacos", "createTaco")
+                val isVegan = MemberName("com.squareup.tacos", "isVegan")
+                functions.add("main") {
+                    appendLine("val taco = %M()", createTaco)
+                    appendLine("println(taco.%M)", isVegan)
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             package com.squareup.example
 
@@ -265,16 +287,23 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFileSpec("com.squareup.example", "TacoTest") {
+        )
+        assertThat(
+            buildFileSpec("com.squareup.example", "Test") {
                 val createTaco = MemberName("com.squareup.tacos", "createTaco")
-                val isVegan = MemberName("com.squareup.tacos", "isVegan")
-                function("main") {
+                val createCake = MemberName("com.squareup.cakes", "createCake")
+                val isTacoVegan = MemberName("com.squareup.tacos", "isVegan")
+                val isCakeVegan = MemberName("com.squareup.cakes", "isVegan")
+                addAliasedImport(isTacoVegan, "isTacoVegan")
+                addAliasedImport(isCakeVegan, "isCakeVegan")
+                functions.add("main") {
                     appendLine("val taco = %M()", createTaco)
-                    appendLine("println(taco.%M)", isVegan)
+                    appendLine("val cake = %M()", createCake)
+                    appendLine("println(taco.%M)", isTacoVegan)
+                    appendLine("println(cake.%M)", isCakeVegan)
                 }
             }.toString(),
-        )
-        assertEquals(
+        ).isEqualTo(
             """
             package com.squareup.example
 
@@ -291,22 +320,22 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFileSpec("com.squareup.example", "Test") {
-                val createTaco = MemberName("com.squareup.tacos", "createTaco")
-                val createCake = MemberName("com.squareup.cakes", "createCake")
-                val isTacoVegan = MemberName("com.squareup.tacos", "isVegan")
-                val isCakeVegan = MemberName("com.squareup.cakes", "isVegan")
-                aliasedImport(isTacoVegan, "isTacoVegan")
-                aliasedImport(isCakeVegan, "isCakeVegan")
-                function("main") {
-                    appendLine("val taco = %M()", createTaco)
-                    appendLine("val cake = %M()", createCake)
-                    appendLine("println(taco.%M)", isTacoVegan)
-                    appendLine("println(cake.%M)", isCakeVegan)
+        )
+        assertThat(
+            buildFileSpec("com.example", "Test") {
+                val taco = ClassName("com.squareup.tacos", "Taco")
+                val meat = ClassName("com.squareup.tacos.ingredient", "Meat")
+                val iterator = MemberName("com.squareup.tacos.internal", ITERATOR)
+                val minusAssign = MemberName("com.squareup.tacos.internal", MINUS_ASSIGN)
+                functions.add("makeTacoHealthy") {
+                    parameters.add("taco", taco)
+                    beginControlFlow("for (ingredient %M taco)", iterator)
+                    appendLine("if (ingredient is %T) taco %M ingredient", meat, minusAssign)
+                    endControlFlow()
+                    appendLine("return taco")
                 }
             }.toString(),
-        )
-        assertEquals(
+        ).isEqualTo(
             """
             package com.example
 
@@ -323,19 +352,6 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFileSpec("com.example", "Test") {
-                val taco = ClassName("com.squareup.tacos", "Taco")
-                val meat = ClassName("com.squareup.tacos.ingredient", "Meat")
-                val iterator = MemberName("com.squareup.tacos.internal", ITERATOR)
-                val minusAssign = MemberName("com.squareup.tacos.internal", MINUS_ASSIGN)
-                function("makeTacoHealthy") {
-                    parameter("taco", taco)
-                    beginControlFlow("for (ingredient %M taco)", iterator)
-                    appendLine("if (ingredient is %T) taco %M ingredient", meat, minusAssign)
-                    endControlFlow()
-                    appendLine("return taco")
-                }
-            }.toString(),
         )
     }
 
@@ -343,7 +359,7 @@ class GitHubTest {
     fun `$N for Names`() {
         val hexDigit =
             buildFunSpec("hexDigit") {
-                parameter("i", INT)
+                parameters.add("i", INT)
                 returns = CHAR
                 appendLine(
                     "return (if (i < 10) i + '0'.toInt() else i - 10 + 'a'.toInt()).toChar()",
@@ -351,32 +367,41 @@ class GitHubTest {
             }
         val byteToHex =
             buildFunSpec("byteToHex") {
-                parameter("b", INT)
-                returns<String>()
+                parameters.add("b", INT)
+                setReturns<String>()
                 appendLine("val result = CharArray(2)")
                 appendLine("result[0] = %N((b ushr 4) and 0xf)", hexDigit)
                 appendLine("result[1] = %N(b and 0xf)", hexDigit)
                 appendLine("return String(result)")
             }
-        assertEquals(
-            """
-            public fun byteToHex(b: kotlin.Int): kotlin.String {
-              val result = CharArray(2)
-              result[0] = hexDigit((b ushr 4) and 0xf)
-              result[1] = hexDigit(b and 0xf)
-              return String(result)
-            }
+        assertThat("$byteToHex\n$hexDigit")
+            .isEqualTo(
+                """
+                public fun byteToHex(b: kotlin.Int): kotlin.String {
+                  val result = CharArray(2)
+                  result[0] = hexDigit((b ushr 4) and 0xf)
+                  result[1] = hexDigit(b and 0xf)
+                  return String(result)
+                }
 
-            public fun hexDigit(i: kotlin.Int): kotlin.Char = (if (i < 10) i + '0'.toInt() else i - 10 + 'a'.toInt()).toChar()
+                public fun hexDigit(i: kotlin.Int): kotlin.Char = (if (i < 10) i + '0'.toInt() else i - 10 + 'a'.toInt()).toChar()
 
-            """.trimIndent(),
-            "$byteToHex\n$hexDigit",
-        )
+                """.trimIndent(),
+            )
     }
 
     @Test
     fun `$L for Literals`() {
-        assertEquals(
+        assertThat(
+            buildFunSpec("computeRange") {
+                returns = INT
+                appendLine("var result = 0")
+                beginControlFlow("for (i in %L until %L)", 0, 10)
+                appendLine("result = result %L i", PLUS_ASSIGN)
+                endControlFlow()
+                appendLine("return result")
+            }.toString(),
+        ).isEqualTo(
             """
             public fun computeRange(): kotlin.Int {
               var result = 0
@@ -387,53 +412,48 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFunSpec("computeRange") {
-                returns = INT
-                appendLine("var result = 0")
-                beginControlFlow("for (i in %L until %L)", 0, 10)
-                appendLine("result = result %L i", PLUS_ASSIGN)
-                endControlFlow()
-                appendLine("return result")
-            }.toString(),
         )
     }
 
     @Test
     fun `Code block format strings`() {
-        assertEquals(
-            CodeBlock.of("I ate %L %L", 3, "tacos"),
-            codeBlockOf("I ate %L %L", 3, "tacos"),
-        )
-        assertEquals(
-            CodeBlock.of("I ate %2L %1L", "tacos", 3),
-            codeBlockOf("I ate %2L %1L", "tacos", 3),
-        )
+        assertThat(codeBlockOf("I ate %L %L", 3, "tacos"))
+            .isEqualTo(CodeBlock.of("I ate %L %L", 3, "tacos"))
+        assertThat(codeBlockOf("I ate %2L %1L", "tacos", 3))
+            .isEqualTo(CodeBlock.of("I ate %2L %1L", "tacos", 3))
+
         val templates = linkedMapOf<String, Any>()
         templates["food"] = "tacos"
         templates["count"] = 3
-        assertEquals(
-            CodeBlock.builder().addNamed("I ate %count:L %food:L", templates).build(),
-            buildCodeBlock { appendNamed("I ate %count:L %food:L", templates) },
-        )
+        assertThat(buildCodeBlock { appendNamed("I ate %count:L %food:L", templates) })
+            .isEqualTo(CodeBlock.builder().addNamed("I ate %count:L %food:L", templates).build())
     }
 
     @Test
     fun `Functions`() {
-        assertEquals(
+        assertThat(
+            buildClassTypeSpec("HelloWorld") {
+                addModifiers(ABSTRACT)
+                functions.add("flux") {
+                    addModifiers(PROTECTED, ABSTRACT)
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public abstract class HelloWorld {
               protected abstract fun flux()
             }
 
             """.trimIndent(),
-            buildClassTypeSpec("HelloWorld") {
-                modifiers(ABSTRACT)
-                function("flux") {
-                    modifiers(PROTECTED, ABSTRACT)
-                }
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildFunSpec("square") {
+                setReceiver<Int>()
+                setReturns<Int>()
+                appendLine("val s = this * this")
+                appendLine("return s")
+            }.toString(),
+        ).isEqualTo(
             """
             public fun kotlin.Int.square(): kotlin.Int {
               val s = this * this
@@ -441,42 +461,36 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFunSpec("square") {
-                receiver<Int>()
-                returns<Int>()
-                appendLine("val s = this * this")
-                appendLine("return s")
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildFunSpec("abs") {
+                setReturns<Int>()
+                parameters.add<Int>("x")
+                appendLine("return if (x < 0) -x else x")
+            }.toString(),
+        ).isEqualTo(
             """
             public fun abs(x: kotlin.Int): kotlin.Int = if (x < 0) -x else x
 
             """.trimIndent(),
-            buildFunSpec("abs") {
-                returns<Int>()
-                parameter<Int>("x")
-                appendLine("return if (x < 0) -x else x")
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildFunSpec("add") {
+                parameters {
+                    add<Int>("a")
+                    add("b", INT) { setDefaultValue("%L", 0) }
+                }
+                appendLine("print(\"a + b = \${a + b}\")")
+            }.toString(),
+        ).isEqualTo(
             """
             public fun add(a: kotlin.Int, b: kotlin.Int = 0) {
               print("a + b = ${'$'}{a + b}")
             }
 
             """.trimIndent(),
-            buildFunSpec("add") {
-                parameter<Int>("a")
-                parameter("b", INT) { defaultValue("%L", 0) }
-                appendLine("print(\"a + b = \${a + b}\")")
-            }.toString(),
         )
-        assertEquals(
-            """
-            public fun foo(): kotlin.Unit = (100..10000).map { number -> number * number }.map { number -> number.toString() }.also { string -> println(string) }
-
-            """.trimIndent(),
+        assertThat(
             buildFunSpec("foo") {
                 appendLine(
                     """
@@ -484,12 +498,25 @@ class GitHubTest {
                     """.trimIndent(),
                 )
             }.toString(),
+        ).isEqualTo(
+            """
+            public fun foo(): kotlin.Unit = (100..10000).map { number -> number * number }.map { number -> number.toString() }.also { string -> println(string) }
+
+            """.trimIndent(),
         )
     }
 
     @Test
     fun `Constructors`() {
-        assertEquals(
+        assertThat(
+            buildClassTypeSpec("HelloWorld") {
+                properties.add<String>("greeting", PRIVATE)
+                functions.addConstructor {
+                    parameters.add<String>("greeting")
+                    appendLine("this.%N = %N", "greeting", "greeting")
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public class HelloWorld {
               private val greeting: kotlin.String
@@ -500,15 +527,18 @@ class GitHubTest {
             }
 
             """.trimIndent(),
+        )
+        assertThat(
             buildClassTypeSpec("HelloWorld") {
-                property<String>("greeting", PRIVATE)
-                constructorFunction {
-                    parameter<String>("greeting")
+                properties.add("greeting", STRING, PRIVATE) {
+                    setInitializer("greeting")
+                }
+                setPrimaryConstructor {
+                    parameters.add<String>("greeting")
                     appendLine("this.%N = %N", "greeting", "greeting")
                 }
             }.toString(),
-        )
-        assertEquals(
+        ).isEqualTo(
             """
             public class HelloWorld(
               private val greeting: kotlin.String,
@@ -519,36 +549,37 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildClassTypeSpec("HelloWorld") {
-                property("greeting", STRING, PRIVATE) {
-                    initializer("greeting")
-                }
-                primaryConstructorFunction {
-                    parameter<String>("greeting")
-                    appendLine("this.%N = %N", "greeting", "greeting")
-                }
-            }.toString(),
         )
     }
 
     @Test
     fun `Parameters`() {
-        assertEquals(
+        assertThat(
+            buildFunSpec("welcomeOverlords") {
+                parameters {
+                    add("android", STRING) { setDefaultValue("\"pie\"") }
+                    add<String>("robot")
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public fun welcomeOverlords(android: kotlin.String = "pie", robot: kotlin.String) {
             }
 
             """.trimIndent(),
-            buildFunSpec("welcomeOverlords") {
-                parameter("android", STRING) { defaultValue("\"pie\"") }
-                parameter<String>("robot")
-            }.toString(),
         )
     }
 
     @Test
     fun `Properties`() {
-        assertEquals(
+        assertThat(
+            buildClassTypeSpec("HelloWorld") {
+                properties {
+                    add<String>("android", PRIVATE)
+                    add<String>("robot", PRIVATE)
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public class HelloWorld {
               private val android: kotlin.String
@@ -557,21 +588,29 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildClassTypeSpec("HelloWorld") {
-                property<String>("android", PRIVATE)
-                property<String>("robot", PRIVATE)
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildPropertySpec("android", STRING, PRIVATE) {
+                setInitializer("%S + %L", "Oreo v.", 8.1)
+            }.toString(),
+        ).isEqualTo(
             """
             private val android: kotlin.String = "Oreo v." + 8.1
 
             """.trimIndent(),
-            buildPropertySpec("android", STRING, PRIVATE) {
-                initializer("%S + %L", "Oreo v.", 8.1)
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildPropertySpec("android", STRING) {
+                isMutable = true
+                setGetter {
+                    modifiers.add(INLINE)
+                    appendLine("return %S", "foo")
+                }
+                setSetter {
+                    parameters.add("value", STRING)
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             var android: kotlin.String
               inline get() = "foo"
@@ -579,22 +618,17 @@ class GitHubTest {
               }
 
             """.trimIndent(),
-            buildPropertySpec("android", STRING) {
-                isMutable = true
-                getter {
-                    modifiers.add(INLINE)
-                    appendLine("return %S", "foo")
-                }
-                setter {
-                    parameter("value", STRING)
-                }
-            }.toString(),
         )
     }
 
     @Test
     fun `Interfaces`() {
-        assertEquals(
+        assertThat(
+            buildInterfaceTypeSpec("HelloWorld") {
+                properties.add<String>("buzz")
+                functions.add("beep") { addModifiers(ABSTRACT) }
+            }.toString(),
+        ).isEqualTo(
             """
             public interface HelloWorld {
               public val buzz: kotlin.String
@@ -603,16 +637,18 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildInterfaceTypeSpec("HelloWorld") {
-                property<String>("buzz")
-                function("beep") { modifiers(ABSTRACT) }
-            }.toString(),
         )
     }
 
     @Test
     fun `Enums`() {
-        assertEquals(
+        assertThat(
+            buildEnumTypeSpec("Roshambo") {
+                enumConstant("ROCK")
+                enumConstant("SCISSORS")
+                enumConstant("PAPER")
+            }.toString(),
+        ).isEqualTo(
             """
             public enum class Roshambo {
               ROCK,
@@ -621,13 +657,34 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildEnumTypeSpec("Roshambo") {
-                enumConstant("ROCK")
-                enumConstant("SCISSORS")
-                enumConstant("PAPER")
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildEnumTypeSpec("Roshambo") {
+                setPrimaryConstructor {
+                    parameters.add<String>("handsign")
+                }
+                enumConstants["ROCK"] =
+                    buildAnonymousTypeSpec {
+                        addSuperclassConstructorParameter("%S", "fist")
+                        functions.add("toString") {
+                            addModifiers(OVERRIDE)
+                            appendLine("return %S", "avalanche!")
+                            setReturns<String>()
+                        }
+                    }
+                enumConstant(
+                    "SCISSORS",
+                    buildAnonymousTypeSpec { addSuperclassConstructorParameter("%S", "peace") },
+                )
+                enumConstant(
+                    "PAPER",
+                    buildAnonymousTypeSpec { addSuperclassConstructorParameter("%S", "flat") },
+                )
+                properties.add("handsign", STRING, PRIVATE) {
+                    setInitializer("handsign")
+                }
+            }.toString(),
+        ).isEqualTo(
             """
             public enum class Roshambo(
               private val handsign: kotlin.String,
@@ -641,37 +698,32 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildEnumTypeSpec("Roshambo") {
-                primaryConstructorFunction {
-                    parameter<String>("handsign")
-                }
-                enumConstants["ROCK"] =
-                    buildAnonymousTypeSpec {
-                        superclassConstructorParameter("%S", "fist")
-                        function("toString") {
-                            modifiers(OVERRIDE)
-                            appendLine("return %S", "avalanche!")
-                            returns<String>()
-                        }
-                    }
-                enumConstant(
-                    "SCISSORS",
-                    buildAnonymousTypeSpec { superclassConstructorParameter("%S", "peace") },
-                )
-                enumConstant(
-                    "PAPER",
-                    buildAnonymousTypeSpec { superclassConstructorParameter("%S", "flat") },
-                )
-                property("handsign", STRING, PRIVATE) {
-                    initializer("handsign")
-                }
-            }.toString(),
         )
     }
 
     @Test
     fun `Anonymous Inner Classes`() {
-        assertEquals(
+        assertThat(
+            buildFunSpec("sortByLength") {
+                parameters.add("strings", List::class.parameterizedBy(String::class))
+                appendLine(
+                    "%N.sortedWith(%L)",
+                    "strings",
+                    buildAnonymousTypeSpec {
+                        addSuperinterface(Comparator::class.parameterizedBy(String::class))
+                        functions.add("compare") {
+                            addModifiers(OVERRIDE)
+                            parameters {
+                                add<String>("a")
+                                add<String>("b")
+                            }
+                            returns = INT
+                            appendLine("return %N.length - %N.length", "a", "b")
+                        }
+                    },
+                )
+            }.toString(),
+        ).isEqualTo(
             """
             public fun sortByLength(strings: kotlin.collections.List<kotlin.String>) {
               strings.sortedWith(object : java.util.Comparator<kotlin.String> {
@@ -680,23 +732,6 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFunSpec("sortByLength") {
-                parameter("strings", List::class.parameterizedBy(String::class))
-                appendLine(
-                    "%N.sortedWith(%L)",
-                    "strings",
-                    buildAnonymousTypeSpec {
-                        superinterface(Comparator::class.parameterizedBy(String::class))
-                        function("compare") {
-                            modifiers(OVERRIDE)
-                            parameter<String>("a")
-                            parameter<String>("b")
-                            returns = INT
-                            appendLine("return %N.length - %N.length", "a", "b")
-                        }
-                    },
-                )
-            }.toString(),
         )
     }
 
@@ -705,7 +740,12 @@ class GitHubTest {
         val headers = classNamed("com.example", "Headers")
         val logRecord = classNamed("com.example", "LogRecord")
         val logReceipt = classNamed("com.example", "LogReceipt")
-        assertEquals(
+        assertThat(
+            buildFunSpec("test string equality") {
+                annotations.add<Test>()
+                appendLine("assertThat(%1S).isEqualTo(%1S)", "foo")
+            }.toString(),
+        ).isEqualTo(
             """
             @org.junit.Test
             public fun `test string equality`() {
@@ -713,12 +753,18 @@ class GitHubTest {
             }
 
             """.trimIndent(),
-            buildFunSpec("test string equality") {
-                annotation<Test>()
-                appendLine("assertThat(%1S).isEqualTo(%1S)", "foo")
-            }.toString(),
         )
-        assertEquals(
+        assertThat(
+            buildFunSpec("recordEvent") {
+                addModifiers(ABSTRACT)
+                annotations.add(headers) {
+                    addMember("accept = %S", "application/json; charset=utf-8")
+                    addMember("userAgent = %S", "Square Cash")
+                }
+                parameters.add("logRecord", logRecord)
+                returns = logReceipt
+            }.toString(),
+        ).isEqualTo(
             """
             @com.example.Headers(
               accept = "application/json; charset=utf-8",
@@ -727,15 +773,6 @@ class GitHubTest {
             public abstract fun recordEvent(logRecord: com.example.LogRecord): com.example.LogReceipt
 
             """.trimIndent(),
-            buildFunSpec("recordEvent") {
-                modifiers(ABSTRACT)
-                annotation(headers) {
-                    member("accept = %S", "application/json; charset=utf-8")
-                    member("userAgent = %S", "Square Cash")
-                }
-                parameter("logRecord", logRecord)
-                returns = logReceipt
-            }.toString(),
         )
     }
 
@@ -761,32 +798,26 @@ class GitHubTest {
             buildFileSpec("com.example", "HelloWorld") {
                 val k = "K".generics
                 val t = "T".generics
-                typeAlias<String>("Word")
-                typeAlias(
-                    "FileTable",
-                    Map::class
-                        .asClassName()
-                        .parameterizedBy(k, Set::class.parameterizedBy(File::class)),
-                ) { typeVariables.add(k) }
-                typeAlias(
-                    "Predicate",
-                    lambdaTypeNamed(t, returns = Boolean::class.name),
-                ) { typeVariables.add(t) }
+                typeAliases {
+                    add<String>("Word")
+                    add(
+                        "FileTable",
+                        Map::class
+                            .asClassName()
+                            .parameterizedBy(k, Set::class.parameterizedBy(File::class)),
+                    ) { typeVariables.add(k) }
+                    add(
+                        "Predicate",
+                        lambdaTypeNamed(t, returns = Boolean::class.name),
+                    ) { typeVariables.add(t) }
+                }
             }.toString(),
         )
     }
 
     @Test
     fun `Callable References`() {
-        assertEquals(
-            """
-            public fun factories() {
-              val hello = ::com.example.hello.Hello
-              val world = com.example.hello.Hello::world
-              val bye = com.example.hello.Hello.World::bye
-            }
-
-            """.trimIndent(),
+        assertThat(
             buildFunSpec("factories") {
                 val helloClass = ClassName("com.example.hello", "Hello")
                 appendLine("val hello = %L", helloClass.constructorReference())
@@ -796,6 +827,15 @@ class GitHubTest {
                     helloClass.nestedClass("World").member("bye").reference(),
                 )
             }.toString(),
+        ).isEqualTo(
+            """
+            public fun factories() {
+              val hello = ::com.example.hello.Hello
+              val world = com.example.hello.Hello::world
+              val bye = com.example.hello.Hello.World::bye
+            }
+
+            """.trimIndent(),
         )
     }
 }
