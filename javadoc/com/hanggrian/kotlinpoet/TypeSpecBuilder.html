@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>TypeSpecBuilder 0.1 API </title>
+    <title>TypeSpecBuilder 0.2 API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
@@ -108,24 +108,6 @@ var pathtoroot = "../../../";
                         <dt>All Implemented Interfaces:</dt>
                         <dd>
                             
-                            <code>com.hanggrian.kotlinpoet.AnnotationSpecHandler</code>
-                            
-                            ,
-                            
-                            
-                            <code>com.hanggrian.kotlinpoet.FunSpecHandler</code>
-                            
-                            ,
-                            
-                            
-                            <code>com.hanggrian.kotlinpoet.PropertySpecHandler</code>
-                            
-                            ,
-                            
-                            
-                            <code>com.hanggrian.kotlinpoet.TypeSpecHandler</code>
-                            
-                            
                         </dd>
                     </dl>
                     
@@ -133,7 +115,7 @@ var pathtoroot = "../../../";
                     <pre class="wrap-overflow">
 
 public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>TypeSpecBuilder</a></span>
- implements <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a>, <a href=PropertySpecHandler.html>PropertySpecHandler</a>, <a href=FunSpecHandler.html>FunSpecHandler</a>, <a href=TypeSpecHandler.html>TypeSpecHandler</a>
+
                     </pre>
                     <div class="block"><p>Wrapper of TypeSpec.Builder, providing DSL support as a replacement to Java builder.</p></div>
 
@@ -191,6 +173,30 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         </tr>
                                         
                                         <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotations>annotations</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final <a href=PropertySpecHandler.html>PropertySpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#properties>properties</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=FunSpecHandler.html>FunSpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#functions>functions</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final <a href=TypeSpecHandler.html>TypeSpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#types>types</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private  <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#initializerIndex>initializerIndex</a></code></th>
                                             <td class="colLast"></td>
@@ -216,7 +222,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         
                                         <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotations>annotations</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotationSpecs>annotationSpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -258,19 +264,19 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         
                                         <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;PropertySpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#properties>properties</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#propertySpecs>propertySpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;FunSpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#functions>functions</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#functionSpecs>functionSpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeSpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#types>types</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#typeSpecs>typeSpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -282,7 +288,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         
                                         <tr class="rowColor">
                                             <td class="colFirst"><code>private  TypeName</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclass()>superclass</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclass>superclass</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -366,6 +372,38 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         </tr>
                                         
                                         <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getAnnotations()>getAnnotations</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=PropertySpecHandler.html>PropertySpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getProperties()>getProperties</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final <a href=FunSpecHandler.html>FunSpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getFunctions()>getFunctions</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=TypeSpecHandler.html>TypeSpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getTypes()>getTypes</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getInitializerIndex()>getInitializerIndex</a>() </code>
@@ -373,7 +411,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i1" class="rowColor">
+                                        <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#setInitializerIndex(java.lang.Integer)>setInitializerIndex</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html>Integer</a> initializerIndex) </code>
@@ -381,7 +419,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i2" class="altColor">
+                                        <tr id="i6" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt;, ?&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getTags()>getTags</a>() </code>
@@ -389,7 +427,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i3" class="rowColor">
+                                        <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code>final CodeBlock.Builder</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getKdoc()>getKdoc</a>() </code>
@@ -397,7 +435,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i4" class="altColor">
+                                        <tr id="i8" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html>Element</a>&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getOriginatingElements()>getOriginatingElements</a>() </code>
@@ -405,15 +443,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i5" class="rowColor">
+                                        <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getAnnotations()>getAnnotations</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getAnnotationSpecs()>getAnnotationSpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i6" class="altColor">
+                                        <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeName&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getContextReceiverTypes()>getContextReceiverTypes</a>() </code>
@@ -421,7 +459,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i7" class="rowColor">
+                                        <tr id="i11" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Set.html>Set</a>&lt;KModifier&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getModifiers()>getModifiers</a>() </code>
@@ -429,7 +467,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i8" class="altColor">
+                                        <tr id="i12" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;TypeName, CodeBlock&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getSuperinterfaces()>getSuperinterfaces</a>() </code>
@@ -437,7 +475,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i9" class="rowColor">
+                                        <tr id="i13" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, TypeSpec&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getEnumConstants()>getEnumConstants</a>() </code>
@@ -445,7 +483,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i10" class="altColor">
+                                        <tr id="i14" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeVariableName&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getTypeVariables()>getTypeVariables</a>() </code>
@@ -453,7 +491,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i11" class="rowColor">
+                                        <tr id="i15" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;CodeBlock&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getSuperclassConstructorParameters()>getSuperclassConstructorParameters</a>() </code>
@@ -461,31 +499,31 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i12" class="altColor">
+                                        <tr id="i16" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;PropertySpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getProperties()>getProperties</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getPropertySpecs()>getPropertySpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i13" class="rowColor">
+                                        <tr id="i17" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;FunSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getFunctions()>getFunctions</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getFunctionSpecs()>getFunctionSpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i14" class="altColor">
+                                        <tr id="i18" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getTypes()>getTypes</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getTypeSpecs()>getTypeSpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i15" class="rowColor">
+                                        <tr id="i19" class="rowColor">
                                             <td class="colFirst"><code>final FunSpec</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getPrimaryConstructor()>getPrimaryConstructor</a>() </code>
@@ -493,7 +531,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i16" class="altColor">
+                                        <tr id="i20" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#setPrimaryConstructor(com.squareup.kotlinpoet.FunSpec)>setPrimaryConstructor</a>(FunSpec primaryConstructor) </code>
@@ -501,7 +539,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i17" class="rowColor">
+                                        <tr id="i21" class="rowColor">
                                             <td class="colFirst"><code>final TypeName</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#getSuperclass()>getSuperclass</a>() </code>
@@ -509,7 +547,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i18" class="altColor">
+                                        <tr id="i22" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#setSuperclass(com.squareup.kotlinpoet.TypeName)>setSuperclass</a>(TypeName superclass) </code>
@@ -517,74 +555,42 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i19" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#modifiers(com.squareup.kotlinpoet.KModifier)>modifiers</a>(KModifier modifiers) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr id="i20" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#typeVariables(java.lang.Iterable)>typeVariables</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeVariableName&gt; typeVariables) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr id="i21" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#typeVariable(com.squareup.kotlinpoet.TypeVariableName)>typeVariable</a>(TypeVariableName typeVariable) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr id="i22" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclass(java.lang.reflect.Type)>superclass</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
                                         <tr id="i23" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclass(kotlin.reflect.KClass)>superclass</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotations(kotlin.jvm.functions.Function1)>annotations</a>(Function1&lt;<a href=AnnotationSpecHandlerScope.html>AnnotationSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure AnnotationSpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i24" class="altColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclass()>superclass</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#properties(kotlin.jvm.functions.Function1)>properties</a>(Function1&lt;<a href=PropertySpecHandlerScope.html>PropertySpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure PropertySpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i25" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclassConstructorParameter(java.lang.String,java.lang.Object)>superclassConstructorParameter</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#functions(kotlin.jvm.functions.Function1)>functions</a>(Function1&lt;<a href=FunSpecHandlerScope.html>FunSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure FunSpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i26" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superclassConstructorParameter(com.squareup.kotlinpoet.CodeBlock)>superclassConstructorParameter</a>(CodeBlock code) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#types(kotlin.jvm.functions.Function1)>types</a>(Function1&lt;<a href=TypeSpecHandlerScope.html>TypeSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure TypeSpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i27" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superinterface(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>superinterface</a>(TypeName superinterface, CodeBlock delegate) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addModifiers(com.squareup.kotlinpoet.KModifier)>addModifiers</a>(KModifier modifiers) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -592,7 +598,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i28" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superinterface(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>superinterface</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> superinterface, CodeBlock delegate) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)>addTypeVariables</a>(TypeVariableName typeVariables) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -600,7 +606,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i29" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superinterface(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>superinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, CodeBlock delegate) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#setSuperclass(java.lang.reflect.Type)>setSuperclass</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -608,23 +614,23 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i30" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superinterface(com.squareup.kotlinpoet.TypeName,java.lang.String)>superinterface</a>(TypeName superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#setSuperclass(kotlin.reflect.KClass)>setSuperclass</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i31" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superinterface(kotlin.reflect.KClass,java.lang.String)>superinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#setSuperclass()>setSuperclass</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i32" class="altColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#superinterface()>superinterface</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperclassConstructorParameter(java.lang.String,java.lang.Object)>addSuperclassConstructorParameter</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -632,15 +638,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i33" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#enumConstant(java.lang.String,com.squareup.kotlinpoet.TypeSpec)>enumConstant</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, TypeSpec typeSpec) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperinterface(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>addSuperinterface</a>(TypeName superinterface, CodeBlock delegate) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i34" class="altColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#property(com.squareup.kotlinpoet.PropertySpec)>property</a>(PropertySpec property) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperinterface(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>addSuperinterface</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> superinterface, CodeBlock delegate) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -648,7 +654,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i35" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#initializerBlock(com.squareup.kotlinpoet.CodeBlock)>initializerBlock</a>(CodeBlock code) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperinterface(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>addSuperinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, CodeBlock delegate) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -656,23 +662,23 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i36" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#initializerBlock(java.lang.String,java.lang.Object)>initializerBlock</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperinterface(com.squareup.kotlinpoet.TypeName,java.lang.String)>addSuperinterface</a>(TypeName superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i37" class="rowColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#function(com.squareup.kotlinpoet.FunSpec)>function</a>(FunSpec function) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperinterface(kotlin.reflect.KClass,java.lang.String)>addSuperinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i38" class="altColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#type(com.squareup.kotlinpoet.TypeSpec)>type</a>(TypeSpec type) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addSuperinterface()>addSuperinterface</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -680,15 +686,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i39" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#contextReceivers(java.lang.Iterable)>contextReceivers</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeName&gt; receiverTypes) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#enumConstant(java.lang.String,com.squareup.kotlinpoet.TypeSpec)>enumConstant</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, TypeSpec type) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i40" class="altColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotation(com.squareup.kotlinpoet.AnnotationSpec)>annotation</a>(AnnotationSpec annotation) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addInitializerBlock(com.squareup.kotlinpoet.CodeBlock)>addInitializerBlock</a>(CodeBlock code) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -696,7 +702,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i41" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#kdoc(java.lang.String,java.lang.Object)>kdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addInitializerBlock(java.lang.String,java.lang.Object)>addInitializerBlock</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -704,12 +710,28 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                         <tr id="i42" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#kdoc(com.squareup.kotlinpoet.CodeBlock)>kdoc</a>(CodeBlock block) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#contextReceivers(java.lang.Iterable)>contextReceivers</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeName&gt; receiverTypes) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i43" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addKdoc(java.lang.String,java.lang.Object)>addKdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i44" class="altColor">
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#addKdoc(com.squareup.kotlinpoet.CodeBlock)>addKdoc</a>(CodeBlock block) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i45" class="rowColor">
                                             <td class="colFirst"><code>final TypeSpec</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#build()>build</a>() </code>
@@ -722,30 +744,6 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                 </div>
                                 <ul class="blockList">
                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.PropertySpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.PropertySpecHandler</h3>
-                                            <code>property, property, property, propertying, propertying, propertying</code></li>
-                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.FunSpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.FunSpecHandler</h3>
-                                            <code>constructorFunction, function, function, functioning</code></li>
-                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.AnnotationSpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.AnnotationSpecHandler</h3>
-                                            <code>annotation, annotation, annotation, annotation</code></li>
-                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.TypeSpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.TypeSpecHandler</h3>
-                                            <code>annotationType, annotationType, annotationTyping, anonymousType, classType, classType, classTyping, companionObjectType, companionObjectTyping, enumType, enumType, enumTyping, interfaceType, interfaceType, interfaceTyping, objectType, objectType, objectTyping</code></li>
-                                 
                                     <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
                                         <!--   -->
                                     </a>
@@ -794,6 +792,98 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                 <!--   -->
                             </a>
                                 <h3>Method Detail</h3>
+                                
+                                <a id="getAnnotations()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getAnnotations</h4>
+                                        <pre class="methodSignature"> final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a> <a href=TypeSpecBuilder.html#getAnnotations()>getAnnotations</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getProperties()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getProperties</h4>
+                                        <pre class="methodSignature"> final <a href=PropertySpecHandler.html>PropertySpecHandler</a> <a href=TypeSpecBuilder.html#getProperties()>getProperties</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getFunctions()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getFunctions</h4>
+                                        <pre class="methodSignature"> final <a href=FunSpecHandler.html>FunSpecHandler</a> <a href=TypeSpecBuilder.html#getFunctions()>getFunctions</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getTypes()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getTypes</h4>
+                                        <pre class="methodSignature"> final <a href=TypeSpecHandler.html>TypeSpecHandler</a> <a href=TypeSpecBuilder.html#getTypes()>getTypes</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
                                 
                                 <a id="getInitializerIndex()">
                                     <!--   -->
@@ -910,15 +1000,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="getAnnotations()">
+                                <a id="getAnnotationSpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getAnnotations</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt; <a href=TypeSpecBuilder.html#getAnnotations()>getAnnotations</a>()</pre>
+                                        <h4>getAnnotationSpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt; <a href=TypeSpecBuilder.html#getAnnotationSpecs()>getAnnotationSpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1071,15 +1161,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="getProperties()">
+                                <a id="getPropertySpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getProperties</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;PropertySpec&gt; <a href=TypeSpecBuilder.html#getProperties()>getProperties</a>()</pre>
+                                        <h4>getPropertySpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;PropertySpec&gt; <a href=TypeSpecBuilder.html#getPropertySpecs()>getPropertySpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1094,15 +1184,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="getFunctions()">
+                                <a id="getFunctionSpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getFunctions</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;FunSpec&gt; <a href=TypeSpecBuilder.html#getFunctions()>getFunctions</a>()</pre>
+                                        <h4>getFunctionSpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;FunSpec&gt; <a href=TypeSpecBuilder.html#getFunctionSpecs()>getFunctionSpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1117,15 +1207,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="getTypes()">
+                                <a id="getTypeSpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getTypes</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#getTypes()>getTypes</a>()</pre>
+                                        <h4>getTypeSpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#getTypeSpecs()>getTypeSpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1232,15 +1322,107 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="modifiers(com.squareup.kotlinpoet.KModifier)">
+                                <a id="annotations(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>modifiers</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#modifiers(com.squareup.kotlinpoet.KModifier)>modifiers</a>(KModifier modifiers)</pre>
+                                        <h4>annotations</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#annotations(kotlin.jvm.functions.Function1)>annotations</a>(Function1&lt;<a href=AnnotationSpecHandlerScope.html>AnnotationSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure AnnotationSpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="properties(kotlin.jvm.functions.Function1)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>properties</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#properties(kotlin.jvm.functions.Function1)>properties</a>(Function1&lt;<a href=PropertySpecHandlerScope.html>PropertySpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure PropertySpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="functions(kotlin.jvm.functions.Function1)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>functions</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#functions(kotlin.jvm.functions.Function1)>functions</a>(Function1&lt;<a href=FunSpecHandlerScope.html>FunSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure FunSpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="types(kotlin.jvm.functions.Function1)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>types</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#types(kotlin.jvm.functions.Function1)>types</a>(Function1&lt;<a href=TypeSpecHandlerScope.html>TypeSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure TypeSpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="addModifiers(com.squareup.kotlinpoet.KModifier)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addModifiers</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addModifiers(com.squareup.kotlinpoet.KModifier)>addModifiers</a>(KModifier modifiers)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1255,15 +1437,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="typeVariables(java.lang.Iterable)">
+                                <a id="addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>typeVariables</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#typeVariables(java.lang.Iterable)>typeVariables</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeVariableName&gt; typeVariables)</pre>
+                                        <h4>addTypeVariables</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)>addTypeVariables</a>(TypeVariableName typeVariables)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1278,15 +1460,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="typeVariable(com.squareup.kotlinpoet.TypeVariableName)">
+                                <a id="setSuperclass(java.lang.reflect.Type)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>typeVariable</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#typeVariable(com.squareup.kotlinpoet.TypeVariableName)>typeVariable</a>(TypeVariableName typeVariable)</pre>
+                                        <h4>setSuperclass</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#setSuperclass(java.lang.reflect.Type)>setSuperclass</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1301,15 +1483,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superclass(java.lang.reflect.Type)">
+                                <a id="setSuperclass(kotlin.reflect.KClass)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superclass</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superclass(java.lang.reflect.Type)>superclass</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type)</pre>
+                                        <h4>setSuperclass</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#setSuperclass(kotlin.reflect.KClass)>setSuperclass</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1324,15 +1506,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superclass(kotlin.reflect.KClass)">
+                                <a id="setSuperclass()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superclass</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superclass(kotlin.reflect.KClass)>superclass</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type)</pre>
+                                        <h4>setSuperclass</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#setSuperclass()>setSuperclass</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1347,15 +1529,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superclass()">
+                                <a id="addSuperclassConstructorParameter(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superclass</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superclass()>superclass</a>()</pre>
+                                        <h4>addSuperclassConstructorParameter</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperclassConstructorParameter(java.lang.String,java.lang.Object)>addSuperclassConstructorParameter</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1370,15 +1552,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superclassConstructorParameter(java.lang.String,java.lang.Object)">
+                                <a id="addSuperinterface(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superclassConstructorParameter</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superclassConstructorParameter(java.lang.String,java.lang.Object)>superclassConstructorParameter</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
+                                        <h4>addSuperinterface</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperinterface(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>addSuperinterface</a>(TypeName superinterface, CodeBlock delegate)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1393,15 +1575,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superclassConstructorParameter(com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="addSuperinterface(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superclassConstructorParameter</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superclassConstructorParameter(com.squareup.kotlinpoet.CodeBlock)>superclassConstructorParameter</a>(CodeBlock code)</pre>
+                                        <h4>addSuperinterface</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperinterface(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>addSuperinterface</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> superinterface, CodeBlock delegate)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1416,15 +1598,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superinterface(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="addSuperinterface(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superinterface</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superinterface(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>superinterface</a>(TypeName superinterface, CodeBlock delegate)</pre>
+                                        <h4>addSuperinterface</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperinterface(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>addSuperinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, CodeBlock delegate)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1439,15 +1621,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superinterface(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="addSuperinterface(com.squareup.kotlinpoet.TypeName,java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superinterface</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superinterface(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>superinterface</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> superinterface, CodeBlock delegate)</pre>
+                                        <h4>addSuperinterface</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperinterface(com.squareup.kotlinpoet.TypeName,java.lang.String)>addSuperinterface</a>(TypeName superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1462,15 +1644,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superinterface(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="addSuperinterface(kotlin.reflect.KClass,java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superinterface</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superinterface(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>superinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, CodeBlock delegate)</pre>
+                                        <h4>addSuperinterface</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperinterface(kotlin.reflect.KClass,java.lang.String)>addSuperinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1485,61 +1667,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="superinterface(com.squareup.kotlinpoet.TypeName,java.lang.String)">
+                                <a id="addSuperinterface()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>superinterface</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superinterface(com.squareup.kotlinpoet.TypeName,java.lang.String)>superinterface</a>(TypeName superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="superinterface(kotlin.reflect.KClass,java.lang.String)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>superinterface</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superinterface(kotlin.reflect.KClass,java.lang.String)>superinterface</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; superinterface, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> constructorParameterName)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="superinterface()">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>superinterface</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#superinterface()>superinterface</a>()</pre>
+                                        <h4>addSuperinterface</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addSuperinterface()>addSuperinterface</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1562,7 +1698,7 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                           >
                                     <li class="blockList">
                                         <h4>enumConstant</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#enumConstant(java.lang.String,com.squareup.kotlinpoet.TypeSpec)>enumConstant</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, TypeSpec typeSpec)</pre>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#enumConstant(java.lang.String,com.squareup.kotlinpoet.TypeSpec)>enumConstant</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name, TypeSpec type)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1577,15 +1713,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="property(com.squareup.kotlinpoet.PropertySpec)">
+                                <a id="addInitializerBlock(com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>property</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#property(com.squareup.kotlinpoet.PropertySpec)>property</a>(PropertySpec property)</pre>
+                                        <h4>addInitializerBlock</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addInitializerBlock(com.squareup.kotlinpoet.CodeBlock)>addInitializerBlock</a>(CodeBlock code)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1600,84 +1736,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="initializerBlock(com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="addInitializerBlock(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>initializerBlock</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#initializerBlock(com.squareup.kotlinpoet.CodeBlock)>initializerBlock</a>(CodeBlock code)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="initializerBlock(java.lang.String,java.lang.Object)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>initializerBlock</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#initializerBlock(java.lang.String,java.lang.Object)>initializerBlock</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="function(com.squareup.kotlinpoet.FunSpec)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>function</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#function(com.squareup.kotlinpoet.FunSpec)>function</a>(FunSpec function)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="type(com.squareup.kotlinpoet.TypeSpec)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>type</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#type(com.squareup.kotlinpoet.TypeSpec)>type</a>(TypeSpec type)</pre>
+                                        <h4>addInitializerBlock</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addInitializerBlock(java.lang.String,java.lang.Object)>addInitializerBlock</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1715,15 +1782,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="annotation(com.squareup.kotlinpoet.AnnotationSpec)">
+                                <a id="addKdoc(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>annotation</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#annotation(com.squareup.kotlinpoet.AnnotationSpec)>annotation</a>(AnnotationSpec annotation)</pre>
+                                        <h4>addKdoc</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addKdoc(java.lang.String,java.lang.Object)>addKdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1738,38 +1805,15 @@ public final class <span class="typeNameLabel"><a href=TypeSpecBuilder.html>Type
                                     </li>
                                 </ul>
                                 
-                                <a id="kdoc(java.lang.String,java.lang.Object)">
+                                <a id="addKdoc(com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>kdoc</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#kdoc(java.lang.String,java.lang.Object)>kdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="kdoc(com.squareup.kotlinpoet.CodeBlock)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>kdoc</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#kdoc(com.squareup.kotlinpoet.CodeBlock)>kdoc</a>(CodeBlock block)</pre>
+                                        <h4>addKdoc</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecBuilder.html#addKdoc(com.squareup.kotlinpoet.CodeBlock)>addKdoc</a>(CodeBlock block)</pre>
                                         <div class="block"></div>
 
                                         <dl>

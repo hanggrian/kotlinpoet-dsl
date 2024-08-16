@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>TypeSpecHandler 0.1 API </title>
+    <title>TypeSpecHandler 0.2 API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
@@ -248,7 +248,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i0" class="altColor">
                                             <td class="colFirst"><code>abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#type(com.squareup.kotlinpoet.TypeSpec)>type</a>(TypeSpec type) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#add(com.squareup.kotlinpoet.TypeSpec)>add</a>(TypeSpec type) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -256,7 +256,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#classType(java.lang.String)>classType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addClass(java.lang.String)>addClass</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -264,7 +264,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i2" class="altColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#classType(com.squareup.kotlinpoet.ClassName)>classType</a>(ClassName name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addClass(com.squareup.kotlinpoet.ClassName)>addClass</a>(ClassName name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -272,7 +272,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#objectType(java.lang.String)>objectType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addObject(java.lang.String)>addObject</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -280,7 +280,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#objectType(com.squareup.kotlinpoet.ClassName)>objectType</a>(ClassName name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addObject(com.squareup.kotlinpoet.ClassName)>addObject</a>(ClassName name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -288,7 +288,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#companionObjectType(java.lang.String)>companionObjectType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addCompanionObject(java.lang.String)>addCompanionObject</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -296,7 +296,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i6" class="altColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#interfaceType(java.lang.String)>interfaceType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addInterface(java.lang.String)>addInterface</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -304,7 +304,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#interfaceType(com.squareup.kotlinpoet.ClassName)>interfaceType</a>(ClassName name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addInterface(com.squareup.kotlinpoet.ClassName)>addInterface</a>(ClassName name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -312,7 +312,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i8" class="altColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#enumType(java.lang.String)>enumType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addEnum(java.lang.String)>addEnum</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -320,7 +320,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#enumType(com.squareup.kotlinpoet.ClassName)>enumType</a>(ClassName name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addEnum(com.squareup.kotlinpoet.ClassName)>addEnum</a>(ClassName name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -328,7 +328,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#anonymousType()>anonymousType</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addAnonymous()>addAnonymous</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -336,7 +336,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i11" class="rowColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotationType(java.lang.String)>annotationType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addAnnotation(java.lang.String)>addAnnotation</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -344,7 +344,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i12" class="altColor">
                                             <td class="colFirst"><code>TypeSpec</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotationType(com.squareup.kotlinpoet.ClassName)>annotationType</a>(ClassName name) </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addAnnotation(com.squareup.kotlinpoet.ClassName)>addAnnotation</a>(ClassName name) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -352,7 +352,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i13" class="rowColor">
                                             <td class="colFirst"><code><a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#classTyping()>classTyping</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addingClass()>addingClass</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -360,7 +360,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i14" class="altColor">
                                             <td class="colFirst"><code><a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#objectTyping()>objectTyping</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addingObject()>addingObject</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -368,7 +368,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i15" class="rowColor">
                                             <td class="colFirst"><code><a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#companionObjectTyping()>companionObjectTyping</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addingCompanionObject()>addingCompanionObject</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -376,7 +376,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i16" class="altColor">
                                             <td class="colFirst"><code><a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#interfaceTyping()>interfaceTyping</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addingInterface()>addingInterface</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -384,7 +384,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i17" class="rowColor">
                                             <td class="colFirst"><code><a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#enumTyping()>enumTyping</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addingEnum()>addingEnum</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -392,7 +392,7 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                         <tr id="i18" class="altColor">
                                             <td class="colFirst"><code><a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=TypeSpecBuilder.html#annotationTyping()>annotationTyping</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=TypeSpecHandlerScope.html#addingAnnotation()>addingAnnotation</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -441,15 +441,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                             </a>
                                 <h3>Method Detail</h3>
                                 
-                                <a id="type(com.squareup.kotlinpoet.TypeSpec)">
+                                <a id="add(com.squareup.kotlinpoet.TypeSpec)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>type</h4>
-                                        <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecHandlerScope.html#type(com.squareup.kotlinpoet.TypeSpec)>type</a>(TypeSpec type)</pre>
+                                        <h4>add</h4>
+                                        <pre class="methodSignature"> abstract <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=TypeSpecHandlerScope.html#add(com.squareup.kotlinpoet.TypeSpec)>add</a>(TypeSpec type)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -464,15 +464,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="classType(java.lang.String)">
+                                <a id="addClass(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>classType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#classType(java.lang.String)>classType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
+                                        <h4>addClass</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addClass(java.lang.String)>addClass</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -487,15 +487,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="classType(com.squareup.kotlinpoet.ClassName)">
+                                <a id="addClass(com.squareup.kotlinpoet.ClassName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>classType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#classType(com.squareup.kotlinpoet.ClassName)>classType</a>(ClassName name)</pre>
+                                        <h4>addClass</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addClass(com.squareup.kotlinpoet.ClassName)>addClass</a>(ClassName name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -510,15 +510,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="objectType(java.lang.String)">
+                                <a id="addObject(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>objectType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#objectType(java.lang.String)>objectType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
+                                        <h4>addObject</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addObject(java.lang.String)>addObject</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -533,15 +533,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="objectType(com.squareup.kotlinpoet.ClassName)">
+                                <a id="addObject(com.squareup.kotlinpoet.ClassName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>objectType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#objectType(com.squareup.kotlinpoet.ClassName)>objectType</a>(ClassName name)</pre>
+                                        <h4>addObject</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addObject(com.squareup.kotlinpoet.ClassName)>addObject</a>(ClassName name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -556,15 +556,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="companionObjectType(java.lang.String)">
+                                <a id="addCompanionObject(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>companionObjectType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#companionObjectType(java.lang.String)>companionObjectType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
+                                        <h4>addCompanionObject</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addCompanionObject(java.lang.String)>addCompanionObject</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -579,15 +579,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="interfaceType(java.lang.String)">
+                                <a id="addInterface(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>interfaceType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#interfaceType(java.lang.String)>interfaceType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
+                                        <h4>addInterface</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addInterface(java.lang.String)>addInterface</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -602,15 +602,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="interfaceType(com.squareup.kotlinpoet.ClassName)">
+                                <a id="addInterface(com.squareup.kotlinpoet.ClassName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>interfaceType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#interfaceType(com.squareup.kotlinpoet.ClassName)>interfaceType</a>(ClassName name)</pre>
+                                        <h4>addInterface</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addInterface(com.squareup.kotlinpoet.ClassName)>addInterface</a>(ClassName name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -625,15 +625,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="enumType(java.lang.String)">
+                                <a id="addEnum(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>enumType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#enumType(java.lang.String)>enumType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
+                                        <h4>addEnum</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addEnum(java.lang.String)>addEnum</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -648,15 +648,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="enumType(com.squareup.kotlinpoet.ClassName)">
+                                <a id="addEnum(com.squareup.kotlinpoet.ClassName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>enumType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#enumType(com.squareup.kotlinpoet.ClassName)>enumType</a>(ClassName name)</pre>
+                                        <h4>addEnum</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addEnum(com.squareup.kotlinpoet.ClassName)>addEnum</a>(ClassName name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -671,15 +671,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="anonymousType()">
+                                <a id="addAnonymous()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>anonymousType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#anonymousType()>anonymousType</a>()</pre>
+                                        <h4>addAnonymous</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addAnonymous()>addAnonymous</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -694,15 +694,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="annotationType(java.lang.String)">
+                                <a id="addAnnotation(java.lang.String)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>annotationType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#annotationType(java.lang.String)>annotationType</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
+                                        <h4>addAnnotation</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addAnnotation(java.lang.String)>addAnnotation</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -717,15 +717,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="annotationType(com.squareup.kotlinpoet.ClassName)">
+                                <a id="addAnnotation(com.squareup.kotlinpoet.ClassName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>annotationType</h4>
-                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecBuilder.html#annotationType(com.squareup.kotlinpoet.ClassName)>annotationType</a>(ClassName name)</pre>
+                                        <h4>addAnnotation</h4>
+                                        <pre class="methodSignature"> TypeSpec <a href=TypeSpecHandlerScope.html#addAnnotation(com.squareup.kotlinpoet.ClassName)>addAnnotation</a>(ClassName name)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -740,15 +740,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="classTyping()">
+                                <a id="addingClass()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>classTyping</h4>
-                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#classTyping()>classTyping</a>()</pre>
+                                        <h4>addingClass</h4>
+                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecHandlerScope.html#addingClass()>addingClass</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -763,15 +763,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="objectTyping()">
+                                <a id="addingObject()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>objectTyping</h4>
-                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#objectTyping()>objectTyping</a>()</pre>
+                                        <h4>addingObject</h4>
+                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecHandlerScope.html#addingObject()>addingObject</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -786,15 +786,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="companionObjectTyping()">
+                                <a id="addingCompanionObject()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>companionObjectTyping</h4>
-                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#companionObjectTyping()>companionObjectTyping</a>()</pre>
+                                        <h4>addingCompanionObject</h4>
+                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecHandlerScope.html#addingCompanionObject()>addingCompanionObject</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -809,15 +809,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="interfaceTyping()">
+                                <a id="addingInterface()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>interfaceTyping</h4>
-                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#interfaceTyping()>interfaceTyping</a>()</pre>
+                                        <h4>addingInterface</h4>
+                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecHandlerScope.html#addingInterface()>addingInterface</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -832,15 +832,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="enumTyping()">
+                                <a id="addingEnum()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>enumTyping</h4>
-                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#enumTyping()>enumTyping</a>()</pre>
+                                        <h4>addingEnum</h4>
+                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecHandlerScope.html#addingEnum()>addingEnum</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -855,15 +855,15 @@ public interface <span class="typeNameLabel"><a href=TypeSpecHandler.html>TypeSp
                                     </li>
                                 </ul>
                                 
-                                <a id="annotationTyping()">
+                                <a id="addingAnnotation()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockListLast"
                                           >
                                     <li class="blockList">
-                                        <h4>annotationTyping</h4>
-                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecBuilder.html#annotationTyping()>annotationTyping</a>()</pre>
+                                        <h4>addingAnnotation</h4>
+                                        <pre class="methodSignature"> <a href=SpecDelegateProvider.html>SpecDelegateProvider</a>&lt;TypeSpec&gt; <a href=TypeSpecHandlerScope.html#addingAnnotation()>addingAnnotation</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>

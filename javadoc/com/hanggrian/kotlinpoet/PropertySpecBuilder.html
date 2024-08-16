@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>PropertySpecBuilder 0.1 API </title>
+    <title>PropertySpecBuilder 0.2 API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
@@ -108,9 +108,6 @@ var pathtoroot = "../../../";
                         <dt>All Implemented Interfaces:</dt>
                         <dd>
                             
-                            <code>com.hanggrian.kotlinpoet.AnnotationSpecHandler</code>
-                            
-                            
                         </dd>
                     </dl>
                     
@@ -118,7 +115,7 @@ var pathtoroot = "../../../";
                     <pre class="wrap-overflow">
 
 public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>PropertySpecBuilder</a></span>
- implements <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a>
+
                     </pre>
                     <div class="block"><p>Wrapper of PropertySpec.Builder, providing DSL support as a replacement to Java builder.</p></div>
 
@@ -176,80 +173,86 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         </tr>
                                         
                                         <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#annotations>annotations</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;KModifier&gt;</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#modifiers>modifiers</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeVariableName&gt;</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#typeVariables>typeVariables</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt;, ?&gt;</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#tags>tags</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final CodeBlock.Builder</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#kdoc>kdoc</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html>Element</a>&gt;</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#originatingElements>originatingElements</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#annotations>annotations</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#annotationSpecs>annotationSpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeName&gt;</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#contextReceiverTypes>contextReceiverTypes</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private  <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#isMutable()>isMutable</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private  CodeBlock</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#initializer>initializer</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private  CodeBlock</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#delegate>delegate</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private  FunSpec</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getter>getter</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="rowColor">
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private  FunSpec</code></td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setter>setter</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr class="altColor">
+                                        <tr class="rowColor">
                                             <td class="colFirst"><code>private  TypeName</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#receiver()>receiver</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#receiver>receiver</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -333,6 +336,14 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         </tr>
                                         
                                         <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getAnnotations()>getAnnotations</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;KModifier&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getModifiers()>getModifiers</a>() </code>
@@ -340,7 +351,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i1" class="rowColor">
+                                        <tr id="i2" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeVariableName&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getTypeVariables()>getTypeVariables</a>() </code>
@@ -348,7 +359,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i2" class="altColor">
+                                        <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt;, ?&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getTags()>getTags</a>() </code>
@@ -356,7 +367,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i3" class="rowColor">
+                                        <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>final CodeBlock.Builder</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getKdoc()>getKdoc</a>() </code>
@@ -364,7 +375,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i4" class="altColor">
+                                        <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html>Element</a>&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getOriginatingElements()>getOriginatingElements</a>() </code>
@@ -372,15 +383,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i5" class="rowColor">
+                                        <tr id="i6" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getAnnotations()>getAnnotations</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getAnnotationSpecs()>getAnnotationSpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i6" class="altColor">
+                                        <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeName&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getContextReceiverTypes()>getContextReceiverTypes</a>() </code>
@@ -388,7 +399,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i7" class="rowColor">
+                                        <tr id="i8" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#isMutable()>isMutable</a>() </code>
@@ -396,7 +407,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i8" class="altColor">
+                                        <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setMutable(java.lang.Boolean)>setMutable</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html>Boolean</a> isMutable) </code>
@@ -404,7 +415,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i9" class="rowColor">
+                                        <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>final CodeBlock</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getInitializer()>getInitializer</a>() </code>
@@ -412,7 +423,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i10" class="altColor">
+                                        <tr id="i11" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setInitializer(com.squareup.kotlinpoet.CodeBlock)>setInitializer</a>(CodeBlock initializer) </code>
@@ -420,7 +431,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i11" class="rowColor">
+                                        <tr id="i12" class="altColor">
                                             <td class="colFirst"><code>final CodeBlock</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getDelegate()>getDelegate</a>() </code>
@@ -428,7 +439,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i12" class="altColor">
+                                        <tr id="i13" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setDelegate(com.squareup.kotlinpoet.CodeBlock)>setDelegate</a>(CodeBlock delegate) </code>
@@ -436,7 +447,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i13" class="rowColor">
+                                        <tr id="i14" class="altColor">
                                             <td class="colFirst"><code>final FunSpec</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getGetter()>getGetter</a>() </code>
@@ -444,7 +455,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i14" class="altColor">
+                                        <tr id="i15" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setGetter(com.squareup.kotlinpoet.FunSpec)>setGetter</a>(FunSpec getter) </code>
@@ -452,7 +463,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i15" class="rowColor">
+                                        <tr id="i16" class="altColor">
                                             <td class="colFirst"><code>final FunSpec</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getSetter()>getSetter</a>() </code>
@@ -460,7 +471,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i16" class="altColor">
+                                        <tr id="i17" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setSetter(com.squareup.kotlinpoet.FunSpec)>setSetter</a>(FunSpec setter) </code>
@@ -468,7 +479,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i17" class="rowColor">
+                                        <tr id="i18" class="altColor">
                                             <td class="colFirst"><code>final TypeName</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#getReceiver()>getReceiver</a>() </code>
@@ -476,7 +487,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i18" class="altColor">
+                                        <tr id="i19" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setReceiver(com.squareup.kotlinpoet.TypeName)>setReceiver</a>(TypeName receiver) </code>
@@ -484,26 +495,18 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i19" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#modifiers(com.squareup.kotlinpoet.KModifier)>modifiers</a>(KModifier modifiers) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
                                         <tr id="i20" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#typeVariables(java.lang.Iterable)>typeVariables</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeVariableName&gt; typeVariables) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#annotations(kotlin.jvm.functions.Function1)>annotations</a>(Function1&lt;<a href=AnnotationSpecHandlerScope.html>AnnotationSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure AnnotationSpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i21" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#typeVariable(com.squareup.kotlinpoet.TypeVariableName)>typeVariable</a>(TypeVariableName typeVariable) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#addModifiers(com.squareup.kotlinpoet.KModifier)>addModifiers</a>(KModifier modifiers) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -511,7 +514,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         <tr id="i22" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#initializer(java.lang.String,java.lang.Object)>initializer</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)>addTypeVariables</a>(TypeVariableName typeVariables) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -519,7 +522,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         <tr id="i23" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#delegate(java.lang.String,java.lang.Object)>delegate</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setInitializer(java.lang.String,java.lang.Object)>setInitializer</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -527,7 +530,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         <tr id="i24" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#receiver(java.lang.reflect.Type)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#delegate(java.lang.String,java.lang.Object)>delegate</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -535,23 +538,23 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         <tr id="i25" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#receiver(kotlin.reflect.KClass)>receiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setReceiver(java.lang.reflect.Type)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i26" class="altColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#receiver()>receiver</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setReceiver(kotlin.reflect.KClass)>setReceiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i27" class="rowColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#annotation(com.squareup.kotlinpoet.AnnotationSpec)>annotation</a>(AnnotationSpec annotation) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#setReceiver()>setReceiver</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -559,7 +562,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         <tr id="i28" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#kdoc(java.lang.String,java.lang.Object)>kdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#addKdoc(java.lang.String,java.lang.Object)>addKdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -567,7 +570,7 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                         <tr id="i29" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#kdoc(com.squareup.kotlinpoet.CodeBlock)>kdoc</a>(CodeBlock block) </code>
+                                            <th class="colSecond" scope="row"><code><a href=PropertySpecBuilder.html#addKdoc(com.squareup.kotlinpoet.CodeBlock)>addKdoc</a>(CodeBlock block) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -585,12 +588,6 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                 </div>
                                 <ul class="blockList">
                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.AnnotationSpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.AnnotationSpecHandler</h3>
-                                            <code>annotation, annotation, annotation, annotation</code></li>
-                                 
                                     <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
                                         <!--   -->
                                     </a>
@@ -639,6 +636,29 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                 <!--   -->
                             </a>
                                 <h3>Method Detail</h3>
+                                
+                                <a id="getAnnotations()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getAnnotations</h4>
+                                        <pre class="methodSignature"> final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a> <a href=PropertySpecBuilder.html#getAnnotations()>getAnnotations</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
                                 
                                 <a id="getModifiers()">
                                     <!--   -->
@@ -755,15 +775,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="getAnnotations()">
+                                <a id="getAnnotationSpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getAnnotations</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt; <a href=PropertySpecBuilder.html#getAnnotations()>getAnnotations</a>()</pre>
+                                        <h4>getAnnotationSpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt; <a href=PropertySpecBuilder.html#getAnnotationSpecs()>getAnnotationSpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1077,15 +1097,38 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="modifiers(com.squareup.kotlinpoet.KModifier)">
+                                <a id="annotations(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>modifiers</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#modifiers(com.squareup.kotlinpoet.KModifier)>modifiers</a>(KModifier modifiers)</pre>
+                                        <h4>annotations</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#annotations(kotlin.jvm.functions.Function1)>annotations</a>(Function1&lt;<a href=AnnotationSpecHandlerScope.html>AnnotationSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure AnnotationSpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="addModifiers(com.squareup.kotlinpoet.KModifier)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addModifiers</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#addModifiers(com.squareup.kotlinpoet.KModifier)>addModifiers</a>(KModifier modifiers)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1100,15 +1143,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="typeVariables(java.lang.Iterable)">
+                                <a id="addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>typeVariables</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#typeVariables(java.lang.Iterable)>typeVariables</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeVariableName&gt; typeVariables)</pre>
+                                        <h4>addTypeVariables</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)>addTypeVariables</a>(TypeVariableName typeVariables)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1123,38 +1166,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="typeVariable(com.squareup.kotlinpoet.TypeVariableName)">
+                                <a id="setInitializer(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>typeVariable</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#typeVariable(com.squareup.kotlinpoet.TypeVariableName)>typeVariable</a>(TypeVariableName typeVariable)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="initializer(java.lang.String,java.lang.Object)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>initializer</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#initializer(java.lang.String,java.lang.Object)>initializer</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
+                                        <h4>setInitializer</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#setInitializer(java.lang.String,java.lang.Object)>setInitializer</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1192,15 +1212,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(java.lang.reflect.Type)">
+                                <a id="setReceiver(java.lang.reflect.Type)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#receiver(java.lang.reflect.Type)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#setReceiver(java.lang.reflect.Type)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1215,15 +1235,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(kotlin.reflect.KClass)">
+                                <a id="setReceiver(kotlin.reflect.KClass)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#receiver(kotlin.reflect.KClass)>receiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#setReceiver(kotlin.reflect.KClass)>setReceiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1238,15 +1258,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver()">
+                                <a id="setReceiver()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#receiver()>receiver</a>()</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#setReceiver()>setReceiver</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1261,15 +1281,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="annotation(com.squareup.kotlinpoet.AnnotationSpec)">
+                                <a id="addKdoc(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>annotation</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#annotation(com.squareup.kotlinpoet.AnnotationSpec)>annotation</a>(AnnotationSpec annotation)</pre>
+                                        <h4>addKdoc</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#addKdoc(java.lang.String,java.lang.Object)>addKdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1284,38 +1304,15 @@ public final class <span class="typeNameLabel"><a href=PropertySpecBuilder.html>
                                     </li>
                                 </ul>
                                 
-                                <a id="kdoc(java.lang.String,java.lang.Object)">
+                                <a id="addKdoc(com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>kdoc</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#kdoc(java.lang.String,java.lang.Object)>kdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="kdoc(com.squareup.kotlinpoet.CodeBlock)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>kdoc</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#kdoc(com.squareup.kotlinpoet.CodeBlock)>kdoc</a>(CodeBlock block)</pre>
+                                        <h4>addKdoc</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=PropertySpecBuilder.html#addKdoc(com.squareup.kotlinpoet.CodeBlock)>addKdoc</a>(CodeBlock block)</pre>
                                         <div class="block"></div>
 
                                         <dl>

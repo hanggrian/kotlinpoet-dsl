@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!-- NewPage -->
 <html lang="en"><head>
-    <title>FunSpecBuilder 0.1 API </title>
+    <title>FunSpecBuilder 0.2 API </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="dc.created" content="2020-03-25">
     <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
@@ -108,14 +108,6 @@ var pathtoroot = "../../../";
                         <dt>All Implemented Interfaces:</dt>
                         <dd>
                             
-                            <code>com.hanggrian.kotlinpoet.AnnotationSpecHandler</code>
-                            
-                            ,
-                            
-                            
-                            <code>com.hanggrian.kotlinpoet.ParameterSpecHandler</code>
-                            
-                            
                         </dd>
                     </dl>
                     
@@ -123,7 +115,7 @@ var pathtoroot = "../../../";
                     <pre class="wrap-overflow">
 
 public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSpecBuilder</a></span>
- implements <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a>, <a href=ParameterSpecHandler.html>ParameterSpecHandler</a>
+
                     </pre>
                     <div class="block"><p>Wrapper of FunSpec.Builder, providing DSL support as a replacement to Java builder.</p></div>
 
@@ -181,6 +173,18 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         </tr>
                                         
                                         <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#annotations>annotations</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final <a href=ParameterSpecHandler.html>ParameterSpecHandler</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#parameters>parameters</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
                                             <td class="colFirst"><code>private final CodeBlock.Builder</code></td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#kdoc>kdoc</a></code></th>
                                             <td class="colLast"></td>
@@ -188,7 +192,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         
                                         <tr class="rowColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#annotations>annotations</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#annotationSpecs>annotationSpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -206,7 +210,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         
                                         <tr class="altColor">
                                             <td class="colFirst"><code>private final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;ParameterSpec&gt;</code></td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#parameters>parameters</a></code></th>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#parameterSpecs>parameterSpecs</a></code></th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
@@ -320,6 +324,22 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         </tr>
                                         
                                         <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getAnnotations()>getAnnotations</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=ParameterSpecHandler.html>ParameterSpecHandler</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getParameters()>getParameters</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
                                             <td class="colFirst"><code>final CodeBlock.Builder</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getKdoc()>getKdoc</a>() </code>
@@ -327,15 +347,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i1" class="rowColor">
+                                        <tr id="i3" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getAnnotations()>getAnnotations</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getAnnotationSpecs()>getAnnotationSpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i2" class="altColor">
+                                        <tr id="i4" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;KModifier&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getModifiers()>getModifiers</a>() </code>
@@ -343,7 +363,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i3" class="rowColor">
+                                        <tr id="i5" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeVariableName&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getTypeVariables()>getTypeVariables</a>() </code>
@@ -351,15 +371,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i4" class="altColor">
+                                        <tr id="i6" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;ParameterSpec&gt;</code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getParameters()>getParameters</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getParameterSpecs()>getParameterSpecs</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i5" class="rowColor">
+                                        <tr id="i7" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt;, ?&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getTags()>getTags</a>() </code>
@@ -367,7 +387,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i6" class="altColor">
+                                        <tr id="i8" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html>Element</a>&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getOriginatingElements()>getOriginatingElements</a>() </code>
@@ -375,7 +395,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i7" class="rowColor">
+                                        <tr id="i9" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;TypeName&gt;</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getContextReceiverTypes()>getContextReceiverTypes</a>() </code>
@@ -383,7 +403,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i8" class="altColor">
+                                        <tr id="i10" class="altColor">
                                             <td class="colFirst"><code>final TypeName</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getReceiver()>getReceiver</a>() </code>
@@ -391,7 +411,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i9" class="rowColor">
+                                        <tr id="i11" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.TypeName)>setReceiver</a>(TypeName receiver) </code>
@@ -399,7 +419,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i10" class="altColor">
+                                        <tr id="i12" class="altColor">
                                             <td class="colFirst"><code>final TypeName</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#getReturns()>getReturns</a>() </code>
@@ -407,7 +427,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i11" class="rowColor">
+                                        <tr id="i13" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.TypeName)>setReturns</a>(TypeName returns) </code>
@@ -415,42 +435,26 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                             <td class="colLast"></td>
                                         </tr>
                                         
-                                        <tr id="i12" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#modifiers(com.squareup.kotlinpoet.KModifier)>modifiers</a>(KModifier modifiers) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
-                                        <tr id="i13" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
-                                            </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#javaModifiers(java.lang.Iterable)>javaModifiers</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Modifier.html>Modifier</a>&gt; modifiers) </code>
-                                            </th>
-                                            <td class="colLast"></td>
-                                        </tr>
-                                        
                                         <tr id="i14" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#typeVariables(java.lang.Iterable)>typeVariables</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeVariableName&gt; typeVariables) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#annotations(kotlin.jvm.functions.Function1)>annotations</a>(Function1&lt;<a href=AnnotationSpecHandlerScope.html>AnnotationSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure AnnotationSpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i15" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#typeVariable(com.squareup.kotlinpoet.TypeVariableName)>typeVariable</a>(TypeVariableName typeVariable) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#parameters(kotlin.jvm.functions.Function1)>parameters</a>(Function1&lt;<a href=ParameterSpecHandlerScope.html>ParameterSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration) </code>
                                             </th>
-                                            <td class="colLast"></td>
+                                            <td class="colLast">Invokes DSL to configure ParameterSpec collection.</td>
                                         </tr>
                                         
                                         <tr id="i16" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>receiver</a>(TypeName type, CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#addModifiers(com.squareup.kotlinpoet.KModifier)>addModifiers</a>(KModifier modifiers) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -458,7 +462,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i17" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>receiver</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#addJvmModifiers(javax.lang.model.element.Modifier)>addJvmModifiers</a>(<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Modifier.html>Modifier</a> modifiers) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -466,7 +470,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i18" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)>addTypeVariables</a>(TypeVariableName typeVariables) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -474,7 +478,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i19" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(java.lang.reflect.Type,java.lang.String,java.lang.Object)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(TypeName type, CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -482,7 +486,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i20" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>receiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>setReceiver</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -490,23 +494,23 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i21" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>receiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i22" class="altColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(com.squareup.kotlinpoet.CodeBlock)>receiver</a>(CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(java.lang.reflect.Type,java.lang.String,java.lang.Object)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i23" class="rowColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#receiver(java.lang.String,java.lang.Object)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -514,23 +518,23 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i24" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>returns</a>(TypeName type, CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>setReceiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i25" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>returns</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i26" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>returns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReceiver(java.lang.String,java.lang.Object)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -538,7 +542,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i27" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(java.lang.reflect.Type,java.lang.String,java.lang.Object)>returns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(TypeName type, CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -546,7 +550,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i28" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>returns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>setReturns</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -554,47 +558,47 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i29" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>returns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i30" class="altColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(com.squareup.kotlinpoet.CodeBlock)>returns</a>(CodeBlock kdocCode) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(java.lang.reflect.Type,java.lang.String,java.lang.Object)>setReturns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i31" class="rowColor">
-                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#returns(java.lang.String,java.lang.Object)>returns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i32" class="altColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#parameter(com.squareup.kotlinpoet.ParameterSpec)>parameter</a>(ParameterSpec parameter) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>setReturns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i33" class="rowColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callThisConstructor(java.lang.Iterable)>callThisConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;CodeBlock&gt; args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(CodeBlock kdocCode) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i34" class="altColor">
-                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callThisConstructor(java.lang.String)>callThisConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#setReturns(java.lang.String,java.lang.Object)>setReturns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -602,7 +606,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i35" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callThisConstructor(com.squareup.kotlinpoet.CodeBlock)>callThisConstructor</a>(CodeBlock args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callThisConstructor(java.lang.Iterable)>callThisConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;CodeBlock&gt; args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -610,7 +614,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i36" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callSuperConstructor(java.lang.Iterable)>callSuperConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;CodeBlock&gt; args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callThisConstructor(java.lang.String)>callThisConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -618,7 +622,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i37" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callSuperConstructor(java.lang.String)>callSuperConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callThisConstructor(com.squareup.kotlinpoet.CodeBlock)>callThisConstructor</a>(CodeBlock args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -626,7 +630,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i38" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callSuperConstructor(com.squareup.kotlinpoet.CodeBlock)>callSuperConstructor</a>(CodeBlock args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callSuperConstructor(java.lang.Iterable)>callSuperConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;CodeBlock&gt; args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -634,7 +638,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i39" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#append(java.lang.String,java.lang.Object)>append</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callSuperConstructor(java.lang.String)>callSuperConstructor</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -642,7 +646,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i40" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#append(com.squareup.kotlinpoet.CodeBlock)>append</a>(CodeBlock code) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#callSuperConstructor(com.squareup.kotlinpoet.CodeBlock)>callSuperConstructor</a>(CodeBlock args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -650,7 +654,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i41" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#appendNamed(java.lang.String,java.util.Map)>appendNamed</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, ?&gt; args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#append(java.lang.String,java.lang.Object)>append</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -658,7 +662,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i42" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#comment(java.lang.String,java.lang.Object)>comment</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#append(com.squareup.kotlinpoet.CodeBlock)>append</a>(CodeBlock code) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -666,7 +670,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i43" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#beginControlFlow(java.lang.String,java.lang.Object)>beginControlFlow</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#appendNamed(java.lang.String,java.util.Map)>appendNamed</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Map.html>Map</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a>, ?&gt; args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -674,7 +678,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i44" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#nextControlFlow(java.lang.String,java.lang.Object)>nextControlFlow</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#addComment(java.lang.String,java.lang.Object)>addComment</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -682,7 +686,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i45" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#endControlFlow()>endControlFlow</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#beginControlFlow(java.lang.String,java.lang.Object)>beginControlFlow</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -690,7 +694,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i46" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#appendLine(java.lang.String,java.lang.Object)>appendLine</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#nextControlFlow(java.lang.String,java.lang.Object)>nextControlFlow</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -698,7 +702,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i47" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#appendLine(com.squareup.kotlinpoet.CodeBlock)>appendLine</a>(CodeBlock code) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#endControlFlow()>endControlFlow</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -706,15 +710,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i48" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#clear()>clear</a>() </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#appendLine(java.lang.String,java.lang.Object)>appendLine</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i49" class="rowColor">
-                                            <td class="colFirst"><code><a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#annotation(com.squareup.kotlinpoet.AnnotationSpec)>annotation</a>(AnnotationSpec annotation) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#appendLine(com.squareup.kotlinpoet.CodeBlock)>appendLine</a>(CodeBlock code) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -722,7 +726,7 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i50" class="altColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#kdoc(java.lang.String,java.lang.Object)>kdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#clear()>clear</a>() </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
@@ -730,12 +734,20 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                         <tr id="i51" class="rowColor">
                                             <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
                                             </td>
-                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#kdoc(com.squareup.kotlinpoet.CodeBlock)>kdoc</a>(CodeBlock block) </code>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#addKdoc(java.lang.String,java.lang.Object)>addKdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args) </code>
                                             </th>
                                             <td class="colLast"></td>
                                         </tr>
                                         
                                         <tr id="i52" class="altColor">
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#addKdoc(com.squareup.kotlinpoet.CodeBlock)>addKdoc</a>(CodeBlock block) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i53" class="rowColor">
                                             <td class="colFirst"><code>final FunSpec</code>
                                             </td>
                                             <th class="colSecond" scope="row"><code><a href=FunSpecBuilder.html#build()>build</a>() </code>
@@ -748,18 +760,6 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                 </div>
                                 <ul class="blockList">
                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.ParameterSpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.ParameterSpecHandler</h3>
-                                            <code>parameter, parameter, parameter, parametering, parametering, parametering</code></li>
-                                 
-                                    <li class="blockList"><a id="methods.inherited.from.class.com.hanggrian.kotlinpoet.AnnotationSpecHandler">
-                                            <!--   -->
-                                        </a>
-                                            <h3>Methods inherited from class&nbsp;com.hanggrian.kotlinpoet.AnnotationSpecHandler</h3>
-                                            <code>annotation, annotation, annotation, annotation</code></li>
-                                 
                                     <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
                                         <!--   -->
                                     </a>
@@ -809,6 +809,52 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                             </a>
                                 <h3>Method Detail</h3>
                                 
+                                <a id="getAnnotations()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getAnnotations</h4>
+                                        <pre class="methodSignature"> final <a href=AnnotationSpecHandler.html>AnnotationSpecHandler</a> <a href=FunSpecBuilder.html#getAnnotations()>getAnnotations</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getParameters()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getParameters</h4>
+                                        <pre class="methodSignature"> final <a href=ParameterSpecHandler.html>ParameterSpecHandler</a> <a href=FunSpecBuilder.html#getParameters()>getParameters</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
                                 <a id="getKdoc()">
                                     <!--   -->
                                 </a>
@@ -832,15 +878,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="getAnnotations()">
+                                <a id="getAnnotationSpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getAnnotations</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt; <a href=FunSpecBuilder.html#getAnnotations()>getAnnotations</a>()</pre>
+                                        <h4>getAnnotationSpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;AnnotationSpec&gt; <a href=FunSpecBuilder.html#getAnnotationSpecs()>getAnnotationSpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -901,15 +947,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="getParameters()">
+                                <a id="getParameterSpecs()">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>getParameters</h4>
-                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;ParameterSpec&gt; <a href=FunSpecBuilder.html#getParameters()>getParameters</a>()</pre>
+                                        <h4>getParameterSpecs</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/javase/8/docs/api/java/util/List.html>List</a>&lt;ParameterSpec&gt; <a href=FunSpecBuilder.html#getParameterSpecs()>getParameterSpecs</a>()</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1085,15 +1131,61 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="modifiers(com.squareup.kotlinpoet.KModifier)">
+                                <a id="annotations(kotlin.jvm.functions.Function1)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>modifiers</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#modifiers(com.squareup.kotlinpoet.KModifier)>modifiers</a>(KModifier modifiers)</pre>
+                                        <h4>annotations</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#annotations(kotlin.jvm.functions.Function1)>annotations</a>(Function1&lt;<a href=AnnotationSpecHandlerScope.html>AnnotationSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure AnnotationSpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="parameters(kotlin.jvm.functions.Function1)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>parameters</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#parameters(kotlin.jvm.functions.Function1)>parameters</a>(Function1&lt;<a href=ParameterSpecHandlerScope.html>ParameterSpecHandlerScope</a>, <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a>&gt; configuration)</pre>
+                                        <div class="block"><p>Invokes DSL to configure ParameterSpec collection.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="addModifiers(com.squareup.kotlinpoet.KModifier)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>addModifiers</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#addModifiers(com.squareup.kotlinpoet.KModifier)>addModifiers</a>(KModifier modifiers)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1108,15 +1200,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="javaModifiers(java.lang.Iterable)">
+                                <a id="addJvmModifiers(javax.lang.model.element.Modifier)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>javaModifiers</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#javaModifiers(java.lang.Iterable)>javaModifiers</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Modifier.html>Modifier</a>&gt; modifiers)</pre>
+                                        <h4>addJvmModifiers</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#addJvmModifiers(javax.lang.model.element.Modifier)>addJvmModifiers</a>(<a href=https://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Modifier.html>Modifier</a> modifiers)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1131,15 +1223,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="typeVariables(java.lang.Iterable)">
+                                <a id="addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>typeVariables</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#typeVariables(java.lang.Iterable)>typeVariables</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html>Iterable</a>&lt;TypeVariableName&gt; typeVariables)</pre>
+                                        <h4>addTypeVariables</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#addTypeVariables(com.squareup.kotlinpoet.TypeVariableName)>addTypeVariables</a>(TypeVariableName typeVariables)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1154,15 +1246,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="typeVariable(com.squareup.kotlinpoet.TypeVariableName)">
+                                <a id="setReceiver(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>typeVariable</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#typeVariable(com.squareup.kotlinpoet.TypeVariableName)>typeVariable</a>(TypeVariableName typeVariable)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(TypeName type, CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1177,15 +1269,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReceiver(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>receiver</a>(TypeName type, CodeBlock kdocCode)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>setReceiver</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1200,15 +1292,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)">
+                                <a id="setReceiver(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>receiver</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1223,15 +1315,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReceiver(java.lang.reflect.Type,java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(java.lang.reflect.Type,java.lang.String,java.lang.Object)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1246,15 +1338,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(java.lang.reflect.Type,java.lang.String,java.lang.Object)">
+                                <a id="setReceiver(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(java.lang.reflect.Type,java.lang.String,java.lang.Object)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1269,15 +1361,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReceiver(kotlin.reflect.KClass,java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>receiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>setReceiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1292,15 +1384,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(kotlin.reflect.KClass,java.lang.String,java.lang.Object)">
+                                <a id="setReceiver(com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>receiver</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(com.squareup.kotlinpoet.CodeBlock)>setReceiver</a>(CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1315,15 +1407,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReceiver(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(com.squareup.kotlinpoet.CodeBlock)>receiver</a>(CodeBlock kdocCode)</pre>
+                                        <h4>setReceiver</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReceiver(java.lang.String,java.lang.Object)>setReceiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1338,15 +1430,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="receiver(java.lang.String,java.lang.Object)">
+                                <a id="setReturns(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>receiver</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#receiver(java.lang.String,java.lang.Object)>receiver</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(TypeName type, CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1361,15 +1453,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReturns(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(com.squareup.kotlinpoet.TypeName,com.squareup.kotlinpoet.CodeBlock)>returns</a>(TypeName type, CodeBlock kdocCode)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>setReturns</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1384,15 +1476,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)">
+                                <a id="setReturns(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(com.squareup.kotlinpoet.TypeName,java.lang.String,java.lang.Object)>returns</a>(TypeName type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1407,15 +1499,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReturns(java.lang.reflect.Type,java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(java.lang.reflect.Type,com.squareup.kotlinpoet.CodeBlock)>returns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, CodeBlock kdocCode)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(java.lang.reflect.Type,java.lang.String,java.lang.Object)>setReturns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1430,15 +1522,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(java.lang.reflect.Type,java.lang.String,java.lang.Object)">
+                                <a id="setReturns(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(java.lang.reflect.Type,java.lang.String,java.lang.Object)>returns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html>Type</a> type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1453,15 +1545,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReturns(kotlin.reflect.KClass,java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(kotlin.reflect.KClass,com.squareup.kotlinpoet.CodeBlock)>returns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, CodeBlock kdocCode)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>setReturns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1476,15 +1568,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(kotlin.reflect.KClass,java.lang.String,java.lang.Object)">
+                                <a id="setReturns(com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(kotlin.reflect.KClass,java.lang.String,java.lang.Object)>returns</a>(<a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html>KClass</a>&lt;?&gt; type, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(com.squareup.kotlinpoet.CodeBlock)>setReturns</a>(CodeBlock kdocCode)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1499,61 +1591,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="returns(com.squareup.kotlinpoet.CodeBlock)">
+                                <a id="setReturns(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(com.squareup.kotlinpoet.CodeBlock)>returns</a>(CodeBlock kdocCode)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="returns(java.lang.String,java.lang.Object)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>returns</h4>
-                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#returns(java.lang.String,java.lang.Object)>returns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="parameter(com.squareup.kotlinpoet.ParameterSpec)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>parameter</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#parameter(com.squareup.kotlinpoet.ParameterSpec)>parameter</a>(ParameterSpec parameter)</pre>
+                                        <h4>setReturns</h4>
+                                        <pre class="methodSignature"> final &lt;T extends <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html>Any</a>&gt; <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#setReturns(java.lang.String,java.lang.Object)>setReturns</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> kdocFormat, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> kdocArgs)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1775,15 +1821,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="comment(java.lang.String,java.lang.Object)">
+                                <a id="addComment(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>comment</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#comment(java.lang.String,java.lang.Object)>comment</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
+                                        <h4>addComment</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#addComment(java.lang.String,java.lang.Object)>addComment</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1936,15 +1982,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="annotation(com.squareup.kotlinpoet.AnnotationSpec)">
+                                <a id="addKdoc(java.lang.String,java.lang.Object)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>annotation</h4>
-                                        <pre class="methodSignature"> <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#annotation(com.squareup.kotlinpoet.AnnotationSpec)>annotation</a>(AnnotationSpec annotation)</pre>
+                                        <h4>addKdoc</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#addKdoc(java.lang.String,java.lang.Object)>addKdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
                                         <div class="block"></div>
 
                                         <dl>
@@ -1959,38 +2005,15 @@ public final class <span class="typeNameLabel"><a href=FunSpecBuilder.html>FunSp
                                     </li>
                                 </ul>
                                 
-                                <a id="kdoc(java.lang.String,java.lang.Object)">
+                                <a id="addKdoc(com.squareup.kotlinpoet.CodeBlock)">
                                     <!--   -->
                                 </a>
                                 <ul class=
                                               "blockList"
                                           >
                                     <li class="blockList">
-                                        <h4>kdoc</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#kdoc(java.lang.String,java.lang.Object)>kdoc</a>(<a href=https://docs.oracle.com/javase/8/docs/api/java/lang/String.html>String</a> format, <a href=https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html>Object</a> args)</pre>
-                                        <div class="block"></div>
-
-                                        <dl>
-
-                                        
-
-                                        
-
-                                        
-
-                                        </dl>
-                                    </li>
-                                </ul>
-                                
-                                <a id="kdoc(com.squareup.kotlinpoet.CodeBlock)">
-                                    <!--   -->
-                                </a>
-                                <ul class=
-                                              "blockList"
-                                          >
-                                    <li class="blockList">
-                                        <h4>kdoc</h4>
-                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#kdoc(com.squareup.kotlinpoet.CodeBlock)>kdoc</a>(CodeBlock block)</pre>
+                                        <h4>addKdoc</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html>Unit</a> <a href=FunSpecBuilder.html#addKdoc(com.squareup.kotlinpoet.CodeBlock)>addKdoc</a>(CodeBlock block)</pre>
                                         <div class="block"></div>
 
                                         <dl>
