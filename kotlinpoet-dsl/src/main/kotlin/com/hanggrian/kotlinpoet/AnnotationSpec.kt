@@ -38,7 +38,7 @@ public inline fun annotationSpecOf(name: ParameterizedTypeName): AnnotationSpec 
  * Builds new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun buildAnnotationSpec(
+public inline fun buildAnnotationSpec(
     type: ClassName,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -52,7 +52,7 @@ public fun buildAnnotationSpec(
  * Creates new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun buildAnnotationSpec(
+public inline fun buildAnnotationSpec(
     type: ParameterizedTypeName,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -66,7 +66,7 @@ public fun buildAnnotationSpec(
  * Inserts new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun AnnotationSpecHandler.add(
+public inline fun AnnotationSpecHandler.add(
     type: ClassName,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -81,7 +81,7 @@ public fun AnnotationSpecHandler.add(
  * Inserts new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun AnnotationSpecHandler.add(
+public inline fun AnnotationSpecHandler.add(
     type: ParameterizedTypeName,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -97,7 +97,7 @@ public fun AnnotationSpecHandler.add(
  * [configuration].
  */
 @DelicateKotlinPoetApi(DELICATE_API)
-public fun AnnotationSpecHandler.add(
+public inline fun AnnotationSpecHandler.add(
     type: Class<out Annotation>,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -112,7 +112,7 @@ public fun AnnotationSpecHandler.add(
  * Inserts new [AnnotationSpec] by populating newly created [AnnotationSpecBuilder] using provided
  * [configuration].
  */
-public fun AnnotationSpecHandler.add(
+public inline fun AnnotationSpecHandler.add(
     type: KClass<out Annotation>,
     configuration: AnnotationSpecBuilder.() -> Unit,
 ): AnnotationSpec {
@@ -153,20 +153,20 @@ public interface AnnotationSpecHandler {
 @KotlinpoetDsl
 public open class AnnotationSpecHandlerScope private constructor(handler: AnnotationSpecHandler) :
     AnnotationSpecHandler by handler {
-        public operator fun ClassName.invoke(
+        public inline operator fun ClassName.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
         ): AnnotationSpec = add(this, configuration)
 
-        public operator fun ParameterizedTypeName.invoke(
+        public inline operator fun ParameterizedTypeName.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
         ): AnnotationSpec = add(this, configuration)
 
         @OptIn(DelicateKotlinPoetApi::class)
-        public operator fun Class<out Annotation>.invoke(
+        public inline operator fun Class<out Annotation>.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
         ): AnnotationSpec = add(this, configuration)
 
-        public operator fun KClass<out Annotation>.invoke(
+        public inline operator fun KClass<out Annotation>.invoke(
             configuration: AnnotationSpecBuilder.() -> Unit,
         ): AnnotationSpec = add(this, configuration)
 

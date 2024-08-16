@@ -180,17 +180,17 @@ public interface TypeAliasSpecHandler {
 @KotlinpoetDsl
 public open class TypeAliasSpecHandlerScope private constructor(handler: TypeAliasSpecHandler) :
     TypeAliasSpecHandler by handler {
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: TypeName,
             configuration: TypeAliasSpecBuilder.() -> Unit,
         ): TypeAliasSpec = add(this, type, configuration)
 
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: Type,
             configuration: TypeAliasSpecBuilder.() -> Unit,
         ): TypeAliasSpec = add(this, type.name, configuration)
 
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: KClass<*>,
             configuration: TypeAliasSpecBuilder.() -> Unit,
         ): TypeAliasSpec = add(this, type.name, configuration)
@@ -212,7 +212,7 @@ public class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Build
         }
 
     /** Invokes DSL to configure [AnnotationSpec] collection. */
-    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+    public inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecHandlerScope
             .of(annotations)

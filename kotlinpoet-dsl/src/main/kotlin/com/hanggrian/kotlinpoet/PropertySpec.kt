@@ -31,7 +31,7 @@ public inline fun propertySpecOf(
  * Builds new [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-public fun buildPropertySpec(
+public inline fun buildPropertySpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -47,7 +47,7 @@ public fun buildPropertySpec(
  * Inserts new [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecHandler.add(
+public inline fun PropertySpecHandler.add(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -64,7 +64,7 @@ public fun PropertySpecHandler.add(
  * Inserts [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecHandler.add(
+public inline fun PropertySpecHandler.add(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
@@ -81,7 +81,7 @@ public fun PropertySpecHandler.add(
  * Inserts [PropertySpec] by populating newly created [PropertySpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecHandler.add(
+public inline fun PropertySpecHandler.add(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -196,19 +196,19 @@ public interface PropertySpecHandler {
 @KotlinpoetDsl
 public open class PropertySpecHandlerScope private constructor(handler: PropertySpecHandler) :
     PropertySpecHandler by handler {
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: TypeName,
             vararg modifiers: KModifier,
             configuration: PropertySpecBuilder.() -> Unit,
         ): PropertySpec = add(this, type, *modifiers, configuration = configuration)
 
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: Type,
             vararg modifiers: KModifier,
             configuration: PropertySpecBuilder.() -> Unit,
         ): PropertySpec = add(this, type.name, *modifiers, configuration = configuration)
 
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: KClass<*>,
             vararg modifiers: KModifier,
             configuration: PropertySpecBuilder.() -> Unit,
@@ -231,7 +231,7 @@ public class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder
         }
 
     /** Invokes DSL to configure [AnnotationSpec] collection. */
-    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+    public inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecHandlerScope
             .of(annotations)

@@ -21,7 +21,7 @@ import kotlin.reflect.KClass
  * Builds new [FileSpec] by populating newly created [FileSpecBuilder] using provided
  * [configuration].
  */
-public fun buildFileSpec(
+public inline fun buildFileSpec(
     packageName: String,
     fileName: String,
     configuration: FileSpecBuilder.() -> Unit,
@@ -36,7 +36,7 @@ public fun buildFileSpec(
  * Builds new [FileSpec] by populating newly created [FileSpecBuilder] using provided
  * [configuration].
  */
-public fun buildScriptFileSpec(
+public inline fun buildScriptFileSpec(
     packageName: String,
     fileName: String,
     configuration: FileSpecBuilder.() -> Unit,
@@ -86,7 +86,7 @@ public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
         }
 
     /** Invokes DSL to configure [AnnotationSpec] collection. */
-    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+    public inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecHandlerScope
             .of(annotations)
@@ -94,7 +94,7 @@ public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Invokes DSL to configure [TypeSpec] collection. */
-    public fun types(configuration: TypeSpecHandlerScope.() -> Unit) {
+    public inline fun types(configuration: TypeSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeSpecHandlerScope
             .of(types)
@@ -102,7 +102,7 @@ public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Invokes DSL to configure [FunSpec] collection. */
-    public fun functions(configuration: FunSpecHandlerScope.() -> Unit) {
+    public inline fun functions(configuration: FunSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         FunSpecHandlerScope
             .of(functions)
@@ -110,7 +110,7 @@ public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Invokes DSL to configure [PropertySpec] collection. */
-    public fun properties(configuration: PropertySpecHandlerScope.() -> Unit) {
+    public inline fun properties(configuration: PropertySpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         PropertySpecHandlerScope
             .of(properties)
@@ -118,7 +118,7 @@ public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     }
 
     /** Invokes DSL to configure [TypeAliasSpec] collection. */
-    public fun typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit) {
+    public inline fun typeAliases(configuration: TypeAliasSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeAliasSpecHandlerScope
             .of(typeAliases)

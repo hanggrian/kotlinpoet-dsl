@@ -96,7 +96,10 @@ public inline fun annotationTypeSpecOf(name: ClassName): TypeSpec =
  * Builds new class [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildClassTypeSpec(name: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+public inline fun buildClassTypeSpec(
+    name: String,
+    configuration: TypeSpecBuilder.() -> Unit,
+): TypeSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return TypeSpecBuilder(TypeSpec.classBuilder(name))
         .apply(configuration)
@@ -107,7 +110,7 @@ public fun buildClassTypeSpec(name: String, configuration: TypeSpecBuilder.() ->
  * Builds new class [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildClassTypeSpec(
+public inline fun buildClassTypeSpec(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -121,7 +124,10 @@ public fun buildClassTypeSpec(
  * Builds new object [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildObjectTypeSpec(name: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+public inline fun buildObjectTypeSpec(
+    name: String,
+    configuration: TypeSpecBuilder.() -> Unit,
+): TypeSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return TypeSpecBuilder(TypeSpec.objectBuilder(name))
         .apply(configuration)
@@ -132,7 +138,7 @@ public fun buildObjectTypeSpec(name: String, configuration: TypeSpecBuilder.() -
  * Builds new object [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildObjectTypeSpec(
+public inline fun buildObjectTypeSpec(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -146,7 +152,7 @@ public fun buildObjectTypeSpec(
  * Builds new object [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildCompanionObjectTypeSpec(
+public inline fun buildCompanionObjectTypeSpec(
     name: String? = null,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -160,7 +166,7 @@ public fun buildCompanionObjectTypeSpec(
  * Builds new interface [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildInterfaceTypeSpec(
+public inline fun buildInterfaceTypeSpec(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -174,7 +180,7 @@ public fun buildInterfaceTypeSpec(
  * Builds new interface [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildInterfaceTypeSpec(
+public inline fun buildInterfaceTypeSpec(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -188,7 +194,10 @@ public fun buildInterfaceTypeSpec(
  * Builds new enum [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildEnumTypeSpec(name: String, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+public inline fun buildEnumTypeSpec(
+    name: String,
+    configuration: TypeSpecBuilder.() -> Unit,
+): TypeSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return TypeSpecBuilder(TypeSpec.enumBuilder(name))
         .apply(configuration)
@@ -199,7 +208,10 @@ public fun buildEnumTypeSpec(name: String, configuration: TypeSpecBuilder.() -> 
  * Builds new enum [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildEnumTypeSpec(name: ClassName, configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+public inline fun buildEnumTypeSpec(
+    name: ClassName,
+    configuration: TypeSpecBuilder.() -> Unit,
+): TypeSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return TypeSpecBuilder(TypeSpec.enumBuilder(name))
         .apply(configuration)
@@ -210,7 +222,7 @@ public fun buildEnumTypeSpec(name: ClassName, configuration: TypeSpecBuilder.() 
  * Builds new anonymous [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildAnonymousTypeSpec(configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+public inline fun buildAnonymousTypeSpec(configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return TypeSpecBuilder(TypeSpec.anonymousClassBuilder())
         .apply(configuration)
@@ -221,7 +233,7 @@ public fun buildAnonymousTypeSpec(configuration: TypeSpecBuilder.() -> Unit): Ty
  * Builds new annotation [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildAnnotationTypeSpec(
+public inline fun buildAnnotationTypeSpec(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -235,7 +247,7 @@ public fun buildAnnotationTypeSpec(
  * Builds new annotation [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun buildAnnotationTypeSpec(
+public inline fun buildAnnotationTypeSpec(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -249,7 +261,7 @@ public fun buildAnnotationTypeSpec(
  * Inserts new class [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addClass(
+public inline fun TypeSpecHandler.addClass(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -264,7 +276,7 @@ public fun TypeSpecHandler.addClass(
  * Inserts new class [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addClass(
+public inline fun TypeSpecHandler.addClass(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -279,7 +291,7 @@ public fun TypeSpecHandler.addClass(
  * Inserts new object [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addObject(
+public inline fun TypeSpecHandler.addObject(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -294,7 +306,7 @@ public fun TypeSpecHandler.addObject(
  * Inserts new object [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addObject(
+public inline fun TypeSpecHandler.addObject(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -309,7 +321,7 @@ public fun TypeSpecHandler.addObject(
  * Inserts new object [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addCompanionObject(
+public inline fun TypeSpecHandler.addCompanionObject(
     name: String? = null,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -324,7 +336,7 @@ public fun TypeSpecHandler.addCompanionObject(
  * Inserts new interface [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addInterface(
+public inline fun TypeSpecHandler.addInterface(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -339,7 +351,7 @@ public fun TypeSpecHandler.addInterface(
  * Inserts new interface [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addInterface(
+public inline fun TypeSpecHandler.addInterface(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -354,7 +366,7 @@ public fun TypeSpecHandler.addInterface(
  * Inserts new enum [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addEnum(
+public inline fun TypeSpecHandler.addEnum(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -369,7 +381,7 @@ public fun TypeSpecHandler.addEnum(
  * Inserts new enum [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addEnum(
+public inline fun TypeSpecHandler.addEnum(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -384,7 +396,9 @@ public fun TypeSpecHandler.addEnum(
  * Inserts new anonymous [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addAnonymous(configuration: TypeSpecBuilder.() -> Unit): TypeSpec {
+public inline fun TypeSpecHandler.addAnonymous(
+    configuration: TypeSpecBuilder.() -> Unit,
+): TypeSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return TypeSpecBuilder(TypeSpec.anonymousClassBuilder())
         .apply(configuration)
@@ -396,7 +410,7 @@ public fun TypeSpecHandler.addAnonymous(configuration: TypeSpecBuilder.() -> Uni
  * Inserts new annotation [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addAnnotation(
+public inline fun TypeSpecHandler.addAnnotation(
     name: String,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -411,7 +425,7 @@ public fun TypeSpecHandler.addAnnotation(
  * Inserts new annotation [TypeSpec] by populating newly created [TypeSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecHandler.addAnnotation(
+public inline fun TypeSpecHandler.addAnnotation(
     name: ClassName,
     configuration: TypeSpecBuilder.() -> Unit,
 ): TypeSpec {
@@ -570,8 +584,9 @@ public interface TypeSpecHandler {
 @KotlinpoetDsl
 public open class TypeSpecHandlerScope private constructor(handler: TypeSpecHandler) :
     TypeSpecHandler by handler {
-        public operator fun String.invoke(configuration: TypeSpecBuilder.() -> Unit): TypeSpec =
-            addClass(this, configuration)
+        public inline operator fun String.invoke(
+            configuration: TypeSpecBuilder.() -> Unit,
+        ): TypeSpec = addClass(this, configuration)
 
         public companion object {
             public fun of(handler: TypeSpecHandler): TypeSpecHandlerScope =
@@ -611,7 +626,7 @@ public class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
         }
 
     /** Invokes DSL to configure [AnnotationSpec] collection. */
-    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+    public inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecHandlerScope
             .of(annotations)
@@ -619,7 +634,7 @@ public class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Invokes DSL to configure [PropertySpec] collection. */
-    public fun properties(configuration: PropertySpecHandlerScope.() -> Unit) {
+    public inline fun properties(configuration: PropertySpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         PropertySpecHandlerScope
             .of(properties)
@@ -627,7 +642,7 @@ public class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Invokes DSL to configure [FunSpec] collection. */
-    public fun functions(configuration: FunSpecHandlerScope.() -> Unit) {
+    public inline fun functions(configuration: FunSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         FunSpecHandlerScope
             .of(functions)
@@ -635,7 +650,7 @@ public class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     }
 
     /** Invokes DSL to configure [TypeSpec] collection. */
-    public fun types(configuration: TypeSpecHandlerScope.() -> Unit) {
+    public inline fun types(configuration: TypeSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         TypeSpecHandlerScope
             .of(types)

@@ -41,7 +41,7 @@ public inline fun emptyConstructorFunSpec(): FunSpec =
  * Builds new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.builder(name))
         .apply(configuration)
@@ -52,7 +52,10 @@ public fun buildFunSpec(name: String, configuration: FunSpecBuilder.() -> Unit):
  * Builds new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun buildFunSpec(name: MemberName, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun buildFunSpec(
+    name: MemberName,
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.builder(name))
         .apply(configuration)
@@ -63,7 +66,10 @@ public fun buildFunSpec(name: MemberName, configuration: FunSpecBuilder.() -> Un
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun FunSpecHandler.add(name: String, configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun FunSpecHandler.add(
+    name: String,
+    configuration: FunSpecBuilder.() -> Unit,
+): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.builder(name))
         .apply(configuration)
@@ -75,7 +81,7 @@ public fun FunSpecHandler.add(name: String, configuration: FunSpecBuilder.() -> 
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun FunSpecHandler.add(
+public inline fun FunSpecHandler.add(
     name: MemberName,
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
@@ -90,7 +96,7 @@ public fun FunSpecHandler.add(
  * Inserts new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun FunSpecHandler.addConstructor(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun FunSpecHandler.addConstructor(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.constructorBuilder())
         .apply(configuration)
@@ -102,7 +108,7 @@ public fun FunSpecHandler.addConstructor(configuration: FunSpecBuilder.() -> Uni
  * Applies new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun TypeSpecBuilder.setPrimaryConstructor(
+public inline fun TypeSpecBuilder.setPrimaryConstructor(
     configuration: FunSpecBuilder.() -> Unit,
 ): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
@@ -116,7 +122,7 @@ public fun TypeSpecBuilder.setPrimaryConstructor(
  * Applies new getter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecBuilder.setGetter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun PropertySpecBuilder.setGetter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.getterBuilder())
         .apply(configuration)
@@ -128,7 +134,7 @@ public fun PropertySpecBuilder.setGetter(configuration: FunSpecBuilder.() -> Uni
  * Applies new setter [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
-public fun PropertySpecBuilder.setSetter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+public inline fun PropertySpecBuilder.setSetter(configuration: FunSpecBuilder.() -> Unit): FunSpec {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return FunSpecBuilder(FunSpec.setterBuilder())
         .apply(configuration)
@@ -173,8 +179,9 @@ public interface FunSpecHandler {
 @KotlinpoetDsl
 public open class FunSpecHandlerScope private constructor(handler: FunSpecHandler) :
     FunSpecHandler by handler {
-        public operator fun String.invoke(configuration: FunSpecBuilder.() -> Unit): FunSpec =
-            add(this, configuration)
+        public inline operator fun String.invoke(
+            configuration: FunSpecBuilder.() -> Unit,
+        ): FunSpec = add(this, configuration)
 
         public companion object {
             public fun of(handler: FunSpecHandler): FunSpecHandlerScope =
@@ -200,7 +207,7 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) {
         }
 
     /** Invokes DSL to configure [AnnotationSpec] collection. */
-    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+    public inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecHandlerScope
             .of(annotations)
@@ -208,7 +215,7 @@ public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) {
     }
 
     /** Invokes DSL to configure [ParameterSpec] collection. */
-    public fun parameters(configuration: ParameterSpecHandlerScope.() -> Unit) {
+    public inline fun parameters(configuration: ParameterSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         ParameterSpecHandlerScope
             .of(parameters)

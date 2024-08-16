@@ -15,7 +15,7 @@ public inline fun codeBlockOf(format: String, vararg args: Any?): CodeBlock =
  * Creates new [CodeBlock] by populating newly created [CodeBlockBuilder] using provided
  * [configuration].
  */
-public fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock {
+public inline fun buildCodeBlock(configuration: CodeBlockBuilder.() -> Unit): CodeBlock {
     contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
     return CodeBlockBuilder(CodeBlock.builder()).apply(configuration).build()
 }

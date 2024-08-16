@@ -27,7 +27,7 @@ public inline fun parameterSpecOf(
  * Builds new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun buildParameterSpec(
+public inline fun buildParameterSpec(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -43,7 +43,7 @@ public fun buildParameterSpec(
  * Inserts new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun ParameterSpecHandler.add(
+public inline fun ParameterSpecHandler.add(
     name: String,
     type: TypeName,
     vararg modifiers: KModifier,
@@ -60,7 +60,7 @@ public fun ParameterSpecHandler.add(
  * Inserts new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun ParameterSpecHandler.add(
+public inline fun ParameterSpecHandler.add(
     name: String,
     type: Type,
     vararg modifiers: KModifier,
@@ -77,7 +77,7 @@ public fun ParameterSpecHandler.add(
  * Inserts new [ParameterSpec] by populating newly created [ParameterSpecBuilder] using provided
  * [configuration].
  */
-public fun ParameterSpecHandler.add(
+public inline fun ParameterSpecHandler.add(
     name: String,
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -193,19 +193,19 @@ public interface ParameterSpecHandler {
 @KotlinpoetDsl
 public open class ParameterSpecHandlerScope private constructor(handler: ParameterSpecHandler) :
     ParameterSpecHandler by handler {
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: TypeName,
             vararg modifiers: KModifier,
             configuration: ParameterSpecBuilder.() -> Unit,
         ): ParameterSpec = add(this, type, *modifiers, configuration = configuration)
 
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: Type,
             vararg modifiers: KModifier,
             configuration: ParameterSpecBuilder.() -> Unit,
         ): ParameterSpec = add(this, type, *modifiers, configuration = configuration)
 
-        public operator fun String.invoke(
+        public inline operator fun String.invoke(
             type: KClass<*>,
             vararg modifiers: KModifier,
             configuration: ParameterSpecBuilder.() -> Unit,
@@ -228,7 +228,7 @@ public class ParameterSpecBuilder(private val nativeBuilder: ParameterSpec.Build
         }
 
     /** Invokes DSL to configure [AnnotationSpec] collection. */
-    public fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
+    public inline fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) {
         contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
         AnnotationSpecHandlerScope
             .of(annotations)
