@@ -1,6 +1,9 @@
+@file:Suppress("ktlint:standard:property-naming")
+
 package com.hanggrian.kotlinpoet
 
 import com.example.Annotation1
+import com.example.Annotation2
 import com.example.Class1
 import com.example.Class2
 import com.example.Class3
@@ -18,7 +21,28 @@ import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-@Suppress("ktlint:standard:property-naming")
+class TypeAliasSpecCreatorTest {
+    @Test
+    fun of() {
+        assertThat(typeAliasSpecOf("Alias", Class1::class.name))
+            .isEqualTo(TypeAliasSpec.builder("Alias", Class1::class).build())
+    }
+
+    @Test
+    fun build() {
+        assertThat(
+            buildTypeAliasSpec("Alias", Class1::class.name) {
+                addModifiers(PUBLIC)
+            },
+        ).isEqualTo(
+            TypeAliasSpec
+                .builder("Alias", Class1::class)
+                .addModifiers(KModifier.PUBLIC)
+                .build(),
+        )
+    }
+}
+
 class TypeAliasSpecTest {
     @Test
     fun add() {
@@ -130,6 +154,24 @@ class TypeAliasSpecTest {
 }
 
 class TypeAliasSpecBuilderTest {
+    @Test
+    fun annotations() {
+        assertThat(
+            buildTypeAliasSpec("Alias", Class1::class.name) {
+                annotations.add(Annotation1::class)
+                annotations {
+                    add(Annotation2::class)
+                }
+            },
+        ).isEqualTo(
+            TypeAliasSpec
+                .builder("Alias", Class1::class)
+                .addAnnotation(Annotation1::class)
+                .addAnnotation(Annotation2::class)
+                .build(),
+        )
+    }
+
     @Test
     fun addModifiers() {
         assertThat(

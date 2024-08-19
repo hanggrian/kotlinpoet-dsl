@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:standard:property-naming")
+
 package com.hanggrian.kotlinpoet
 
 import com.example.Annotation1
@@ -8,7 +10,9 @@ import com.example.Class3
 import com.example.Parameter1
 import com.example.Property1
 import com.google.common.truth.Truth.assertThat
+import com.squareup.kotlinpoet.CHAR
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
@@ -18,7 +22,194 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-@Suppress("ktlint:standard:property-naming")
+class TypeSpecCreatorTest {
+    @Test
+    fun of() {
+        assertThat(classTypeSpecOf("MyClass"))
+            .isEqualTo(TypeSpec.classBuilder("MyClass").build())
+        assertThat(classTypeSpecOf(Class1::class.name))
+            .isEqualTo(TypeSpec.classBuilder(Class1::class.asClassName()).build())
+
+        assertThat(objectTypeSpecOf("MyClass"))
+            .isEqualTo(TypeSpec.objectBuilder("MyClass").build())
+        assertThat(objectTypeSpecOf(Class1::class.name))
+            .isEqualTo(TypeSpec.objectBuilder(Class1::class.asClassName()).build())
+
+        assertThat(companionObjectTypeSpecOf())
+            .isEqualTo(TypeSpec.companionObjectBuilder().build())
+        assertThat(companionObjectTypeSpecOf("MyClass"))
+            .isEqualTo(TypeSpec.companionObjectBuilder("MyClass").build())
+
+        assertThat(interfaceTypeSpecOf("MyClass"))
+            .isEqualTo(TypeSpec.interfaceBuilder("MyClass").build())
+        assertThat(interfaceTypeSpecOf(Class1::class.name))
+            .isEqualTo(TypeSpec.interfaceBuilder(Class1::class.asClassName()).build())
+
+        assertThat(enumTypeSpecOf("MyClass"))
+            .isEqualTo(TypeSpec.enumBuilder("MyClass").build())
+        assertThat(enumTypeSpecOf(Class1::class.name))
+            .isEqualTo(TypeSpec.enumBuilder(Class1::class.asClassName()).build())
+
+        assertThat(emptyAnonymousClassTypeSpec())
+            .isEqualTo(TypeSpec.anonymousClassBuilder().build())
+
+        assertThat(annotationTypeSpecOf("MyClass"))
+            .isEqualTo(TypeSpec.annotationBuilder("MyClass").build())
+        assertThat(annotationTypeSpecOf(Class1::class.name))
+            .isEqualTo(TypeSpec.annotationBuilder(Class1::class.asClassName()).build())
+    }
+
+    @Test
+    fun build() {
+        assertThat(
+            buildClassTypeSpec("MyClass") {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder("MyClass")
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildClassTypeSpec(Class1::class.name) {
+                addKdoc("text2")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder(Class1::class.asClassName())
+                .addKdoc("text2")
+                .build(),
+        )
+
+        assertThat(
+            buildObjectTypeSpec("MyClass") {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .objectBuilder("MyClass")
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildObjectTypeSpec(Class1::class.name) {
+                addKdoc("text2")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .objectBuilder(Class1::class.asClassName())
+                .addKdoc("text2")
+                .build(),
+        )
+
+        assertThat(
+            buildCompanionObjectTypeSpec {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .companionObjectBuilder()
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildCompanionObjectTypeSpec("MyClass") {
+                addKdoc("text2")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .companionObjectBuilder("MyClass")
+                .addKdoc("text2")
+                .build(),
+        )
+
+        assertThat(
+            buildInterfaceTypeSpec("MyClass") {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .interfaceBuilder("MyClass")
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildInterfaceTypeSpec(Class1::class.name) {
+                addKdoc("text2")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .interfaceBuilder(Class1::class.asClassName())
+                .addKdoc("text2")
+                .build(),
+        )
+
+        assertThat(
+            buildEnumTypeSpec("MyClass") {
+                addEnumConstant("A")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .enumBuilder("MyClass")
+                .addEnumConstant("A")
+                .build(),
+        )
+        assertThat(
+            buildEnumTypeSpec(Class1::class.name) {
+                addEnumConstant("A")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .enumBuilder(Class1::class.asClassName())
+                .addEnumConstant("A")
+                .build(),
+        )
+
+        assertThat(
+            buildAnonymousTypeSpec {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .anonymousClassBuilder()
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildAnonymousTypeSpec {
+                addKdoc("text2")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .anonymousClassBuilder()
+                .addKdoc("text2")
+                .build(),
+        )
+
+        assertThat(
+            buildAnnotationTypeSpec("MyClass") {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .annotationBuilder("MyClass")
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildAnnotationTypeSpec(Class1::class.name) {
+                addKdoc("text2")
+            },
+        ).isEqualTo(
+            TypeSpec
+                .annotationBuilder(Class1::class.asClassName())
+                .addKdoc("text2")
+                .build(),
+        )
+    }
+}
+
 class TypeSpecHandlerTest {
     @Test
     fun add() {
@@ -32,7 +223,7 @@ class TypeSpecHandlerTest {
                 types.addObject(Annotation1::class.name)
                 types.addObject("Object2") { addKdoc("text2") }
                 types.addObject(Annotation2::class.name) { addKdoc("text2") }
-                types.addCompanionObject("CompanionObject1")
+                types.addCompanionObject { addKdoc("text1") }
                 types.addInterface("Interface1")
                 types.addInterface(Annotation1::class.name)
                 types.addInterface("Interface2") { addKdoc("text2") }
@@ -40,8 +231,8 @@ class TypeSpecHandlerTest {
                 types {
                     addEnum("Enum1")
                     addEnum(Annotation1::class.name)
-                    addEnum("Enum2") { enumConstant("B") }
-                    addEnum(Annotation2::class.name) { enumConstant("B") }
+                    addEnum("Enum2") { addEnumConstant("B") }
+                    addEnum(Annotation2::class.name) { addEnumConstant("B") }
                     addAnonymous()
                     addAnonymous { addKdoc("text2") }
                     addAnnotation("Annotation1")
@@ -59,7 +250,7 @@ class TypeSpecHandlerTest {
             TypeSpec.objectBuilder(Annotation1::class.name).build(),
             TypeSpec.objectBuilder("Object2").addKdoc("text2").build(),
             TypeSpec.objectBuilder(Annotation2::class.name).addKdoc("text2").build(),
-            TypeSpec.companionObjectBuilder("CompanionObject1").build(),
+            TypeSpec.companionObjectBuilder().addKdoc("text1").build(),
             TypeSpec.interfaceBuilder("Interface1").build(),
             TypeSpec.interfaceBuilder(Annotation1::class.name).build(),
             TypeSpec.interfaceBuilder("Interface2").addKdoc("text2").build(),
@@ -85,11 +276,11 @@ class TypeSpecHandlerTest {
                 val Class2 by types.addingClass { addKdoc("text2") }
                 val Object1 by types.addingObject()
                 val Object2 by types.addingObject { addKdoc("text2") }
-                val CompanionObject1 by types.addingCompanionObject()
+                val CompanionObject1 by types.addingCompanionObject { addKdoc("text1") }
                 val Interface1 by types.addingInterface()
                 val Interface2 by types.addingInterface { addKdoc("text2") }
                 val Enum1 by types.addingEnum()
-                val Enum2 by types.addingEnum { enumConstant("A") }
+                val Enum2 by types.addingEnum { addEnumConstant("A") }
                 val Annotation1 by types.addingAnnotation()
                 val Annotation2 by types.addingAnnotation { addKdoc("text2") }
             }.typeSpecs,
@@ -98,7 +289,7 @@ class TypeSpecHandlerTest {
             TypeSpec.classBuilder("Class2").addKdoc("text2").build(),
             TypeSpec.objectBuilder("Object1").build(),
             TypeSpec.objectBuilder("Object2").addKdoc("text2").build(),
-            TypeSpec.companionObjectBuilder("CompanionObject1").build(),
+            TypeSpec.companionObjectBuilder("CompanionObject1").addKdoc("text1").build(),
             TypeSpec.interfaceBuilder("Interface1").build(),
             TypeSpec.interfaceBuilder("Interface2").addKdoc("text2").build(),
             TypeSpec.enumBuilder("Enum1").build(),
@@ -122,6 +313,78 @@ class TypeSpecHandlerTest {
 }
 
 class TypeSpecBuilderTest {
+    @Test
+    fun annotations() {
+        assertThat(
+            buildClassTypeSpec("MyClass") {
+                annotations.add(Annotation1::class)
+                annotations {
+                    add(Annotation2::class)
+                }
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder("MyClass")
+                .addAnnotation(Annotation1::class)
+                .addAnnotation(Annotation2::class)
+                .build(),
+        )
+    }
+
+    @Test
+    fun properties() {
+        assertThat(
+            buildClassTypeSpec("MyClass") {
+                properties.add("field1", INT, PUBLIC)
+                properties {
+                    add("field2", CHAR, PRIVATE)
+                }
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder("MyClass")
+                .addProperty("field1", INT, KModifier.PUBLIC)
+                .addProperty("field2", CHAR, KModifier.PRIVATE)
+                .build(),
+        )
+    }
+
+    @Test
+    fun functions() {
+        assertThat(
+            buildClassTypeSpec("MyClass") {
+                functions.add("function1")
+                functions {
+                    add("function2")
+                }
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder("MyClass")
+                .addFunction(FunSpec.builder("function1").build())
+                .addFunction(FunSpec.builder("function2").build())
+                .build(),
+        )
+    }
+
+    @Test
+    fun types() {
+        assertThat(
+            buildClassTypeSpec("MyClass") {
+                types.addClass(Class1::class.name)
+                types {
+                    addClass(Class2::class.name)
+                }
+            },
+        ).isEqualTo(
+            TypeSpec
+                .classBuilder("MyClass")
+                .addType(TypeSpec.classBuilder(Class1::class.asClassName()).build())
+                .addType(TypeSpec.classBuilder(Class2::class.asClassName()).build())
+                .build(),
+        )
+    }
+
     @Test
     fun initializerIndex() {
         assertThat(
@@ -272,8 +535,8 @@ class TypeSpecBuilderTest {
     }
 
     @Test
-    fun enumConstants() {
-        assertThat(buildEnumTypeSpec("class1") { enumConstant("VALUE") })
+    fun addEnumConstants() {
+        assertThat(buildEnumTypeSpec("class1") { addEnumConstant("VALUE") })
             .isEqualTo(
                 TypeSpec
                     .enumBuilder("class1")

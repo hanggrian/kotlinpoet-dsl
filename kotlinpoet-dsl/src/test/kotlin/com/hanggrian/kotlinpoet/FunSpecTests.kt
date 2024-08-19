@@ -13,10 +13,13 @@ import com.example.Class7
 import com.example.Class8
 import com.example.Class9
 import com.google.common.truth.Truth.assertThat
+import com.squareup.kotlinpoet.CHAR
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.ExperimentalKotlinPoetApi
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
@@ -24,6 +27,52 @@ import javax.lang.model.element.Modifier
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
+class FunSpecCreatorTest {
+    @Test
+    fun of() {
+        assertThat(funSpecOf(Class1::class.member("Inner")))
+            .isEqualTo(FunSpec.builder(MemberName("com.example.Class1", "Inner")).build())
+        assertThat(funSpecOf("myMethod"))
+            .isEqualTo(FunSpec.builder("myMethod").build())
+        assertThat(emptyConstructorFunSpec())
+            .isEqualTo(FunSpec.constructorBuilder().build())
+    }
+
+    @Test
+    fun build() {
+        assertThat(
+            buildFunSpec(Class1::class.member("Inner")) {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            FunSpec
+                .builder(MemberName("com.example.Class1", "Inner"))
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildFunSpec("myMethod") {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            FunSpec
+                .builder("myMethod")
+                .addKdoc("text1")
+                .build(),
+        )
+        assertThat(
+            buildConstructorFunSpec {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            FunSpec
+                .constructorBuilder()
+                .addKdoc("text1")
+                .build(),
+        )
+    }
+}
 
 class FunSpecHandlerTest {
     @Test
@@ -77,6 +126,42 @@ class FunSpecHandlerTest {
 }
 
 class FunSpecBuilderTest {
+    @Test
+    fun annotations() {
+        assertThat(
+            buildFunSpec("myMethod") {
+                annotations.add(Annotation1::class)
+                annotations {
+                    add(Annotation2::class)
+                }
+            },
+        ).isEqualTo(
+            FunSpec
+                .builder("myMethod")
+                .addAnnotation(Annotation1::class)
+                .addAnnotation(Annotation2::class)
+                .build(),
+        )
+    }
+
+    @Test
+    fun parameters() {
+        assertThat(
+            buildFunSpec("myMethod") {
+                parameters.add("param1", INT, NOINLINE)
+                parameters {
+                    add("param2", CHAR, CROSSINLINE)
+                }
+            },
+        ).isEqualTo(
+            FunSpec
+                .builder("myMethod")
+                .addParameter("param1", INT, KModifier.NOINLINE)
+                .addParameter("param2", CHAR, KModifier.CROSSINLINE)
+                .build(),
+        )
+    }
+
     @Test
     @ExperimentalKotlinPoetApi
     fun contextSetReceiverTypes() {

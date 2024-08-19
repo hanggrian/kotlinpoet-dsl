@@ -6,4 +6,4 @@ package com.hanggrian.kotlinpoet
  */
 @DslMarker
 @Target(AnnotationTarget.CLASS)
-public annotation class KotlinpoetDsl
+public annotation class KotlinPoetDsl

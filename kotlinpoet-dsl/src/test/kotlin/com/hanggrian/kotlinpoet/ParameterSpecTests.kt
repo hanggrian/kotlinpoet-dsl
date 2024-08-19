@@ -1,5 +1,7 @@
 package com.hanggrian.kotlinpoet
 
+import com.example.Annotation1
+import com.example.Annotation2
 import com.example.Parameter1
 import com.example.Parameter2
 import com.example.Parameter3
@@ -10,11 +12,34 @@ import com.example.Parameter7
 import com.example.Property1
 import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
+class ParameterSpecCreatorTest {
+    @Test
+    fun of() {
+        assertThat(parameterSpecOf("myParameter", INT, VARARG))
+            .isEqualTo(ParameterSpec.builder("myParameter", INT, KModifier.VARARG).build())
+    }
+
+    @Test
+    fun build() {
+        assertThat(
+            buildParameterSpec("myParameter", INT, VARARG) {
+                addKdoc("text1")
+            },
+        ).isEqualTo(
+            ParameterSpec
+                .builder("myParameter", INT, KModifier.VARARG)
+                .addKdoc("text1")
+                .build(),
+        )
+    }
+}
 
 class ParameterSpecHandlerTest {
     @Test
@@ -82,6 +107,24 @@ class ParameterSpecHandlerTest {
 }
 
 class ParameterSpecBuilderTest {
+    @Test
+    fun annotations() {
+        assertThat(
+            buildParameterSpec("myParameter", INT, VARARG) {
+                annotations.add(Annotation1::class)
+                annotations {
+                    add(Annotation2::class)
+                }
+            },
+        ).isEqualTo(
+            ParameterSpec
+                .builder("myParameter", INT, KModifier.VARARG)
+                .addAnnotation(Annotation1::class)
+                .addAnnotation(Annotation2::class)
+                .build(),
+        )
+    }
+
     @Test
     fun addModifiers() {
         assertThat(

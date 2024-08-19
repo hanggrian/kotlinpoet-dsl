@@ -193,7 +193,7 @@ public interface PropertySpecHandler {
 /**
  * Receiver for the `properties` block providing an extended set of operators for the configuration.
  */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public open class PropertySpecHandlerScope private constructor(handler: PropertySpecHandler) :
     PropertySpecHandler by handler {
         public inline operator fun String.invoke(
@@ -221,7 +221,7 @@ public open class PropertySpecHandlerScope private constructor(handler: Property
     }
 
 /** Wrapper of [PropertySpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public class PropertySpecBuilder(private val nativeBuilder: PropertySpec.Builder) {
     public val annotations: AnnotationSpecHandler =
         object : AnnotationSpecHandler {

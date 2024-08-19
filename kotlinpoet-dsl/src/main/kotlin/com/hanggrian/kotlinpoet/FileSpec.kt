@@ -48,7 +48,7 @@ public inline fun buildScriptFileSpec(
 }
 
 /** Wrapper of [FileSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public class FileSpecBuilder(private val nativeBuilder: FileSpec.Builder) {
     public val annotations: AnnotationSpecHandler =
         object : AnnotationSpecHandler {

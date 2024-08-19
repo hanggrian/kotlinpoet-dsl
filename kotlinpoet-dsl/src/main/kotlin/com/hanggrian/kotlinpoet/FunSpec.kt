@@ -63,6 +63,17 @@ public inline fun buildFunSpec(
 }
 
 /**
+ * Builds new constructor [FunSpec] by populating newly created [FunSpecBuilder] using provided
+ * [configuration].
+ */
+public inline fun buildConstructorFunSpec(configuration: FunSpecBuilder.() -> Unit): FunSpec {
+    contract { callsInPlace(configuration, InvocationKind.EXACTLY_ONCE) }
+    return FunSpecBuilder(FunSpec.constructorBuilder())
+        .apply(configuration)
+        .build()
+}
+
+/**
  * Inserts new [FunSpec] by populating newly created [FunSpecBuilder] using provided
  * [configuration].
  */
@@ -176,7 +187,7 @@ public interface FunSpecHandler {
  * Receiver for the `functions` block providing an extended set of operators for the
  * configuration.
  */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public open class FunSpecHandlerScope private constructor(handler: FunSpecHandler) :
     FunSpecHandler by handler {
         public inline operator fun String.invoke(
@@ -190,7 +201,7 @@ public open class FunSpecHandlerScope private constructor(handler: FunSpecHandle
     }
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) {
     public val annotations: AnnotationSpecHandler =
         object : AnnotationSpecHandler {

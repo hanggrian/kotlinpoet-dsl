@@ -581,7 +581,7 @@ public interface TypeSpecHandler {
 }
 
 /** Receiver for the `types` block providing an extended set of operators for the configuration. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public open class TypeSpecHandlerScope private constructor(handler: TypeSpecHandler) :
     TypeSpecHandler by handler {
         public inline operator fun String.invoke(
@@ -595,7 +595,7 @@ public open class TypeSpecHandlerScope private constructor(handler: TypeSpecHand
     }
 
 /** Wrapper of [TypeSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
     public val annotations: AnnotationSpecHandler =
         object : AnnotationSpecHandler {
@@ -759,7 +759,7 @@ public class TypeSpecBuilder(private val nativeBuilder: TypeSpec.Builder) {
 
     public inline fun <reified T> addSuperinterface(): Unit = addSuperinterface(T::class)
 
-    public fun enumConstant(
+    public fun addEnumConstant(
         name: String,
         type: TypeSpec = TypeSpec.anonymousClassBuilder().build(),
     ) {

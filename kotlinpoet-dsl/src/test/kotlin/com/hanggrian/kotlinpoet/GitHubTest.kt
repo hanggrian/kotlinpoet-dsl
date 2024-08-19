@@ -644,9 +644,9 @@ class GitHubTest {
     fun `Enums`() {
         assertThat(
             buildEnumTypeSpec("Roshambo") {
-                enumConstant("ROCK")
-                enumConstant("SCISSORS")
-                enumConstant("PAPER")
+                addEnumConstant("ROCK")
+                addEnumConstant("SCISSORS")
+                addEnumConstant("PAPER")
             }.toString(),
         ).isEqualTo(
             """
@@ -672,11 +672,11 @@ class GitHubTest {
                             setReturns<String>()
                         }
                     }
-                enumConstant(
+                addEnumConstant(
                     "SCISSORS",
                     buildAnonymousTypeSpec { addSuperclassConstructorParameter("%S", "peace") },
                 )
-                enumConstant(
+                addEnumConstant(
                     "PAPER",
                     buildAnonymousTypeSpec { addSuperclassConstructorParameter("%S", "flat") },
                 )

@@ -165,19 +165,13 @@ public interface TypeAliasSpecHandler {
 
     public fun adding(type: KClass<*>): SpecDelegateProvider<TypeAliasSpec> =
         SpecDelegateProvider { typeAliasSpecOf(it, type.name).also(::add) }
-
-    public fun TypeAliasSpecHandler.adding(type: Type): SpecDelegateProvider<TypeAliasSpec> =
-        SpecDelegateProvider { typeAliasSpecOf(it, type.name).also(::add) }
-
-    public fun TypeAliasSpecHandler.adding(type: KClass<*>): SpecDelegateProvider<TypeAliasSpec> =
-        SpecDelegateProvider { typeAliasSpecOf(it, type.name).also(::add) }
 }
 
 /**
  * Receiver for the `typeAliases` block providing an extended set of operators for the
  * configuration.
  */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public open class TypeAliasSpecHandlerScope private constructor(handler: TypeAliasSpecHandler) :
     TypeAliasSpecHandler by handler {
         public inline operator fun String.invoke(
@@ -202,7 +196,7 @@ public open class TypeAliasSpecHandlerScope private constructor(handler: TypeAli
     }
 
 /** Wrapper of [TypeAliasSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public class TypeAliasSpecBuilder(private val nativeBuilder: TypeAliasSpec.Builder) {
     public val annotations: AnnotationSpecHandler =
         object : AnnotationSpecHandler {

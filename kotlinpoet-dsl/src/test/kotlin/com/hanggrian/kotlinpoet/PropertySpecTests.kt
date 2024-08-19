@@ -14,6 +14,7 @@ import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.ExperimentalKotlinPoetApi
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.PropertySpec
@@ -22,6 +23,28 @@ import com.squareup.kotlinpoet.asClassName
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
+class PropertySpecCreatorTest {
+    @Test
+    fun of() {
+        assertThat(propertySpecOf("myField", INT, PUBLIC))
+            .isEqualTo(PropertySpec.builder("myField", INT, KModifier.PUBLIC).build())
+    }
+
+    @Test
+    fun build() {
+        assertThat(
+            buildPropertySpec("myField", INT, PUBLIC) {
+                setInitializer("value1")
+            },
+        ).isEqualTo(
+            PropertySpec
+                .builder("myField", INT, KModifier.PUBLIC)
+                .initializer("value1")
+                .build(),
+        )
+    }
+}
 
 class PropertySpecHandlerTest {
     @Test
@@ -93,6 +116,24 @@ class PropertySpecHandlerTest {
 }
 
 class PropertySpecBuilderTest {
+    @Test
+    fun annotations() {
+        assertThat(
+            buildPropertySpec("myField", INT, PUBLIC) {
+                annotations.add(Annotation1::class)
+                annotations {
+                    add(Annotation2::class)
+                }
+            },
+        ).isEqualTo(
+            PropertySpec
+                .builder("myField", INT, KModifier.PUBLIC)
+                .addAnnotation(Annotation1::class)
+                .addAnnotation(Annotation2::class)
+                .build(),
+        )
+    }
+
     @Test
     @ExperimentalKotlinPoetApi
     fun contextSetReceiverTypes() {

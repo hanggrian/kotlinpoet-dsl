@@ -150,7 +150,7 @@ public interface AnnotationSpecHandler {
  * Receiver for the `annotations` block providing an extended set of operators for the
  * configuration.
  */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public open class AnnotationSpecHandlerScope private constructor(handler: AnnotationSpecHandler) :
     AnnotationSpecHandler by handler {
         public inline operator fun ClassName.invoke(
@@ -177,7 +177,7 @@ public open class AnnotationSpecHandlerScope private constructor(handler: Annota
     }
 
 /** Wrapper of [AnnotationSpec.Builder], providing DSL support as a replacement to Java builder. */
-@KotlinpoetDsl
+@KotlinPoetDsl
 public class AnnotationSpecBuilder(private val nativeBuilder: AnnotationSpec.Builder) {
     public val members: MutableList<CodeBlock> get() = nativeBuilder.members
     public val tags: MutableMap<KClass<*>, Any> get() = nativeBuilder.tags

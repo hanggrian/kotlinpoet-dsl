@@ -13,11 +13,46 @@ import com.example.Parameter2
 import com.example.Parameter7
 import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.STRING
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
+class AnnotationSpecCreatorTest {
+    @Test
+    fun of() {
+        assertThat(annotationSpecOf(classNamed("com.example", "MyAnnotation")))
+            .isEqualTo(AnnotationSpec.builder(ClassName("com.example", "MyAnnotation")).build())
+        assertThat(annotationSpecOf(List::class.name.parameterizedBy<String>()))
+            .isEqualTo(AnnotationSpec.builder(List::class.parameterizedBy(String::class)).build())
+    }
+
+    @Test
+    fun build() {
+        assertThat(
+            buildAnnotationSpec(classNamed("com.example", "MyAnnotation")) {
+                addMember("name1", "value1")
+            },
+        ).isEqualTo(
+            AnnotationSpec
+                .builder(ClassName("com.example", "MyAnnotation"))
+                .addMember("name1", "value1")
+                .build(),
+        )
+        assertThat(
+            buildAnnotationSpec(List::class.name.parameterizedBy<String>()) {
+                addMember("name1", "value1")
+            },
+        ).isEqualTo(
+            AnnotationSpec
+                .builder(List::class.parameterizedBy(String::class))
+                .addMember("name1", "value1")
+                .build(),
+        )
+    }
+}
 
 class AnnotationSpecHandlerTest {
     @Test
