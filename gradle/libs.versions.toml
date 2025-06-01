@@ -1,15 +1,17 @@
 [versions]
 jdk = "21"
 jre = "8"
-kotlin = "1.9.20"
-ktlint = "1.3.1"
+kotlin = "2.0.0"
+junit = "5.12.2"
+ktlint = "1.5.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.8.3"
-ktlint = "org.jlleitschuh.gradle.ktlint:12.1.1"
-maven-publish = "com.vanniktech.maven.publish.base:0.29.0"
-git-publish = "org.ajoberstar.git-publish:4.2.2"
+dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "kotlin" }
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.1"
+ktlint = "org.jlleitschuh.gradle.ktlint:12.3.0"
+maven-publish = "com.vanniktech.maven.publish.base:0.32.0"
+git-publish = "org.ajoberstar.git-publish:5.1.1"
 pages = "com.hanggrian.pages:0.2"
 
 [libraries]
@@ -18,4 +20,17 @@ rulebook-ktlint = "com.hanggrian.rulebook:rulebook-ktlint:0.1"
 # main
 kotlinpoet = "com.squareup:kotlinpoet:1.18.1"
 # test
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.12.2"
+mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.18.0"
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.4.0"
 truth = "com.google.truth:truth:1.4.4"
+
+[bundles]
+junit5 = [
+  "junit-jupiter",
+  "mockito-junit-jupiter",
+  "mockito-kotlin",
+  "truth",
+]

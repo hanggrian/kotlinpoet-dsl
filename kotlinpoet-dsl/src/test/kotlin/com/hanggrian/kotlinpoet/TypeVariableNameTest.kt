@@ -1,60 +1,56 @@
 package com.hanggrian.kotlinpoet
 
+import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CHAR_SEQUENCE
 import org.jetbrains.annotations.NotNull
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class TypeVariableNameTest {
     @Test
-    fun nullable() {
-        assertEquals("T?", "${"T".generics.nullable()}")
-    }
+    fun nullable() = assertThat("${"T".generics.nullable()}").isEqualTo("T?")
 
     @Test
-    fun annotate() {
-        assertEquals(
-            "@org.jetbrains.annotations.NotNull T",
+    fun annotate() =
+        assertThat(
             "${
                 "T".generics.annotate(annotationSpecOf(NotNull::class.name))
             }",
-        )
-    }
+        ).isEqualTo("@org.jetbrains.annotations.NotNull T")
 
     @Test
-    fun generics() {
-        assertEquals("T", "T".generics.toString())
-    }
+    fun generics() = assertThat("T".generics.toString()).isEqualTo("T")
 
     @Test
     fun genericsBy() {
-        assertEquals(
-            """
-            public fun <T : kotlin.CharSequence> go() {
-            }
+        assertThat("${buildFunSpec("go") { typeVariables.add("T".genericsBy(CHAR_SEQUENCE)) }}")
+            .isEqualTo(
+                """
+                public fun <T : kotlin.CharSequence> go() {
+                }
 
-            """.trimIndent(),
-            "${buildFunSpec("go") { typeVariables.add("T".genericsBy(CHAR_SEQUENCE)) }}",
-        )
-        assertEquals(
-            """
-            public fun <T : java.lang.CharSequence> go() {
-            }
-
-            """.trimIndent(),
+                """.trimIndent(),
+            )
+        assertThat(
             "${
                 buildFunSpec("go") {
                     typeVariables.add("T".genericsBy(CharSequence::class.java))
                 }
             }",
+        ).isEqualTo(
+            """
+            public fun <T : java.lang.CharSequence> go() {
+            }
+
+            """.trimIndent(),
         )
-        assertEquals(
+        assertThat(
+            "${buildFunSpec("go") { typeVariables.add("T".genericsBy(CharSequence::class)) }}",
+        ).isEqualTo(
             """
             public fun <T : kotlin.CharSequence> go() {
             }
 
             """.trimIndent(),
-            "${buildFunSpec("go") { typeVariables.add("T".genericsBy(CharSequence::class)) }}",
         )
     }
 }

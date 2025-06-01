@@ -23,10 +23,14 @@ import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Spy
+import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
 import javax.lang.model.element.Modifier
 import kotlin.test.Test
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class FunSpecCreatorTest {
     @Test
@@ -74,21 +78,33 @@ class FunSpecCreatorTest {
     }
 }
 
+@ExtendWith(MockitoExtension::class)
 class FunSpecHandlerTest {
+    private val funSpecs = mutableListOf<FunSpec>()
+
+    @Spy private val functions: FunSpecHandler =
+        object : FunSpecHandler {
+            override fun add(`fun`: FunSpec) {
+                funSpecs += `fun`
+            }
+        }
+
+    private fun functions(configuration: FunSpecHandlerScope.() -> Unit) =
+        FunSpecHandlerScope
+            .of(functions)
+            .configuration()
+
     @Test
     fun add() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                functions.add("fun1")
-                functions.add(Class2::class.name.member("fun2"))
-                functions.addConstructor()
-                functions {
-                    add("fun4") { addKdoc("text4") }
-                    add(Class5::class.name.member("fun5")) { addKdoc("text5") }
-                    addConstructor { addKdoc("text6") }
-                }
-            }.funSpecs,
-        ).containsExactly(
+        functions.add("fun1")
+        functions.add(Class2::class.name.member("fun2"))
+        functions.addConstructor()
+        functions {
+            add("fun4") { addKdoc("text4") }
+            add(Class5::class.name.member("fun5")) { addKdoc("text5") }
+            addConstructor { addKdoc("text6") }
+        }
+        assertThat(funSpecs).containsExactly(
             FunSpec.builder("fun1").build(),
             FunSpec.builder(Class2::class.name.member("fun2")).build(),
             FunSpec.constructorBuilder().build(),
@@ -96,38 +112,35 @@ class FunSpecHandlerTest {
             FunSpec.builder(Class5::class.name.member("fun5")).addKdoc("text5").build(),
             FunSpec.constructorBuilder().addKdoc("text6").build(),
         )
+        verify(functions, times(6)).add(any<FunSpec>())
     }
 
     @Test
     fun adding() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                val fun1 by functions.adding()
-                val fun2 by functions.adding { addKdoc("text2") }
-            }.funSpecs,
-        ).containsExactly(
+        val fun1 by functions.adding()
+        val fun2 by functions.adding { addKdoc("text2") }
+        assertThat(funSpecs).containsExactly(
             FunSpec.builder("fun1").build(),
             FunSpec.builder("fun2").addKdoc("text2").build(),
         )
+        verify(functions, times(2)).add(any<FunSpec>())
     }
 
     @Test
     fun invoke() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                functions {
-                    "fun1" { addKdoc("text1") }
-                }
-            }.funSpecs,
-        ).containsExactly(
+        functions {
+            "fun1" { addKdoc("text1") }
+        }
+        assertThat(funSpecs).containsExactly(
             FunSpec.builder("fun1").addKdoc("text1").build(),
         )
+        verify(functions, times(1)).add(any<FunSpec>())
     }
 }
 
 class FunSpecBuilderTest {
     @Test
-    fun annotations() {
+    fun annotations() =
         assertThat(
             buildFunSpec("myMethod") {
                 annotations.add(Annotation1::class)
@@ -142,10 +155,9 @@ class FunSpecBuilderTest {
                 .addAnnotation(Annotation2::class)
                 .build(),
         )
-    }
 
     @Test
-    fun parameters() {
+    fun parameters() =
         assertThat(
             buildFunSpec("myMethod") {
                 parameters.add("param1", INT, NOINLINE)
@@ -160,11 +172,10 @@ class FunSpecBuilderTest {
                 .addParameter("param2", CHAR, KModifier.CROSSINLINE)
                 .build(),
         )
-    }
 
     @Test
     @ExperimentalKotlinPoetApi
-    fun contextSetReceiverTypes() {
+    fun contextSetReceiverTypes() =
         assertThat(
             buildFunSpec("fun1") {
                 contextReceiverTypes += Class1::class.name
@@ -175,15 +186,14 @@ class FunSpecBuilderTest {
                 .contextReceivers(Class1::class.name)
                 .build(),
         )
-    }
 
     @Test
-    fun addModifiers() {
+    fun addModifiers() =
         assertThat(
             buildFunSpec("fun1") {
                 addModifiers(PUBLIC)
                 modifiers += listOf(FINAL, CONST)
-                assertFalse(modifiers.isEmpty())
+                assertThat(modifiers.isEmpty()).isFalse()
             },
         ).isEqualTo(
             FunSpec
@@ -192,10 +202,9 @@ class FunSpecBuilderTest {
                 .addModifiers(listOf(KModifier.FINAL, KModifier.CONST))
                 .build(),
         )
-    }
 
     @Test
-    fun addJvmModifiers() {
+    fun addJvmModifiers() =
         assertThat(
             buildFunSpec("fun1") {
                 addJvmModifiers(Modifier.PUBLIC, Modifier.FINAL)
@@ -206,15 +215,14 @@ class FunSpecBuilderTest {
                 .apply { jvmModifiers(listOf(Modifier.PUBLIC, Modifier.FINAL)) }
                 .build(),
         )
-    }
 
     @Test
-    fun addKdoc() {
+    fun addKdoc() =
         assertThat(
             buildFunSpec("fun1") {
                 addKdoc("kdoc1")
                 addKdoc(codeBlockOf("kdoc2"))
-                assertFalse(kdoc.isEmpty())
+                assertThat(kdoc.isEmpty()).isFalse()
             },
         ).isEqualTo(
             FunSpec
@@ -223,17 +231,16 @@ class FunSpecBuilderTest {
                 .addKdoc("kdoc2")
                 .build(),
         )
-    }
 
     @Test
-    fun addTypeVariable() {
+    fun addTypeVariable() =
         assertThat(
             buildFunSpec("fun1") {
                 addTypeVariables(
                     "typeVar1".genericsBy(Annotation1::class),
                     "typeVar2".genericsBy(Annotation2::class),
                 )
-                assertFalse(typeVariables.isEmpty())
+                assertThat(typeVariables.isEmpty()).isFalse()
             },
         ).isEqualTo(
             FunSpec
@@ -245,7 +252,6 @@ class FunSpecBuilderTest {
                     ),
                 ).build(),
         )
-    }
 
     @Test
     fun receiver() {
@@ -461,16 +467,15 @@ class FunSpecBuilderTest {
     }
 
     @Test
-    fun addComment() {
+    fun addComment() =
         assertThat(
             buildFunSpec("fun1") { addComment("some comment") },
         ).isEqualTo(
             FunSpec.builder("fun1").addComment("some comment").build(),
         )
-    }
 
     @Test
-    fun append() {
+    fun append() =
         assertThat(
             buildFunSpec("fun1") {
                 append("some code")
@@ -483,10 +488,9 @@ class FunSpecBuilderTest {
                 .addCode(CodeBlock.of("another code"))
                 .build(),
         )
-    }
 
     @Test
-    fun appendLine() {
+    fun appendLine() =
         assertThat(
             buildFunSpec("fun1") {
                 appendLine("some code")
@@ -499,10 +503,9 @@ class FunSpecBuilderTest {
                 .addStatement("another code")
                 .build(),
         )
-    }
 
     @Test
-    fun appendNamed() {
+    fun appendNamed() =
         assertThat(
             buildFunSpec("fun1") {
                 appendNamed("format", mapOf("key1" to "value1", "key2" to "value2"))
@@ -513,10 +516,9 @@ class FunSpecBuilderTest {
                 .addNamedCode("format", mapOf("key1" to "value1", "key2" to "value2"))
                 .build(),
         )
-    }
 
     @Test
-    fun controlFlow() {
+    fun controlFlow() =
         assertThat(
             buildFunSpec("fun1") {
                 beginControlFlow("some code")
@@ -531,13 +533,12 @@ class FunSpecBuilderTest {
                 .endControlFlow()
                 .build(),
         )
-    }
 
     @Test
     fun `Rest of properties`() {
         buildFunSpec("fun1") {
-            assertTrue(tags.isEmpty())
-            assertTrue(originatingElements.isEmpty())
+            assertThat(tags.isEmpty()).isTrue()
+            assertThat(originatingElements.isEmpty()).isTrue()
         }
     }
 }

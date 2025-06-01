@@ -1,56 +1,49 @@
 package com.hanggrian.kotlinpoet
 
+import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.UNIT
 import org.jetbrains.annotations.NotNull
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class LambdaTypeNameTest {
     @Test
-    fun nullable() {
-        assertEquals("(() -> kotlin.Unit)?", "${lambdaTypeNamed(returns = UNIT).nullable()}")
-    }
+    fun nullable() =
+        assertThat("${lambdaTypeNamed(returns = UNIT).nullable()}")
+            .isEqualTo("(() -> kotlin.Unit)?")
 
     @Test
-    fun suspending() {
-        assertEquals("suspend () -> kotlin.Unit", "${lambdaTypeNamed(returns = UNIT).suspending()}")
-    }
+    fun suspending() =
+        assertThat("${lambdaTypeNamed(returns = UNIT).suspending()}")
+            .isEqualTo("suspend () -> kotlin.Unit")
 
     @Test
-    fun annotate() {
-        assertEquals(
-            "@org.jetbrains.annotations.NotNull () -> kotlin.Unit",
+    fun annotate() =
+        assertThat(
             "${
                 lambdaTypeNamed(returns = UNIT).annotate(annotationSpecOf(NotNull::class.name))
             }",
+        ).isEqualTo(
+            "@org.jetbrains.annotations.NotNull () -> kotlin.Unit",
         )
-    }
 
     @Test
     fun lambdaTypeNamed() {
-        assertEquals(
-            "() -> kotlin.Unit",
-            "${lambdaTypeNamed(returns = UNIT)}",
-        )
-        assertEquals(
-            "(`data`: kotlin.String) -> kotlin.Unit",
+        assertThat("${lambdaTypeNamed(returns = UNIT)}")
+            .isEqualTo("() -> kotlin.Unit")
+        assertThat(
             "${
                 lambdaTypeNamed(buildParameterSpec("data", STRING) {}, returns = UNIT)
             }",
-        )
+        ).isEqualTo("(`data`: kotlin.String) -> kotlin.Unit")
     }
 
     @Test
     fun lambdaBy() {
-        assertEquals(
-            "kotlin.Int.() -> kotlin.Unit",
-            "${INT.lambdaBy(returns = UNIT)}",
-        )
-        assertEquals(
-            "kotlin.Int.(`data`: kotlin.String) -> kotlin.Unit",
-            "${INT.lambdaBy(buildParameterSpec("data", STRING) {}, returns = UNIT)}",
-        )
+        assertThat("${INT.lambdaBy(returns = UNIT)}")
+            .isEqualTo("kotlin.Int.() -> kotlin.Unit")
+        assertThat("${INT.lambdaBy(buildParameterSpec("data", STRING) {}, returns = UNIT)}")
+            .isEqualTo("kotlin.Int.(`data`: kotlin.String) -> kotlin.Unit")
     }
 }

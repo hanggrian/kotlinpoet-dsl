@@ -18,12 +18,10 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asClassName
 import org.junit.Assert.assertFalse
 import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class FileSpecTest {
     @Test
-    fun annotations() {
+    fun annotations() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 annotations.add(Annotation1::class) {
@@ -42,10 +40,9 @@ class FileSpecTest {
                 .addAnnotation(Annotation2::class)
                 .build(),
         )
-    }
 
     @Test
-    fun properties() {
+    fun properties() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 properties.add("field1", INT, PUBLIC)
@@ -60,10 +57,9 @@ class FileSpecTest {
                 .addProperty("field2", CHAR, KModifier.PRIVATE)
                 .build(),
         )
-    }
 
     @Test
-    fun functions() {
+    fun functions() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 functions.add("function1")
@@ -78,10 +74,9 @@ class FileSpecTest {
                 .addFunction(FunSpec.builder("function2").build())
                 .build(),
         )
-    }
 
     @Test
-    fun types() {
+    fun types() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 types.addClass(Class1::class.name)
@@ -96,10 +91,9 @@ class FileSpecTest {
                 .addType(TypeSpec.classBuilder(Class2::class.asClassName()).build())
                 .build(),
         )
-    }
 
     @Test
-    fun addComment() {
+    fun addComment() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 addComment("A ")
@@ -116,10 +110,9 @@ class FileSpecTest {
                 .addFileComment("comment")
                 .build(),
         )
-    }
 
     @Test
-    fun addImport() {
+    fun addImport() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 addImport(Class1::class.name, "class1")
@@ -139,19 +132,18 @@ class FileSpecTest {
                 .addImport("%S", "kotlin.String")
                 .build(),
         )
-    }
 
     @Test
     fun clearImports() {
         buildFileSpec("com.example", "MyClass") {
             addImport(Class1::class.name, "class1")
             clearImports()
-            assertTrue(imports.isEmpty())
+            assertThat(imports.isEmpty()).isTrue()
         }
     }
 
     @Test
-    fun addAliasedImport() {
+    fun addAliasedImport() =
         assertThat(
             buildFileSpec("com.example", "MyClass") {
                 addAliasedImport(Class1::class.name, "class1")
@@ -168,10 +160,9 @@ class FileSpecTest {
                 .addAliasedImport(Class4::class, "class4")
                 .build(),
         )
-    }
 
     @Test
-    fun addKotlinDefaultImports() {
+    fun addKotlinDefaultImports() =
         assertThat(buildFileSpec("com.example", "MyClass") { addKotlinDefaultImports() })
             .isEqualTo(
                 FileSpec
@@ -179,10 +170,9 @@ class FileSpecTest {
                     .addKotlinDefaultImports()
                     .build(),
             )
-    }
 
     @Test
-    fun append() {
+    fun append() =
         assertThat(
             buildScriptFileSpec("com.example", "MyClass") {
                 append("text")
@@ -195,10 +185,9 @@ class FileSpecTest {
                 .addCode(CodeBlock.of("some code"))
                 .build(),
         )
-    }
 
     @Test
-    fun appendLine() {
+    fun appendLine() =
         assertThat(
             buildScriptFileSpec("com.example", "MyClass") {
                 appendLine()
@@ -211,10 +200,9 @@ class FileSpecTest {
                 .addStatement("text")
                 .build(),
         )
-    }
 
     @Test
-    fun appendNamed() {
+    fun appendNamed() =
         assertThat(
             buildScriptFileSpec("com.example", "MyClass") {
                 appendNamed("format", mapOf("key1" to "value1", "key2" to "value2"))
@@ -225,10 +213,9 @@ class FileSpecTest {
                 .addNamedCode("format", mapOf("key1" to "value1", "key2" to "value2"))
                 .build(),
         )
-    }
 
     @Test
-    fun controlFlow() {
+    fun controlFlow() =
         assertThat(
             buildScriptFileSpec("com.example", "MyClass") {
                 beginControlFlow("format", "arg")
@@ -243,11 +230,17 @@ class FileSpecTest {
                 .endControlFlow()
                 .build(),
         )
-    }
 
     @Test
-    fun indent() {
-        assertEquals(
+    fun indent() =
+        assertThat(
+            buildFileSpec("com.example", "MyClass") {
+                types.addClass("MyClass") {
+                    functions.addConstructor()
+                }
+                indent = ">"
+            }.toString(),
+        ).isEqualTo(
             """
             package com.example
 
@@ -256,18 +249,18 @@ class FileSpecTest {
             }
 
             """.trimIndent(),
+        )
+
+    @Test
+    fun indentSize() =
+        assertThat(
             buildFileSpec("com.example", "MyClass") {
                 types.addClass("MyClass") {
                     functions.addConstructor()
                 }
-                indent = ">"
+                indentSize = 4
             }.toString(),
-        )
-    }
-
-    @Test
-    fun indentSize() {
-        assertEquals(
+        ).isEqualTo(
             """
             package com.example
 
@@ -276,24 +269,17 @@ class FileSpecTest {
             }
 
             """.trimIndent(),
-            buildFileSpec("com.example", "MyClass") {
-                types.addClass("MyClass") {
-                    functions.addConstructor()
-                }
-                indentSize = 4
-            }.toString(),
         )
-    }
 
     @Test
     fun `Rest of properties`() {
         buildFileSpec("com.example", "MyClass") {
-            assertEquals("com.example", packageName)
-            assertEquals("MyClass", name)
-            assertFalse(isScript)
-            assertTrue(tags.isEmpty())
-            assertTrue(defaultImports.isEmpty())
-            assertTrue(members.isEmpty())
+            assertThat(packageName).isEqualTo("com.example")
+            assertThat(name).isEqualTo("MyClass")
+            assertThat(isScript).isFalse()
+            assertThat(tags.isEmpty()).isTrue()
+            assertThat(defaultImports.isEmpty()).isTrue()
+            assertThat(members.isEmpty()).isTrue()
         }
     }
 }

@@ -17,10 +17,13 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Spy
+import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
 import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class TypeSpecCreatorTest {
     @Test
@@ -210,38 +213,50 @@ class TypeSpecCreatorTest {
     }
 }
 
+@ExtendWith(MockitoExtension::class)
 class TypeSpecHandlerTest {
+    private val typeSpecs = mutableListOf<TypeSpec>()
+
+    @Spy private val types: TypeSpecHandler =
+        object : TypeSpecHandler {
+            override fun add(type: TypeSpec) {
+                typeSpecs += type
+            }
+        }
+
+    private fun types(configuration: TypeSpecHandlerScope.() -> Unit) =
+        TypeSpecHandlerScope
+            .of(types)
+            .configuration()
+
     @Test
     fun add() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                types.addClass("Class1")
-                types.addClass(Annotation1::class.name)
-                types.addClass("Class2") { addKdoc("text2") }
-                types.addClass(Annotation2::class.name) { addKdoc("text2") }
-                types.addObject("Object1")
-                types.addObject(Annotation1::class.name)
-                types.addObject("Object2") { addKdoc("text2") }
-                types.addObject(Annotation2::class.name) { addKdoc("text2") }
-                types.addCompanionObject { addKdoc("text1") }
-                types.addInterface("Interface1")
-                types.addInterface(Annotation1::class.name)
-                types.addInterface("Interface2") { addKdoc("text2") }
-                types.addInterface(Annotation2::class.name) { addKdoc("text2") }
-                types {
-                    addEnum("Enum1")
-                    addEnum(Annotation1::class.name)
-                    addEnum("Enum2") { addEnumConstant("B") }
-                    addEnum(Annotation2::class.name) { addEnumConstant("B") }
-                    addAnonymous()
-                    addAnonymous { addKdoc("text2") }
-                    addAnnotation("Annotation1")
-                    addAnnotation(Annotation1::class.name)
-                    addAnnotation("Annotation2") { addKdoc("text2") }
-                    addAnnotation(Annotation2::class.name) { addKdoc("text2") }
-                }
-            }.typeSpecs,
-        ).containsExactly(
+        types.addClass("Class1")
+        types.addClass(Annotation1::class.name)
+        types.addClass("Class2") { addKdoc("text2") }
+        types.addClass(Annotation2::class.name) { addKdoc("text2") }
+        types.addObject("Object1")
+        types.addObject(Annotation1::class.name)
+        types.addObject("Object2") { addKdoc("text2") }
+        types.addObject(Annotation2::class.name) { addKdoc("text2") }
+        types.addCompanionObject { addKdoc("text1") }
+        types.addInterface("Interface1")
+        types.addInterface(Annotation1::class.name)
+        types.addInterface("Interface2") { addKdoc("text2") }
+        types.addInterface(Annotation2::class.name) { addKdoc("text2") }
+        types {
+            addEnum("Enum1")
+            addEnum(Annotation1::class.name)
+            addEnum("Enum2") { addEnumConstant("B") }
+            addEnum(Annotation2::class.name) { addEnumConstant("B") }
+            addAnonymous()
+            addAnonymous { addKdoc("text2") }
+            addAnnotation("Annotation1")
+            addAnnotation(Annotation1::class.name)
+            addAnnotation("Annotation2") { addKdoc("text2") }
+            addAnnotation(Annotation2::class.name) { addKdoc("text2") }
+        }
+        assertThat(typeSpecs).containsExactly(
             TypeSpec.classBuilder("Class1").build(),
             TypeSpec.classBuilder(Annotation1::class.name).build(),
             TypeSpec.classBuilder("Class2").addKdoc("text2").build(),
@@ -266,25 +281,23 @@ class TypeSpecHandlerTest {
             TypeSpec.annotationBuilder("Annotation2").addKdoc("text2").build(),
             TypeSpec.annotationBuilder(Annotation2::class.name).addKdoc("text2").build(),
         )
+        verify(types, times(23)).add(any<TypeSpec>())
     }
 
     @Test
     fun adding() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                val Class1 by types.addingClass()
-                val Class2 by types.addingClass { addKdoc("text2") }
-                val Object1 by types.addingObject()
-                val Object2 by types.addingObject { addKdoc("text2") }
-                val CompanionObject1 by types.addingCompanionObject { addKdoc("text1") }
-                val Interface1 by types.addingInterface()
-                val Interface2 by types.addingInterface { addKdoc("text2") }
-                val Enum1 by types.addingEnum()
-                val Enum2 by types.addingEnum { addEnumConstant("A") }
-                val Annotation1 by types.addingAnnotation()
-                val Annotation2 by types.addingAnnotation { addKdoc("text2") }
-            }.typeSpecs,
-        ).containsExactly(
+        val Class1 by types.addingClass()
+        val Class2 by types.addingClass { addKdoc("text2") }
+        val Object1 by types.addingObject()
+        val Object2 by types.addingObject { addKdoc("text2") }
+        val CompanionObject1 by types.addingCompanionObject { addKdoc("text1") }
+        val Interface1 by types.addingInterface()
+        val Interface2 by types.addingInterface { addKdoc("text2") }
+        val Enum1 by types.addingEnum()
+        val Enum2 by types.addingEnum { addEnumConstant("A") }
+        val Annotation1 by types.addingAnnotation()
+        val Annotation2 by types.addingAnnotation { addKdoc("text2") }
+        assertThat(typeSpecs).containsExactly(
             TypeSpec.classBuilder("Class1").build(),
             TypeSpec.classBuilder("Class2").addKdoc("text2").build(),
             TypeSpec.objectBuilder("Object1").build(),
@@ -297,24 +310,22 @@ class TypeSpecHandlerTest {
             TypeSpec.annotationBuilder("Annotation1").build(),
             TypeSpec.annotationBuilder("Annotation2").addKdoc("text2").build(),
         )
+        verify(types, times(11)).add(any<TypeSpec>())
     }
 
     @Test
     fun invoke() {
-        assertThat(
-            buildClassTypeSpec("HelloWorld") {
-                types { "HelloWorld" { addModifiers(FINAL) } }
-            }.typeSpecs
-                .first(),
-        ).isEqualTo(
+        types { "HelloWorld" { addModifiers(FINAL) } }
+        assertThat(typeSpecs).containsExactly(
             TypeSpec.classBuilder("HelloWorld").addModifiers(FINAL).build(),
         )
+        verify(types, times(1)).add(any<TypeSpec>())
     }
 }
 
 class TypeSpecBuilderTest {
     @Test
-    fun annotations() {
+    fun annotations() =
         assertThat(
             buildClassTypeSpec("MyClass") {
                 annotations.add(Annotation1::class)
@@ -329,10 +340,9 @@ class TypeSpecBuilderTest {
                 .addAnnotation(Annotation2::class)
                 .build(),
         )
-    }
 
     @Test
-    fun properties() {
+    fun properties() =
         assertThat(
             buildClassTypeSpec("MyClass") {
                 properties.add("field1", INT, PUBLIC)
@@ -347,10 +357,9 @@ class TypeSpecBuilderTest {
                 .addProperty("field2", CHAR, KModifier.PRIVATE)
                 .build(),
         )
-    }
 
     @Test
-    fun functions() {
+    fun functions() =
         assertThat(
             buildClassTypeSpec("MyClass") {
                 functions.add("function1")
@@ -365,10 +374,9 @@ class TypeSpecBuilderTest {
                 .addFunction(FunSpec.builder("function2").build())
                 .build(),
         )
-    }
 
     @Test
-    fun types() {
+    fun types() =
         assertThat(
             buildClassTypeSpec("MyClass") {
                 types.addClass(Class1::class.name)
@@ -383,14 +391,13 @@ class TypeSpecBuilderTest {
                 .addType(TypeSpec.classBuilder(Class2::class.asClassName()).build())
                 .build(),
         )
-    }
 
     @Test
-    fun initializerIndex() {
+    fun initializerIndex() =
         assertThat(
             buildClassTypeSpec("class1") {
                 initializerIndex = 10
-                assertEquals(10, initializerIndex)
+                assertThat(initializerIndex).isEqualTo(10)
             },
         ).isEqualTo(
             TypeSpec
@@ -398,15 +405,14 @@ class TypeSpecBuilderTest {
                 .apply { initializerIndex = 10 }
                 .build(),
         )
-    }
 
     @Test
-    fun addKdoc() {
+    fun addKdoc() =
         assertThat(
             buildClassTypeSpec("class1") {
                 addKdoc("kdoc1")
                 addKdoc(codeBlockOf("kdoc2"))
-                assertFalse(kdoc.isEmpty())
+                assertThat(kdoc.isEmpty()).isFalse()
             },
         ).isEqualTo(
             TypeSpec
@@ -415,10 +421,9 @@ class TypeSpecBuilderTest {
                 .addKdoc(codeBlockOf("kdoc2"))
                 .build(),
         )
-    }
 
     @Test
-    fun addModifiers() {
+    fun addModifiers() =
         assertThat(
             buildClassTypeSpec("class1") {
                 addModifiers(PUBLIC)
@@ -431,17 +436,16 @@ class TypeSpecBuilderTest {
                 .addModifiers(listOf(KModifier.FINAL, KModifier.CONST))
                 .build(),
         )
-    }
 
     @Test
-    fun addTypeVariables() {
+    fun addTypeVariables() =
         assertThat(
             buildClassTypeSpec("class1") {
                 addTypeVariables(
                     "typeVar1".genericsBy(Annotation1::class),
                     "typeVar2".genericsBy(Annotation2::class),
                 )
-                assertFalse(typeVariables.isEmpty())
+                assertThat(typeVariables.isEmpty()).isFalse()
             },
         ).isEqualTo(
             TypeSpec
@@ -453,10 +457,9 @@ class TypeSpecBuilderTest {
                     ),
                 ).build(),
         )
-    }
 
     @Test
-    fun primaryConstructorFunction() {
+    fun primaryConstructorFunction() =
         assertThat(
             buildClassTypeSpec("class1") {
                 setPrimaryConstructor { parameters.add<Parameter1>("parameter1") }
@@ -471,7 +474,6 @@ class TypeSpecBuilderTest {
                         .build(),
                 ).build(),
         )
-    }
 
     @Test
     fun superclass() {
@@ -498,7 +500,7 @@ class TypeSpecBuilderTest {
     }
 
     @Test
-    fun addSetSuperclassConstructorParameter() {
+    fun addSetSuperclassConstructorParameter() =
         assertThat(
             buildClassTypeSpec("class1") { addSuperclassConstructorParameter("format", "arg") },
         ).isEqualTo(
@@ -507,7 +509,6 @@ class TypeSpecBuilderTest {
                 .addSuperclassConstructorParameter("format", "arg")
                 .build(),
         )
-    }
 
     @Test
     fun superinterfaces() {
@@ -535,7 +536,7 @@ class TypeSpecBuilderTest {
     }
 
     @Test
-    fun addEnumConstants() {
+    fun addEnumConstants() =
         assertThat(buildEnumTypeSpec("class1") { addEnumConstant("VALUE") })
             .isEqualTo(
                 TypeSpec
@@ -543,10 +544,9 @@ class TypeSpecBuilderTest {
                     .addEnumConstant("VALUE")
                     .build(),
             )
-    }
 
     @Test
-    fun addInitializerBlock() {
+    fun addInitializerBlock() =
         assertThat(
             buildClassTypeSpec("class1") {
                 addInitializerBlock(codeBlockOf("some code"))
@@ -559,15 +559,14 @@ class TypeSpecBuilderTest {
                 .addInitializerBlock(codeBlockOf("format", "arg"))
                 .build(),
         )
-    }
 
     @Test
     fun `Rest of properties`() {
         buildClassTypeSpec("class1") {
-            assertTrue(tags.isEmpty())
-            assertTrue(originatingElements.isEmpty())
-            assertTrue(superinterfaces.isEmpty())
-            assertTrue(superclassConstructorParameters.isEmpty())
+            assertThat(tags.isEmpty()).isTrue()
+            assertThat(originatingElements.isEmpty()).isTrue()
+            assertThat(superinterfaces.isEmpty()).isTrue()
+            assertThat(superclassConstructorParameters.isEmpty()).isTrue()
         }
     }
 }

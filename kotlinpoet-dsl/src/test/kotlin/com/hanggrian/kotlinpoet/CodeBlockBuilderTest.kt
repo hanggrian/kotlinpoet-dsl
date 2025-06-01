@@ -3,32 +3,29 @@ package com.hanggrian.kotlinpoet
 import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CodeBlock
 import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlin.test.assertFails
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class CodeBlockBuilderTest {
     @Test
     fun isEmpty() {
         buildCodeBlock {
-            assertTrue(isEmpty())
+            assertThat(isEmpty()).isTrue()
             append("text")
-            assertFalse(isEmpty())
+            assertThat(isEmpty()).isFalse()
         }
     }
 
     @Test
     fun isNotEmpty() {
         buildCodeBlock {
-            assertFalse(isNotEmpty())
+            assertThat(isNotEmpty()).isFalse()
             append("text")
-            assertTrue(isNotEmpty())
+            assertThat(isNotEmpty()).isTrue()
         }
     }
 
     @Test
-    fun controlFlow() {
+    fun controlFlow() =
         assertThat(
             buildCodeBlock {
                 beginControlFlow("format", "arg")
@@ -43,10 +40,9 @@ class CodeBlockBuilderTest {
                 .endControlFlow()
                 .build(),
         )
-    }
 
     @Test
-    fun append() {
+    fun append() =
         assertThat(
             buildCodeBlock {
                 append("text")
@@ -59,10 +55,9 @@ class CodeBlockBuilderTest {
                 .add(CodeBlock.of("some code"))
                 .build(),
         )
-    }
 
     @Test
-    fun appendLine() {
+    fun appendLine() =
         assertThat(
             buildCodeBlock {
                 appendLine()
@@ -77,20 +72,19 @@ class CodeBlockBuilderTest {
                 .addStatement("some code")
                 .build(),
         )
-    }
 
     @Test
     fun clear() {
         buildCodeBlock {
-            assertFalse(isNotEmpty())
+            assertThat(isNotEmpty()).isFalse()
             append("text")
             clear()
-            assertTrue(isEmpty())
+            assertThat(isEmpty()).isTrue()
         }
     }
 
     @Test
-    fun `Simple example`() {
+    fun `Simple example`() =
         assertThat(
             buildCodeBlock {
                 appendLine("int total = 0")
@@ -107,13 +101,13 @@ class CodeBlockBuilderTest {
                 .endControlFlow()
                 .build(),
         )
-    }
 
     @Test
     fun `Escape special characters`() {
         assertFails { codeBlockOf("100%") }
-        assertEquals("100%", "${codeBlockOf("100%%")}")
-        assertEquals("100%S", "${codeBlockOf("100%%S")}")
-        assertEquals("100%S%java.lang.System", "${codeBlockOf("100%%S%%%T", System::class)}")
+        assertThat("${codeBlockOf("100%%")}").isEqualTo("100%")
+        assertThat("${codeBlockOf("100%%S")}").isEqualTo("100%S")
+        assertThat("${codeBlockOf("100%%S%%%T", System::class)}")
+            .isEqualTo("100%S%java.lang.System")
     }
 }

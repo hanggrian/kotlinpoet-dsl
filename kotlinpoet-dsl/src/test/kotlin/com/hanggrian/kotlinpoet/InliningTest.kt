@@ -1,8 +1,8 @@
 package com.hanggrian.kotlinpoet
 
 /**
- * Function without inline should not be able to assign final global variable. For example, code
- * below should fail.
+ * Function without inline should not be able to assign a final global variable. For example, the
+ * code below should fail.
  *
  * ```
  * val HelloWorld by types.addingClass {
@@ -11,7 +11,7 @@ package com.hanggrian.kotlinpoet
  * ```
  */
 class InliningTest {
-    val variable: Int
+    private val variable: Int
 
     init {
         buildFileSpec("com.example", "HelloWorld") {

@@ -20,19 +20,22 @@ import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.asClassName
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Spy
+import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
 import kotlin.test.Test
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class PropertySpecCreatorTest {
     @Test
-    fun of() {
+    fun of() =
         assertThat(propertySpecOf("myField", INT, PUBLIC))
             .isEqualTo(PropertySpec.builder("myField", INT, KModifier.PUBLIC).build())
-    }
 
     @Test
-    fun build() {
+    fun build() =
         assertThat(
             buildPropertySpec("myField", INT, PUBLIC) {
                 setInitializer("value1")
@@ -43,25 +46,36 @@ class PropertySpecCreatorTest {
                 .initializer("value1")
                 .build(),
         )
-    }
 }
 
+@ExtendWith(MockitoExtension::class)
 class PropertySpecHandlerTest {
+    private val propertySpecs = mutableListOf<PropertySpec>()
+
+    @Spy private val properties: PropertySpecHandler =
+        object : PropertySpecHandler {
+            override fun add(property: PropertySpec) {
+                propertySpecs += property
+            }
+        }
+
+    private fun properties(configuration: PropertySpecHandlerScope.() -> Unit) =
+        PropertySpecHandlerScope
+            .of(properties)
+            .configuration()
+
     @Test
     fun add() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                properties.add("property1", Property1::class.name)
-                properties.add("property2", Property2::class.java)
-                properties.add("property3", Property3::class)
-                properties.add<Property4>("property4")
-                properties {
-                    add("property5", Property5::class.name) { setInitializer("value5") }
-                    add("property6", Property6::class.java) { setInitializer("value6") }
-                    add("property7", Property7::class) { setInitializer("value7") }
-                }
-            }.propertySpecs,
-        ).containsExactly(
+        properties.add("property1", Property1::class.name)
+        properties.add("property2", Property2::class.java)
+        properties.add("property3", Property3::class)
+        properties.add<Property4>("property4")
+        properties {
+            add("property5", Property5::class.name) { setInitializer("value5") }
+            add("property6", Property6::class.java) { setInitializer("value6") }
+            add("property7", Property7::class) { setInitializer("value7") }
+        }
+        assertThat(propertySpecs).containsExactly(
             PropertySpec.builder("property1", Property1::class).build(),
             PropertySpec.builder("property2", Property2::class).build(),
             PropertySpec.builder("property3", Property3::class).build(),
@@ -70,24 +84,22 @@ class PropertySpecHandlerTest {
             PropertySpec.builder("property6", Property6::class).initializer("value6").build(),
             PropertySpec.builder("property7", Property7::class).initializer("value7").build(),
         )
+        verify(properties, times(7)).add(any<PropertySpec>())
     }
 
     @Test
     fun adding() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                val property1 by properties.adding(Property1::class.name)
-                val property2 by properties.adding(Property2::class.java)
-                val property3 by properties.adding(Property3::class)
-                val property4 by properties.adding(Property4::class.name) {
-                    setInitializer("value4")
-                }
-                val property5 by properties.adding(Property5::class.java) {
-                    setInitializer("value5")
-                }
-                val property6 by properties.adding(Property6::class) { setInitializer("value6") }
-            }.propertySpecs,
-        ).containsExactly(
+        val property1 by properties.adding(Property1::class.name)
+        val property2 by properties.adding(Property2::class.java)
+        val property3 by properties.adding(Property3::class)
+        val property4 by properties.adding(Property4::class.name) {
+            setInitializer("value4")
+        }
+        val property5 by properties.adding(Property5::class.java) {
+            setInitializer("value5")
+        }
+        val property6 by properties.adding(Property6::class) { setInitializer("value6") }
+        assertThat(propertySpecs).containsExactly(
             PropertySpec.builder("property1", Property1::class).build(),
             PropertySpec.builder("property2", Property2::class).build(),
             PropertySpec.builder("property3", Property3::class).build(),
@@ -95,29 +107,28 @@ class PropertySpecHandlerTest {
             PropertySpec.builder("property5", Property5::class).initializer("value5").build(),
             PropertySpec.builder("property6", Property6::class).initializer("value6").build(),
         )
+        verify(properties, times(6)).add(any<PropertySpec>())
     }
 
     @Test
     fun invoke() {
-        assertThat(
-            buildClassTypeSpec("test") {
-                properties {
-                    "property1"(Property1::class.name) { setInitializer("value1") }
-                    "property2"(Property2::class.java) { setInitializer("value2") }
-                    "property3"(Property3::class) { setInitializer("value3") }
-                }
-            }.propertySpecs,
-        ).containsExactly(
+        properties {
+            "property1"(Property1::class.name) { setInitializer("value1") }
+            "property2"(Property2::class.java) { setInitializer("value2") }
+            "property3"(Property3::class) { setInitializer("value3") }
+        }
+        assertThat(propertySpecs).containsExactly(
             PropertySpec.builder("property1", Property1::class).initializer("value1").build(),
             PropertySpec.builder("property2", Property2::class).initializer("value2").build(),
             PropertySpec.builder("property3", Property3::class).initializer("value3").build(),
         )
+        verify(properties, times(3)).add(any<PropertySpec>())
     }
 }
 
 class PropertySpecBuilderTest {
     @Test
-    fun annotations() {
+    fun annotations() =
         assertThat(
             buildPropertySpec("myField", INT, PUBLIC) {
                 annotations.add(Annotation1::class)
@@ -132,11 +143,10 @@ class PropertySpecBuilderTest {
                 .addAnnotation(Annotation2::class)
                 .build(),
         )
-    }
 
     @Test
     @ExperimentalKotlinPoetApi
-    fun contextSetReceiverTypes() {
+    fun contextSetReceiverTypes() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) {
                 contextReceiverTypes += Class1::class.name
@@ -147,24 +157,22 @@ class PropertySpecBuilderTest {
                 .contextReceivers(Class1::class.name)
                 .build(),
         )
-    }
 
     @Test
-    fun isMutable() {
+    fun isMutable() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) { isMutable = true },
         ).isEqualTo(
             PropertySpec.builder("property1", Property1::class).mutable().build(),
         )
-    }
 
     @Test
-    fun addModifiers() {
+    fun addModifiers() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) {
                 addModifiers(PUBLIC)
                 modifiers += listOf(FINAL, CONST)
-                assertFalse(modifiers.isEmpty())
+                assertThat(modifiers.isEmpty()).isFalse()
             },
         ).isEqualTo(
             PropertySpec
@@ -173,17 +181,16 @@ class PropertySpecBuilderTest {
                 .addModifiers(listOf(KModifier.FINAL, KModifier.CONST))
                 .build(),
         )
-    }
 
     @Test
-    fun addTypeVariables() {
+    fun addTypeVariables() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) {
                 addTypeVariables(
                     "typeVar1".genericsBy(Annotation1::class),
                     "typeVar2".genericsBy(Annotation2::class),
                 )
-                assertFalse(typeVariables.isEmpty())
+                assertThat(typeVariables.isEmpty()).isFalse()
             },
         ).isEqualTo(
             PropertySpec
@@ -195,7 +202,6 @@ class PropertySpecBuilderTest {
                     ),
                 ).build(),
         )
-    }
 
     @Test
     fun initializer() {
@@ -236,7 +242,7 @@ class PropertySpecBuilderTest {
     }
 
     @Test
-    fun getter() {
+    fun getter() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) {
                 setGetter { append("return something") }
@@ -247,10 +253,9 @@ class PropertySpecBuilderTest {
                 .getter(FunSpec.getterBuilder().addCode("return something").build())
                 .build(),
         )
-    }
 
     @Test
-    fun setter() {
+    fun setter() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) {
                 isMutable = true
@@ -271,7 +276,6 @@ class PropertySpecBuilderTest {
                         .build(),
                 ).build(),
         )
-    }
 
     @Test
     fun receiver() {
@@ -308,12 +312,12 @@ class PropertySpecBuilderTest {
     }
 
     @Test
-    fun addKdoc() {
+    fun addKdoc() =
         assertThat(
             buildPropertySpec("property1", Property1::class.name) {
                 addKdoc("kdoc1")
                 addKdoc(codeBlockOf("kdoc2"))
-                assertFalse(kdoc.isEmpty())
+                assertThat(kdoc.isEmpty()).isFalse()
             },
         ).isEqualTo(
             PropertySpec
@@ -322,13 +326,12 @@ class PropertySpecBuilderTest {
                 .addKdoc(CodeBlock.of("kdoc2"))
                 .build(),
         )
-    }
 
     @Test
     fun `Rest of properties`() {
         buildPropertySpec("property1", Property1::class.name) {
-            assertTrue(tags.isEmpty())
-            assertTrue(originatingElements.isEmpty())
+            assertThat(tags.isEmpty()).isTrue()
+            assertThat(originatingElements.isEmpty()).isTrue()
         }
     }
 }

@@ -1,33 +1,26 @@
 package com.hanggrian.kotlinpoet
 
+import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.CHAR_SEQUENCE
 import org.jetbrains.annotations.NotNull
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class WildcardTypeNameTest {
     @Test
-    fun nullable() {
-        assertEquals("out kotlin.CharSequence?", "${CHAR_SEQUENCE.producer.nullable()}")
-    }
+    fun nullable() =
+        assertThat("${CHAR_SEQUENCE.producer.nullable()}").isEqualTo("out kotlin.CharSequence?")
 
     @Test
-    fun annotate() {
-        assertEquals(
-            "@org.jetbrains.annotations.NotNull out kotlin.CharSequence",
+    fun annotate() =
+        assertThat(
             "${
                 CHAR_SEQUENCE.producer.annotate(annotationSpecOf(NotNull::class.name))
             }",
-        )
-    }
+        ).isEqualTo("@org.jetbrains.annotations.NotNull out kotlin.CharSequence")
 
     @Test
-    fun producer() {
-        assertEquals("out kotlin.CharSequence", "${CHAR_SEQUENCE.producer}")
-    }
+    fun producer() = assertThat("${CHAR_SEQUENCE.producer}").isEqualTo("out kotlin.CharSequence")
 
     @Test
-    fun consumer() {
-        assertEquals("in kotlin.CharSequence", "${CHAR_SEQUENCE.consumer}")
-    }
+    fun consumer() = assertThat("${CHAR_SEQUENCE.consumer}").isEqualTo("in kotlin.CharSequence")
 }

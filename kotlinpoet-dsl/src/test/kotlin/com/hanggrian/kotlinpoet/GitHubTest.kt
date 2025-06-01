@@ -14,13 +14,12 @@ import com.squareup.kotlinpoet.asClassName
 import java.io.File
 import java.util.Date
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 /** From `https://square.github.io/kotlinpoet/`. */
 @Suppress("ktlint:standard:property-naming")
 class GitHubTest {
     @Test
-    fun `Example`() {
+    fun `Example`() =
         assertThat(
             buildFileSpec("com.example.helloworld", "") {
                 val Greeter by types.addingClass {
@@ -60,7 +59,6 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 
     @Test
     fun `Code & Control Flow`() {
@@ -107,7 +105,7 @@ class GitHubTest {
     }
 
     @Test
-    fun `$S for Strings`() {
+    fun `$S for Strings`() =
         assertThat(
             buildClassTypeSpec("HelloWorld") {
                 functions {
@@ -137,7 +135,6 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 
     @Test
     fun `%P for String Templates`() {
@@ -391,7 +388,7 @@ class GitHubTest {
     }
 
     @Test
-    fun `$L for Literals`() {
+    fun `$L for Literals`() =
         assertThat(
             buildFunSpec("computeRange") {
                 returns = INT
@@ -413,7 +410,6 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 
     @Test
     fun `Code block format strings`() {
@@ -553,7 +549,7 @@ class GitHubTest {
     }
 
     @Test
-    fun `Parameters`() {
+    fun `Parameters`() =
         assertThat(
             buildFunSpec("welcomeOverlords") {
                 parameters {
@@ -568,7 +564,6 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 
     @Test
     fun `Properties`() {
@@ -622,7 +617,7 @@ class GitHubTest {
     }
 
     @Test
-    fun `Interfaces`() {
+    fun `Interfaces`() =
         assertThat(
             buildInterfaceTypeSpec("HelloWorld") {
                 properties.add<String>("buzz")
@@ -638,7 +633,6 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 
     @Test
     fun `Enums`() {
@@ -702,7 +696,7 @@ class GitHubTest {
     }
 
     @Test
-    fun `Anonymous Inner Classes`() {
+    fun `Anonymous Inner Classes`() =
         assertThat(
             buildFunSpec("sortByLength") {
                 parameters.add("strings", List::class.parameterizedBy(String::class))
@@ -733,7 +727,6 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 
     @Test
     fun `Annotations`() {
@@ -747,7 +740,7 @@ class GitHubTest {
             }.toString(),
         ).isEqualTo(
             """
-            @org.junit.Test
+            @org.junit.jupiter.api.Test
             public fun `test string equality`() {
               assertThat("foo").isEqualTo("foo")
             }
@@ -777,24 +770,8 @@ class GitHubTest {
     }
 
     @Test
-    fun `Type Aliases`() {
-        assertEquals(
-            """
-            package com.example
-
-            import java.io.File
-            import kotlin.Boolean
-            import kotlin.String
-            import kotlin.collections.Map
-            import kotlin.collections.Set
-
-            public typealias Word = String
-
-            public typealias FileTable<K> = Map<K, Set<File>>
-
-            public typealias Predicate<T> = (T) -> Boolean
-
-            """.trimIndent(),
+    fun `Type Aliases`() =
+        assertThat(
             buildFileSpec("com.example", "HelloWorld") {
                 val k = "K".generics
                 val t = "T".generics
@@ -812,11 +789,27 @@ class GitHubTest {
                     ) { typeVariables.add(t) }
                 }
             }.toString(),
+        ).isEqualTo(
+            """
+            package com.example
+
+            import java.io.File
+            import kotlin.Boolean
+            import kotlin.String
+            import kotlin.collections.Map
+            import kotlin.collections.Set
+
+            public typealias Word = String
+
+            public typealias FileTable<K> = Map<K, Set<File>>
+
+            public typealias Predicate<T> = (T) -> Boolean
+
+            """.trimIndent(),
         )
-    }
 
     @Test
-    fun `Callable References`() {
+    fun `Callable References`() =
         assertThat(
             buildFunSpec("factories") {
                 val helloClass = ClassName("com.example.hello", "Hello")
@@ -837,5 +830,4 @@ class GitHubTest {
 
             """.trimIndent(),
         )
-    }
 }

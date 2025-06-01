@@ -15,10 +15,13 @@ import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.STRING
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Spy
+import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
 import kotlin.test.Test
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 class AnnotationSpecCreatorTest {
     @Test
@@ -54,26 +57,38 @@ class AnnotationSpecCreatorTest {
     }
 }
 
+@ExtendWith(MockitoExtension::class)
 class AnnotationSpecHandlerTest {
+    private val annotationSpecs = mutableListOf<AnnotationSpec>()
+
+    @Spy private val annotations: AnnotationSpecHandler =
+        object : AnnotationSpecHandler {
+            override fun add(annotation: AnnotationSpec) {
+                annotationSpecs += annotation
+            }
+        }
+
+    private fun annotations(configuration: AnnotationSpecHandlerScope.() -> Unit) =
+        AnnotationSpecHandlerScope
+            .of(annotations)
+            .configuration()
+
     @Test
     fun add() {
-        assertThat(
-            buildPropertySpec("test", STRING) {
-                annotations.add(Annotation1::class.name)
-                annotations.add(Annotation2::class.name.parameterizedBy(Parameter2::class.name))
-                annotations.add(Annotation3::class.java)
-                annotations.add(Annotation4::class)
-                annotations.add<Annotation5>()
-                annotations {
-                    add(Annotation6::class.name) { addMember("name6", "value6") }
-                    add(Annotation7::class.name.parameterizedBy(Parameter7::class.name)) {
-                        addMember("name7", "value7")
-                    }
-                    add(Annotation8::class.java) { addMember("name8", "value8") }
-                    add(Annotation9::class) { addMember("name9", "value9") }
-                }
-            }.annotations,
-        ).containsExactly(
+        annotations.add(Annotation1::class.name)
+        annotations.add(Annotation2::class.name.parameterizedBy(Parameter2::class.name))
+        annotations.add(Annotation3::class.java)
+        annotations.add(Annotation4::class)
+        annotations.add<Annotation5>()
+        annotations {
+            add(Annotation6::class.name) { addMember("name6", "value6") }
+            add(Annotation7::class.name.parameterizedBy(Parameter7::class.name)) {
+                addMember("name7", "value7")
+            }
+            add(Annotation8::class.java) { addMember("name8", "value8") }
+            add(Annotation9::class) { addMember("name9", "value9") }
+        }
+        assertThat(annotationSpecs).containsExactly(
             AnnotationSpec.builder(Annotation1::class).build(),
             AnnotationSpec
                 .builder(Annotation2::class.name.parameterizedBy(Parameter2::class.name))
@@ -89,22 +104,20 @@ class AnnotationSpecHandlerTest {
             AnnotationSpec.builder(Annotation8::class).addMember("name8", "value8").build(),
             AnnotationSpec.builder(Annotation9::class).addMember("name9", "value9").build(),
         )
+        verify(annotations, times(9)).add(any<AnnotationSpec>())
     }
 
     @Test
     fun invoke() {
-        assertThat(
-            buildParameterSpec("test", STRING) {
-                annotations {
-                    Annotation1::class.name { addMember("name1", "value1") }
-                    (Annotation2::class.name.parameterizedBy(Parameter2::class.name)) {
-                        addMember("name2", "value2")
-                    }
-                    Annotation3::class.java { addMember("name3", "value3") }
-                    Annotation4::class { addMember("name4", "value4") }
-                }
-            }.annotations,
-        ).containsExactly(
+        annotations {
+            Annotation1::class.name { addMember("name1", "value1") }
+            (Annotation2::class.name.parameterizedBy(Parameter2::class.name)) {
+                addMember("name2", "value2")
+            }
+            Annotation3::class.java { addMember("name3", "value3") }
+            Annotation4::class { addMember("name4", "value4") }
+        }
+        assertThat(annotationSpecs).containsExactly(
             AnnotationSpec.builder(Annotation1::class).addMember("name1", "value1").build(),
             AnnotationSpec
                 .builder(Annotation2::class.name.parameterizedBy(Parameter2::class.name))
@@ -113,16 +126,17 @@ class AnnotationSpecHandlerTest {
             AnnotationSpec.builder(Annotation3::class).addMember("name3", "value3").build(),
             AnnotationSpec.builder(Annotation4::class).addMember("name4", "value4").build(),
         )
+        verify(annotations, times(4)).add(any<AnnotationSpec>())
     }
 }
 
 class AnnotationSpecBuilderTest {
     @Test
-    fun addMember() {
+    fun addMember() =
         assertThat(
             buildAnnotationSpec(Annotation1::class.name) {
                 addMember("member1", "value1")
-                assertFalse(members.isEmpty())
+                assertThat(members.isEmpty()).isFalse()
             },
         ).isEqualTo(
             AnnotationSpec
@@ -130,10 +144,9 @@ class AnnotationSpecBuilderTest {
                 .addMember("member1", "value1")
                 .build(),
         )
-    }
 
     @Test
-    fun useSiteTarget() {
+    fun useSiteTarget() =
         assertThat(
             buildAnnotationSpec(Annotation1::class.name) { useSiteTarget = ANNOTATION_FILE },
         ).isEqualTo(
@@ -142,12 +155,11 @@ class AnnotationSpecBuilderTest {
                 .useSiteTarget(AnnotationSpec.UseSiteTarget.FILE)
                 .build(),
         )
-    }
 
     @Test
     fun `Rest of properties`() {
         buildAnnotationSpec(Annotation1::class.name) {
-            assertTrue(tags.isEmpty())
+            assertThat(tags.isEmpty()).isTrue()
         }
     }
 }

@@ -13,7 +13,7 @@ jobs:
     executor: linux
     steps:
       - checkout
-      - run: ./gradlew test koverXmlReport
+      - run: ./gradlew check koverXmlReport
       - codecov/upload
 
 workflows:

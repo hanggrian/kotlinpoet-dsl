@@ -6,12 +6,13 @@ val releaseDescription: String by project
 val releaseUrl: String by project
 
 plugins {
+    alias(libs.plugins.dokka)
     alias(libs.plugins.pages)
     alias(libs.plugins.git.publish)
 }
 
 pages {
-    resources.from("src", "$rootDir/$releaseArtifact/build/dokka/")
+    resources.from("src", layout.buildDirectory.dir("dokka"))
     styles.add("styles/prism-tomorrow.css")
     scripts.addAll(
         "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
@@ -29,17 +30,20 @@ pages {
     }
 }
 
+dokka.dokkaPublications.html {
+    outputDirectory.set(layout.buildDirectory.dir("dokka/dokka/"))
+}
+
+dependencies {
+    dokka(project(":$releaseArtifact"))
+}
+
 gitPublish {
     repoUri.set("git@github.com:$developerId/$releaseArtifact.git")
     branch.set("gh-pages")
     contents.from(pages.outputDirectory)
 }
 
-tasks {
-    register(LifecycleBasePlugin.CLEAN_TASK_NAME) {
-        delete(layout.buildDirectory)
-    }
-    deployResources {
-        dependsOn(":$releaseArtifact:dokkaHtml")
-    }
+tasks.deployResources {
+    dependsOn(tasks.dokkaGeneratePublicationHtml)
 }

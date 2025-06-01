@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     kotlin("jvm") version libs.versions.kotlin
     alias(libs.plugins.dokka)
+    alias(libs.plugins.dokka.javadoc)
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.maven.publish)
@@ -14,9 +15,7 @@ plugins {
 val developerId: String by project
 val developerName: String by project
 val developerUrl: String by project
-val releaseGroup: String by project
 val releaseArtifact: String by project
-val releaseVersion: String by project
 val releaseDescription: String by project
 val releaseUrl: String by project
 
@@ -67,8 +66,11 @@ dependencies {
 
     api(libs.kotlinpoet)
 
-    testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
-    testImplementation(libs.truth)
+    testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.bundles.junit5)
+
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks {
@@ -81,7 +83,7 @@ tasks {
         kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
 
-    dokkaHtml {
-        outputDirectory.set(layout.buildDirectory.dir("dokka/dokka/"))
+    test {
+        useJUnitPlatform()
     }
 }

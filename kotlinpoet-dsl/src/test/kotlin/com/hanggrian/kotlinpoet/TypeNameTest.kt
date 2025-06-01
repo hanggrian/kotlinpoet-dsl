@@ -1,23 +1,19 @@
 package com.hanggrian.kotlinpoet
 
+import com.google.common.truth.Truth.assertThat
 import com.squareup.kotlinpoet.asTypeName
 import org.jetbrains.annotations.NotNull
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class TypeNameTest {
     @Test
-    fun nullable() {
-        assertEquals("kotlin.Int?", "${Int::class.name.nullable()}")
-    }
+    fun nullable() = assertThat("${Int::class.name.nullable()}").isEqualTo("kotlin.Int?")
 
     @Test
-    fun annotate() {
-        assertEquals(
-            "@org.jetbrains.annotations.NotNull kotlin.Int",
+    fun annotate() =
+        assertThat(
             "${
                 Int::class.asTypeName().annotate(annotationSpecOf(NotNull::class.name))
             }",
-        )
-    }
+        ).isEqualTo("@org.jetbrains.annotations.NotNull kotlin.Int")
 }
