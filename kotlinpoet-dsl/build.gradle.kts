@@ -1,7 +1,18 @@
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+val developerId: String by project
+val developerName: String by project
+val developerUrl: String by project
+val releaseArtifact: String by project
+val releaseDescription: String by project
+val releaseUrl: String by project
+
+val javaCompileVersion: JavaLanguageVersion =
+    JavaLanguageVersion.of(libs.versions.java.compile.get())
+val javaSupportVersion: JavaLanguageVersion =
+    JavaLanguageVersion.of(libs.versions.java.support.get())
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin
@@ -12,26 +23,16 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
-val developerId: String by project
-val developerName: String by project
-val developerUrl: String by project
-val releaseArtifact: String by project
-val releaseDescription: String by project
-val releaseUrl: String by project
-
-val jdkVersion = JavaLanguageVersion.of(libs.versions.jdk.get())
-val jreVersion = JavaLanguageVersion.of(libs.versions.jre.get())
-
 kotlin {
-    jvmToolchain(jdkVersion.asInt())
+    jvmToolchain(javaCompileVersion.asInt())
     explicitApi()
 }
 
 ktlint.version.set(libs.versions.ktlint.get())
 
 mavenPublishing {
-    configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")))
+    publishToMavenCentral()
     signAllPublications()
     pom {
         name.set(project.name)
@@ -75,12 +76,14 @@ dependencies {
 
 tasks {
     compileJava {
-        options.release = jreVersion.asInt()
+        options.release = javaSupportVersion.asInt()
     }
     compileKotlin {
-        compilerOptions.jvmTarget
-            .set(JvmTarget.fromTarget(JavaVersion.toVersion(jreVersion).toString()))
-        kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        compilerOptions {
+            jvmTarget
+                .set(JvmTarget.fromTarget(JavaVersion.toVersion(javaSupportVersion).toString()))
+            freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+        }
     }
 
     test {

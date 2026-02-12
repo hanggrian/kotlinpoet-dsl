@@ -94,10 +94,21 @@ public inline fun PropertySpecHandler.add(
         .also(::add)
 }
 
+/** Convenient method to insert [PropertySpec] using reified type. */
+public inline fun <reified T> PropertySpecHandler.add(
+    name: String,
+    vararg modifiers: KModifier,
+): PropertySpec =
+    PropertySpec
+        .builder(name, T::class, *modifiers)
+        .build()
+        .also(::add)
+
 /**
  * Property delegate for inserting new [PropertySpec] by populating newly created
  * [PropertySpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun PropertySpecHandler.adding(
     type: TypeName,
     vararg modifiers: KModifier,
@@ -116,6 +127,7 @@ public fun PropertySpecHandler.adding(
  * Property delegate for inserting new [PropertySpec] by populating newly created
  * [PropertySpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun PropertySpecHandler.adding(
     type: Type,
     vararg modifiers: KModifier,
@@ -134,6 +146,7 @@ public fun PropertySpecHandler.adding(
  * Property delegate for inserting new [PropertySpec] by populating newly created
  * [PropertySpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun PropertySpecHandler.adding(
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -147,16 +160,6 @@ public fun PropertySpecHandler.adding(
             .also(::add)
     }
 }
-
-/** Convenient method to insert [PropertySpec] using reified type. */
-public inline fun <reified T> PropertySpecHandler.add(
-    name: String,
-    vararg modifiers: KModifier,
-): PropertySpec =
-    PropertySpec
-        .builder(name, T::class, *modifiers)
-        .build()
-        .also(::add)
 
 /** Responsible for managing a set of [PropertySpec] instances. */
 public interface PropertySpecHandler {

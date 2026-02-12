@@ -157,6 +157,7 @@ public inline fun PropertySpecBuilder.setSetter(configuration: FunSpecBuilder.()
  * Property delegate for inserting new [FunSpec] by populating newly created [FunSpecBuilder]
  * using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun FunSpecHandler.adding(
     configuration: FunSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<FunSpec> {
@@ -202,6 +203,7 @@ public open class FunSpecHandlerScope private constructor(handler: FunSpecHandle
 
 /** Wrapper of [FunSpec.Builder], providing DSL support as a replacement to Java builder. */
 @KotlinPoetDsl
+@Suppress("ktlint:rulebook:overload-function-position")
 public class FunSpecBuilder(private val nativeBuilder: FunSpec.Builder) {
     public val annotations: AnnotationSpecHandler =
         object : AnnotationSpecHandler {

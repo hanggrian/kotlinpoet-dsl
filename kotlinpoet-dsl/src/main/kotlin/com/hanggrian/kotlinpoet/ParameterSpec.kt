@@ -90,10 +90,21 @@ public inline fun ParameterSpecHandler.add(
         .also(::add)
 }
 
+/** Convenient method to insert [ParameterSpec] using reified type. */
+public inline fun <reified T> ParameterSpecHandler.add(
+    name: String,
+    vararg modifiers: KModifier,
+): ParameterSpec =
+    ParameterSpec
+        .builder(name, T::class, *modifiers)
+        .build()
+        .also(::add)
+
 /**
  * Property delegate for inserting new [ParameterSpec] by populating newly created
  * [ParameterSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun ParameterSpecHandler.adding(
     type: TypeName,
     vararg modifiers: KModifier,
@@ -112,6 +123,7 @@ public fun ParameterSpecHandler.adding(
  * Property delegate for inserting new [ParameterSpec] by populating newly created
  * [ParameterSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun ParameterSpecHandler.adding(
     type: Type,
     vararg modifiers: KModifier,
@@ -130,6 +142,7 @@ public fun ParameterSpecHandler.adding(
  * Property delegate for inserting new [ParameterSpec] by populating newly created
  * [ParameterSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun ParameterSpecHandler.adding(
     type: KClass<*>,
     vararg modifiers: KModifier,
@@ -143,16 +156,6 @@ public fun ParameterSpecHandler.adding(
             .also(::add)
     }
 }
-
-/** Convenient method to insert [ParameterSpec] using reified type. */
-public inline fun <reified T> ParameterSpecHandler.add(
-    name: String,
-    vararg modifiers: KModifier,
-): ParameterSpec =
-    ParameterSpec
-        .builder(name, T::class, *modifiers)
-        .build()
-        .also(::add)
 
 /** Responsible for managing a set of [ParameterSpec] instances. */
 public interface ParameterSpecHandler {

@@ -85,10 +85,19 @@ public inline fun TypeAliasSpecHandler.add(
         .also(::add)
 }
 
+/** Convenient method to insert [TypeAliasSpec] using reified type. */
+@Suppress("ktlint:rulebook:contract-function-definition")
+public inline fun <reified T> TypeAliasSpecHandler.add(name: String): TypeAliasSpec =
+    TypeAliasSpec
+        .builder(name, T::class)
+        .build()
+        .also(::add)
+
 /**
  * Property delegate for inserting new [TypeAliasSpec] by populating newly created
  * [TypeAliasSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeAliasSpecHandler.adding(
     type: TypeName,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -107,6 +116,7 @@ public fun TypeAliasSpecHandler.adding(
  * [TypeAliasSpecBuilder] using provided [configuration].
  */
 @OptIn(DelicateKotlinPoetApi::class)
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeAliasSpecHandler.adding(
     type: Type,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -124,6 +134,7 @@ public fun TypeAliasSpecHandler.adding(
  * Property delegate for inserting new [TypeAliasSpec] by populating newly created
  * [TypeAliasSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeAliasSpecHandler.adding(
     type: KClass<*>,
     configuration: TypeAliasSpecBuilder.() -> Unit,
@@ -136,13 +147,6 @@ public fun TypeAliasSpecHandler.adding(
             .also(::add)
     }
 }
-
-/** Convenient method to insert [TypeAliasSpec] using reified type. */
-public inline fun <reified T> TypeAliasSpecHandler.add(name: String): TypeAliasSpec =
-    TypeAliasSpec
-        .builder(name, T::class)
-        .build()
-        .also(::add)
 
 /** Responsible for managing a set of [TypeAliasSpec] instances. */
 public interface TypeAliasSpecHandler {

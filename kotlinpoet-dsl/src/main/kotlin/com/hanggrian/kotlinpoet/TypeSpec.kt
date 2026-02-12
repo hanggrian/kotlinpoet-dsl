@@ -440,6 +440,7 @@ public inline fun TypeSpecHandler.addAnnotation(
  * Property delegate for inserting new class [TypeSpec] by populating newly created
  * [TypeSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeSpecHandler.addingClass(
     configuration: TypeSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeSpec> {
@@ -456,6 +457,7 @@ public fun TypeSpecHandler.addingClass(
  * Property delegate for inserting new class [TypeSpec] by populating newly created
  * [TypeSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeSpecHandler.addingObject(
     configuration: TypeSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeSpec> {
@@ -472,6 +474,7 @@ public fun TypeSpecHandler.addingObject(
  * Property delegate for inserting new class [TypeSpec] by populating newly created
  * [TypeSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeSpecHandler.addingCompanionObject(
     configuration: TypeSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeSpec> {
@@ -488,6 +491,7 @@ public fun TypeSpecHandler.addingCompanionObject(
  * Property delegate for inserting new class [TypeSpec] by populating newly created
  * [TypeSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeSpecHandler.addingInterface(
     configuration: TypeSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeSpec> {
@@ -504,6 +508,7 @@ public fun TypeSpecHandler.addingInterface(
  * Property delegate for inserting new class [TypeSpec] by populating newly created
  * [TypeSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeSpecHandler.addingEnum(
     configuration: TypeSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeSpec> {
@@ -520,6 +525,7 @@ public fun TypeSpecHandler.addingEnum(
  * Property delegate for inserting new class [TypeSpec] by populating newly created
  * [TypeSpecBuilder] using provided [configuration].
  */
+@Suppress("ktlint:rulebook:contract-function-definition")
 public fun TypeSpecHandler.addingAnnotation(
     configuration: TypeSpecBuilder.() -> Unit,
 ): SpecDelegateProvider<TypeSpec> {

@@ -7,10 +7,7 @@
 build/
 local.properties
 
-# IntelliJ
+# IDEA
 *.iml
 .idea/
 out/
-
-# VSCode
-bin/

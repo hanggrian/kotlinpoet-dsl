@@ -1,22 +1,47 @@
 version: 2.1
 
 orbs:
-  codecov: codecov/codecov@3
+  codecov: codecov/codecov@5.4.3
 
 executors:
-  linux:
+  base:
+    docker:
+      - image: cimg/base:stable
+  openjdk:
     docker:
       - image: cimg/openjdk:21.0
 
 jobs:
-  upload-coverage:
-    executor: linux
+  setup-workspace:
+    executor: base
     steps:
       - checkout
-      - run: ./gradlew check koverXmlReport
+      - persist_to_workspace:
+          root: .
+          paths: [.]
+  run-lint:
+    executor: openjdk
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Static analysis
+          command: ./gradlew check
+  upload-coverage:
+    executor: openjdk
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Dynamic analysis
+          command: ./gradlew koverXmlReport
       - codecov/upload
 
 workflows:
-  build:
+  code-analysis:
     jobs:
-      - upload-coverage
+      - setup-workspace
+      - run-lint:
+          requires: [setup-workspace]
+      - upload-coverage:
+          requires: [setup-workspace]

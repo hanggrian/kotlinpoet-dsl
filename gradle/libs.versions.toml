@@ -1,31 +1,32 @@
 [versions]
-jdk = "21"
-jre = "8"
-kotlin = "2.0.0"
-junit = "5.12.2"
-ktlint = "1.5.0"
+java-compile = "21"
+java-support = "8"
+kotlin = "2.3.10"
+dokka = "2.1.0"
+junit = "5.14.2"
+ktlint = "1.8.0"
 
 [plugins]
-dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.1"
-ktlint = "org.jlleitschuh.gradle.ktlint:12.3.0"
-maven-publish = "com.vanniktech.maven.publish.base:0.32.0"
-git-publish = "org.ajoberstar.git-publish:5.1.1"
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "dokka" }
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.6"
+ktlint = "org.jlleitschuh.gradle.ktlint:14.0.1"
+maven-publish = "com.vanniktech.maven.publish.base:0.36.0"
+git-publish = "org.ajoberstar.git-publish:5.1.3"
 pages = "com.hanggrian.pages:0.2"
 
 [libraries]
 # lint
-rulebook-ktlint = "com.hanggrian.rulebook:rulebook-ktlint:0.1"
+rulebook-ktlint = "com.hanggrian.rulebook:rulebook-ktlint:0.2"
 # main
 kotlinpoet = "com.squareup:kotlinpoet:1.18.1"
 # test
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
-junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.12.2"
-mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.18.0"
-mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:5.4.0"
-truth = "com.google.truth:truth:1.4.4"
+junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.14.2"
+mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.21.0"
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:6.2.3"
+truth = "com.google.truth:truth:1.4.5"
 
 [bundles]
 junit5 = [
