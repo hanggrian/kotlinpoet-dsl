@@ -4,16 +4,16 @@ orbs:
   codecov: codecov/codecov@5.4.3
 
 executors:
-  base:
-    docker:
-      - image: cimg/base:stable
   openjdk:
     docker:
       - image: cimg/openjdk:21.0
+  renovate:
+    docker:
+      - image: renovate/renovate:latest
 
 jobs:
   setup-workspace:
-    executor: base
+    executor: openjdk
     steps:
       - checkout
       - persist_to_workspace:
@@ -24,18 +24,18 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: Static analysis
-          command: ./gradlew check
+      - run: ./gradlew ktlintCheck
   upload-coverage:
     executor: openjdk
     steps:
       - attach_workspace:
           at: .
-      - run:
-          name: Dynamic analysis
-          command: ./gradlew koverXmlReport
+      - run: ./gradlew koverXmlReport
       - codecov/upload
+  activate-renovatebot:
+    executor: renovate
+    steps:
+      - run: renovate
 
 workflows:
   code-analysis:
@@ -45,3 +45,4 @@ workflows:
           requires: [setup-workspace]
       - upload-coverage:
           requires: [setup-workspace]
+      - activate-renovatebot

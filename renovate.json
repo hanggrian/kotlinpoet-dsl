@@ -1,0 +1,10 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "mode": "full",
+  "prCreation": "not-pending",
+  "internalChecksFilter": "strict",
+  "ignoreDeps": [
+    "cimg/openjdk"
+  ]
+}

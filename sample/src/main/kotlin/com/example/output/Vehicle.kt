@@ -4,7 +4,7 @@ import kotlin.Int
 import kotlin.String
 
 public interface Vehicle {
-  public fun getName(): String
+    public fun getName(): String
 
-  public fun getWheelCount(): Int
+    public fun getWheelCount(): Int
 }

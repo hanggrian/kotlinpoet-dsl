@@ -9,26 +9,30 @@ val releaseArtifact: String by project
 val releaseDescription: String by project
 val releaseUrl: String by project
 
-val javaCompileVersion: JavaLanguageVersion =
-    JavaLanguageVersion.of(libs.versions.java.compile.get())
-val javaSupportVersion: JavaLanguageVersion =
-    JavaLanguageVersion.of(libs.versions.java.support.get())
+val javaCompileVersion = JavaLanguageVersion.of(libs.versions.java.compile.get())
+val javaSupportVersion = JavaVersion.toVersion(libs.versions.java.support.get())
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin
     alias(libs.plugins.dokka)
     alias(libs.plugins.dokka.javadoc)
     alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.ktlint)
     alias(libs.plugins.maven.publish)
 }
 
-kotlin {
-    jvmToolchain(javaCompileVersion.asInt())
-    explicitApi()
+java {
+    toolchain.languageVersion.set(javaCompileVersion)
+    sourceCompatibility = javaSupportVersion
+    targetCompatibility = javaSupportVersion
 }
 
-ktlint.version.set(libs.versions.ktlint.get())
+kotlin {
+    jvmToolchain {
+        languageVersion.set(javaCompileVersion)
+    }
+    compilerOptions.jvmTarget.set(JvmTarget.fromTarget(javaSupportVersion.toString()))
+    explicitApi()
+}
 
 mavenPublishing {
     configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")))
@@ -63,8 +67,6 @@ mavenPublishing {
 }
 
 dependencies {
-    ktlintRuleset(libs.rulebook.ktlint)
-
     api(libs.kotlinpoet)
 
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
@@ -75,17 +77,12 @@ dependencies {
 }
 
 tasks {
-    compileJava {
-        options.release = javaSupportVersion.asInt()
+    compileTestJava {
+        options.release.set(11)
     }
-    compileKotlin {
-        compilerOptions {
-            jvmTarget
-                .set(JvmTarget.fromTarget(JavaVersion.toVersion(javaSupportVersion).toString()))
-            freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
-        }
+    compileTestKotlin {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_11)
     }
-
     test {
         useJUnitPlatform()
     }
