@@ -1,0 +1,32 @@
+name: code-analysis
+
+on: [push, pull_request]
+
+env:
+  GRADLE_USER_HOME: ${{ github.workspace }}/.gradle/
+  GRADLE_OPTS: -Dorg.gradle.daemon=false
+
+jobs:
+  run-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/setup-workspace
+
+      - run: ./gradlew ktlintCheck
+
+  upload-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/setup-workspace
+
+      - run: ./gradlew koverXmlReport
+
+      - if: github.ref == 'refs/heads/main'
+        uses: codecov/codecov-action@v6
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

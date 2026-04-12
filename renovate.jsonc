@@ -5,6 +5,7 @@
   "prCreation": "not-pending",
   "internalChecksFilter": "strict",
   "ignoreDeps": [
-    "cimg/openjdk"
+    // version 6 requires Java 11+
+    "org.junit.platform:junit-platform-launcher"
   ]
 }
