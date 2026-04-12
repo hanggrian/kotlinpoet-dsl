@@ -25,7 +25,7 @@ junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.14.3"
 mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.23.0"
-mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:6.2.3"
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:6.3.0"
 truth = "com.google.truth:truth:1.4.5"
 
 [bundles]
