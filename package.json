@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "scripts": {
+    "postinstall": "uv sync",
+    "prepare": "./gradlew compileKotlin",
+    "lint": "./gradlew ktlintCheck && uv run stylebook .github/ pnpm-workspace.yaml *.toml && pnpm exec stylebook *.json *.md",
+    "test": "./gradlew test",
+    "coverage": "./gradlew koverXmlReport"
+  },
+  "packageManager": "pnpm@10.33.2",
+  "devDependencies": {
+    "@hanggrian/stylebook": "0.1.0",
+    "@prantlf/jsonlint": "17.0.1",
+    "markdownlint-cli2": "0.22.1"
+  }
+}

@@ -4,14 +4,19 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   activate-renovatebot:
+    if: github.event.forced == false
     runs-on: ubuntu-latest
     environment: github-actions
     steps:
       - uses: actions/checkout@v6
 
-      - uses: renovatebot/github-action@v46.1.8
+      - uses: renovatebot/github-action@v46.1.12
         with:
           token: ${{ secrets.RENOVATE_TOKEN }}
         env:

@@ -11,3 +11,9 @@ local.properties
 *.iml
 .idea/
 out/
+
+# PyCharm
+.venv/
+
+# WebStorm
+node_modules/

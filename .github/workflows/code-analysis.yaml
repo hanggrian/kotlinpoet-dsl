@@ -6,6 +6,10 @@ env:
   GRADLE_USER_HOME: ${{ github.workspace }}/.gradle/
   GRADLE_OPTS: -Dorg.gradle.daemon=false
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - run: ./gradlew ktlintCheck
+      - run: pnpm lint
 
   upload-coverage:
     runs-on: ubuntu-latest
@@ -23,7 +27,7 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - run: ./gradlew koverXmlReport
+      - run: pnpm coverage
 
       - if: github.ref == 'refs/heads/main'
         uses: codecov/codecov-action@v6
