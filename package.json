@@ -7,7 +7,7 @@
     "test": "./gradlew test",
     "coverage": "./gradlew koverXmlReport"
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.33.4",
   "devDependencies": {
     "@hanggrian/stylebook": "0.1.0",
     "@prantlf/jsonlint": "17.0.1",
