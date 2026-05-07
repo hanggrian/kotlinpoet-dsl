@@ -43,4 +43,6 @@ runs:
         restore-keys: pnpm-
 
     - shell: bash
-      run: pnpm i
+      run: |
+        uv sync
+        pnpm i

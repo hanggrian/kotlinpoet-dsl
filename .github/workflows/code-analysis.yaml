@@ -18,7 +18,10 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - run: pnpm lint
+      - run: |
+          ./gradlew ktlintCheck
+          uv run poe lint
+          pnpm lint
 
   upload-coverage:
     runs-on: ubuntu-latest
@@ -27,7 +30,7 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - run: pnpm coverage
+      - run: ./gradlew koverXmlReport
 
       - if: github.ref == 'refs/heads/main'
         uses: codecov/codecov-action@v6
