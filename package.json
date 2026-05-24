@@ -1,12 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "lint": "stylebook *.json *.md"
+    "lint": "stylebook . -e=.venv,node_modules,build,website"
   },
-  "packageManager": "pnpm@11.0.8",
   "devDependencies": {
-    "@hanggrian/stylebook": "0.1.0",
-    "@prantlf/jsonlint": "17.0.1",
-    "markdownlint-cli2": "0.22.1"
+    "@hanggrian/stylebook": "0.2.0"
   }
 }

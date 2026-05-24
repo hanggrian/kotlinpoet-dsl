@@ -1,8 +1,8 @@
 [tool.poe.tasks]
-lint = "stylebook .github/ pnpm-workspace.yaml **/*.toml *.toml"
+lint = "stylebook . -e=.venv,node_modules,gradlew.bat,pnpm-lock.yaml,build"
 
 [dependency-groups]
 dev = [
   "poethepoet",
-  "stylebook",
+  "stylebook==0.2.0",
 ]

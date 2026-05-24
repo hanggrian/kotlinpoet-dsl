@@ -1,7 +1,8 @@
-[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/hanggrian/kotlinpoet-dsl/code-analysis.yaml)](https://github.com/hanggrian/kotlinpoet-dsl/actions/workflows/code-analysis.yaml)
-[![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/kotlinpoet-dsl)](https://app.codecov.io/gh/hanggrian/kotlinpoet-dsl/)
-[![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian/kotlinpoet-dsl)](https://repo1.maven.org/maven2/com/hanggrian/kotlinpoet-dsl/)
-[![Java](https://img.shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/)
+[![GitHub Actions](https://shields.io/github/actions/workflow/status/hanggrian/kotlinpoet-dsl/code-analysis.yaml)](https://github.com/hanggrian/kotlinpoet-dsl/actions/workflows/code-analysis.yaml)
+[![Codecov](https://shields.io/codecov/c/gh/hanggrian/kotlinpoet-dsl)](https://app.codecov.io/gh/hanggrian/kotlinpoet-dsl/)
+[![Renovate](https://shields.io/badge/renovate-enabled-brightgreen)](https://developer.mend.io/github/hanggrian/kotlinpoet-dsl/)
+[![Maven Central](https://shields.io/maven-central/v/com.hanggrian/kotlinpoet-dsl)](https://repo1.maven.org/maven2/com/hanggrian/kotlinpoet-dsl/)
+[![Java](https://shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/)
 
 # KotlinPoet DSL
 
