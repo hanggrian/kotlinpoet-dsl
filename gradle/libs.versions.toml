@@ -11,7 +11,7 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "dokka" }
 kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.8"
 ktlint-gradle = "org.jlleitschuh.gradle.ktlint:14.2.0"
-maven-publish = "com.vanniktech.maven.publish.base:0.36.0"
+maven-publish = "com.vanniktech.maven.publish.base:0.37.0"
 git-publish = "org.ajoberstar.git-publish:6.0.0"
 pages = "com.hanggrian.pages:0.3"
 
